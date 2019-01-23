@@ -1,0 +1,1 @@
+git log --format=%s --since 12am | tail -r | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/, /g'

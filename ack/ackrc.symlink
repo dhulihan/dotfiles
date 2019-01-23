@@ -1,0 +1,4 @@
+-r
+--ignore-file=is:tags
+--ignore-file=is:target/site/*
+--ignore-file=is:target/coverage/*

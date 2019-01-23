@@ -1,0 +1,14 @@
+tmux new-session -s tmux-guard -d
+
+tmux split-window -v -p 60 -t tmux-guard
+
+
+#tmux send-keys -t tmux-guard:0.0 'clear' C-m # clear
+#tmux send-keys -t tmux-guard:0.0 ''
+tmux send-keys -t tmux-guard:0.1 'guard' C-m
+
+# Select First Pane
+tmux selectp -t 0
+
+# attach the current terminal window to the session
+tmux attach -t tmux-guard

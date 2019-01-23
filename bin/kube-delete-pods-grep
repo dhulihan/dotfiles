@@ -1,0 +1,12 @@
+#!/bin/bash
+# Author: Dave Hulihan
+#
+# This script deletes all pods that match a pod name pattern.
+#
+# $ kdg nginx
+#
+# You can also specify a container if your pod contains more than one.
+#
+# $ klg logging logstash
+PODS=$(kubectl get pods | grep $1 | grep -v Terminating | awk '{print $1}' | head -n 1)
+echo $PODS | xargs kubectl delete pod

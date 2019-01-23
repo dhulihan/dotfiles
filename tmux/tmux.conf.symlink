@@ -1,0 +1,96 @@
+# Add mouse support
+setw -g mouse on
+
+# clear scrollback buffer
+bind -n C-k clear-history
+
+# allow scrolling
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
+
+bind k confirm kill-window
+bind K confirm kill-server
+
+# copy-mode
+bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
+bind -T copy-mode-vi y send-keys -X copy-pipe "pbcopy"
+
+# Start windows and panes at 1, not 0
+set -g base-index 1
+setw -g pane-base-index 1
+
+# shfit-arrows for window switching
+bind -n S-Right next-window
+bind -n S-Left previous-window
+
+# ctrl-shift arrows to move window
+bind -n C-S-Left swap-window -t -1
+bind -n C-S-Right swap-window -t +1
+
+# try to maintain pwd (warning: does not work in sudo/su sessions)
+# Saner splitting.
+bind '"' split-window -c "#{pane_current_path}" -v
+bind '%' split-window -c "#{pane_current_path}" -h
+bind c new-window -c "#{pane_current_path}"
+
+# Unbind C-r, which is conflicting with fzf
+#bind -T root C-r send fzf-history-widget-accept C-m
+
+# Fix long name issue with tmuxinator
+#set -g automatic-rename off
+#set -g allow-rename off
+
+# Colors
+set -g default-terminal "screen-256color"
+set-option -g pane-border-fg colour235 #base02
+set-option -g pane-active-border-fg colour240 #base01
+set-option -g status on                # turn the status bar on
+#set -g status-utf8 on                  # set utf-8 for the status bar
+set -g status-interval 5               # set update frequencey (default 15 seconds)
+#set -g status-justify centre           # center window list for clarity
+
+# visual notification of activity in other windows
+setw -g monitor-activity on
+#set -g visual-activity on
+
+# set color for status bar
+set-option -g status-bg colour235 #base02
+set-option -g status-fg yellow #yellow
+set-option -g status-attr dim
+
+# set window list colors - red for active and cyan for inactive
+set-window-option -g window-status-fg brightblue #base0
+set-window-option -g window-status-bg colour236
+set-window-option -g window-status-attr dim
+
+set-window-option -g window-status-current-fg brightgreen
+set-window-option -g window-status-current-bg colour236
+set-window-option -g window-status-current-attr bright
+
+# show session name, window & pane number, date and time on right side of
+# status bar
+#set -g status-right-length 60
+#set -g status-right "#[fg=blue]#S #I:#P #[fg=yellow]:: %d %b %Y #[fg=green]:: %l:%M %p :: #(date -u | awk '{print $4}')::"
+
+# List of core-ish plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Other Plugins
+set -g @plugin "jlipps/tmux-safekill"
+
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+#set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# Set desired resurrection processes
+set -g @resurrect-processes 'ssh psql mysql sqlite3 irb pry ~b guard'
+
+# Fix Sierra clipboard issue
+#   brew install reattach-to-user-namespace
+#
+#   https://github.com/tmux/tmux/issues/543
+#   https://github.com/zeit/hyper/issues/786
+set -g default-shell $SHELL
+set -g default-command "reattach-to-user-namespace -l ${SHELL}"
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

@@ -1,0 +1,4 @@
+alias k=kubectl
+alias kl="k logs -f \$(k get pods | tail -n 1 | awk '{print \$1}')"
+alias klg=kube-logs-grep
+alias kdg=kube-delete-pods-grep

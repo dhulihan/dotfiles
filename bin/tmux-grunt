@@ -1,0 +1,10 @@
+tmux new-session -s tmux-grunt -d
+
+tmux split-window -h -p 40 -t tmux-grunt
+
+tmux send-keys -t tmux-grunt:0.1 'grunt serve' C-m
+
+tmux select-pane -t tmux-grunt:0.0
+
+# attach the current terminal window to the session
+tmux attach -t tmux-grunt

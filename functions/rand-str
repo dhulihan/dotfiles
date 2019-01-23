@@ -1,0 +1,7 @@
+n="${1:-32}"
+unames=$(uname -s)
+if [ $unames == "Darwin" ]; then
+	cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c $n && echo
+else
+	cat /dev/urandom | tr -cd 'a-f0-9' | head -c $n && echo
+fi

@@ -1,0 +1,9 @@
+name: foreman
+root: ./
+windows:
+  - main: 
+      layout: main-horizontal
+      panes:
+        - vim
+        - 
+  - foreman: foreman start

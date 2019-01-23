@@ -1,0 +1,649 @@
+" Startup Vundle
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" System
+"Plugin 'benmills/vimux'
+
+" Startup
+Plugin 'mhinz/vim-startify'
+
+" Version Control
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
+" General Syntax
+"Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-endwise'
+"Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-repeat'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'The-NERD-Commenter'
+"Plugin 'ludovicchabant/vim-gutentags' " blocking too much
+Plugin 'vitalk/vim-shebang'
+
+" Language-specific
+Plugin 'fatih/vim-go'
+Plugin 'robbles/logstash.vim'
+Plugin 'hashivim/vim-terraform'
+Plugin 'tpope/vim-cucumber'
+Plugin 'elubow/cql-vim'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'cespare/vim-toml'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'jparise/vim-graphql'
+Plugin 'rmelcer/vim-icinga'
+"Plugin 'wannesm/wmgraphviz.vim'
+Plugin 'elixir-lang/vim-elixir'
+"Plugin 'tpope/vim-rails'
+"Plugin 'gabrielelana/vim-markdown'
+"Plugin 'shime/vim-livedown'
+"Plugin 'JamshedVesuna/vim-markdown-preview'
+" Plugin 'amiorin/vim-fenced-code-blocks' " does not support indentation
+" Plugin 'rhysd/vim-gfm-syntax' " cute but not needed
+Plugin 'chrisbra/csv.vim'
+
+" Lint
+Plugin 'w0rp/ale'
+"Plugin 'vim-syntastic/syntastic'
+Plugin 'maximbaz/lightline-ale'
+
+" Utility
+Plugin 'tpope/tpope-vim-abolish'
+Plugin 'mileszs/ack.vim'
+Plugin 'Rename2'
+"Plugin 'scrooloose/nerdtree'
+Plugin 'tmhedberg/matchit'
+"Plugin 'vim-scripts/ruby-matchit'
+Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'mtth/scratch.vim'
+"Plugin 'vim-scripts/SearchComplete'
+
+" Colors
+Plugin 'flazz/vim-colorschemes'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'fenetikm/falcon'
+"Plugin 'vim-airline/vim-airline-themes'
+
+" Files & Buffers
+"Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'ton/vim-bufsurf'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'gcmt/taboo.vim'
+Plugin 'danro/rename.vim'
+"Plugin 'fholgado/minibufexpl.vim'
+
+" Layout
+"Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'tyru/open-browser.vim'
+"Plugin 'wincent/command-t'
+"Plugin 'vim-scripts/EasyGrep'
+Plugin 'editorconfig/editorconfig-vim.git'
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+
+" Build
+Plugin 'tpope/vim-dispatch'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" K, Add custom stuff below ---
+
+" Line Numbers
+set nonumber
+"highlight LineNr ctermfg=darkgrey
+
+" Recognize dash-separated values as words
+set iskeyword+=-
+
+" hide modified buffers instead of closing them
+set hidden
+
+" Split windows to the right and bottom for horz/vert
+set splitright
+set splitbelow
+
+
+"make sure to escape the spaces in the name properly
+"set guifont=Source\ Code\ Pro\ for\ Powerline
+
+" copy unnamed register to clipboard in macvim/gvim
+"set clipboard=unnamed
+
+" File Types & Indentation ---------------------------------------------------
+set cindent
+set smartindent
+set autoindent
+
+" Don't use spaces for tabs
+"set noexpandtab
+
+" Show tabs as 4 cols
+"set tabstop=4
+"set shiftwidth=4
+"set softtabstop=4
+
+" spelling -------------------------------------------------------------------
+set spellfile=~/.en.utf-8.add
+" spelling END ---------------------------------------------------------------
+
+" set filetype based on filename
+"autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.template set filetype=json
+autocmd BufNewFile,BufRead .envrc set filetype=sh
+
+" filetype-specific config
+autocmd Filetype markdown setlocal spell
+autocmd Filetype terraform setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype groovy setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4
+
+" better tab completion of filepaths
+set wildmode=longest,list
+
+" File Types & Indentation END -----------------------------------------------
+
+" Pretty invisibles
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+
+" Use the same symbols as TextMate for tabstops and EOLs
+"set listchars=tab:▸\ ,eol:¬
+
+" Highlight one or more trailing spaces
+" syntax match Error "\s\{2}$"
+
+" disable bells
+set noerrorbells visualbell t_vb=
+
+" map leader to spacebar
+"let mapleader=" "
+map <Space> <Leader>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Classic backspace
+"nnoremap <BS> X
+
+" Paste mode toggle
+nnoremap <F2> :set invpaste paste?<CR>
+imap <F2> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F2>
+
+" number mode toggle
+noremap <F3> :set invnumber<CR>
+inoremap <F3> <C-O>:set invnumber<CR>
+
+set cinkeys=0{,0},:,0#,!^F
+
+" make C-C esc for InsertLeave, etc (insert)
+ino <C-C> <Esc>
+
+" visual indicator for insert mode
+"augroup InsertColors
+	"au InsertEnter * colors dracula | AirlineRefresh
+	"au InsertLeave * colors molokai | AirlineRefresh
+"augroup END
+
+" beginning/end of line, shell style (insert)
+inoremap <C-e> <Esc>A
+inoremap <C-a> <Esc>I
+
+" Easier saving
+"nmap S :w<cr>
+"nmap <C-i> :q<cr>
+
+" map buffer movement (normal)
+" <Leader>s requires release of <Leader> :(
+"nmap <Leader>s :bn!<esc><cr>
+"nmap <Leader>a :bp!<esc><cr>
+nmap <Leader>s :BufSurfForward<cr>
+nmap <Leader>a :BufSurfBack<cr>
+"nmap <Leader>d :bd<esc><cr>
+nmap <Leader>d :BD<cr>
+nmap <Leader>f :b
+"nnoremap <Tab> :bnext<CR>
+"nnoremap <S-Tab> :bprevious<CR>
+
+" Tabs
+nmap = :tabn<cr>
+nmap - :tabp<cr>
+nmap _ :tabm -1<cr>
+nmap + :tabm +1<cr>
+"nmap ( :tabclose<cr>
+"nmap ) :tabnew<cr>
+
+" Map ctrl+return to auto/smart indent
+imap <C-Return> <CR><CR><C-o>k<Tab>
+
+" lazy indent
+"nmap <Tab> >>
+"nmap <S-Tab> <<
+"imap <S-Tab> <Esc><<i
+
+" Map insert abnormals. Must be typed quickly!
+" imap wq <Esc>:wq<cr>
+" imap ww <Esc>:w<cr>i
+" imap jj <Esc>
+
+" In visual mode, make indent/unindent reselect after indent
+"vmap <TAB> >gv
+"vmap <S-TAB> <gv
+
+" easier visual mode replace
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" select pasted text
+nmap gp `[v`]
+
+" mouse mode
+set mouse=a
+
+" tmux mousefix
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+
+" Smooth scroll
+"map <ScrollWheelUp> <C-Y>
+"map <ScrollWheelDown> <C-E>
+
+" enable project rc
+set exrc
+
+" search highlighting
+set hlsearch
+
+" incremental search
+"set incsearch
+
+" Save search matches in separate file
+nnoremap <silent> <F4> :redir >>matches.tmp<CR>:g//<CR>:redir END<CR>:new matches.tmp<CR>
+
+" Syntax Highlighting on
+syntax on
+
+" netrw/Explorer
+let g:netrw_preview = 1 " preview file vertical split
+let g:netrw_liststyle = 1 " one file, timestamps
+nmap <C-n> :Vexplore<CR> " explorer in vertical split
+
+" Ack: map
+nmap <Leader>vv :Ack<cr>
+set grepprg=rg\ --vimgrep
+let g:ackprg='rg --vimgrep'
+
+" lightline --------------------------------------------------
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ '_component': {
+      \   '_lineinfo': ' %3l:%-2v',
+      \ },
+      \ '_separator': { 'left': '', 'right': '' },
+      \ '_subseparator': { 'left': '', 'right': '' },
+      \ }
+" lightline END ----------------------------------------------
+
+" gutentags -------------------------------------------------
+"autocmd User GutentagsUpdating unsilent echo "Gutentagging..."
+"autocmd User GutentagsUpdated unsilent echo "Gutentagged!"
+"autocmd User GutentagsUpdating call lightline#update()
+"autocmd User GutentagsUpdated call lightline#update()
+" gutentags END ---------------------------------------------
+
+" Airline ----------------------------------------------------
+"
+" enable/disable tabline
+"   if disabled, will show buffers when only one tab open
+let g:airline#extensions#tabline#enabled = 0
+
+" enable/disable buffer line
+let g:airline#extensions#bufferline#enabled = 0
+
+" use powerline glyphs for symbols
+let g:airline_powerline_fonts = 1
+
+" show all the time, not just on splits
+set laststatus=2
+let g:airline#extensions#wordcount#enabled = 0 " disable word count
+let g:airline_section_y = 0 " show nothing in encoding section
+let g:airline#extensions#tabline#buffer_nr_show = 0 " show buffer numbers
+let g:airline#extensions#tabline#fnametruncate = 0 " truncate non-active filenames
+let g:airline#extensions#tabline#fnamemod = ':p:t' " show only filename, see filename-modifiers for more
+
+" Enable index select
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+" Airline Theme
+"AirlineTheme wombat
+"AirlineTheme bubblegum
+"AirlineTheme tomorrow
+"AirlineTheme jellybeans
+"AirlineTheme luna
+"AirlineTheme hybrid
+
+" Airline END -----------------------------------------------
+
+" Markdown
+autocmd BufNewFile *.md MarkdownHeader
+
+" tpope/vim-markdown ----------------------------------------
+let g:markdown_gfm_languages = ["ruby", "erb=eruby"]
+
+" tpope/vim-markdown END ------------------------------------
+
+" tpope/vim-dispatch ----------------------------------------
+
+" Open md files with system tool
+autocmd FileType markdown let b:dispatch = "open '%'"
+" tpope/vim-dispatch END ------------------------------------
+
+" plasticboy/vim-markdown -----------------------------------
+let g:vim_markdown_fenced_languages = ['bash=sh', 'envrc=sh', 'erb=eruby', 'rb=ruby', 'js=javascript', 'json=javascript', 'ruby', 'rb=ruby', 'sass', 'xml', 'ex=elixir', 'yml=yaml', 'gql=graphql', 'py=python', 'hcl=terraform']
+" plasticboy/vim-markdown END -------------------------------
+
+" jiangmiao/auto-pairs --------------------------------------
+
+" turn off indenter. Does not play nicely with fenced markdown blocks
+let g:AutoPairsMapCR = 0
+
+" turn this off in most cases
+"let g:AutoPairs = {}
+
+" backticks in markdown
+"autocmd FileType markdown let g:AutoPairs = { '`':'`'}
+" jiangmiao/auto-pairs END ----------------------------------
+
+" git-gutter -------------------------------------------------
+" Don't touch sign column colors
+let g:gitgutter_override_sign_column_highlight = 0
+" git-gutter END ---------------------------------------------
+
+" groovy
+au BufNewFile,BufRead Jenkinsfile setf groovy
+
+" fatih/vim-go ----------------------------------------------
+
+" disable fmt on autosave, use linter
+let g:go_fmt_autosave = 0
+
+" fatih/vim-go END ------------------------------------------
+
+" tpope/vim-markdown ----------------------------------------
+
+" vim-markdown: no folding
+let g:vim_markdown_folding_disabled=1
+
+" vim-markdown: don't indent new lines
+let g:vim_markdown_new_list_item_indent = 0
+
+" fenced highlight aliases alias=orig
+let g:markdown_fenced_languages = g:vim_markdown_fenced_languages
+
+" tpope/vim-markdown END --------------------------------------
+
+" gabrielelana/vim-markdown
+let g:markdown_enable_spell_checking = 0 " disable spellcheck
+let g:markdown_include_jekyll_support = 0
+let g:markdown_enable_mappings = 0
+let g:markdown_enable_input_abbreviations = 0
+
+" shime/vim-livedown
+let g:livedown_autorun = 0
+let g:livedown_open = 0
+
+" CtrlP
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_reuse_window  = 'startify' " fix new window split issue
+let g:ctrlp_open_new_file = 'r' " open new file in current window
+let g:ctrlp_working_path_mode = 0 " disable fancy working path
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn))|(tmp|node_modules|dist|vendor/**)$',
+  \ 'file': '\v\.(exe|so|dll|jpg|jpeg|png|swp|swo)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_bufname_mod = ':.' " show full path relative to cwd
+let g:ctrlp_bufpath_mod = '' " nothing in the path section
+let g:ctrlp_switch_buffer = '' " don't switch to already displayed buffers
+
+" set custom cmd for ignoring things in gitignore (when in project root)
+"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" ignore everything in gitignore (regardless of project depth)
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+
+
+" mtth/scratch.vim ------------------------------------------
+
+" don't hide when you leave insert mode
+let g:scratch_insert_autohide = 0
+
+let g:scratch_filetype = 'markdown'
+
+" This file gets written with the scratch content when it hides
+" global
+" let g:scratch_persistence_file = '/tmp/scratch.vim'
+" project
+let g:scratch_persistence_file = '.scratch.vim'
+
+" Disable mappings
+let g:scratch_no_mappings = 1
+nmap gs <plug>(scratch-insert-reuse)
+
+" mtth/scratch.vim END --------------------------------------
+
+" list buffers nicely
+nmap <C-\> :CtrlPBuffer<cr>
+
+" YCM ON EVERYTHING
+"let g:ycm_filetype_blacklist = {}
+
+" vimux bindings
+nmap <Leader>rp :VimuxPromptCommand<CR>
+nmap <Leader>rl :VimuxRunLastCommand<CR>
+nmap <Leader>ri :VimuxInspectRunner<CR>
+nmap <Leader>rx :VimuxCloseRunner<CR>
+nmap <Leader>rz :VimuxZoomRunner<CR>
+nmap <Leader>rs :VimuxInterruptRunner<CR>
+
+" tags
+"set tags=./tags
+
+" tagbar
+"let g:tagbar_width=26 " Default is 40, seems too wide
+noremap <Leader>y :TagbarToggle<cr>
+
+" easytags
+"let g:easytags_dynamic_files = 2 " write project-specific tags
+"let g:easytags_async = 1 " generate tags asynchronously
+
+" nerdtree
+"map <C-n> :NERDTreeToggle<CR>
+
+" close if only window is nerdtree
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" quit vim if no buffers
+"autocmd BufDelete * if len(filter(range(1, bufnr('$')), '! empty(bufname(v:val)) && buflisted(v:val)')) == 1 | quit | endif
+
+" startify
+let g:startify_custom_header = []
+let g:startify_relative_path = 1
+let g:startify_list_order = ['dir', 'files', 'bookmarks', 'sessions']
+let g:startify_change_to_dir = 0
+
+" vim-markdown-preview
+"let vim_markdown_preview_github=1 " use grip disable to use markdown cli
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_temp_file=1 " rm file after render
+
+" buffergator
+"nnoremap <silent> <Leader>b :BuffergatorToggle<CR> " toggle instead of open
+let g:buffergator_viewport_split_policy='T' " open viewport horz top
+let g:buffergator_autodismiss_on_select=1 " dismiss viewport on select
+let g:buffergator_display_regime='filepath' " view full filepath
+let g:buffergator_sort_regime='filepath' " sort on full filepath
+"let g:buffergator_autoupdate=1 " update viewport when bufferlist changes (buggy)
+
+" MiniBufExplorer --------------------------------------------
+
+" syntastic START --------------------------------------------
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_go_checkers = [ 'gofmt', 'golint' ]
+" syntastic END ---------------------------------------------
+
+" ale START -------------------------------------------------
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+let g:ale_ruby_rubocop_executable = 'bundle exec rubocop'
+
+" lightline-ale
+let g:lightline.component_expand = {
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+
+let g:lightline.component_type = {
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \ }
+
+let g:lightline.active = { 'right': [ ['lineinfo'],
+		    \            [ 'percent' ],
+		    \            [ 'fileformat', 'fileencoding', 'filetype' ],
+		    \            ['ruler', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+
+" resolve fight between vim-go and ale
+"let g:go_fmt_fail_silently = 1
+
+" this isn't an actual ale var, this is just a placeholder for stuff i use
+" sometimes
+let g:disabled_ale_fixers = {
+\   'python': ['black'],
+\}
+
+let g:ale_linters = {
+\   'terraform': ['tflint'],
+\}
+" fixers
+let g:ale_fixers = {
+\   'go': ['gofmt', 'goimports'],
+\   'json': ['fixjson'],
+\   'terraform': ['terraform'],
+\}
+
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
+let g:ale_fix_on_save = 1
+" ale END ---------------------------------------------------
+
+" Allow single clicks
+let g:miniBufExplUseSingleClick = 1
+
+" Hide buffer numbers
+let g:miniBufExplShowBufNumbers = 0
+
+" Place MBE window above/left. Good if using splitbelow/splitright
+let g:miniBufExplBRSplit = 0
+
+" Show MBE when the following num of buffers are present
+" 0 - skip eligible buffer checking
+let g:miniBufExplBuffersNeeded = 2
+
+" Better colors
+hi MBENormal               ctermfg=069 guifg=#808080 guibg=fg
+hi MBEChanged              ctermfg=196 guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        ctermfg=069 guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       ctermfg=210 guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  ctermfg=046 guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged ctermfg=214 guifg=#F1266F guibg=fg
+
+" MiniBufExplorer END ---------------------------------------
+
+" Colors ----------------------------------------------------
+set background=dark
+colors apprentice
+"colors falcon
+"colors jellybeans
+"colors hybrid
+"colors molokai
+"colors blackboard
+"colors hemisu
+"colorscheme bubblegum
+"colors noctu
+"colorscheme nefertiti
+"colorscheme pencil
+"colorscheme badwolf
+"" enable transparent term support
+"let g:solarized_termtrans=1
+"colorscheme solarized
+
+" Current-scheme colors
+hi! link SignColumn Normal
+hi! link LineNr Comment
+
+" Cross-scheme colors
+"hi! link ColorColumn Tabline
+"hi! link ColorColumn TablineFill
+hi TabLine     term=bold cterm=bold ctermfg=225 ctermbg=053
+hi TabLineFill term=bold cterm=bold ctermfg=225 ctermbg=053
+hi TabLineSel  term=bold cterm=bold ctermfg=053 ctermbg=225
+hi Visual term=underline ctermbg=238
+
+" Invisible character colors
+hi NonText guifg=#4a4a59
+hi SpecialKey guifg=#4a4a59
+
+
+" Colors END -----------------------------------------------
+
+source ~/.vimfunctions.vim

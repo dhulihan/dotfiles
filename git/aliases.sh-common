@@ -1,0 +1,30 @@
+# The rest of my fun git aliases
+alias gpl='git pull --prune'
+alias gplo='git pull origin'
+alias gplom='gpl origin master'
+alias gplod='gpl origin dev'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gp='git push'
+# pretty diff with colors instead of prefixed +|- (better for yanking)
+alias gd='git diff --color | sed -E "s/^([^-+ ]*)[-+ ]/\\1/" | less -r'
+alias gdc='git diff --cached --color | sed -E "s/^([^-+ ]*)[-+ ]/\\1/" | less -r'
+alias gd+='git diff'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gcb='git copy-branch-name'
+alias gcln='git clean -df'
+alias gb='git branch -avv'
+alias grh='git reset --hard'
+alias grc='git rebase --continue'
+alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
+#alias gs="git status"
+
+# git
+alias gpo="git push origin"
+alias gpu="git push upsteam"
+alias gcam="git commit -am"
+alias gcm="git commit -m"
+# mirror gh-pages with master & push
+alias gpogh="git checkout gh-pages && git merge master && git push origin gh-pages && git checkout -"

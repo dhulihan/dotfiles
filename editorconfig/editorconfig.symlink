@@ -1,0 +1,45 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{html,ejs,erb}]
+indent_style = space
+indent_size = 2
+
+[*.{css,scss,sass,less}]
+indent_style = space
+indent_size = 2
+curly_bracket_next_line = false
+
+[*.{js,json,template}]
+indent_style = space
+indent_size = 2
+curly_bracket_next_line = false
+
+[*.rb]
+indent_style = space
+indent_size = 2
+
+[*.{c,cpp,h,cc,cxx,txx,hxx,hpp}]
+indent_style = tab
+indent_size = 4
+curly_bracket_next_line = true
+
+[*.sh]
+indent_style = space
+indent_size = 4
+
+[*.{md,markdown}]
+indent_style = tab
+indent_size = 4
+
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2

@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+PATH="/usr/local/bin:$PATH"
+
+# use .git
+#dir="`git rev-parse --git-dir`"
+
+# use project dir
+dir="."
+
+trap 'rm -f "$dir/$$.tags"' EXIT
+echo "Generating tags..."
+git ls-files | \
+  ctags --tag-relative -L - -f "$dir/$$.tags"
+
+mv "$dir/$$.tags" "$dir/tags"

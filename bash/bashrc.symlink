@@ -1,0 +1,24 @@
+# Add `~/bin` to the `$PATH`
+export PATH="$HOME/bin:$PATH";
+
+# dotfiles src
+export DOTFILES=$HOME/.dotfiles
+
+# Load commonfiles
+for sh_common in `ls $DOTFILES/**/*.sh-common`
+do
+	#echo "sourcing ${sh_common}"
+	source $sh_common
+done
+
+# Load bashfiles
+for scriptfile in `ls $DOTFILES/**/*.bash`
+do
+   source $scriptfile
+done
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

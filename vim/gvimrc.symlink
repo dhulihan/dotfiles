@@ -1,0 +1,13 @@
+" gVim
+set lines=999 columns=80
+set guifont=Source_Code_Pro:h12:cANSI
+set clipboard=unnamed " use unnamed register for clipboard
+set go+=a " auto-copy visual selection to win clipboard
+set vb t_vb= " no bells
+
+" better backspacing
+set backspace=2
+set backspace=indent,eol,start
+
+" disable bells
+set noeb vb t_vb="

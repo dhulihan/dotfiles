@@ -1,0 +1,29 @@
+# create a new tmux session
+# name it "tmux-rails" so we can reference it later
+# detach from the session (-d) to run additional commands
+tmux new-session -s tmux-rails -d
+
+# split the first pane into two panes side-by-side horizontally
+# make the new one 45% of the first pane's original size
+# target the tmux-rails session (-t) for this command
+tmux split-window -h -p 45 -t tmux-rails
+
+# split the second pane into two panes stacked vertically
+# make the new one 30% of the second pane's original size
+# target the tmux-rails session (-t) for this command
+tmux split-window -v -p 75 -t tmux-rails
+
+tmux split-window -v -p 68 -t tmux-rails
+
+tmux send-keys -t tmux-rails:0.1 'rails console' C-m
+
+# target the second pane and sthe rails server command
+tmux send-keys -t tmux-rails:0.2 'rails server' C-m
+
+tmux send-keys -t tmux-rails:0.3 'tail -f log/development.log' C-m
+
+# Select First Pane
+tmux selectp -t 0
+
+# attach the current terminal window to the session
+tmux attach -t tmux-rails

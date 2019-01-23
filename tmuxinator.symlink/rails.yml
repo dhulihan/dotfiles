@@ -1,0 +1,12 @@
+name: rails
+root: ./
+windows:
+  - main:
+      layout: main-horizontal
+      panes:
+        - 
+  - guard: b guard
+  - console: bundle exec rails c
+  - workers: bundle exec foreman start
+  - logs: tail -f log/development.log
+  - server: rails s

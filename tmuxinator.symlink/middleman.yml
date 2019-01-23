@@ -1,0 +1,10 @@
+name: middleman
+root: ./
+
+
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - 
+        - bundle exec middleman server --force-polling --reload-paths data/

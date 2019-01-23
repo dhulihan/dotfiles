@@ -1,0 +1,19 @@
+#!/bin/bash
+# Author: Dave Hulihan
+#
+# This script follows the logs of the first pod matching a grep expression.
+#
+# $ klg nginx
+#
+# You can also specify a container if your pod contains more than one.
+#
+# $ klg logging logstash
+
+# Which column holds pod status
+STATUSCOL=3
+PODS=$(kubectl get pods | grep $1 | grep -v Terminating | sort --reverse -k$STATUSCOL| awk '{print $1}')
+POD=$(echo $PODS | head -n 1)
+echo "Available pods:"
+echo "${PODS}"
+echo "Selected pod ${POD}"
+kubectl logs -f $POD $2

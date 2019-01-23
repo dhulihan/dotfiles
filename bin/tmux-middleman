@@ -1,0 +1,10 @@
+tmux new-session -s my_project -d
+
+tmux split-window -h -p 40 -t my_project
+
+tmux send-keys -t my_project:0.1 'bundle exec middleman server --force-polling --reload-paths data/' C-m
+
+tmux select-pane -t my_project:0.0
+
+# attach the current terminal window to the session
+tmux attach -t my_project

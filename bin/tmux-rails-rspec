@@ -1,0 +1,18 @@
+tmux new-session -s tmux-rails-rspec -d
+
+tmux split-window -h -p 45 -t tmux-rails-rspec
+
+tmux split-window -v -p 75 -t tmux-rails-rspec
+
+#tmux send-keys -t tmux-rails-rspec:0.0 'export PS1="\W\$ "' C-m # short prompt string
+tmux send-keys -t tmux-rails-rspec:0.0 'clear' C-m # clear
+tmux send-keys -t tmux-rails-rspec:0.0 'b rspec spec/'
+tmux send-keys -t tmux-rails-rspec:0.1 'rails console test' C-m
+
+tmux send-keys -t tmux-rails-rspec:0.2 'b spork' C-m
+
+# Select First Pane
+tmux selectp -t 0
+
+# attach the current terminal window to the session
+tmux attach -t tmux-rails-rspec
