@@ -138,7 +138,10 @@ set autoindent
 "set softtabstop=4
 
 " spelling -------------------------------------------------------------------
-set spellfile=~/.en.utf-8.add
+" First entry is for public things, Second is for secret/confidential terms
+" (eg: internal business, etc.)
+" use `1zg`, or `2zg`, etc.
+set spellfile=~/.en.utf-8.add,~/.en-secret.utf-8.add
 " spelling END ---------------------------------------------------------------
 
 " set filetype based on filename

@@ -21,7 +21,6 @@ protobuf
 xml
 avro
 Deserialization
-MX
 microservices
 backend
 whiteboarding
@@ -33,7 +32,7 @@ HIPAA
 protobufs
 api
 k8s
-CouchBase
+Couchbase
 microservice
 SBC
 django
@@ -42,3 +41,6 @@ IVR
 whitespace
 upsert
 papertrail
+microsoft
+onboarding
+PSTN

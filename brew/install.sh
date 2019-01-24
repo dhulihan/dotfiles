@@ -47,6 +47,7 @@ tidy-html5 \
 protobuf \
 direnv \
 tree \
+git-secrets \
 erlang
 
 brew cask install java
