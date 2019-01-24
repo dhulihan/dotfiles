@@ -48,6 +48,8 @@ protobuf \
 direnv \
 tree \
 git-secrets \
+libcouchbase \
+postgresql \
 erlang
 
 brew cask install java

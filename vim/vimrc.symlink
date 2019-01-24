@@ -51,6 +51,7 @@ Plugin 'elixir-lang/vim-elixir'
 " Plugin 'amiorin/vim-fenced-code-blocks' " does not support indentation
 " Plugin 'rhysd/vim-gfm-syntax' " cute but not needed
 Plugin 'chrisbra/csv.vim'
+Plugin 'mhinz/vim-rfc'
 
 " Lint
 Plugin 'w0rp/ale'
