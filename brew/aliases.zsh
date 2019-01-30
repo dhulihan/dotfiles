@@ -1,1 +1,2 @@
-alias rgi="rg -i"
+# tree with ignore
+alias treei="tree -I vendor"
