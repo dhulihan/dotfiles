@@ -288,6 +288,9 @@ nnoremap <silent> <F4> :redir >>matches.tmp<CR>:g//<CR>:redir END<CR>:new matche
 " Syntax Highlighting on
 syntax on
 
+" ignore these things
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
+
 " netrw/Explorer
 let g:netrw_preview = 1 " preview file vertical split
 let g:netrw_liststyle = 1 " one file, timestamps
@@ -440,7 +443,7 @@ let g:ctrlp_open_new_file = 'r' " open new file in current window
 let g:ctrlp_working_path_mode = 0 " disable fancy working path
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn))|(tmp|node_modules|dist|vendor/**)$',
+  \ 'dir':  '\v[\/](\.(git|hg|svn))|(tmp|node_modules|dist|vendor)$',
   \ 'file': '\v\.(exe|so|dll|jpg|jpeg|png|swp|swo)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
@@ -452,7 +455,8 @@ let g:ctrlp_switch_buffer = '' " don't switch to already displayed buffers
 "let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " ignore everything in gitignore (regardless of project depth)
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+" WARNING: this bypasses ctrlp_custom_ignore and wildignore
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
 
 " mtth/scratch.vim ------------------------------------------
