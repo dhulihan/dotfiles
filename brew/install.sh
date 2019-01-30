@@ -50,6 +50,7 @@ tree \
 git-secrets \
 libcouchbase \
 postgresql \
+sngrep \
 erlang
 
 brew cask install java
@@ -61,11 +62,19 @@ brew install burntsushi/ripgrep/ripgrep-bin
 brew tap caskroom/fonts
 brew cask install font-hack-nerd-font
 
+# wireshark
+brew cask install wireshark
+
+# gcloud
+brew tap caskroom/cask
+brew cask install google-cloud-sdk
+
 # kubeval
 brew tap garethr/kubeval
 brew install kubeval
 
 brew cask install minikube
+
 
 brew install neovim/neovim/neovim
 

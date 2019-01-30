@@ -14,7 +14,7 @@ git_branch() {
 }
 
 git_commit() {
-  echo "%{$fg_bold[blue]%}$($git rev-parse --short HEAD 2>/dev/null)%{$reset_color%}"
+  echo "%{$fg_bold[grey]%}$($git rev-parse --short HEAD 2>/dev/null)%{$reset_color%}"
 }
 
 git_dirty() {

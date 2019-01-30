@@ -1,1 +1,4 @@
 alias py=python
+
+# note: this sorts json output
+alias prettyjson='python -m json.tool'
