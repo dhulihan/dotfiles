@@ -13,6 +13,10 @@ git_branch() {
   echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
 }
 
+git_commit() {
+  echo "%{$fg_bold[blue]%}$($git rev-parse --short HEAD 2>/dev/null)%{$reset_color%}"
+}
+
 git_dirty() {
   if $(! $git status -s &> /dev/null)
   then
@@ -78,9 +82,8 @@ datestamp() {
 
 
 set_prompt () {
-	export PROMPT=$'\n$(datestamp)\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n› '
+	export PROMPT=$'\n$(datestamp)\n$(rb_prompt)in $(directory_name) $(git_dirty) $(git_commit)$(need_push)\n› '
 	#export RPROMPT=""
-
 }
 
 precmd() {
