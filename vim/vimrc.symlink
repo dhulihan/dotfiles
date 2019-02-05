@@ -26,12 +26,13 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-endwise'
 "Plugin 'tpope/vim-surround'
 "Plugin 'tpope/vim-repeat'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go
 Plugin 'The-NERD-Commenter'
 "Plugin 'ludovicchabant/vim-gutentags' " blocking too much
 Plugin 'vitalk/vim-shebang'
 
 " Language-specific
+"Plugin 'stamblerre/gocode' " trouble getting this to work
 Plugin 'fatih/vim-go'
 Plugin 'robbles/logstash.vim'
 Plugin 'hashivim/vim-terraform'
@@ -289,7 +290,7 @@ nnoremap <silent> <F4> :redir >>matches.tmp<CR>:g//<CR>:redir END<CR>:new matche
 syntax on
 
 " ignore these things
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,.*.sw*
 
 " netrw/Explorer
 let g:netrw_preview = 1 " preview file vertical split

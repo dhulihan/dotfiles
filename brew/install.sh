@@ -18,6 +18,7 @@ openssl \
 libyaml \
 libffi \
 curl --with-openssl \
+cmake \
 jq \
 watch \
 markdown \
@@ -51,6 +52,7 @@ git-secrets \
 libcouchbase \
 postgresql \
 sngrep \
+grpcurl \
 erlang
 
 brew cask install java

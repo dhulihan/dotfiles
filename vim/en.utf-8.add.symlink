@@ -84,3 +84,5 @@ nsqd
 MySQL
 postgres
 wildcards
+namespaced
+developers
