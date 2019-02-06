@@ -52,6 +52,7 @@ git-secrets \
 libcouchbase \
 postgresql \
 sngrep \
+ngrep \
 grpcurl \
 erlang
 
