@@ -247,9 +247,9 @@ imap <C-Return> <CR><CR><C-o>k<Tab>
 " Map insert abnormals. Must be typed quickly!
 " imap wq <Esc>:wq<cr>
 " imap ww <Esc>:w<cr>i
-imap qq <Esc>:UTCTime<cr>a
-imap kk <Esc>:LocalTime<cr>a
-imap jj <Esc>:LocalDate<cr>a
+imap qq <Esc>:LocalDate<cr>a
+imap jj <Esc>:LocalTime<cr>a
+imap kk <Esc>:UTCTime<cr>a
 
 " In visual mode, make indent/unindent reselect after indent
 "vmap <TAB> >gv
