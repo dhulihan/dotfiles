@@ -47,7 +47,7 @@ done
 
 unset config_files
 
-export EDITOR=$(which vim)
+export EDITOR=vim
 
 # shift-tab reverse complete
 bindkey '^[[Z' reverse-menu-complete

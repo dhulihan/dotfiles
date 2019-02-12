@@ -159,6 +159,7 @@ autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softta
 autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype groovy setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4
+autocmd Filetype proto setlocal tabstop=4 shiftwidth=4
 
 " better tab completion of filepaths
 set wildmode=longest,list
@@ -444,7 +445,7 @@ let g:ctrlp_open_new_file = 'r' " open new file in current window
 let g:ctrlp_working_path_mode = 0 " disable fancy working path
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn))|(tmp|node_modules|dist|vendor)$',
+  \ 'dir':  '\v[\/](\.(git|hg|svn))|(tmp|node_modules|vendor)$',
   \ 'file': '\v\.(exe|so|dll|jpg|jpeg|png|swp|swo)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
