@@ -26,7 +26,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-endwise'
 "Plugin 'tpope/vim-surround'
 "Plugin 'tpope/vim-repeat'
-Plugin 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go
+"Plugin 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go,
+"slow
 Plugin 'The-NERD-Commenter'
 "Plugin 'ludovicchabant/vim-gutentags' " blocking too much
 Plugin 'vitalk/vim-shebang'
@@ -639,9 +640,14 @@ colors apprentice
 "let g:solarized_termtrans=1
 "colorscheme solarized
 
-" Current-scheme colors
+" Additional apprentice colors
 hi! link SignColumn Normal
 hi! link LineNr Comment
+hi! link GitGutterAddDefault String
+"hi! default GitGutterAddDefault ctermbg=234
+hi! link GitGutterChangeDefault Function
+hi! link GitGutterChangeDelete Function
+hi! link GitGutterDelete WarningMsg
 
 " Cross-scheme colors
 "hi! link ColorColumn Tabline
@@ -654,7 +660,6 @@ hi Visual term=underline ctermbg=238
 " Invisible character colors
 hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
-
 
 " Colors END -----------------------------------------------
 

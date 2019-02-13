@@ -13,7 +13,7 @@ then
 fi
 
 # ruby version to install
-RUBY_VERSION=2.6.0
+RUBY_VERSION=2.5.1
 
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION

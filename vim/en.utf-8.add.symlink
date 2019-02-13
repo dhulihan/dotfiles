@@ -91,3 +91,10 @@ logdna
 Autovacuuming
 cname
 Transcodes
+rsync
+datacenter
+ELB
+ansible
+AZs
+PRs
+etcd
