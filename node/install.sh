@@ -7,4 +7,5 @@ nvm install node
 
 npm install -g \
     fixjson \
-    htmlhint
+    htmlhint \
+    grunt

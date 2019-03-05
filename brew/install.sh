@@ -12,12 +12,11 @@ macvim \
 terminal-notifier \
 cmake \
 direnv \
-ctags \ # exuberant
+ctags \
 tmate \
 openssl \
 libyaml \
 libffi \
-curl --with-openssl \
 cmake \
 jq \
 watch \
@@ -32,7 +31,6 @@ tree \
 kubernetes-cli \
 kubernetes-helm \
 graphviz \
-gimp \
 terraform \
 editorconfig \
 ncdu \
@@ -56,6 +54,9 @@ ansible \
 ngrep \
 grpcurl \
 erlang
+
+#brew install gimp
+brew install curl --with-openssl
 
 brew cask install java
 
@@ -85,8 +86,7 @@ brew install neovim/neovim/neovim
 brew tap wata727/tflint
 brew install tflint
 
-brew install macvim --with-override-system-vim
-brew link curl --force
+brew install macvim
 brew linkapps
 
 # Sierra
