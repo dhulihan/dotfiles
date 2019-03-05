@@ -45,7 +45,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'jparise/vim-graphql'
 Plugin 'rmelcer/vim-icinga'
 "Plugin 'wannesm/wmgraphviz.vim'
-Plugin 'elixir-lang/vim-elixir'
+"Plugin 'elixir-lang/vim-elixir' " not using elixir right now
 "Plugin 'tpope/vim-rails'
 "Plugin 'gabrielelana/vim-markdown'
 "Plugin 'shime/vim-livedown'
@@ -53,7 +53,7 @@ Plugin 'elixir-lang/vim-elixir'
 " Plugin 'amiorin/vim-fenced-code-blocks' " does not support indentation
 " Plugin 'rhysd/vim-gfm-syntax' " cute but not needed
 Plugin 'chrisbra/csv.vim'
-Plugin 'mhinz/vim-rfc'
+"Plugin 'mhinz/vim-rfc' " cool but not working well
 
 " Lint
 Plugin 'w0rp/ale'
@@ -92,7 +92,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'tyru/open-browser.vim'
 "Plugin 'wincent/command-t'
 "Plugin 'vim-scripts/EasyGrep'
-Plugin 'editorconfig/editorconfig-vim.git'
+"Plugin 'editorconfig/editorconfig-vim.git' " not using atm
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
@@ -646,8 +646,8 @@ hi! link LineNr Comment
 hi! link GitGutterAddDefault String
 "hi! default GitGutterAddDefault ctermbg=234
 hi! link GitGutterChangeDefault Function
-hi! link GitGutterChangeDelete Function
-hi! link GitGutterDelete WarningMsg
+hi! link GitGutterDelete GitGutterDeleteDefault
+hi! link GitGutterChangeDelete GitGutterChangeDeleteDefault
 
 " Cross-scheme colors
 "hi! link ColorColumn Tabline

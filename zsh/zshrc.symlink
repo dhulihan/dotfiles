@@ -1,3 +1,11 @@
+# logger
+export LOG_LEVEL=debug
+debug() {
+	if [[ $LOG_LEVEL == "debug" ]]; then
+		echo $1
+	fi
+}
+
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Projects
 # shortcut to this dotfiles path is $ZSH
@@ -7,9 +15,10 @@ export SHELL=$(which zsh)
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
-if [[ -a ~/.localrc ]]
+debug "$HOME/.localrc"
+if [[ -a $HOME/.localrc ]]
 then
-  source ~/.localrc
+  source $HOME/.localrc
 fi
 
 # all of our zsh files
@@ -20,18 +29,21 @@ sh_common_files=($ZSH/**/*.sh-common)
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
 do
+  debug "$file"
   source $file
 done
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
+  debug "$file"
   source $file
 done
 
 # load common sh files
 for file in ${${sh_common_files}}
 do
+  debug "$file"
   source $file
 done
 
@@ -42,6 +54,7 @@ compinit
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
 do
+  debug "$file"
   source $file
 done
 
@@ -60,4 +73,5 @@ bindkey '^R' history-incremental-search-backward
 setopt histignorespace
 
 # Load this manually, since fzf breaks in tmux if out of order
+debug "fzf"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
