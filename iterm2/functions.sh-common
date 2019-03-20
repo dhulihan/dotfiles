@@ -5,9 +5,9 @@ function iterm-tab-title {
 function iterm-tab-color {
     case $1 in
     green)
-    echo -e "\033]6;1;bg;red;brightness;57\a"
-    echo -e "\033]6;1;bg;green;brightness;197\a"
-    echo -e "\033]6;1;bg;blue;brightness;77\a"
+    echo -e "\033]6;1;bg;red;brightness;0\a"
+    echo -e "\033]6;1;bg;green;brightness;128\a"
+    echo -e "\033]6;1;bg;blue;brightness;0\a"
     ;;
     red)
     echo -e "\033]6;1;bg;red;brightness;270\a"

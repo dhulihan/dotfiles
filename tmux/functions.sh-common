@@ -1,10 +1,8 @@
 # tmux-session
-# Author: Dave Hulihan <dhulihan@gmail.com>
-#
-# create/attach tmux session based on project directory
 # 
-#
-
+# Author: Dave Hulihan <dhulihan@gmail.com>
+# Description: Create/attach tmux session based on project directory
+# 
 function tmux-session {
 	SESSION_NAME=$(basename $PWD)
 
@@ -14,7 +12,7 @@ function tmux-session {
 	# set iterm2 color
 	iterm-tab-color green
 
-	# attampt to attach to
+	# attempt to attach to
 	tmux a -t $SESSION_NAME
 
 	if [[ $? -ne 0 ]] ; then

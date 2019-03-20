@@ -1,0 +1,5 @@
+if [[ -a ~/.functions-private.sh ]]
+then
+  source ~/.functions-private.sh
+fi
+
