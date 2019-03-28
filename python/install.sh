@@ -13,4 +13,5 @@ sudo pip install \
   pylint \
   pyre \
   isort \
+  aws \
   yapf

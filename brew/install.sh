@@ -53,6 +53,9 @@ sngrep \
 ansible \
 ngrep \
 grpcurl \
+restic \
+ffmpeg \
+gifsicle \
 erlang
 
 #brew install gimp
@@ -80,13 +83,14 @@ brew install kubeval
 
 brew cask install minikube
 
+#brew cask install gitify
 
 brew install neovim/neovim/neovim
 
 brew tap wata727/tflint
 brew install tflint
 
-brew install macvim
+brew cask install macvim
 brew linkapps
 
 # Sierra
