@@ -1,5 +1,6 @@
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+debug "loading nvm"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # automatically change version
 # place this after nvm initialization!
@@ -26,6 +27,3 @@ load-nvmrc() {
 
 #add-zsh-hook chpwd load-nvmrc
 #load-nvmrc
-
-# install latest node
-#nvm install node
