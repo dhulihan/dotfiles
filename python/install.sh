@@ -1,4 +1,5 @@
 # install pyenv
+set -x
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
 easy_install SpoofMAC
@@ -15,3 +16,5 @@ sudo pip install \
   isort \
   aws \
   yapf
+
+set +x

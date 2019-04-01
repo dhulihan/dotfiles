@@ -1,4 +1,5 @@
 brew install \
+tmux \
 git \
 zsh \
 macvim \
@@ -56,10 +57,10 @@ grpcurl \
 restic \
 ffmpeg \
 gifsicle \
+curl \
 erlang
 
 #brew install gimp
-brew install curl --with-openssl
 
 brew cask install java
 
@@ -91,7 +92,6 @@ brew tap wata727/tflint
 brew install tflint
 
 brew cask install macvim
-brew linkapps
 
 # Sierra
 brew install reattach-to-user-namespace
