@@ -1,5 +1,5 @@
 # logger
-export LOG_LEVEL=info
+export LOG_LEVEL=${LOG_LEVEL:-info}
 debug() {
 	if [[ $LOG_LEVEL == "debug" ]]; then
 		echo $1
