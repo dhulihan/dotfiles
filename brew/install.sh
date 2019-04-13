@@ -48,6 +48,7 @@ direnv \
 tree \
 git-secrets \
 libcouchbase \
+pv \
 postgresql \
 sngrep \
 ansible \
