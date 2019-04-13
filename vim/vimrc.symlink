@@ -161,6 +161,8 @@ autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=
 autocmd Filetype groovy setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4
 autocmd Filetype proto setlocal tabstop=4 shiftwidth=4
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml.dockercompose setlocal ts=2 sts=2 sw=2 expandtab
 
 " better tab completion of filepaths
 set wildmode=longest,list
@@ -180,10 +182,8 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 " disable bells
 set noerrorbells visualbell t_vb=
 
-" map leader to spacebar
-"let mapleader=" "
-map <Space> <Leader>
 
+" Key Mappings  -----------------------------------------------------
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
@@ -199,16 +199,33 @@ set pastetoggle=<F2>
 noremap <F3> :set invnumber<CR>
 inoremap <F3> <C-O>:set invnumber<CR>
 
-set cinkeys=0{,0},:,0#,!^F
+" space leader
+" ░░░░░░░░░░░░░░░░░
+" ░░░░░▀▄░░░▄▀░░░░░
+" ░░░░▄█▀███▀█▄░░░░
+" ░░░█▀███████▀█░░░
+" ░░░█░█▀▀▀▀▀█░█░░░
+" ░░░░░░▀▀░▀▀░░░░░░
+" ░░░░░░░░░░░░░░░░░
+" map leader to spacebar
+"let mapleader=" "
+" map <Space> <Leader>
+nnoremap <Space>l :lnext<CR>
+"nnoremap <Space>p :lprevious<CR>
+nnoremap <Space>r :lrewind<CR>
+nnoremap <Space>yy "*yy<CR>
+nnoremap <Space>dd "*dd<CR>
+nnoremap <Space>C "*C<CR>
+nnoremap <Space>p "*p<CR>
+nnoremap <Space>P "*P<CR>
+vnoremap <Space>y "*y<CR>
+vnoremap <Space>d "*d<CR>
+vnoremap <Space>c "*c<CR>
+vnoremap <Space>p "*p<CR>
+vnoremap <Space>P "*P<CR>
 
 " make C-C esc for InsertLeave, etc (insert)
 ino <C-C> <Esc>
-
-" visual indicator for insert mode
-"augroup InsertColors
-	"au InsertEnter * colors dracula | AirlineRefresh
-	"au InsertLeave * colors molokai | AirlineRefresh
-"augroup END
 
 " beginning/end of line, shell style (insert)
 inoremap <C-e> <Esc>A
@@ -217,18 +234,6 @@ inoremap <C-a> <Esc>I
 " Easier saving
 "nmap S :w<cr>
 "nmap <C-i> :q<cr>
-
-" map buffer movement (normal)
-" <Leader>s requires release of <Leader> :(
-"nmap <Leader>s :bn!<esc><cr>
-"nmap <Leader>a :bp!<esc><cr>
-nmap <Leader>s :BufSurfForward<cr>
-nmap <Leader>a :BufSurfBack<cr>
-"nmap <Leader>d :bd<esc><cr>
-nmap <Leader>d :BD<cr>
-nmap <Leader>f :b
-"nnoremap <Tab> :bnext<CR>
-"nnoremap <S-Tab> :bprevious<CR>
 
 " Tabs
 nmap = :tabn<cr>
@@ -249,9 +254,6 @@ imap <C-Return> <CR><CR><C-o>k<Tab>
 " Map insert abnormals. Must be typed quickly!
 " imap wq <Esc>:wq<cr>
 " imap ww <Esc>:w<cr>i
-imap qq <Esc>:LocalDate<cr>a
-imap jj <Esc>:LocalTime<cr>a
-imap kk <Esc>:UTCTime<cr>a
 
 " In visual mode, make indent/unindent reselect after indent
 "vmap <TAB> >gv
@@ -262,6 +264,31 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " select pasted text
 nmap gp `[v`]
+
+" Key Mappings END -----------------------------------------------------------
+
+set cinkeys=0{,0},:,0#,!^F
+
+" visual indicator for insert mode
+"augroup InsertColors
+	"au InsertEnter * colors dracula | AirlineRefresh
+	"au InsertLeave * colors molokai | AirlineRefresh
+"augroup END
+
+" map buffer movement (normal)
+" <Leader>s requires release of <Leader> :(
+"nmap <Leader>s :bn!<esc><cr>
+"nmap <Leader>a :bp!<esc><cr>
+nmap <Leader>s :BufSurfForward<cr>
+nmap <Leader>a :BufSurfBack<cr>
+"nmap <Leader>d :bd<esc><cr>
+nmap <Leader>d :BD<cr>
+"nnoremap <Tab> :bnext<CR>
+"nnoremap <S-Tab> :bprevious<CR>
+
+imap qq <Esc>:LocalDate<cr>a
+imap jj <Esc>:LocalTime<cr>a
+imap kk <Esc>:UTCTime<cr>a
 
 " mouse mode
 set mouse=a
