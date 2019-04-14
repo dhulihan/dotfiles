@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+# # backup 
+#
+# ## Getting Started
+# 
+# You Must set enviroment variables `$RESTIC_REPOSITORY` and `$RESTIC_PASSWORD`
+# ```sh
+# # create exclude and files to backup
+# touch ~/.restic-files
+# 
+# # create restic repo
+# restic init
+# 
+# # run the backup script
+# backup
+# ```
+# * Note: each line in `.restic-files` must contain one absolute path to a file/dir
+restic backup \
+	--exclude-file=$HOME/.restic-exclude \
+	--files-from=$HOME/.restic-files
+
+# housekeeping
+if [[ $? -eq 0 ]] ; then 
+	echo "cleaning up old backups"
+	restic forget --keep-last 2 --prune
+else
+	echo "backup failed"
+fi
+
