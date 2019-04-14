@@ -121,11 +121,15 @@ set splitright
 set splitbelow
 
 
+
 "make sure to escape the spaces in the name properly
 "set guifont=Source\ Code\ Pro\ for\ Powerline
 
+" Registers  -----------------------------------------------------------------
 " copy unnamed register to clipboard in macvim/gvim
 "set clipboard=unnamed
+
+" Registers END  -------------------------------------------------------------
 
 " File Types & Indentation ---------------------------------------------------
 set cindent
@@ -163,6 +167,7 @@ autocmd Filetype go setlocal tabstop=4 shiftwidth=4
 autocmd Filetype proto setlocal tabstop=4 shiftwidth=4
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml.dockercompose setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType vim setlocal textwidth=80
 
 " better tab completion of filepaths
 set wildmode=longest,list
@@ -172,7 +177,6 @@ set wildmode=longest,list
 " Pretty invisibles
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
-
 " Use the same symbols as TextMate for tabstops and EOLs
 "set listchars=tab:▸\ ,eol:¬
 
@@ -181,7 +185,6 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 " disable bells
 set noerrorbells visualbell t_vb=
-
 
 " Key Mappings  -----------------------------------------------------
 " Shortcut to rapidly toggle `set list`
@@ -324,7 +327,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,.*.sw*
 " netrw/Explorer
 let g:netrw_preview = 1 " preview file vertical split
 let g:netrw_liststyle = 1 " one file, timestamps
-nmap <C-n> :Vexplore<CR> " explorer in vertical split
+"nmap <C-n> :Vexplore<CR> " explorer in vertical split
 
 " Ack: map
 nmap <Leader>vv :Ack<cr>
@@ -360,33 +363,33 @@ let g:lightline = {
 "
 " enable/disable tabline
 "   if disabled, will show buffers when only one tab open
-let g:airline#extensions#tabline#enabled = 0
+"let g:airline#extensions#tabline#enabled = 0
 
 " enable/disable buffer line
-let g:airline#extensions#bufferline#enabled = 0
+"let g:airline#extensions#bufferline#enabled = 0
 
 " use powerline glyphs for symbols
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 
 " show all the time, not just on splits
-set laststatus=2
-let g:airline#extensions#wordcount#enabled = 0 " disable word count
-let g:airline_section_y = 0 " show nothing in encoding section
-let g:airline#extensions#tabline#buffer_nr_show = 0 " show buffer numbers
-let g:airline#extensions#tabline#fnametruncate = 0 " truncate non-active filenames
-let g:airline#extensions#tabline#fnamemod = ':p:t' " show only filename, see filename-modifiers for more
+"set laststatus=2
+"let g:airline#extensions#wordcount#enabled = 0 " disable word count
+"let g:airline_section_y = 0 " show nothing in encoding section
+"let g:airline#extensions#tabline#buffer_nr_show = 0 " show buffer numbers
+"let g:airline#extensions#tabline#fnametruncate = 0 " truncate non-active filenames
+"let g:airline#extensions#tabline#fnamemod = ':p:t' " show only filename, see filename-modifiers for more
 
 " Enable index select
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+"let g:airline#extensions#tabline#buffer_idx_mode = 1
+"nmap <leader>1 <Plug>AirlineSelectTab1
+"nmap <leader>2 <Plug>AirlineSelectTab2
+"nmap <leader>3 <Plug>AirlineSelectTab3
+"nmap <leader>4 <Plug>AirlineSelectTab4
+"nmap <leader>5 <Plug>AirlineSelectTab5
+"nmap <leader>6 <Plug>AirlineSelectTab6
+"nmap <leader>7 <Plug>AirlineSelectTab7
+"nmap <leader>8 <Plug>AirlineSelectTab8
+"nmap <leader>9 <Plug>AirlineSelectTab9
 
 " Airline Theme
 "AirlineTheme wombat
@@ -457,14 +460,14 @@ let g:markdown_fenced_languages = g:vim_markdown_fenced_languages
 " tpope/vim-markdown END --------------------------------------
 
 " gabrielelana/vim-markdown
-let g:markdown_enable_spell_checking = 0 " disable spellcheck
-let g:markdown_include_jekyll_support = 0
-let g:markdown_enable_mappings = 0
-let g:markdown_enable_input_abbreviations = 0
+"let g:markdown_enable_spell_checking = 0 " disable spellcheck
+"let g:markdown_include_jekyll_support = 0
+"let g:markdown_enable_mappings = 0
+"let g:markdown_enable_input_abbreviations = 0
 
 " shime/vim-livedown
-let g:livedown_autorun = 0
-let g:livedown_open = 0
+"let g:livedown_autorun = 0
+"let g:livedown_open = 0
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
@@ -492,19 +495,19 @@ let g:ctrlp_switch_buffer = '' " don't switch to already displayed buffers
 " mtth/scratch.vim ------------------------------------------
 
 " don't hide when you leave insert mode
-let g:scratch_insert_autohide = 0
+"let g:scratch_insert_autohide = 0
 
-let g:scratch_filetype = 'markdown'
+"let g:scratch_filetype = 'markdown'
 
 " This file gets written with the scratch content when it hides
 " global
 " let g:scratch_persistence_file = '/tmp/scratch.vim'
 " project
-let g:scratch_persistence_file = '.scratch.vim'
+"let g:scratch_persistence_file = '.scratch.vim'
 
 " Disable mappings
-let g:scratch_no_mappings = 1
-nmap gs <plug>(scratch-insert-reuse)
+"let g:scratch_no_mappings = 1
+"nmap gs <plug>(scratch-insert-reuse)
 
 " mtth/scratch.vim END --------------------------------------
 
@@ -515,12 +518,12 @@ nmap <C-\> :CtrlPBuffer<cr>
 "let g:ycm_filetype_blacklist = {}
 
 " vimux bindings
-nmap <Leader>rp :VimuxPromptCommand<CR>
-nmap <Leader>rl :VimuxRunLastCommand<CR>
-nmap <Leader>ri :VimuxInspectRunner<CR>
-nmap <Leader>rx :VimuxCloseRunner<CR>
-nmap <Leader>rz :VimuxZoomRunner<CR>
-nmap <Leader>rs :VimuxInterruptRunner<CR>
+"nmap <Leader>rp :VimuxPromptCommand<CR>
+"nmap <Leader>rl :VimuxRunLastCommand<CR>
+"nmap <Leader>ri :VimuxInspectRunner<CR>
+"nmap <Leader>rx :VimuxCloseRunner<CR>
+"nmap <Leader>rz :VimuxZoomRunner<CR>
+"nmap <Leader>rs :VimuxInterruptRunner<CR>
 
 " tags
 "set tags=./tags
@@ -550,16 +553,16 @@ let g:startify_change_to_dir = 0
 
 " vim-markdown-preview
 "let vim_markdown_preview_github=1 " use grip disable to use markdown cli
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_browser='Google Chrome'
-let vim_markdown_preview_temp_file=1 " rm file after render
+"let vim_markdown_preview_hotkey='<C-m>'
+"let vim_markdown_preview_browser='Google Chrome'
+"let vim_markdown_preview_temp_file=1 " rm file after render
 
 " buffergator
 "nnoremap <silent> <Leader>b :BuffergatorToggle<CR> " toggle instead of open
-let g:buffergator_viewport_split_policy='T' " open viewport horz top
-let g:buffergator_autodismiss_on_select=1 " dismiss viewport on select
-let g:buffergator_display_regime='filepath' " view full filepath
-let g:buffergator_sort_regime='filepath' " sort on full filepath
+"let g:buffergator_viewport_split_policy='T' " open viewport horz top
+"let g:buffergator_autodismiss_on_select=1 " dismiss viewport on select
+"let g:buffergator_display_regime='filepath' " view full filepath
+"let g:buffergator_sort_regime='filepath' " sort on full filepath
 "let g:buffergator_autoupdate=1 " update viewport when bufferlist changes (buggy)
 
 " MiniBufExplorer --------------------------------------------
@@ -569,13 +572,13 @@ let g:buffergator_sort_regime='filepath' " sort on full filepath
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_go_checkers = [ 'gofmt', 'golint' ]
+"let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+"let g:syntastic_go_checkers = [ 'gofmt', 'golint' ]
 " syntastic END ---------------------------------------------
 
 " ale START -------------------------------------------------
@@ -626,28 +629,29 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 " ale END ---------------------------------------------------
 
+" MiniBufExplorer ------------------------------------------------------------
 " Allow single clicks
-let g:miniBufExplUseSingleClick = 1
+"let g:miniBufExplUseSingleClick = 1
 
 " Hide buffer numbers
-let g:miniBufExplShowBufNumbers = 0
+"let g:miniBufExplShowBufNumbers = 0
 
 " Place MBE window above/left. Good if using splitbelow/splitright
-let g:miniBufExplBRSplit = 0
+"let g:miniBufExplBRSplit = 0
 
 " Show MBE when the following num of buffers are present
 " 0 - skip eligible buffer checking
-let g:miniBufExplBuffersNeeded = 2
+"let g:miniBufExplBuffersNeeded = 2
 
 " Better colors
-hi MBENormal               ctermfg=069 guifg=#808080 guibg=fg
-hi MBEChanged              ctermfg=196 guifg=#CD5907 guibg=fg
-hi MBEVisibleNormal        ctermfg=069 guifg=#5DC2D6 guibg=fg
-hi MBEVisibleChanged       ctermfg=210 guifg=#F1266F guibg=fg
-hi MBEVisibleActiveNormal  ctermfg=046 guifg=#A6DB29 guibg=fg
-hi MBEVisibleActiveChanged ctermfg=214 guifg=#F1266F guibg=fg
+"hi MBENormal               ctermfg=069 guifg=#808080 guibg=fg
+"hi MBEChanged              ctermfg=196 guifg=#CD5907 guibg=fg
+"hi MBEVisibleNormal        ctermfg=069 guifg=#5DC2D6 guibg=fg
+"hi MBEVisibleChanged       ctermfg=210 guifg=#F1266F guibg=fg
+"hi MBEVisibleActiveNormal  ctermfg=046 guifg=#A6DB29 guibg=fg
+"hi MBEVisibleActiveChanged ctermfg=214 guifg=#F1266F guibg=fg
 
-" MiniBufExplorer END ---------------------------------------
+" MiniBufExplorer END --------------------------------------------------------
 
 " Colors ----------------------------------------------------
 set background=dark
