@@ -11,3 +11,5 @@ set backspace=indent,eol,start
 
 " disable bells
 set noeb vb t_vb="
+
+nnoremap <BS> X
