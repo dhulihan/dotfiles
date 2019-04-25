@@ -59,6 +59,8 @@ restic \
 ffmpeg \
 gifsicle \
 curl \
+baresip \ 
+telnet \
 erlang
 
 #brew install gimp

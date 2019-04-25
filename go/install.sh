@@ -8,4 +8,8 @@ go get -u golang.org/x/tools/refactor/rename
 # bindata
 go get github.com/jteeuwen/go-bindata/...
 go get github.com/elazarl/go-bindata-assetfs/...
+
+# termshark
+go get github.com/gcla/termshark/cmd/termshark
+
 set +x
