@@ -1,0 +1,29 @@
+# tmux-session
+# 
+# Author: Dave Hulihan <dhulihan@gmail.com>
+# Description: Create/attach tmux session based on project directory
+# 
+SESSION_NAME=$(basename $PWD)
+
+# set iterm2 title
+iterm-tab-title $SESSION_NAME
+
+# set iterm2 color
+iterm-tab-color green
+
+# attempt to attach to
+tmux a -t $SESSION_NAME
+
+if [[ $? -ne 0 ]] ; then
+	tmux new -s $SESSION_NAME -d
+
+	# create windows
+	tmux new-window -t $SESSION_NAME -n vim
+	tmux new-window -t $SESSION_NAME -n zsh
+
+	# open vim on second window
+	tmux send-keys -t $SESSION_NAME:2 "vim4" C-m
+	tmux select-window -t $SESSION_NAME:2
+
+	tmux a -t $SESSION_NAME
+fi
