@@ -217,18 +217,20 @@ inoremap <F3> <C-O>:set invnumber<CR>
 "let mapleader=" "
 " map <Space> <Leader>
 nnoremap <Space>l :lnext<CR>
-"nnoremap <Space>p :lprevious<CR>
+nnoremap <Space>p :lprevious<CR>
 nnoremap <Space>r :lrewind<CR>
-nnoremap <Space>yy "*yy<CR>
-nnoremap <Space>dd "*dd<CR>
-nnoremap <Space>C "*C<CR>
-nnoremap <Space>p "*p<CR>
-nnoremap <Space>P "*P<CR>
-vnoremap <Space>y "*y<CR>
-vnoremap <Space>d "*d<CR>
-vnoremap <Space>c "*c<CR>
-vnoremap <Space>p "*p<CR>
-vnoremap <Space>P "*P<CR>
+
+" system clipboard helpers
+"nnoremap <Space>yy "*yy<CR>
+"nnoremap <Space>dd "*dd<CR>
+"nnoremap <Space>C "*C<CR>
+"nnoremap <Space>p "*p<CR>
+"nnoremap <Space>P "*P<CR>
+"vnoremap <Space>y "*y<CR>
+"vnoremap <Space>d "*d<CR>
+"vnoremap <Space>c "*c<CR>
+"vnoremap <Space>p "*p<CR>
+"vnoremap <Space>P "*P<CR>
 
 " make C-C esc for InsertLeave, etc (insert)
 ino <C-C> <Esc>
@@ -336,6 +338,44 @@ let g:netrw_liststyle = 1 " one file, timestamps
 nmap <Leader>vv :Ack<cr>
 set grepprg=rg\ --vimgrep
 let g:ackprg='rg --vimgrep'
+
+" easyclip -------------------------------------------------------------------
+
+" disable black hole deletes
+let g:EasyClipEnableBlackHoleRedirect = 0
+
+" disable weird paste
+let g:EasyClipUsePasteDefaults = 0
+
+" turn on `s` text-object motion/selection, eg: `siw`
+nnoremap gm m
+let g:EasyClipUseSubstituteDefaults = 1
+
+" use <CTRL-F> and <CTRL-F> for movement
+"let g:EasyClipUsePasteToggleDefaults = 0
+"nmap <c-f> <plug>EasyClipSwapPasteForward
+"nmap <c-d> <plug>EasyClipSwapPasteBackwards
+
+" move cursor to end of paste
+"let g:EasyClipAlwaysMoveCursorToEndOfPaste=1
+
+" Automatically format/indent text after pasting
+" breaks markdown fenced indentation
+"let g:EasyClipAutoFormat=1
+
+" use this to view original formatting
+"nmap <leader>cf <plug>EasyClipToggleFormattedPaste
+
+" Turn on paste mode for duration of the paste
+"imap <c-v> <plug>EasyClipInsertModePaste
+
+" Command Mode Paste
+"cmap <c-v> <plug>EasyClipCommandModePaste
+
+" share yanks in text file, shareable between vims (warning slow)
+let g:EasyClipShareYanks=0
+
+" END easyclip ---------------------------------------------------------------
 
 " lightline --------------------------------------------------
 let g:lightline = {
