@@ -5,4 +5,3 @@ if [[ -a ~/.env-vars ]]
 then
   source ~/.env-vars
 fi
-

@@ -45,6 +45,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'jparise/vim-graphql'
 Plugin 'rmelcer/vim-icinga'
 Plugin 'skreuzer/vim-prometheus'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 "Plugin 'wannesm/wmgraphviz.vim'
 "Plugin 'elixir-lang/vim-elixir' " not using elixir right now
 "Plugin 'tpope/vim-rails'
@@ -167,6 +168,7 @@ autocmd Filetype groovy setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4
 autocmd Filetype proto setlocal tabstop=4 shiftwidth=4
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType xml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml.dockercompose setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vim setlocal textwidth=80
 
