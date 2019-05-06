@@ -339,6 +339,12 @@ nmap <Leader>vv :Ack<cr>
 set grepprg=rg\ --vimgrep
 let g:ackprg='rg --vimgrep'
 
+" taboo ----------------------------------------------------------------------
+
+" aliases
+cnoreabbrev TR TabooRename
+" taboo END ------------------------------------------------------------------
+
 " easyclip -------------------------------------------------------------------
 
 " disable black hole deletes
@@ -393,6 +399,9 @@ let g:lightline = {
       \ '_separator': { 'left': '', 'right': '' },
       \ '_subseparator': { 'left': '', 'right': '' },
       \ }
+
+" show all the time, not just on splits
+set laststatus=2
 " lightline END ----------------------------------------------
 
 " gutentags -------------------------------------------------

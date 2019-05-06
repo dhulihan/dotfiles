@@ -35,6 +35,9 @@ bind c new-window -c "#{pane_current_path}"
 # Unbind C-r, which is conflicting with fzf
 #bind -T root C-r send fzf-history-widget-accept C-m
 
+# history length
+set-option -g history-limit 5000
+
 # Fix long name issue with tmuxinator
 #set -g automatic-rename off
 #set -g allow-rename off

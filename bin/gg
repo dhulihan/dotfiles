@@ -9,4 +9,4 @@
 INIT_PROJECT_CMD="tmux-session"
 go get -v $1 || echo "problem fetching $1"
 cd ${GOPATH}/src/$1
-exec $($INIT_PROJECT_CMD)
+$INIT_PROJECT_CMD

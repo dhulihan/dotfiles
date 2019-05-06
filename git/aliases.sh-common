@@ -26,3 +26,4 @@ alias gcm="git commit -m"
 # mirror gh-pages with master & push
 alias gpogh="git checkout gh-pages && git merge master && git push origin gh-pages && git checkout -"
 alias gdiff="git diff --word-diff-regex=. --word-diff=color --no-index"
+alias gt="git show-ref --tags"

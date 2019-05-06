@@ -141,3 +141,15 @@ PSTNs
 ISUP
 SDP
 ACK
+https
+Timestamp
+RTCP
+SSRC
+SDES
+Packetization
+VLANs
+debian
+MLPP
+SRTP
+SS7
+pooler
