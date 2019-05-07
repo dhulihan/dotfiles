@@ -1,0 +1,171 @@
+config defaultToCurrentScreen true
+
+# Abstract positions
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+
+alias left66 move screenOriginX;screenOriginY screenSizeX*0.6666666666666;screenSizeY
+alias left50 move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias left33 move screenOriginX;screenOriginY screenSizeX/3;screenSizeY
+alias left25 move screenOriginX;screenOriginY screenSizeX/4;screenSizeY
+
+alias right66 move screenOriginX+screenSizeX*0.33333333333333;screenOriginY screenSizeX*0.666666666666;screenSizeY
+alias right50 move screenOriginX+screenSizeX/2;screenOriginY screenSizeX*0.50;screenSizeY
+alias right33 move screenOriginX+screenSizeX*0.66666666666666;screenOriginY screenSizeX*0.333333333333;screenSizeY
+alias right25 move screenOriginX+screenSizeX*0.75;screenOriginY screenSizeX*0.25;screenSizeY
+
+alias tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+alias bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2
+alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+alias center move screenOriginX+screenSizeX/6;screenOriginY+screenSizeY/6 2*screenSizeX/3;2*screenSizeY/3
+alias centerthird move screenOriginX+screenSizeX/6;screenOriginY+screenSizeY/6 2*screenSizeX/3;2*screenSizeY/3
+alias bigCenter move screenOriginX+screenSizeX/12;screenOriginY+screenSizeY/12 10*screenSizeX/12;10*screenSizeY/12
+
+# The hyper keys
+alias hyper cmd;ctrl
+alias hyper2 cmd;ctrl;alt
+
+# Location bindings
+bind left:${hyper} chain ${left50} | ${left33} | ${left25} | ${left66} 
+bind m:${hyper} ${full}
+bind right:${hyper} chain ${right50} | ${right33} | ${right25} | ${right66}
+bind up:${hyper} ${tophalf} 
+bind down:${hyper} ${bottomhalf}
+bind c:${hyper} ${center}
+bind v:${hyper} ${bigCenter}
+bind down:${hyper2} ${bottomleft}
+bind right:${hyper2} ${bottomright}
+bind left:${hyper2} ${topleft}
+bind up:${hyper2} ${topright}
+
+# Bind command+option+b to google chrome
+bind b:${hyper} focus 'Google Chrome'
+
+# Monitor switching bindings
+bind right:alt,ctrl throw 1 resize
+bind left:alt,ctrl throw 0 resize
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#alias r1 push right bar-resize:screenSizeX*0.501;screenSizeY*1.00
+#alias r2 push right bar-resize:screenSizeX*0.334;screenSizeY*1.00
+#alias r3 push right bar-resize:screenSizeX*0.667;screenSizeY*1.00
+
+#alias l1 push left bar-resize:screenSizeX*0.501;screenSizeY*1.00
+#alias l2 push left bar-resize:screenSizeX*0.334;screenSizeY*1.00
+#alias l3 push left bar-resize:screenSizeX*0.667;screenSizeY*1.00
+
+#alias tr1 corner top-right resize:screenSizeX*0.501;screenSizeY*0.501
+#alias tr2 corner top-right resize:screenSizeX*0.334;screenSizeY*0.501
+#alias tr3 corner top-right resize:screenSizeX*0.667;screenSizeY*0.501
+
+#alias br1 corner bottom-right resize:screenSizeX*0.501;screenSizeY*0.501
+#alias br2 corner bottom-right resize:screenSizeX*0.334;screenSizeY*0.501
+#alias br3 corner bottom-right resize:screenSizeX*0.667;screenSizeY*0.501
+
+#alias tl1 corner top-left resize:screenSizeX*0.501;screenSizeY*0.501
+#alias tl2 corner top-left resize:screenSizeX*0.334;screenSizeY*0.501
+#alias tl3 corner top-left resize:screenSizeX*0.667;screenSizeY*0.501
+
+#alias bl1 corner bottom-left resize:screenSizeX*0.501;screenSizeY*0.501
+#alias bl2 corner bottom-left resize:screenSizeX*0.334;screenSizeY*0.501
+#alias bl3 corner bottom-left resize:screenSizeX*0.667;screenSizeY*0.501
+
+#bind c:cmd,alt move screenSizeX/2-windowSizeX/2;screenSizeY/2-windowSizeY/2 windowSizeX;windowSizeY
+#bind f:cmd,alt chain move 0;0 screenSizeX;screenSizeY | move screenSizeX/4;screenSizeY/4 screenSizeX*0.501;screenSizeY*0.501
+
+
+## Push Bindings
+## NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
+## LEFT RIGHT 
+#bind right:cmd,alt chain ${r1} | ${r2} | ${r3}
+#bind left:cmd,alt chain ${l1} | ${l2} | ${l3}
+
+#bind up:cmd,alt chain push up bar-resize:screenSizeY*0.5 | push up bar-resize:screenSizeY*0.33 | push up bar-resize:screenSizeY*0.66
+#bind down:cmd,alt chain push down bar-resize:screenSizeY*0.5 | push down bar-resize:screenSizeY*0.33 | push down bar-resize:screenSizeY*0.66
+
+## CORNER
+#bind right:shift,cmd,ctrl chain ${tr1} | ${tr2} | ${tr3}
+#bind right:cmd,ctrl chain ${br1} | ${br2} | ${br3}
+#bind left:shift,cmd,ctrl chain ${tl1} | ${tl2} | ${tl3}
+#bind left:cmd,ctrl chain ${bl1} | ${bl2} | ${bl3}
+
+## Nudge Bindings
+## NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
+## bind right:ctrl;alt nudge +10% +0
+## bind left:ctrl;alt  nudge -10% +0
+## bind up:ctrl;alt    nudge +0   -10%
+## bind down:ctrl;alt  nudge +0   +10%
+
+## Throw Bindings
+## NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
+#bind right:ctrl;alt;cmd throw right resize
+#bind left:ctrl;alt;cmd  throw left  resize
+#bind up:ctrl;alt;cmd    throw up    resize
+#bind down:ctrl;alt;cmd  throw down  resize
+
+## Focus Bindings
+## NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
+#bind right:cmd    focus right
+#bind left:cmd     focus left
+#bind up:cmd       focus up
+#bind down:cmd     focus down
+#bind up:cmd;alt   focus behind
+#bind down:cmd;alt focus behind
+
+## Layout Bindings
+## bind cmd:3 layout 3monitors
+
+## Window Hints
+#bind esc:cmd hint
+
+## Grid
+#bind esc:ctrl grid
+
+## Abstract positions
+#alias full          move screenOriginX;screenOriginY                  screenSizeX;screenSizeY
+#alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
+#alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
+#alias rightmost     move screenOriginX+screenSizeX*0.4;screenOriginY  screenSizeX*0.6;screenSizeY
+#alias rightless     move screenOriginX+screenSizeX*0.6;screenOriginY  screenSizeX*0.4;screenSizeY
+#alias leftmost      move screenOriginX;screenOriginY                  screenSizeX*0.6;screenSizeY
+#alias leftless      move screenOriginX;screenOriginY                  screenSizeX*0.4;screenSizeY
+#alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+#alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+#alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+#alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
+## Concrete positions
+#alias 2-rightbottom move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2 
+
+## ======================================
+## The HYPER key
+## ======================================
+#alias hyper ctrl;shift;alt;cmd
+## Location bindings
+#bind t:${hyper} ${lefthalf}
+#bind n:${hyper} ${full}
+#bind s:${hyper} ${righthalf}
+#bind r:${hyper} throw next
+
+## Resize Bindings
+##bind r:${hyper} ${leftmost}
+##bind g:${hyper} ${rightmost}
+#layout 1monitor 'iTerm2':REPEAT ${r1}
+#layout 1monitor 'Brave Browser':REPEAT ${l1}
+
+#bind 1:cmd layout 1monitor
