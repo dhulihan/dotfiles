@@ -73,6 +73,7 @@ brew install burntsushi/ripgrep/ripgrep-bin
 # Hack fonts
 brew tap caskroom/fonts
 brew cask install font-hack-nerd-font
+brew cask install font-source-code-pro
 
 # wireshark
 brew cask install wireshark

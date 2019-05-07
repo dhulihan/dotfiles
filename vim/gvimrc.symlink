@@ -1,6 +1,7 @@
 " gVim
-set lines=999 columns=80
-set guifont=Source_Code_Pro:h12:cANSI
+set lines=999 columns=100
+"set guifont=Source_Code_Pro:h18:cANSI
+set guifont=Menlo-Regular:h18 
 set clipboard=unnamed " use unnamed register for clipboard
 set go+=a " auto-copy visual selection to win clipboard
 set vb t_vb= " no bells
