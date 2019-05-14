@@ -4,14 +4,29 @@ config defaultToCurrentScreen true
 alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
 
 alias left66 move screenOriginX;screenOriginY screenSizeX*0.6666666666666;screenSizeY
+alias left60 move screenOriginX;screenOriginY screenSizeX*0.6;screenSizeY
 alias left50 move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias left40 move screenOriginX;screenOriginY screenSizeX*0.4;screenSizeY
 alias left33 move screenOriginX;screenOriginY screenSizeX/3;screenSizeY
 alias left25 move screenOriginX;screenOriginY screenSizeX/4;screenSizeY
+alias left20 move screenOriginX;screenOriginY screenSizeX/5;screenSizeY
+
 
 alias right66 move screenOriginX+screenSizeX*0.33333333333333;screenOriginY screenSizeX*0.666666666666;screenSizeY
+alias right60 move screenOriginX+screenSizeX*0.4;screenOriginY screenSizeX*0.6;screenSizeY
 alias right50 move screenOriginX+screenSizeX/2;screenOriginY screenSizeX*0.50;screenSizeY
+alias right40 move screenOriginX+screenSizeX*0.6;screenOriginY screenSizeX*0.4;screenSizeY
 alias right33 move screenOriginX+screenSizeX*0.66666666666666;screenOriginY screenSizeX*0.333333333333;screenSizeY
 alias right25 move screenOriginX+screenSizeX*0.75;screenOriginY screenSizeX*0.25;screenSizeY
+alias right20 move screenOriginX+screenSizeX*0.80;screenOriginY screenSizeX*0.20;screenSizeY
+
+alias center66 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.666666666666);screenOriginY screenSizeX*0.666666666666;screenSizeY
+alias center60 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.60);screenOriginY screenSizeX*0.60;screenSizeY
+alias center50 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.50);screenOriginY screenSizeX*0.50;screenSizeY
+alias center40 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.40);screenOriginY screenSizeX*0.40;screenSizeY
+alias center33 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)/3);screenOriginY screenSizeX/3;screenSizeY
+alias center25 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.25);screenOriginY screenSizeX*0.25;screenSizeY
+alias center20 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.20);screenOriginY screenSizeX*0.20;screenSizeY
 
 alias tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
 alias bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2
@@ -28,10 +43,11 @@ alias hyper cmd;ctrl
 alias hyper2 cmd;ctrl;alt
 
 # Location bindings
-bind left:${hyper} chain ${left50} | ${left33} | ${left25} | ${left66} 
+bind left:${hyper} chain ${left66} | ${left60} | ${left50} | ${left40} | ${left33} | ${left25}
 bind m:${hyper} ${full}
-bind right:${hyper} chain ${right50} | ${right33} | ${right25} | ${right66}
-bind up:${hyper} ${tophalf} 
+bind right:${hyper} chain ${right66} | ${right60} | ${right50} | ${right40} | ${right33} | ${right25}
+bind up:${hyper} chain ${center66} | ${center60} | ${center50} | ${center40} | ${center33} | ${center25} 
+#bind up:${hyper} ${tophalf} 
 bind down:${hyper} ${bottomhalf}
 bind c:${hyper} ${center}
 bind v:${hyper} ${bigCenter}
