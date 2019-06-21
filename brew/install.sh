@@ -25,6 +25,8 @@ markdown \
 cowsay \
 fortune \
 coreutils \
+findutils \
+gnu-sed \
 elixir \
 riak \
 logstash \
@@ -61,6 +63,9 @@ gifsicle \
 curl \
 baresip \ 
 telnet \
+lolcat \
+nsq \
+ncdu \
 erlang
 
 #brew install gimp
