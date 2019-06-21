@@ -66,6 +66,7 @@ telnet \
 lolcat \
 nsq \
 ncdu \
+fd \
 erlang
 
 #brew install gimp
