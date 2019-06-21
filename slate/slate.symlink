@@ -3,6 +3,7 @@ config defaultToCurrentScreen true
 # Abstract positions
 alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
 
+alias left70 move screenOriginX;screenOriginY screenSizeX*0.7;screenSizeY
 alias left66 move screenOriginX;screenOriginY screenSizeX*0.6666666666666;screenSizeY
 alias left60 move screenOriginX;screenOriginY screenSizeX*0.6;screenSizeY
 alias left50 move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
@@ -12,6 +13,7 @@ alias left30 move screenOriginX;screenOriginY screenSizeX*0.30;screenSizeY
 alias left25 move screenOriginX;screenOriginY screenSizeX/4;screenSizeY
 alias left20 move screenOriginX;screenOriginY screenSizeX/5;screenSizeY
 
+alias right70 move screenOriginX+screenSizeX*0.3;screenOriginY screenSizeX*0.7;screenSizeY
 alias right66 move screenOriginX+screenSizeX*0.33333333333333;screenOriginY screenSizeX*0.666666666666;screenSizeY
 alias right60 move screenOriginX+screenSizeX*0.4;screenOriginY screenSizeX*0.6;screenSizeY
 alias right50 move screenOriginX+screenSizeX*0.5;screenOriginY screenSizeX*0.50;screenSizeY
@@ -21,6 +23,7 @@ alias right30 move screenOriginX+screenSizeX*0.70;screenOriginY screenSizeX*0.30
 alias right25 move screenOriginX+screenSizeX*0.75;screenOriginY screenSizeX*0.25;screenSizeY
 alias right20 move screenOriginX+screenSizeX*0.80;screenOriginY screenSizeX*0.20;screenSizeY
 
+alias center70 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.70);screenOriginY screenSizeX*0.70;screenSizeY
 alias center66 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.666666666666);screenOriginY screenSizeX*0.666666666666;screenSizeY
 alias center60 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.60);screenOriginY screenSizeX*0.60;screenSizeY
 alias center50 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.50);screenOriginY screenSizeX*0.50;screenSizeY
@@ -40,19 +43,25 @@ alias center move screenOriginX+screenSizeX/6;screenOriginY+screenSizeY/6 2*scre
 alias centerthird move screenOriginX+screenSizeX/6;screenOriginY+screenSizeY/6 2*screenSizeX/3;2*screenSizeY/3
 alias bigCenter move screenOriginX+screenSizeX/12;screenOriginY+screenSizeY/12 10*screenSizeX/12;10*screenSizeY/12
 
+# Layouts
+layout 1monitor 'iTerm2':REPEAT ${right20}
+#layout 1monitor 'Brave Browser':REPEAT ${l1}
+
+
 # The hyper keys
 alias hyper cmd;ctrl
 alias hyper2 cmd;ctrl;alt
 
 # Location bindings
-bind left:${hyper} chain ${left60} | ${left50} | ${left40} | ${left30} | ${left20}
+bind left:${hyper} chain ${left70} | ${left60} | ${left50} | ${left40} | ${left30} | ${left20}
 bind m:${hyper} ${full}
-bind right:${hyper} chain ${right60} | ${right50} | ${right40} | ${right30} | ${right20}
-bind up:${hyper} chain ${center60} | ${center50} | ${center40} | ${center30}
+bind right:${hyper} chain ${right70} | ${right60} | ${right50} | ${right40} | ${right30} | ${right20}
+bind up:${hyper} chain ${center70} | ${center60} | ${center50} | ${center40} | ${center30} | ${center20}
 #bind up:${hyper} ${tophalf} 
 bind down:${hyper} ${bottomhalf}
 bind c:${hyper} ${center}
 bind v:${hyper} ${bigCenter}
+#bind 1:${hyper} layout 1monitor
 bind down:${hyper2} ${bottomleft}
 bind right:${hyper2} ${bottomright}
 bind left:${hyper2} ${topleft}
