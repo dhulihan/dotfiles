@@ -12,24 +12,23 @@ alias left30 move screenOriginX;screenOriginY screenSizeX*0.30;screenSizeY
 alias left25 move screenOriginX;screenOriginY screenSizeX/4;screenSizeY
 alias left20 move screenOriginX;screenOriginY screenSizeX/5;screenSizeY
 
-
 alias right66 move screenOriginX+screenSizeX*0.33333333333333;screenOriginY screenSizeX*0.666666666666;screenSizeY
 alias right60 move screenOriginX+screenSizeX*0.4;screenOriginY screenSizeX*0.6;screenSizeY
-alias right50 move screenOriginX+screenSizeX/2;screenOriginY screenSizeX*0.50;screenSizeY
+alias right50 move screenOriginX+screenSizeX*0.5;screenOriginY screenSizeX*0.50;screenSizeY
 alias right40 move screenOriginX+screenSizeX*0.6;screenOriginY screenSizeX*0.4;screenSizeY
 alias right33 move screenOriginX+screenSizeX*0.66666666666666;screenOriginY screenSizeX*0.333333333333;screenSizeY
-alias right30 move screenOriginX+screenSizeX*0.30;screenOriginY screenSizeX*0.30;screenSizeY
+alias right30 move screenOriginX+screenSizeX*0.70;screenOriginY screenSizeX*0.30;screenSizeY
 alias right25 move screenOriginX+screenSizeX*0.75;screenOriginY screenSizeX*0.25;screenSizeY
 alias right20 move screenOriginX+screenSizeX*0.80;screenOriginY screenSizeX*0.20;screenSizeY
 
-alias center66 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.666666666666);screenOriginY screenSizeX*0.666666666666;screenSizeY
-alias center60 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.60);screenOriginY screenSizeX*0.60;screenSizeY
-alias center50 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.50);screenOriginY screenSizeX*0.50;screenSizeY
-alias center40 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.40);screenOriginY screenSizeX*0.40;screenSizeY
-alias center33 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)/3);screenOriginY screenSizeX/3;screenSizeY
-alias center30 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.3);screenOriginY screenSizeX*0.3;screenSizeY
-alias center25 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.25);screenOriginY screenSizeX*0.25;screenSizeY
-alias center20 move screenOriginX+screenSizeX/2-((screenSizeX*0.5)*0.20);screenOriginY screenSizeX*0.20;screenSizeY
+alias center66 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.666666666666);screenOriginY screenSizeX*0.666666666666;screenSizeY
+alias center60 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.60);screenOriginY screenSizeX*0.60;screenSizeY
+alias center50 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.50);screenOriginY screenSizeX*0.50;screenSizeY
+alias center40 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.40);screenOriginY screenSizeX*0.40;screenSizeY
+alias center33 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)/3);screenOriginY screenSizeX/3;screenSizeY
+alias center30 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.3);screenOriginY screenSizeX*0.3;screenSizeY
+alias center25 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.25);screenOriginY screenSizeX*0.25;screenSizeY
+alias center20 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.20);screenOriginY screenSizeX*0.20;screenSizeY
 
 alias tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
 alias bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2
@@ -46,9 +45,9 @@ alias hyper cmd;ctrl
 alias hyper2 cmd;ctrl;alt
 
 # Location bindings
-bind left:${hyper} ${left60} | ${left50} | ${left40} | ${left30}
+bind left:${hyper} chain ${left60} | ${left50} | ${left40} | ${left30} | ${left20}
 bind m:${hyper} ${full}
-bind right:${hyper} chain ${right60} | ${right50} | ${right40} | ${right30}
+bind right:${hyper} chain ${right60} | ${right50} | ${right40} | ${right30} | ${right20}
 bind up:${hyper} chain ${center60} | ${center50} | ${center40} | ${center30}
 #bind up:${hyper} ${tophalf} 
 bind down:${hyper} ${bottomhalf}
@@ -59,15 +58,12 @@ bind right:${hyper2} ${bottomright}
 bind left:${hyper2} ${topleft}
 bind up:${hyper2} ${topright}
 
-## Window Hints
-bind esc:${hyper} hint
-
 # Bind command+option+b to google chrome
 bind b:${hyper} focus 'Google Chrome'
 
 # Monitor switching bindings
-#bind right:alt,ctrl throw 1 resize
-#bind left:alt,ctrl throw 0 resize
+bind right:alt,ctrl throw 1 resize
+bind left:alt,ctrl throw 0 resize
 
 
 
@@ -152,6 +148,8 @@ bind b:${hyper} focus 'Google Chrome'
 ## Layout Bindings
 ## bind cmd:3 layout 3monitors
 
+## Window Hints
+#bind esc:cmd hint
 
 ## Grid
 #bind esc:ctrl grid

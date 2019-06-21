@@ -8,7 +8,8 @@ bind -n C-k clear-history
 bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
 
 bind k confirm kill-window
-bind K confirm kill-server
+bind K confirm kill-session
+#bind K confirm kill-server
 
 # copy-mode
 bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
@@ -75,17 +76,17 @@ set-window-option -g window-status-current-attr bright
 #set -g status-right "#[fg=blue]#S #I:#P #[fg=yellow]:: %d %b %Y #[fg=green]:: %l:%M %p :: #(date -u | awk '{print $4}')::"
 
 # List of core-ish plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
+#set -g @plugin 'tmux-plugins/tpm'
+#set -g @plugin 'tmux-plugins/tmux-sensible'
 
 # Other Plugins
-set -g @plugin "jlipps/tmux-safekill"
+#set -g @plugin "jlipps/tmux-safekill"
 
-set -g @plugin 'tmux-plugins/tmux-resurrect'
+#set -g @plugin 'tmux-plugins/tmux-resurrect'
 #set -g @plugin 'tmux-plugins/tmux-continuum'
 
 # Set desired resurrection processes
-set -g @resurrect-processes 'ssh psql mysql sqlite3 irb pry ~b guard'
+#set -g @resurrect-processes 'ssh psql mysql sqlite3 irb pry ~b guard'
 
 # Fix Sierra clipboard issue
 #   brew install reattach-to-user-namespace
