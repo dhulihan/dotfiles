@@ -573,18 +573,17 @@ let g:fzf_action = {
 
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
-
+"let g:fzf_layout = { 'down': '~40%' }
 " You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
 let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_layout = { 'window': '10new' }
+"let g:fzf_layout = { 'window': '-tabnew' }
+"let g:fzf_layout = { 'window': '10new' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
+  \ 'hl':      ['fg', 'Function'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
   \ 'hl+':     ['fg', 'Statement'],
@@ -602,14 +601,15 @@ let g:fzf_colors =
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-
-command! FZFBuffer call fzf#run({'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'),
-                 \               'bufname(v:val)'),
-                 \ 'sink': 'e', 'down': '30%'})
+command! FZFBuffer call fzf#run({
+\ 'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'),
+\ 'window': 'enew'
+\ })
 
 nnoremap <silent> <C-p> :FZF<CR>
 nnoremap <silent> <C-\> :FZFBuffer<CR>
-"u##############################################################################
+
+"###############################################################################
 " FZF END
 "###############################################################################
 
