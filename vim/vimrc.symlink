@@ -76,6 +76,7 @@ Plugin 'tmhedberg/matchit'
 "Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'mtth/scratch.vim'
 "Plugin 'vim-scripts/SearchComplete'
+Plugin 'junegunn/fzf.vim'
 
 " Colors
 Plugin 'flazz/vim-colorschemes'
@@ -606,9 +607,10 @@ command! FZFBuffer call fzf#run({
 \ 'window': 'enew'
 \ })
 
-nnoremap <silent> <C-p> :FZF<CR>
-nnoremap <silent> <C-\> :FZFBuffer<CR>
-
+"nnoremap <silent> <C-p> :FZF<CR>
+"nnoremap <silent> <C-\> :FZFBuffer<CR>
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-\> :Buffers<CR>
 "###############################################################################
 " FZF END
 "###############################################################################
