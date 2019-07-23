@@ -1,0 +1,4 @@
+.envrc
+tags
+*.sw*
+.DS_Store
