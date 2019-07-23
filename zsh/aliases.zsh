@@ -1,4 +1,5 @@
-alias reload!='. ~/.zshrc'
+alias reload!='source ~/.zshrc'
+alias reload_d!='source ~/.zshrc'
 
 # Serve current directory on port (default 3000)
 # Usage: serve 80
