@@ -67,6 +67,10 @@ lolcat \
 nsq \
 ncdu \
 fd \
+caddy \
+prettier \
+sipcalc \
+ipcalc \
 erlang
 
 #brew install gimp

@@ -1,5 +1,1 @@
-# ignore vendor (works in CLI but not here)
-#--iglob '!vendor/**/*'
-
-# Search hidden files
 --hidden
