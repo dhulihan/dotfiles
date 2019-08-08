@@ -68,7 +68,8 @@ Plugin 'Glench/Vim-Jinja2-Syntax'
 " Plugin 'amiorin/vim-fenced-code-blocks' " does not support indentation
 " Plugin 'rhysd/vim-gfm-syntax' " cute but not needed
 Plugin 'chrisbra/csv.vim'
-"Plugin 'mhinz/vim-rfc' " cool but not working well
+"Plugin 'mhinz/vim-rfc' " cool but not working well, requires vim ruby
+Plugin 'dhulihan/vim-rfc'
 Plugin 'kamailio/vim-kamailio-syntax'
 
 " Lint

@@ -7,6 +7,7 @@ go \
 ack \
 rbenv ruby-build rbenv-vars \
 ssh-copy-id \
+mosh \
 wget \
 wdiff \
 macvim \
