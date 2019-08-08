@@ -1,0 +1,12 @@
+#!/bin/zsh
+#
+# create directory and cp file into it
+# NOTE: <dst> should be a directory, not a file
+# 
+if [[ -z $2 ]]; then
+	echo "$0 <src> <dst>"  
+	exit 1
+fi 
+
+DESTDIR=$2
+mkdir -p $DESTDIR && cp $1 $DESTDIR
