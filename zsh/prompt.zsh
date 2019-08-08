@@ -31,17 +31,17 @@ git_dirty() {
   fi
 }
 
-git_prompt_info () {
+git_prompt_info() {
  ref=$($git symbolic-ref HEAD 2>/dev/null) || return
 # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
  echo "${ref#refs/heads/}"
 }
 
-unpushed () {
+unpushed() {
   $git cherry -v @{upstream} 2>/dev/null
 }
 
-need_push () {
+need_push() {
   if [[ $(unpushed) == "" ]]
   then
     echo " "
@@ -81,7 +81,7 @@ datestamp() {
 }
 
 
-set_prompt () {
+set_prompt() {
 	export PROMPT=$'\n$(datestamp)\n$(rb_prompt)in $(directory_name) $(git_dirty) $(git_commit)$(need_push)\n› '
 	#export RPROMPT=""
 }
