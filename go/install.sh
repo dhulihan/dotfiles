@@ -12,4 +12,7 @@ go get github.com/elazarl/go-bindata-assetfs/...
 # termshark
 go get github.com/gcla/termshark/cmd/termshark
 
+# grpcui
+go get github.com/fullstorydev/grpcui/cmd/grpcui
+
 set +x

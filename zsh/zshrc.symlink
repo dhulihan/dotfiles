@@ -1,10 +1,17 @@
+# if we already loaded, perform verbose logging
+if [[ $ZSH_LOADED == true ]] ; then
+	export LOG_LEVEL=debug
+else
+	export LOG_LEVEL=info
+fi
+
 # logger
-export LOG_LEVEL=${LOG_LEVEL:-info}
 debug() {
 	if [[ $LOG_LEVEL == "debug" ]]; then
-		echo $1
+		echo "$fg_bold[grey]$(gdate --iso-8601=ns) $fg_bold[green]$1"
 	fi
 }
+
 
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Projects
@@ -76,3 +83,5 @@ setopt histignorespace
 # Load this manually, since fzf breaks in tmux if out of order
 debug "fzf"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export ZSH_LOADED=true

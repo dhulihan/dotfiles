@@ -2,7 +2,8 @@
 debug "autoloading compinit"
 autoload -U compinit && compinit
 
+debug "loading kubernetes completion"
 if command -v kubectl > /dev/null ; then
-	debug "Kubernetes completion"
 	source <(kubectl completion zsh)
 fi
+debug "loaded kubernetes completion"

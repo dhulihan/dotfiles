@@ -54,11 +54,11 @@ libcouchbase \
 pv \
 postgresql \
 sngrep \
+sipp \
 ansible \
 ngrep \
 grpcurl \
 restic \
-ffmpeg \
 gifsicle \
 curl \
 baresip \ 
@@ -71,9 +71,13 @@ caddy \
 prettier \
 sipcalc \
 ipcalc \
+lua \
+luarocks \
 erlang
 
 #brew install gimp
+brew cask install imagemagick
+brew cask install ffmpeg
 
 brew cask install java
 
