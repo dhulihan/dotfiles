@@ -100,3 +100,17 @@ function! MarkdownHeader()
 endfunction
 
 command! MarkdownHeader call MarkdownHeader()
+
+" toggle color columns
+let g:color_column_toggle = 0
+function! ColorColumnToggle()
+  if g:color_column_toggle
+    setlocal colorcolumn=
+    let g:color_column_toggle = 0
+  else
+    setlocal colorcolumn=1,5,9,13,17,21
+    let g:color_column_toggle = 1
+  endif
+endfunction
+
+command! ColorColumnToggle call ColorColumnToggle()
