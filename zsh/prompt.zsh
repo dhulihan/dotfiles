@@ -1,6 +1,9 @@
 autoload colors && colors
-# cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
+
+ANIMALS=(🐶🐱🐭🐹🐰🦊🐻🐼🐨🐯🦁🐮🐷🐸🐵🐙🦄🐝);
+FOOD=(🍌🍇🍍🍉🍎🍒🍓🥝🥑🥥🌶🥕🍄🍋🍐🥨🥐🍤🍬🍭🍰🍖🍔🌭🍕🌮🌯🍟🍿🍦🍪🍨🍩);
+CREEPY=(💀🌙🌜🌚🕷️🌕👾👺☠️🐜👻🎃⚡👹🤡🔦);
+PROMPT_EMOJIS=$FOOD;
 
 if (( $+commands[git] ))
 then
@@ -80,13 +83,17 @@ datestamp() {
   echo "%{$fg_bold[grey]%}%D{%Y-%m-%f} %D{%H:%M:%S.%. %Z}%{$reset_color%}"
 }
 
+random_emoji() {
+  echo $SELECTED_EMOJI
+}
+
 
 set_prompt() {
-	export PROMPT=$'\n$(datestamp)\n$(rb_prompt)in $(directory_name) $(git_dirty) $(git_commit)$(need_push)\n› '
-	#export RPROMPT=""
+  export PROMPT=$'\n$(datestamp)\n$(rb_prompt)in $(directory_name) $(git_dirty) $(git_commit)$(need_push)\n$(random_emoji) '
 }
 
 precmd() {
+  export SELECTED_EMOJI=${PROMPT_EMOJIS[$RANDOM % ${#PROMPT_EMOJIS[@]}]};
   title "zsh" "%m" "%55<...<%~"
   set_prompt
 }
