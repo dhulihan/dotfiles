@@ -1,86 +1,82 @@
-brew install \
-tmux \
-git \
-zsh \
-macvim \
-go \
-ack \
-rbenv ruby-build rbenv-vars \
-ssh-copy-id \
-mosh \
-wget \
-wdiff \
-macvim \
-terminal-notifier \
-cmake \
-direnv \
-ctags \
-tmate \
-openssl \
-libyaml \
-libffi \
-cmake \
-jq \
-watch \
-markdown \
-cowsay \
-fortune \
-coreutils \
-findutils \
-gnu-sed \
-elixir \
-riak \
-logstash \
-tree \
-kubernetes-cli \
-kubernetes-helm \
-graphviz \
-terraform \
-editorconfig \
-ncdu \
-python \
-pg_top \
-mpv \
-direnv \
-kubernetes-cli \
-iftop \
-mysql \
-dep \
-tidy-html5 \
-protobuf \
-direnv \
-tree \
-git-secrets \
-libcouchbase \
-pv \
-postgresql \
-sngrep \
-sipp \
-ansible \
-ngrep \
-grpcurl \
-restic \
-gifsicle \
-curl \
-baresip \ 
-telnet \
-lolcat \
-nsq \
-ncdu \
-fd \
-caddy \
-prettier \
-sipcalc \
-ipcalc \
-lua \
-luarocks \
-erlang
+set -e
+brew install tmux
+brew install git
+brew install zsh
+brew install macvim
+brew install go
+brew install ack
+brew install rbenv ruby-build rbenv-vars
+brew install ssh-copy-id
+brew install mosh
+brew install wget
+brew install wdiff
+brew install macvim
+brew install terminal-notifier
+brew install cmake
+brew install direnv
+brew install ctags
+brew install tmate
+brew install openssl
+brew install libyaml
+brew install libffi
+brew install cmake
+brew install jq
+brew install watch
+brew install markdown
+brew install cowsay
+brew install fortune
+brew install coreutils
+brew install findutils
+brew install gnu-sed
+brew install elixir
+brew install riak
+brew install tree
+brew install kubernetes-cli
+brew install kubernetes-helm
+brew install graphviz
+brew install terraform
+brew install editorconfig
+brew install ncdu
+brew install python
+brew install pg_top
+brew install mpv
+brew install direnv
+brew install kubernetes-cli
+brew install iftop
+brew install mysql
+brew install dep
+brew install tidy-html5
+brew install protobuf
+brew install direnv
+brew install tree
+brew install git-secrets
+brew install libcouchbase
+brew install pv
+brew install postgresql
+brew install sngrep
+brew install sipp
+brew install ansible
+brew install ngrep
+brew install grpcurl
+brew install restic
+brew install gifsicle
+brew install curl
+brew install baresip 
+brew install telnet
+brew install lolcat
+brew install nsq
+brew install ncdu
+brew install fd
+brew install caddy
+brew install prettier
+brew install sipcalc
+brew install ipcalc
+brew install lua
+brew install luarocks
+brew install erlang
 
 #brew install gimp
-brew cask install imagemagick
-brew cask install ffmpeg
 
-brew cask install java
 
 brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
 brew install burntsushi/ripgrep/ripgrep-bin
@@ -115,4 +111,12 @@ brew cask install macvim
 # Sierra
 brew install reattach-to-user-namespace
 
+# java stuff
+brew cask install java
+brew install logstash
+
+brew cask install imagemagick
+brew cask install ffmpeg
+
+set +e
 say "brew is done"
