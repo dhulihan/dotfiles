@@ -67,6 +67,12 @@ There's a few special files in the hierarchy.
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `script/bootstrap`.
 
+### functions and binscripts
+
+* functions are good for executing logic in your current shell
+* binscripts are good for executing logic in a child shell/process
+
+
 ## bugs
 
 I want this to work for everyone; that means when you clone it down it should
