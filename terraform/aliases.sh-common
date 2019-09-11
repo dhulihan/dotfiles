@@ -1,1 +1,4 @@
 alias tf='terraform'
+alias tfc='terraform workspace list'
+alias tfu='terraform workspace select'
+

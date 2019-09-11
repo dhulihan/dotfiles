@@ -1,0 +1,3 @@
+uuid=$(uuidgen)
+echo -n $uuid | pbcopy
+echo $uuid

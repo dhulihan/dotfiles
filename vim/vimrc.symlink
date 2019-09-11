@@ -183,12 +183,13 @@ autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softta
 autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype groovy setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4
-autocmd Filetype proto setlocal tabstop=4 shiftwidth=4
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab " colorcolumn=1,3,5,7,9,11,13,15,17,19,21
 autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType xml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType yaml.dockercompose setlocal ts=2 sts=2 sw=2 expandtab 
+autocmd Filetype proto setlocal tabstop=4 shiftwidth=4
+autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab textwidth=80
+autocmd FileType xml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab " colorcolumn=1,3,5,7,9,11,13,15,17,19,21
+autocmd FileType yaml.dockercompose setlocal ts=2 sts=2 sw=2 expandtab 
 
 " better tab completion of filepaths
 set wildmode=longest,list
@@ -208,11 +209,15 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noerrorbells visualbell t_vb=
 
 " Key Mappings  -----------------------------------------------------
+"
+" leader
+"
 " Shortcut to rapidly toggle `set list`
 nnoremap <Leader>l :set list!<CR>
 nnoremap <Leader>; :ColorColumnToggle<CR>
 nnoremap <Leader>] :ALENextWrap<CR>
 nnoremap <Leader>[ :ALEPreviousWrap<CR>
+nnoremap <Leader>g :.Gbrowse!<CR>
 
 " Classic backspace
 "nnoremap <BS> X
@@ -225,6 +230,10 @@ set pastetoggle=<F2>
 " number mode toggle
 noremap <F3> :set invnumber<CR>
 inoremap <F3> <C-O>:set invnumber<CR>
+
+" reload file
+noremap <F5> :e!<CR>
+inoremap <F5> <C-O>:e!<CR>
 
 " space leader
 " ░░░░░░░░░░░░░░░░░

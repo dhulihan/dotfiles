@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# # backup 
+# backup important files using restic
 #
 # ## Getting Started
 # 

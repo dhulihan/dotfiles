@@ -4,6 +4,8 @@ go get -u github.com/kardianos/govendor
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 go get -u google.golang.org/grpc
 go get -u golang.org/x/tools/refactor/rename
+go get -u golang.org/x/tools/gopls
+go get -u github.com/jstemmer/gotags
 
 # bindata
 go get github.com/jteeuwen/go-bindata/...
@@ -14,5 +16,8 @@ go get github.com/gcla/termshark/cmd/termshark
 
 # grpcui
 go get github.com/fullstorydev/grpcui/cmd/grpcui
+
+
+
 
 set +x
