@@ -47,7 +47,8 @@ Plugin 'prettier/vim-prettier', {
 
 " Language-specific
 "Plugin 'stamblerre/gocode' " trouble getting this to work
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go' 
+" ^ spinning up a gopls server for every vim session
 Plugin 'robbles/logstash.vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'tpope/vim-cucumber'

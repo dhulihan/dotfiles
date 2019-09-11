@@ -15,7 +15,7 @@ brew install macvim
 brew install terminal-notifier
 brew install cmake
 brew install direnv
-brew install ctags
+# brew install ctags # swapping out for universal-ctags
 brew install tmate
 brew install openssl
 brew install libyaml
@@ -78,6 +78,8 @@ brew install erlang
 
 #brew install gimp
 
+# install universal-ctags, which has golang support
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
 brew install burntsushi/ripgrep/ripgrep-bin
