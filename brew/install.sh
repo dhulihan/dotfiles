@@ -1,5 +1,6 @@
 set -e
 brew install tmux
+brew install tmux-xpanes
 brew install git
 brew install zsh
 brew install macvim
