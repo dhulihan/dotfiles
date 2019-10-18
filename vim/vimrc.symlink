@@ -124,6 +124,9 @@ Plugin 'tpope/vim-dispatch'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" load custom functions
+source ~/.vimfunctions.vim
+
 " K, Add custom stuff below ---
 
 " Line Numbers
@@ -174,6 +177,8 @@ set spellfile=~/.en.utf-8.add,~/.en-secret.utf-8.add
 " set filetype based on filename
 "autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufRead *.template set filetype=json
+autocmd BufNewFile,BufRead *.json.tmpl, *.js.symlink set filetype=json
+autocmd BufNewFile,BufRead *.yaml.dockercompose,*.yaml.tmpl set filetype=yaml
 autocmd BufNewFile,BufRead .envrc set filetype=sh
 
 " filetype-specific config
@@ -189,8 +194,7 @@ autocmd Filetype proto setlocal tabstop=4 shiftwidth=4
 autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab textwidth=80
 autocmd FileType xml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab " colorcolumn=1,3,5,7,9,11,13,15,17,19,21
-autocmd FileType yaml.dockercompose setlocal ts=2 sts=2 sw=2 expandtab 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " better tab completion of filepaths
 set wildmode=longest,list
@@ -208,6 +212,7 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 " disable bells
 set noerrorbells visualbell t_vb=
+
 
 " Key Mappings  -----------------------------------------------------
 "
@@ -231,6 +236,10 @@ set pastetoggle=<F2>
 " number mode toggle
 noremap <F3> :set invnumber<CR>
 inoremap <F3> <C-O>:set invnumber<CR>
+
+" Save search matches in separate file
+noremap <silent> <F4> :ColorColumnToggle<CR>
+inoremap <silent> <F4> :ColorColumnToggle<CR>
 
 " reload file
 noremap <F5> :e!<CR>
@@ -353,8 +362,6 @@ set hlsearch
 " incremental search
 "set incsearch
 
-" Save search matches in separate file
-nnoremap <silent> <F4> :redir >>matches.tmp<CR>:g//<CR>:redir END<CR>:new matches.tmp<CR>
 
 " Syntax Highlighting on
 syntax on
@@ -890,5 +897,3 @@ hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
 
 " Colors END -----------------------------------------------
-
-source ~/.vimfunctions.vim

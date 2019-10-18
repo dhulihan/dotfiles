@@ -15,6 +15,7 @@ sudo pip install \
   pyre \
   isort \
   aws \
+  grpcio-tools \
   yapf
 
 set +x

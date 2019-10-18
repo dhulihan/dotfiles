@@ -43,6 +43,7 @@ alias center move screenOriginX+screenSizeX/6;screenOriginY+screenSizeY/6 2*scre
 alias centerthird move screenOriginX+screenSizeX/6;screenOriginY+screenSizeY/6 2*screenSizeX/3;2*screenSizeY/3
 alias bigCenter50 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.50);screenOriginY+screenSizeY/12 screenSizeX*.50;10*screenSizeY/12
 alias bigCenter65 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.65);screenOriginY+screenSizeY/12 screenSizeX*.65;10*screenSizeY/12
+alias bigCenter85 move screenOriginX+(screenSizeX/2)-((screenSizeX*0.5)*0.85);screenOriginY+screenSizeY/12 screenSizeX*.85;10*screenSizeY/12
 
 # Layouts
 layout 1monitor 'iTerm2':REPEAT ${right20}
@@ -58,7 +59,7 @@ bind left:${hyper} chain ${left70} | ${left60} | ${left50} | ${left40} | ${left3
 bind m:${hyper} ${full}
 bind right:${hyper} chain ${right70} | ${right60} | ${right50} | ${right40} | ${right30} | ${right20}
 bind up:${hyper} chain ${center70} | ${center60} | ${center50} | ${center40} | ${center30} | ${center20}
-bind return:${hyper} chain ${bigCenter50} | ${bigCenter65}
+bind return:${hyper} chain ${bigCenter85} | ${bigCenter65} | ${bigCenter50}
 
 #bind up:${hyper} ${tophalf} 
 bind down:${hyper} ${bottomhalf}

@@ -6,18 +6,13 @@ go get -u google.golang.org/grpc
 go get -u golang.org/x/tools/refactor/rename
 go get -u golang.org/x/tools/gopls
 go get -u github.com/jstemmer/gotags
+go get -u github.com/jsha/minica
+go get -u github.com/gcla/termshark/cmd/termshark
+go get -u github.com/fullstorydev/grpcui/cmd/grpcui
+go get -u github.com/ashleyschuett/kubernetes-secret-decode
 
 # bindata
-go get github.com/jteeuwen/go-bindata/...
-go get github.com/elazarl/go-bindata-assetfs/...
-
-# termshark
-go get github.com/gcla/termshark/cmd/termshark
-
-# grpcui
-go get github.com/fullstorydev/grpcui/cmd/grpcui
-
-
-
+go get -u github.com/jteeuwen/go-bindata/...
+go get -u github.com/elazarl/go-bindata-assetfs/...
 
 set +x

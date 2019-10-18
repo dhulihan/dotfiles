@@ -1,0 +1,1 @@
+tfenv install latest

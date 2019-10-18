@@ -32,7 +32,7 @@ bind -n C-S-Left swap-window -t -1
 bind -n C-S-Right swap-window -t +1
 
 # page up down
-bind -n Pageup copy-mode -u
+bind Pageup copy-mode -u
 
 # try to maintain pwd (warning: does not work in sudo/su sessions)
 # Saner splitting.

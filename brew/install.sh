@@ -35,7 +35,8 @@ brew install tree
 brew install kubernetes-cli
 brew install kubernetes-helm
 brew install graphviz
-brew install terraform
+#brew install terraform
+brew install tfenv
 brew install editorconfig
 brew install ncdu
 brew install python
@@ -75,6 +76,12 @@ brew install ipcalc
 brew install lua
 brew install luarocks
 brew install erlang
+brew install proctools
+brew install pssh
+brew install kubectx
+
+brew install node@10
+brew link --force node@10
 
 #brew install gimp
 

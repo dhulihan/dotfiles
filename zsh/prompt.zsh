@@ -3,7 +3,8 @@ autoload colors && colors
 ANIMALS=(🐶🐱🐭🐹🐰🦊🐻🐼🐨🐯🦁🐮🐷🐸🐵🐙🦄🐝);
 FOOD=(🍌🍇🍍🍉🍎🍒🍓🥝🥑🥥🌶🥕🍄🍋🍐🥨🥐🍤🍬🍭🍰🍖🍔🌭🍕🌮🌯🍟🍿🍦🍪🍨🍩);
 CREEPY=(💀🌙🌜🌚🕷️🌕👾👺☠️🐜👻🎃⚡👹🤡🔦);
-PROMPT_EMOJIS=$FOOD;
+HOLIDAYS=(🎃);
+PROMPT_EMOJIS=$CREEPY;
 
 if (( $+commands[git] ))
 then

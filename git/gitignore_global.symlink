@@ -2,3 +2,5 @@
 tags
 *.sw*
 .DS_Store
+*.tags
+matches.tmp
