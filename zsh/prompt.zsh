@@ -3,8 +3,20 @@ autoload colors && colors
 ANIMALS=(🐶🐱🐭🐹🐰🦊🐻🐼🐨🐯🦁🐮🐷🐸🐵🐙🦄🐝);
 FOOD=(🍌🍇🍍🍉🍎🍒🍓🥝🥑🥥🌶🥕🍄🍋🍐🥨🥐🍤🍬🍭🍰🍖🍔🌭🍕🌮🌯🍟🍿🍦🍪🍨🍩);
 CREEPY=(💀🌙🌜🌚🕷️🌕👾👺☠️🐜👻🎃⚡👹🤡🔦);
-HOLIDAYS=(🎃);
-PROMPT_EMOJIS=$CREEPY;
+MONTH_01=(☕);
+MONTH_02=(🍫💝);
+MONTH_03=(🍀);
+MONTH_04=(🌺🌹🌸🌩️);
+MONTH_05=(🌼);
+MONTH_06=(🍔🌻);
+MONTH_07=(🏊🛹🛹♂️);
+MONTH_08=(🏫📏);
+MONTH_09=(🍂🍁);
+MONTH_10=(💀🌙🌜🌚🕷️🌕👾👺☠️🐜👻🎃⚡👹🤡🔦);
+MONTH_11=(🦃🏈🌽🍗🥧🍽🍞🥖🍎🥂);
+MONTH_12=(🎁🎄🎅🤶🍪🥛🔔🧦);
+PROMPT_EMOJIS_VAR="MONTH_$(date +%m)"
+eval "PROMPT_EMOJIS=\"\${$PROMPT_EMOJIS_VAR}\""
 
 if (( $+commands[git] ))
 then
