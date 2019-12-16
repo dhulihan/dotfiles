@@ -1,0 +1,22 @@
+#!/usr/bin/expect
+
+# If it all goes pear shaped the script will timeout after 20 seconds.
+set timeout 5
+# fs host
+set host [lindex $argv 0]
+set port 8021
+# events list, eg: CHANNEL_ANSWER CUSTOM fifo_info
+set events [lindex $argv 1]
+# fs ESL password
+set password ClueCon
+#This spawns the telnet program and connects it to the variable name
+spawn telnet $host $port
+#The script sends the user variable
+expect "Content-Type: auth/request"
+send "auth $password\n\n"
+#The script expects Password
+#expect "Content-Type: command/reply\nReply-Text: +OK accepted\n"
+#The script sends the password variable
+send "events json $events\n\n"
+#This hands control of the keyboard over to you (Nice expect feature!)
+interact
