@@ -10,6 +10,8 @@ go get -u github.com/jsha/minica
 go get -u github.com/gcla/termshark/cmd/termshark
 go get -u github.com/fullstorydev/grpcui/cmd/grpcui
 go get -u github.com/ashleyschuett/kubernetes-secret-decode
+go get -u github.com/salrashid123/gce_metadata_server
+go get -u github.com/nshmura/dsio
 
 # bindata
 go get -u github.com/jteeuwen/go-bindata/...

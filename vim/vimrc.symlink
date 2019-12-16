@@ -133,6 +133,9 @@ source ~/.vimfunctions.vim
 set nonumber
 "highlight LineNr ctermfg=darkgrey
 
+" show as much of a line as possible
+set display+=lastline
+
 " Recognize dash-separated values as words
 set iskeyword+=-
 

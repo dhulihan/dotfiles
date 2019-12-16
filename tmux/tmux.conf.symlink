@@ -40,6 +40,9 @@ bind '"' split-window -c "#{pane_current_path}" -v
 bind '%' split-window -c "#{pane_current_path}" -h
 bind c new-window -c "#{pane_current_path}"
 
+# synchronize panes
+bind-key a set-window-option synchronize-panes\; display-message "synchronize-panes is now #{?pane_synchronized,on,off}"
+
 # Unbind C-r, which is conflicting with fzf
 #bind -T root C-r send fzf-history-widget-accept C-m
 

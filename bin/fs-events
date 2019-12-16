@@ -17,6 +17,6 @@ send "auth $password\n\n"
 #The script expects Password
 #expect "Content-Type: command/reply\nReply-Text: +OK accepted\n"
 #The script sends the password variable
-send "events json $events\n\n"
+send "events $events\n\n"
 #This hands control of the keyboard over to you (Nice expect feature!)
 interact
