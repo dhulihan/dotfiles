@@ -7,7 +7,7 @@ bind -n C-k clear-history
 # allow scrolling
 bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
 
-bind k confirm kill-window
+bind k confirm kill-pane
 bind K confirm kill-session
 
 # bind / to search
