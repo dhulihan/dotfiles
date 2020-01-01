@@ -1,6 +1,7 @@
 #!/bin/bash -u
 #
 # restore important files using restic
+#
 SNAPSHOT_ID=$(restic snapshots latest --json | jq -r '.[0].short_id')
 RESTORE_DIR=/tmp/restic-restore-${SNAPSHOT_ID:?}
 mkdir -p $RESTORE_DIR

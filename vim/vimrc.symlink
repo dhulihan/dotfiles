@@ -217,16 +217,26 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noerrorbells visualbell t_vb=
 
 
-" Key Mappings  -----------------------------------------------------
+" Key Mappings  ----------------------------------------------------------------
 "
-" leader
+" leader (
 "
 " Shortcut to rapidly toggle `set list`
 nnoremap <Leader>l :set list!<CR>
-nnoremap <Leader>; :ColorColumnToggle<CR>
+"nnoremap <Leader>; :ColorColumnToggle<CR>
 nnoremap <Leader>] :ALENextWrap<CR>
 nnoremap <Leader>[ :ALEPreviousWrap<CR>
-nnoremap <Leader>g :.Gbrowse!<CR>
+nnoremap <Leader>gg :.Gbrowse!<CR>
+nnoremap <Leader>go :.Gbrowse<CR>
+nnoremap <Leader>gm :Gbrowse @master:%<CR>
+nnoremap <Leader>ge :Gedit master:%<CR>
+
+" copy current file path to clipboard
+nnoremap <Leader>5 :let @*=@%<CR>
+
+" widen split to favorite width (I like 80 char width plus some gutter)
+nnoremap <Leader>= :vertical resize 82<CR>
+" leader )
 
 " Classic backspace
 "nnoremap <BS> X
@@ -248,7 +258,7 @@ inoremap <silent> <F4> :ColorColumnToggle<CR>
 noremap <F5> :e!<CR>
 inoremap <F5> <C-O>:e!<CR>
 
-" space leader
+" space leader (
 " ░░░░░░░░░░░░░░░░░
 " ░░░░░▀▄░░░▄▀░░░░░
 " ░░░░▄█▀███▀█▄░░░░
@@ -262,6 +272,26 @@ inoremap <F5> <C-O>:e!<CR>
 nnoremap <Space>l :lnext<CR>
 nnoremap <Space>p :lprevious<CR>
 nnoremap <Space>r :lrewind<CR>
+
+" git things
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>ge :Gedit<CR>
+nnoremap <space>gr :Gread<CR>
+nnoremap <space>gw :Gwrite<CR><CR>
+nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <space>gp :Ggrep<Space>
+nnoremap <space>gm :Gmove<Space>
+nnoremap <space>gb :Git branch<Space>
+nnoremap <space>go :Git checkout<Space>
+nnoremap <space>gps :Dispatch! git push<CR>
+nnoremap <space>gpl :Dispatch! git pull<CR>
+" )
+
+" git h
 
 " system clipboard helpers
 "nnoremap <Space>yy "*yy<CR>
