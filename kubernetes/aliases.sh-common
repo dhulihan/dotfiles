@@ -1,7 +1,8 @@
 alias k=kubectl
+alias kc='kubectx -c'
+alias kdg=kube-delete-pods-grep
+alias kgp='kubectl get pods -o wide -o custom-columns-file=$HOME/.custom-columns'
 alias kl="k logs -f \$(k get pods | tail -n 1 | awk '{print \$1}')"
 alias klg=kube-logs-grep
-alias kdg=kube-delete-pods-grep
-alias kc='kubectx -c'
-alias ku='kubectx'
 alias kn='kubens'
+alias ku='kubectx'

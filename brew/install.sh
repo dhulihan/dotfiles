@@ -79,6 +79,7 @@ brew install erlang
 brew install proctools
 brew install pssh
 brew install kubectx
+brew install yarn
 
 brew install node@10
 brew link --force node@10

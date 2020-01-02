@@ -866,6 +866,11 @@ let g:ale_fix_on_save = 1
 " ale END ---------------------------------------------------
 "
 
+" vim-better-whitespace (
+
+" empty default blacklist (which contains markdown)
+let g:better_whitespace_filetypes_blacklist=[]
+" ) vim-better-whitespace
 
 " MiniBufExplorer ------------------------------------------------------------
 " Allow single clicks
