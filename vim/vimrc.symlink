@@ -870,6 +870,10 @@ let g:ale_fix_on_save = 1
 
 " empty default blacklist (which contains markdown)
 let g:better_whitespace_filetypes_blacklist=[]
+
+" show tab/space fraternization
+let g:show_spaces_that_precede_tabs=1
+
 " ) vim-better-whitespace
 
 " MiniBufExplorer ------------------------------------------------------------
