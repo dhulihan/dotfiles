@@ -235,7 +235,7 @@ nnoremap <Leader>ge :Gedit master:%<CR>
 nnoremap <Leader>5 :let @*=@%<CR>
 
 " widen split to favorite width (I like 80 char width plus some gutter)
-nnoremap <Leader>= :vertical resize 82<CR>
+nnoremap <C-W>\ :vertical resize 82<CR>
 " leader )
 
 " Classic backspace
