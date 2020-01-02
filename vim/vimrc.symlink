@@ -37,6 +37,7 @@ Plugin 'The-NERD-Commenter'
 "Plugin 'ludovicchabant/vim-gutentags' " blocking too much
 Plugin 'vitalk/vim-shebang'
 " Plugin 'junegunn/vim-easy-align' " TODO: fix = mapping
+Plugin 'ntpeters/vim-better-whitespace'
 
 Plugin 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -47,7 +48,7 @@ Plugin 'prettier/vim-prettier', {
 
 " Language-specific
 "Plugin 'stamblerre/gocode' " trouble getting this to work
-"Plugin 'fatih/vim-go' 
+"Plugin 'fatih/vim-go'
 " ^ spinning up a gopls server for every vim session
 Plugin 'robbles/logstash.vim'
 Plugin 'hashivim/vim-terraform'
@@ -258,7 +259,7 @@ inoremap <silent> <F4> :ColorColumnToggle<CR>
 noremap <F5> :e!<CR>
 inoremap <F5> <C-O>:e!<CR>
 
-" space leader (
+" space mappings (
 " ░░░░░░░░░░░░░░░░░
 " ░░░░░▀▄░░░▄▀░░░░░
 " ░░░░▄█▀███▀█▄░░░░
@@ -268,10 +269,10 @@ inoremap <F5> <C-O>:e!<CR>
 " ░░░░░░░░░░░░░░░░░
 " map leader to spacebar
 "let mapleader=" "
-" map <Space> <Leader>
-nnoremap <Space>l :lnext<CR>
-nnoremap <Space>p :lprevious<CR>
-nnoremap <Space>r :lrewind<CR>
+" map <space> <Leader>
+nnoremap <space>l :lnext<CR>
+nnoremap <space>p :lprevious<CR>
+nnoremap <space>r :lrewind<CR>
 
 " git things
 nnoremap <space>ga :Git add %:p<CR><CR>
@@ -289,7 +290,7 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :Dispatch! git push<CR>
 nnoremap <space>gpl :Dispatch! git pull<CR>
-" )
+" ) space leader
 
 " git h
 
@@ -890,7 +891,7 @@ let g:ale_fix_on_save = 1
 
 " MiniBufExplorer END --------------------------------------------------------
 
-" Colors ----------------------------------------------------
+" Color Schemes (
 set background=dark
 colors apprentice
 "colors falcon
@@ -907,6 +908,7 @@ colors apprentice
 "" enable transparent term support
 "let g:solarized_termtrans=1
 "colorscheme solarized
+" ) Color Schemes
 
 " Additional apprentice colors
 hi! link SignColumn Normal
