@@ -134,5 +134,10 @@ brew install logstash
 brew cask install imagemagick
 brew cask install ffmpeg
 
+brew tap filippo.io/age https://filippo.io/age
+brew install age
+
+brew install derailed/k9s/k9s
+
 set +e
 say "brew is done"

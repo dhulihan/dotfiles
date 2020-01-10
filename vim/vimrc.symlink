@@ -90,6 +90,7 @@ Plugin 'tmhedberg/matchit'
 "Plugin 'mtth/scratch.vim'
 "Plugin 'vim-scripts/SearchComplete'
 Plugin 'junegunn/fzf.vim'
+"Plugin 'ronakg/quickr-preview.vim'
 
 " Colors
 Plugin 'flazz/vim-colorschemes'
@@ -194,6 +195,7 @@ autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=
 autocmd Filetype groovy setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4
 autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType kamailio setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype proto setlocal tabstop=4 shiftwidth=4
 autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab textwidth=80
@@ -220,7 +222,22 @@ set noerrorbells visualbell t_vb=
 
 " Key Mappings  ----------------------------------------------------------------
 "
-" leader (
+" Leader ( #####################################################################
+
+" <Leader>s requires release of <Leader> :(
+
+"nnoremap <Leader>s :bn!<esc><CR>
+"nnoremap <Leader>a :bp!<esc><CR>
+nnoremap <Leader>s :BufSurfForward<CR>
+nnoremap <Leader>a :BufSurfBack<CR>
+nnoremap <Leader>y :TagbarToggle<cr>
+"nnoremap <Leader>d :bd<esc><CR>
+nnoremap <Leader>d :BD<CR>
+"nnoremap <Tab> :bnext<CR>
+"nnoremap <S-Tab> :bprevious<CR>
+
+" copy current file path to clipboard
+nnoremap <Leader>5 :let @*=@%<CR>
 "
 " Shortcut to rapidly toggle `set list`
 nnoremap <Leader>l :set list!<CR>
@@ -231,13 +248,12 @@ nnoremap <Leader>gg :.Gbrowse!<CR>
 nnoremap <Leader>go :.Gbrowse<CR>
 nnoremap <Leader>gm :Gbrowse @master:%<CR>
 nnoremap <Leader>ge :Gedit master:%<CR>
+nnoremap <Leader>vv :Ack<CR>
 
-" copy current file path to clipboard
-nnoremap <Leader>5 :let @*=@%<CR>
+" Leader ) #####################################################################
 
 " widen split to favorite width (I like 80 char width plus some gutter)
 nnoremap <C-W>\ :vertical resize 82<CR>
-" leader )
 
 " Classic backspace
 "nnoremap <BS> X
@@ -314,28 +330,30 @@ inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 
 " Easier saving
-"nmap S :w<cr>
-"nmap <C-i> :q<cr>
+"nnoremap S :w<CR>
+"nnoremap <C-i> :q<CR>
 
 " Tabs
-nmap = :tabn<cr>
-nmap - :tabp<cr>
-nmap _ :tabm -1<cr>
-nmap + :tabm +1<cr>
-"nmap ( :tabclose<cr>
-"nmap ) :tabnew<cr>
+nnoremap { :cprev<CR>
+nnoremap } :cnext<CR>
+nnoremap = :tabn<CR>
+nnoremap - :tabp<CR>
+nnoremap _ :tabm -1<CR>
+nnoremap + :tabm +1<CR>
+"nnoremap ( :tabclose<CR>
+"nnoremap ) :tabnew<CR>
 
 " Map ctrl+return to auto/smart indent
 imap <C-Return> <CR><CR><C-o>k<Tab>
 
 " lazy indent
-"nmap <Tab> >>
-"nmap <S-Tab> <<
+"nnoremap <Tab> >>
+"nnoremap <S-Tab> <<
 "imap <S-Tab> <Esc><<i
 
 " Map insert abnormals. Must be typed quickly!
-" imap wq <Esc>:wq<cr>
-" imap ww <Esc>:w<cr>i
+" imap wq <Esc>:wq<CR>
+" imap ww <Esc>:w<CR>i
 
 " In visual mode, make indent/unindent reselect after indent
 "vmap <TAB> >gv
@@ -345,7 +363,7 @@ imap <C-Return> <CR><CR><C-o>k<Tab>
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " select pasted text
-nmap gp `[v`]
+nnoremap gp `[v`]
 
 " Key Mappings END -----------------------------------------------------------
 
@@ -360,19 +378,10 @@ set cinkeys=0{,0},:,0#,!^F
 "augroup END
 
 " map buffer movement (normal)
-" <Leader>s requires release of <Leader> :(
-"nmap <Leader>s :bn!<esc><cr>
-"nmap <Leader>a :bp!<esc><cr>
-nmap <Leader>s :BufSurfForward<cr>
-nmap <Leader>a :BufSurfBack<cr>
-"nmap <Leader>d :bd<esc><cr>
-nmap <Leader>d :BD<cr>
-"nnoremap <Tab> :bnext<CR>
-"nnoremap <S-Tab> :bprevious<CR>
 
-imap qq <Esc>:LocalDate<cr>a
-imap jj <Esc>:LocalTime<cr>a
-imap kk <Esc>:UTCTime<cr>a
+imap qq <Esc>:LocalDate<CR>a
+imap jj <Esc>:LocalTime<CR>a
+imap kk <Esc>:UTCTime<CR>a
 
 " mouse mode
 set mouse=a
@@ -406,10 +415,9 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,.*.sw*
 " netrw/Explorer
 let g:netrw_preview = 1 " preview file vertical split
 let g:netrw_liststyle = 1 " one file, timestamps
-"nmap <C-n> :Vexplore<CR> " explorer in vertical split
+"nnoremap <C-n> :Vexplore<CR> " explorer in vertical split
 
 " Ack: map
-nmap <Leader>vv :Ack<cr>
 set grepprg=rg\ --vimgrep
 let g:ackprg='rg --vimgrep'
 
@@ -433,8 +441,8 @@ let g:EasyClipUseSubstituteDefaults = 1
 
 " use <CTRL-F> and <CTRL-F> for movement
 "let g:EasyClipUsePasteToggleDefaults = 0
-"nmap <c-f> <plug>EasyClipSwapPasteForward
-"nmap <c-d> <plug>EasyClipSwapPasteBackwards
+"nnoremap <c-f> <plug>EasyClipSwapPasteForward
+"nnoremap <c-d> <plug>EasyClipSwapPasteBackwards
 
 " move cursor to end of paste
 "let g:EasyClipAlwaysMoveCursorToEndOfPaste=1
@@ -444,7 +452,7 @@ let g:EasyClipUseSubstituteDefaults = 1
 "let g:EasyClipAutoFormat=1
 
 " use this to view original formatting
-"nmap <leader>cf <plug>EasyClipToggleFormattedPaste
+"nnoremap <leader>cf <plug>EasyClipToggleFormattedPaste
 
 " Turn on paste mode for duration of the paste
 "imap <c-v> <plug>EasyClipInsertModePaste
@@ -486,15 +494,6 @@ let g:EasyClipShareYanks=0
 
 " Enable index select
 "let g:airline#extensions#tabline#buffer_idx_mode = 1
-"nmap <leader>1 <Plug>AirlineSelectTab1
-"nmap <leader>2 <Plug>AirlineSelectTab2
-"nmap <leader>3 <Plug>AirlineSelectTab3
-"nmap <leader>4 <Plug>AirlineSelectTab4
-"nmap <leader>5 <Plug>AirlineSelectTab5
-"nmap <leader>6 <Plug>AirlineSelectTab6
-"nmap <leader>7 <Plug>AirlineSelectTab7
-"nmap <leader>8 <Plug>AirlineSelectTab8
-"nmap <leader>9 <Plug>AirlineSelectTab9
 
 " Airline Theme
 "AirlineTheme wombat
@@ -615,7 +614,7 @@ let g:ctrlp_switch_buffer = '' " don't switch to already displayed buffers
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
 " list buffers nicely
-"nmap <C-\> :CtrlPBuffer<cr>
+"nnoremap <C-\> :CtrlPBuffer<cr>
 
 "###############################################################################
 " FZF
@@ -643,8 +642,8 @@ let g:fzf_action = {
 " - down / up / left / right
 "let g:fzf_layout = { 'down': '~40%' }
 " You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
-let g:fzf_layout = { 'window': 'enew' }
-"let g:fzf_layout = { 'window': '-tabnew' }
+"let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '-tabnew' }
 "let g:fzf_layout = { 'window': '10new' }
 
 " Customize fzf colors to match your color scheme
@@ -698,7 +697,7 @@ nnoremap <silent> <C-\> :Buffers<CR>
 
 " Disable mappings
 "let g:scratch_no_mappings = 1
-"nmap gs <plug>(scratch-insert-reuse)
+"nnoremap gs <plug>(scratch-insert-reuse)
 
 " mtth/scratch.vim END --------------------------------------
 
@@ -706,19 +705,18 @@ nnoremap <silent> <C-\> :Buffers<CR>
 "let g:ycm_filetype_blacklist = {}
 
 " vimux bindings
-"nmap <Leader>rp :VimuxPromptCommand<CR>
-"nmap <Leader>rl :VimuxRunLastCommand<CR>
-"nmap <Leader>ri :VimuxInspectRunner<CR>
-"nmap <Leader>rx :VimuxCloseRunner<CR>
-"nmap <Leader>rz :VimuxZoomRunner<CR>
-"nmap <Leader>rs :VimuxInterruptRunner<CR>
+"nnoremap <Leader>rp :VimuxPromptCommand<CR>
+"nnoremap <Leader>rl :VimuxRunLastCommand<CR>
+"nnoremap <Leader>ri :VimuxInspectRunner<CR>
+"nnoremap <Leader>rx :VimuxCloseRunner<CR>
+"nnoremap <Leader>rz :VimuxZoomRunner<CR>
+"nnoremap <Leader>rs :VimuxInterruptRunner<CR>
 
 " tags
 "set tags=./tags
 
 " tagbar
 "let g:tagbar_width=26 " Default is 40, seems too wide
-noremap <Leader>y :TagbarToggle<cr>
 
 " easytags
 "let g:easytags_dynamic_files = 2 " write project-specific tags
