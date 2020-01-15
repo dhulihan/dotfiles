@@ -870,7 +870,11 @@ let g:ale_fix_on_save = 1
 let g:better_whitespace_filetypes_blacklist=[]
 
 " show tab/space fraternization
-let g:show_spaces_that_precede_tabs=1
+let g:show_spaces_that_precede_tabs =  1
+
+" strip on save
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
 
 " ) vim-better-whitespace
 
