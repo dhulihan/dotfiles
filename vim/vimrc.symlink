@@ -905,6 +905,8 @@ let g:strip_whitespace_confirm = 0
 " Color Schemes (
 set background=dark
 colors apprentice
+"colors lucius
+"colors dracula
 "colors falcon
 "colors jellybeans
 "colors hybrid
