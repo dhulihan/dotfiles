@@ -63,7 +63,7 @@ brew install grpcurl
 brew install restic
 brew install gifsicle
 brew install curl
-brew install baresip 
+brew install baresip
 brew install telnet
 brew install lolcat
 brew install nsq
@@ -138,6 +138,7 @@ brew tap filippo.io/age https://filippo.io/age
 brew install age
 
 brew install derailed/k9s/k9s
+brew install rainbarf
 
 set +e
 say "brew is done"
