@@ -1,5 +1,6 @@
 #!/usr/bin/expect
 
+log_file -noappend /tmp/expect.log;
 # If it all goes pear shaped the script will timeout after 20 seconds.
 set timeout 5
 # fs host
