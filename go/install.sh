@@ -12,6 +12,8 @@ go get -u github.com/fullstorydev/grpcui/cmd/grpcui
 go get -u github.com/ashleyschuett/kubernetes-secret-decode
 go get -u github.com/salrashid123/gce_metadata_server
 go get -u github.com/nshmura/dsio
+go get -u golang.org/x/lint/golint
+go get -u golang.org/x/tools/cmd/goimports
 
 # bindata
 go get -u github.com/jteeuwen/go-bindata/...
