@@ -349,3 +349,8 @@ prometheus
 etc
 quickfix
 noticeables
+AST
+SIGTERM
+SIGINT
+the
+kubelet

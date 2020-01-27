@@ -37,7 +37,7 @@ Plugin 'The-NERD-Commenter'
 "Plugin 'ludovicchabant/vim-gutentags' " blocking too much
 Plugin 'vitalk/vim-shebang'
 " Plugin 'junegunn/vim-easy-align' " TODO: fix = mapping
-"Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'ntpeters/vim-better-whitespace'
 
 Plugin 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -850,13 +850,12 @@ let g:disabled_ale_fixers = {
 
 let g:ale_linters = {
 \   'go' : ['gobuild', 'govet', 'golint'],
-\   'markdown': ['remove_trailing_lines', 'trim_whitespace'],
 \   'terraform': ['tflint'],
 \}
 
 " fixers
 let g:ale_fixers = {
-\   'go': ['gofmt', 'goimports', 'trim_whitespace', 'trim_whitespace'],
+\   'go': ['gofmt', 'goimports'],
 \   'json': ['fixjson'],
 \   'terraform': ['terraform'],
 \}
@@ -876,8 +875,8 @@ let g:better_whitespace_filetypes_blacklist=[]
 let g:show_spaces_that_precede_tabs =  1
 
 " strip on save
-"let g:strip_whitespace_on_save = 1
-"let g:strip_whitespace_confirm = 0
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
 
 " ) vim-better-whitespace
 
