@@ -906,8 +906,8 @@ let g:strip_whitespace_confirm = 0
 
 " Color Schemes (
 set background=dark
-colors apprentice
-"colors lucius
+"colors apprentice
+colors lucius
 "colors dracula
 "colors falcon
 "colors jellybeans
@@ -925,24 +925,43 @@ colors apprentice
 "colorscheme solarized
 " ) Color Schemes
 
-" Additional apprentice colors
-hi! link SignColumn Normal
-hi! link LineNr Comment
-hi! link GitGutterAddDefault String
-"hi! default GitGutterAddDefault ctermbg=234
-hi! link GitGutterChangeDefault Function
-hi! link GitGutterDelete GitGutterDeleteDefault
-hi! link GitGutterChangeDelete GitGutterChangeDeleteDefault
+" apprentice color overrides
+"hi! link SignColumn Normal
+"hi! link LineNr Comment
+"hi TabLine     term=bold cterm=bold ctermfg=225 ctermbg=053
+"hi TabLineFill term=bold cterm=bold ctermfg=225 ctermbg=053
+"hi TabLineSel  term=bold cterm=bold ctermfg=053 ctermbg=225
 
-" Cross-scheme colors
+" lucius color overrides
+hi Visual   term=underline ctermbg=18
+
+" Cross-scheme colors (dark background)
 "hi! link ColorColumn Tabline
 "hi! link ColorColumn TablineFill
-hi TabLine     term=bold cterm=bold ctermfg=225 ctermbg=053
-hi TabLineFill term=bold cterm=bold ctermfg=225 ctermbg=053
-hi TabLineSel  term=bold cterm=bold ctermfg=053 ctermbg=225
-hi Visual term=underline ctermbg=238
+hi clear SignColumn
+hi clear SpellBad
+hi SpellBad ctermfg=197
+hi clear LineNr
+hi LineNr ctermfg=240
+hi clear Error
+hi Error ctermfg=167
+hi clear GitGutterAdd
+hi GitGutterAdd ctermfg=118
+hi clear GitGutterChange
+hi GitGutterChange ctermfg=186
+hi clear GitGutterDelete
+hi GitGutterDelete ctermfg=1
+hi clear GitGutterChangeDelete
+hi GitGutterChangeDelete ctermfg=166
 
-" Invisible character colors
+" old
+"hi! link GitGutterAddDefault String
+"hi! link GitGutterChangeDefault Function
+"hi! link GitGutterDelete GitGutterDeleteDefault
+"hi! link GitGutterChangeDelete GitGutterChangeDeleteDefault
+"hi default GitGutterAddDefault ctermbg=234
+
+hi Visual   term=underline ctermbg=238
 hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
 
