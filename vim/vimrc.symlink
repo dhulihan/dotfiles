@@ -925,16 +925,6 @@ colors lucius
 "colorscheme solarized
 " ) Color Schemes
 
-" apprentice color overrides
-"hi! link SignColumn Normal
-"hi! link LineNr Comment
-"hi TabLine     term=bold cterm=bold ctermfg=225 ctermbg=053
-"hi TabLineFill term=bold cterm=bold ctermfg=225 ctermbg=053
-"hi TabLineSel  term=bold cterm=bold ctermfg=053 ctermbg=225
-
-" lucius color overrides
-hi Visual   term=underline ctermbg=18
-
 " Cross-scheme colors (dark background)
 "hi! link ColorColumn Tabline
 "hi! link ColorColumn TablineFill
@@ -953,6 +943,18 @@ hi clear GitGutterDelete
 hi GitGutterDelete ctermfg=1
 hi clear GitGutterChangeDelete
 hi GitGutterChangeDelete ctermfg=166
+
+" lucius color overrides
+hi Visual   term=underline ctermbg=18
+hi! VertSplit ctermfg=237 ctermbg=237
+
+" apprentice color overrides
+"hi! link SignColumn Normal
+"hi! link LineNr Comment
+"hi TabLine     term=bold cterm=bold ctermfg=225 ctermbg=053
+"hi TabLineFill term=bold cterm=bold ctermfg=225 ctermbg=053
+"hi TabLineSel  term=bold cterm=bold ctermfg=053 ctermbg=225
+
 
 " old
 "hi! link GitGutterAddDefault String
