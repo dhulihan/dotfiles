@@ -55,10 +55,10 @@ alias hyper cmd;ctrl
 alias hyper2 cmd;ctrl;alt
 
 # Location bindings
-bind left:${hyper} chain ${left70} | ${left60} | ${left50} | ${left40} | ${left30} | ${left20}
+bind left:${hyper} chain ${left70} | ${left60} | ${left50} | ${left40} | ${left30}
 bind m:${hyper} ${full}
-bind right:${hyper} chain ${right70} | ${right60} | ${right50} | ${right40} | ${right30} | ${right20}
-bind up:${hyper} chain ${center70} | ${center60} | ${center50} | ${center40} | ${center30} | ${center20}
+bind right:${hyper} chain ${right70} | ${right60} | ${right50} | ${right40} | ${right30}
+bind up:${hyper} chain ${center70} | ${center60} | ${center50} | ${center40} | ${center30}
 bind return:${hyper} chain ${bigCenter85} | ${bigCenter65} | ${bigCenter50}
 bind z:${hyper} ${full}
 
