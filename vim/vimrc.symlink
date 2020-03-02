@@ -929,6 +929,8 @@ colors lucius
 "hi! link ColorColumn Tabline
 "hi! link ColorColumn TablineFill
 hi clear SignColumn
+hi clear SpellCap
+hi SpellBad ctermfg=197
 hi clear SpellBad
 hi SpellBad ctermfg=197
 hi clear LineNr

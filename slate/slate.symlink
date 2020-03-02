@@ -55,14 +55,13 @@ alias hyper cmd;ctrl
 alias hyper2 cmd;ctrl;alt
 
 # Location bindings
-bind left:${hyper} chain ${left70} | ${left60} | ${left50} | ${left40} | ${left30}
-bind m:${hyper} ${full}
-bind right:${hyper} chain ${right70} | ${right60} | ${right50} | ${right40} | ${right30}
+bind left:${hyper}  chain ${left40} | ${left50} | ${left60}
+bind right:${hyper} chain ${right40} | ${right50} | ${right60}
 bind up:${hyper} chain ${center70} | ${center60} | ${center50} | ${center40} | ${center30}
-bind return:${hyper} chain ${bigCenter85} | ${bigCenter65} | ${bigCenter50}
+bind return:${hyper} chain ${bigCenter65} | ${bigCenter50} | ${bigCenter85}
 bind z:${hyper} ${full}
 
-#bind up:${hyper} ${tophalf} 
+#bind up:${hyper} ${tophalf}
 bind down:${hyper} ${bottomhalf}
 bind c:${hyper} ${center}
 #bind v:${hyper} ${bigCenter}
@@ -123,7 +122,7 @@ bind left:alt,ctrl throw 0 resize
 
 ## Push Bindings
 ## NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
-## LEFT RIGHT 
+## LEFT RIGHT
 #bind right:cmd,alt chain ${r1} | ${r2} | ${r3}
 #bind left:cmd,alt chain ${l1} | ${l2} | ${l3}
 
@@ -182,7 +181,7 @@ bind left:alt,ctrl throw 0 resize
 #alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
 
 ## Concrete positions
-#alias 2-rightbottom move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2 
+#alias 2-rightbottom move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2
 
 ## ======================================
 ## The HYPER key
