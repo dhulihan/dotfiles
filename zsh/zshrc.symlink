@@ -14,7 +14,7 @@ debug() {
 
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Projects
+export PROJECTS=$HOME/Projects
 export CDPATH=$PROJECTS:$CDPATH
 # shortcut to this dotfiles path is $ZSH
 #
@@ -82,6 +82,6 @@ setopt histignorespace
 
 # Load this manually, since fzf breaks in tmux if out of order
 debug "fzf"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 export ZSH_LOADED=true
