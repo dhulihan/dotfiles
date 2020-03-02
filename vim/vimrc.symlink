@@ -955,7 +955,6 @@ hi! VertSplit ctermfg=237 ctermbg=237
 "hi TabLineFill term=bold cterm=bold ctermfg=225 ctermbg=053
 "hi TabLineSel  term=bold cterm=bold ctermfg=053 ctermbg=225
 
-
 " old
 "hi! link GitGutterAddDefault String
 "hi! link GitGutterChangeDefault Function
