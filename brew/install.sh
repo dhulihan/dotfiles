@@ -60,6 +60,7 @@ brew install pssh
 brew install pv
 brew install python
 brew install rbenv ruby-build rbenv-vars
+brew install redis
 brew install restic
 brew install riak
 brew install sipcalc
