@@ -120,3 +120,6 @@ function! ColorColumnToggle()
 endfunction
 
 command! ColorColumnToggle call ColorColumnToggle()
+
+" copy absolute path of current file to clipboard
+command! AbsPathToClipboard execute ':silent !echo -n %:p | pbcopy'  | execute ':redraw!'

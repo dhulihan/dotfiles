@@ -286,6 +286,7 @@ inoremap <F5> <C-O>:e!<CR>
 " map leader to spacebar
 "let mapleader=" "
 " map <space> <Leader>
+nnoremap <space>5 :AbsPathToClipboard<CR>
 nnoremap <space>l :lnext<CR>
 nnoremap <space>p :lprevious<CR>
 nnoremap <space>r :lrewind<CR>
