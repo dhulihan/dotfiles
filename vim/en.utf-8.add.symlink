@@ -378,3 +378,8 @@ SLO
 SLI
 SLOs
 OWASP
+SLA
+requeued
+backoff
+requeue
+requeueing
