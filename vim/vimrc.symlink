@@ -18,8 +18,9 @@ Plugin 'gmarik/Vundle.vim'
 " System
 "Plugin 'benmills/vimux'
 
-" Startup
+" Vim
 Plugin 'mhinz/vim-startify'
+"Plugin 'chrisbra/Recover.vim'
 
 " Version Control
 Plugin 'tpope/vim-fugitive'
