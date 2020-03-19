@@ -1,4 +1,5 @@
 # The rest of my fun git aliases
+alias gm='git checkout master'
 alias gpl='git pull --prune'
 alias gplo='git pull origin'
 alias gplom='gpl origin master'

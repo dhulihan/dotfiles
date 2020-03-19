@@ -121,6 +121,20 @@ endfunction
 
 command! ColorColumnToggle call ColorColumnToggle()
 
+" copy relative path of current file to clipboard
+command! RelPathToClipboard execute ':let @*=@% | echo @*'
+
 " copy absolute path of current file to clipboard
 command! AbsPathToClipboard execute ':let @*=expand("%:p") | echo expand("%:p")'
 
+" copy absolute dir of current file to clipboard
+command! AbsDirToClipboard execute ':let @*=expand("%:p:h") | echo expand("%:p:h")'
+
+" open directory of current file in system file browser
+" uses vim-dispatch.
+function! OpenDirInFileBrowser()
+  let l:dir = expand("%:p:h")
+  execute "Dispatch open " . l:dir
+endfunction
+
+command! OpenDirInFileBrowser call OpenDirInFileBrowser()
