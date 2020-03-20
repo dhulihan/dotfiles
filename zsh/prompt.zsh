@@ -1,7 +1,7 @@
 autoload colors && colors
 
 ANIMALS=(🐶🐱🐭🐹🐰🦊🐻🐼🐨🐯🦁🐮🐷🐸🐵🐙🦄🐝);
-FOOD=(🍌🍇🍍🍉🍎🍒🍓🥝🥑🥥🌶🥕🍄🍋🍐🥨🥐🍤🍬🍭🍰🍖🍔🌭🍕🌮🌯🍟🍿🍦🍪🍨🍩);
+FOOD=(🍌🍇🍍🍉🍎🍒🍓🥝🥑🥥🌶🥕🍄🍋🍐🥨🥐🍤🍬🍭🍰🍖🍔🌭🍕🌮🌯🍟🍿🍦🍪🍨🍩🍆);
 CREEPY=(💀🌙🌜🌚🕷️🌕👾👺☠️🐜👻🎃⚡👹🤡🔦);
 MONTH_01=(☕);
 MONTH_02=(🍫💝);
@@ -16,7 +16,7 @@ MONTH_10=(💀🌙🌜🌚🕷️🌕👾👺☠️🐜👻🎃⚡👹🤡🔦);
 MONTH_11=(🦃🏈🌽🍗🥧🍽🍞🥖🍎🥂);
 MONTH_12=(🎁🎄🎅🤶🍪🥛🔔🧦);
 
-# autorotating prompt emojis based on food
+# autorotating prompt emojis based on month
 #PROMPT_EMOJIS_VAR="MONTH_$(date +%m)"
 #eval "PROMPT_EMOJIS=\"\${$PROMPT_EMOJIS_VAR}\""
 
