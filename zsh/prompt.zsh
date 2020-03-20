@@ -15,8 +15,13 @@ MONTH_09=(🍂🍁);
 MONTH_10=(💀🌙🌜🌚🕷️🌕👾👺☠️🐜👻🎃⚡👹🤡🔦);
 MONTH_11=(🦃🏈🌽🍗🥧🍽🍞🥖🍎🥂);
 MONTH_12=(🎁🎄🎅🤶🍪🥛🔔🧦);
-PROMPT_EMOJIS_VAR="MONTH_$(date +%m)"
-eval "PROMPT_EMOJIS=\"\${$PROMPT_EMOJIS_VAR}\""
+
+# autorotating prompt emojis based on food
+#PROMPT_EMOJIS_VAR="MONTH_$(date +%m)"
+#eval "PROMPT_EMOJIS=\"\${$PROMPT_EMOJIS_VAR}\""
+
+# hard coded prompt emoji set
+export PROMPT_EMOJIS=$FOOD
 
 if (( $+commands[git] ))
 then
@@ -102,7 +107,7 @@ random_emoji() {
 
 
 set_prompt() {
-  export PROMPT=$'\n$(datestamp)\n$(rb_prompt)in $(directory_name) $(git_dirty) $(git_commit)$(need_push)\n$(random_emoji) '
+  export PROMPT=$'\n$(datestamp)\n$(directory_name) $(git_dirty) $(git_commit)$(need_push)\n$(random_emoji) '
 }
 
 precmd() {
