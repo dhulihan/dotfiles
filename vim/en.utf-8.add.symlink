@@ -394,3 +394,7 @@ pcma
 g729
 configmaps
 POC
+GOPATH
+Cutover
+RSpec
+avahi

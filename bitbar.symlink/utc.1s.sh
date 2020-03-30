@@ -1,2 +1,2 @@
 #!/bin/bash
-date -u +"%H:%M:%S"
+date -u +"UTC %H:%M:%S"

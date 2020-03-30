@@ -19,6 +19,7 @@ brew install erlang
 brew install fd
 brew install findutils
 brew install fortune
+brew install fzy
 brew install gifsicle
 #brew install gimp
 brew install git
@@ -51,6 +52,7 @@ brew install ncdu
 brew install ngrep
 brew install nsq
 brew install openssl
+brew install peco
 brew install pg_top
 brew install postgresql
 brew install prettier
