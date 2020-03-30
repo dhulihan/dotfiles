@@ -74,6 +74,8 @@ Plugin 'chrisbra/csv.vim'
 "Plugin 'mhinz/vim-rfc' " cool but not working well, requires vim ruby
 Plugin 'dhulihan/vim-rfc'
 Plugin 'kamailio/vim-kamailio-syntax'
+Plugin 'vim-ruby/vim-ruby' " careful, possibly slow
+Plugin 'tpope/vim-rbenv' " supposed to work with recent vim-ruby
 
 " Lint
 Plugin 'w0rp/ale'
@@ -850,10 +852,12 @@ let g:lightline.component_type = {
 " sometimes
 let g:disabled_ale_fixers = {
 \   'python': ['black'],
+\   'ruby': ['rufo']
 \}
 
 let g:ale_linters = {
-\   'go' : ['gobuild', 'govet', 'golint'],
+\   'go': ['gobuild', 'govet', 'golint'],
+\   'ruby': ['rails_best_practices', 'ruby', 'rubocop'],
 \   'terraform': ['tflint'],
 \}
 
