@@ -127,6 +127,9 @@ command! RelPathToClipboard execute ':let @*=@% | echo @*'
 " copy absolute path of current file to clipboard
 command! AbsPathToClipboard execute ':let @*=expand("%:p") | echo expand("%:p")'
 
+" copy relative  dir of current file to clipboard
+command! RelDirToClipboard execute ':let @*=expand("%:h") | echo expand("%:h")'
+
 " copy absolute dir of current file to clipboard
 command! AbsDirToClipboard execute ':let @*=expand("%:p:h") | echo expand("%:p:h")'
 
