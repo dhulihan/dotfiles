@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# based off of:
 # <bitbar.title>Clock with calendar</bitbar.title>
 # <bitbar.version>v1.0</bitbar.version>
 # <bitbar.author>Weibing Chen</bitbar.author>
@@ -13,7 +14,8 @@
 #formatted_date=$(date '+%d/%b/%Y')
 #printf '\xF0\x9F\x93\x85 %s\n' "$formatted_date"
 # don't forget to comment out the following `date ` command:
-date "+%b %d %I:%M %p"
+#date "+%b %d %I:%M %p"
+echo "📅"
 
 echo "---"
 font="Monaco"
