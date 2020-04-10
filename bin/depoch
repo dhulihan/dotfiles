@@ -1,0 +1,52 @@
+#!/usr/bin/env gorun
+
+// cute tool to convert unix epoch times
+
+package main
+
+import (
+	"fmt"
+	"log"
+	"os"
+	"strconv"
+	"time"
+)
+
+func main() {
+	if len(os.Args) < 2 {
+		log.Fatalf("must supply an epoch time")
+	}
+
+	s := os.Args[1]
+
+	// check if number
+	_, err := strconv.ParseInt(s, 10, 64)
+	if err != nil {
+		panic(err)
+	}
+
+	var secStr string
+	var nsecStr string
+
+	// handle long epochs, microsecond resolution
+	if len(s) > 10 {
+		secStr = s[:10]
+		nsecStr = s[10:]
+	} else {
+		secStr = s
+		nsecStr = "0"
+	}
+
+	sec, err := strconv.ParseInt(secStr, 10, 64)
+	if err != nil {
+		panic(err)
+	}
+
+	nsec, err := strconv.ParseInt(nsecStr, 10, 64)
+	if err != nil {
+		panic(err)
+	}
+
+	t := time.Unix(sec, nsec)
+	fmt.Printf("%s", t)
+}

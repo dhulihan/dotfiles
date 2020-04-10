@@ -1,6 +1,7 @@
 set -x
 go get -u github.com/ashleyschuett/kubernetes-secret-decode
 go get -u github.com/derekparker/delve/cmd/dlv
+go get -u github.com/erning/gorun
 go get -u github.com/fullstorydev/grpcui/cmd/grpcui
 go get -u github.com/gcla/termshark/cmd/termshark
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
