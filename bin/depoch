@@ -19,10 +19,21 @@ func main() {
 
 	s := os.Args[1]
 
+	t, err := UnixEpochToTime(s)
+	if err != nil {
+		panic(err)
+	}
+
+
+	fmt.Printf("%s", t.Format(time.RFC3339))
+}
+
+// UnixEpochToTime converts a variety of unix epochs to go times
+func UnixEpochToTime(s string) (time.Time, error) {
 	// check if number
 	_, err := strconv.ParseInt(s, 10, 64)
 	if err != nil {
-		panic(err)
+		return time.Time{}, nil
 	}
 
 	var secStr string
@@ -39,14 +50,14 @@ func main() {
 
 	sec, err := strconv.ParseInt(secStr, 10, 64)
 	if err != nil {
-		panic(err)
+		return time.Time{}, nil
 	}
 
 	nsec, err := strconv.ParseInt(nsecStr, 10, 64)
 	if err != nil {
-		panic(err)
+		return time.Time{}, nil
 	}
 
 	t := time.Unix(sec, nsec)
-	fmt.Printf("%s", t.Format(time.RFC3339))
+	return t, nil
 }
