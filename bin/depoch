@@ -48,5 +48,5 @@ func main() {
 	}
 
 	t := time.Unix(sec, nsec)
-	fmt.Printf("%s", t)
+	fmt.Printf("%s", t.Format(time.RFC3339))
 }
