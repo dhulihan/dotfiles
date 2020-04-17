@@ -54,6 +54,7 @@ brew install nsq
 brew install openssl
 brew install peco
 brew install pg_top
+brew install pipenv
 brew install postgresql
 brew install prettier
 brew install proctools
@@ -61,6 +62,7 @@ brew install protobuf
 brew install pssh
 brew install pv
 brew install python
+brew install python3
 brew install rbenv ruby-build rbenv-vars
 brew install redis
 brew install restic
@@ -79,11 +81,12 @@ brew install tmate
 brew install tmux
 brew install tmux-xpanes
 brew install tree
-brew install tree
+brew install vault
 brew install watch
 brew install wdiff
 brew install wget
 brew install yarn
+brew install youtube-dl
 brew install zsh
 
 brew install node@10
