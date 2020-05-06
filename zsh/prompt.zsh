@@ -98,7 +98,7 @@ directory_name() {
 
 # Date Stamp
 datestamp() {
-  echo "%{$fg_bold[grey]%}%D{%Y-%m-%f} %D{%H:%M:%S.%. %Z}%{$reset_color%}"
+  echo "%{$fg_bold[grey]%}%D{%Y-%m-%d} %D{%H:%M:%S.%. %Z}%{$reset_color%}"
 }
 
 random_emoji() {

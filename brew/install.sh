@@ -28,9 +28,11 @@ brew install gnu-sed
 brew install go
 brew install graphviz
 brew install grpcurl
+brew install hyperkit
 brew install iftop
 brew install ipcalc
 brew install jq
+brew install k3d
 brew install kubectx
 brew install kubernetes-cli
 brew install kubernetes-cli
@@ -52,6 +54,7 @@ brew install ncdu
 brew install ngrep
 brew install nsq
 brew install openssl
+brew install operator-sdk
 brew install peco
 brew install pg_top
 brew install pipenv
@@ -146,6 +149,10 @@ brew install age
 
 brew install derailed/k9s/k9s
 brew install rainbarf
+
+# kudo
+brew tap kudobuilder/tap
+brew install kudo-cli
 
 set +e
 say "brew is done"

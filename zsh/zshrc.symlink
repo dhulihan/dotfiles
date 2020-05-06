@@ -81,7 +81,7 @@ bindkey '^R' history-incremental-search-backward
 setopt histignorespace
 
 # Load this manually, since fzf breaks in tmux if out of order
-debug "fzf"
+debug "$HOME/.fzf.zsh"
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 export ZSH_LOADED=true
