@@ -144,6 +144,8 @@ brew install logstash
 brew cask install imagemagick
 brew cask install ffmpeg
 
+brew install graphicsmagick
+
 brew tap filippo.io/age https://filippo.io/age
 brew install age
 
