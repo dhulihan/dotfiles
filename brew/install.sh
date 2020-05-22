@@ -1,6 +1,5 @@
 set -e
 brew install ack
-brew install ansible
 brew install baresip
 brew install caddy
 brew install cmake
@@ -16,6 +15,7 @@ brew install direnv
 brew install editorconfig
 brew install elixir
 brew install erlang
+brew install etcd
 brew install fd
 brew install findutils
 brew install fortune
@@ -26,9 +26,12 @@ brew install git
 brew install git-secrets
 brew install gnu-sed
 brew install go
+brew install goreleaser/tap/goreleaser
 brew install graphviz
 brew install grpcurl
 brew install hyperkit
+brew install id3lib
+brew install id3tool
 brew install iftop
 brew install ipcalc
 brew install jq
@@ -49,14 +52,17 @@ brew install markdown
 brew install mosh
 brew install mpv
 brew install mysql
+brew install packer
 brew install ncdu
 brew install ncdu
 brew install ngrep
 brew install nsq
 brew install openssl
+brew install opencv
 brew install operator-sdk
 brew install peco
 brew install pg_top
+brew install pkgconfig
 brew install pipenv
 brew install postgresql
 brew install prettier
@@ -149,12 +155,18 @@ brew install graphicsmagick
 brew tap filippo.io/age https://filippo.io/age
 brew install age
 
+brew cask install vlc
+
 brew install derailed/k9s/k9s
 brew install rainbarf
 
 # kudo
 brew tap kudobuilder/tap
 brew install kudo-cli
+
+# buf
+brew tap bufbuild/buf
+brew install buf
 
 set +e
 say "brew is done"

@@ -76,6 +76,7 @@ Plugin 'dhulihan/vim-rfc'
 Plugin 'kamailio/vim-kamailio-syntax'
 Plugin 'vim-ruby/vim-ruby' " careful, possibly slow
 Plugin 'tpope/vim-rbenv' " supposed to work with recent vim-ruby
+Plugin 'bufbuild/vim-buf'
 
 " Lint
 Plugin 'w0rp/ale'
@@ -190,6 +191,7 @@ autocmd BufNewFile,BufRead *.yaml.dockercompose,*.yaml.tmpl set filetype=yaml
 autocmd BufNewFile,BufRead .envrc set filetype=sh
 
 " filetype-specific config
+autocmd Filetype noft setlocal number
 autocmd Filetype markdown setlocal spell
 autocmd Filetype terraform setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -680,6 +682,9 @@ command! FZFBuffer call fzf#run({
 \ 'window': 'enew'
 \ })
 
+" disable fzf preview
+let g:fzf_preview_window = ''
+
 "nnoremap <silent> <C-p> :FZF<CR>
 "nnoremap <silent> <C-\> :FZFBuffer<CR>
 nnoremap <silent> <C-p> :Files<CR>
@@ -858,6 +863,7 @@ let g:disabled_ale_fixers = {
 
 let g:ale_linters = {
 \   'go': ['gobuild', 'govet', 'golint'],
+\   'proto': ['buf-check-lint',],
 \   'ruby': ['rails_best_practices', 'ruby', 'rubocop'],
 \   'terraform': ['tflint'],
 \}
