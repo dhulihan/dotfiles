@@ -1,0 +1,2 @@
+*.bin binary diff=hex
+*.mp3 binary diff=mp3

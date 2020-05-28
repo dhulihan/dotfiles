@@ -42,4 +42,5 @@
     textconv = hexdump -v -C
 
 [diff "mp3"]
-    textconv = hexdump -v -C
+    #textconv = hexdump -v -C
+    textconv = "id3info"
