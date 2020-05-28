@@ -20,8 +20,8 @@
         branch = auto
         ui = true
 [core]
-        excludesfile = ~/.gitignore
         editor = vim
+
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -36,3 +36,10 @@
         #
         # Setting to git 2.0 default to suppress warning message
         default = simple
+
+# custom differs
+[diff "hex"]
+    textconv = hexdump -v -C
+
+[diff "mp3"]
+    textconv = hexdump -v -C
