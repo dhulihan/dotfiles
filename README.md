@@ -2,7 +2,11 @@
 
 Contains helpful tools, aliases, and configuration.
 
-* Extension legend
+## features
+
+* Supports `~/.config/<name>` directories
+	* Create a `config.<name>` directory in project root
+* Supports bash, zsh, etc. Use the following extensions:
 	* `.sh` - Helper scripts
 	* `.sh-common` - Config files that work on bash AND zsh
 	* `.bash` - Loaded from .bashrc

@@ -118,6 +118,10 @@ brew cask install ngrok
 brew tap homebrew/cask-fonts
 brew cask install font-cascadia
 
+# grump
+brew tap dhulihan/grump
+brew install grump
+
 # wireshark
 brew cask install wireshark
 

@@ -49,12 +49,27 @@ setup_gitconfig () {
   fi
 }
 
+# set up ~/.config/... directories
+setup_config() {
+  for src in $(find "$DOTFILES_ROOT" -maxdepth 1 -name 'config.*' -type d)
+  do
+    base=$(basename "${src}")
+    dst="$HOME/.config/$(basename "${base##*.}")"
+    link_file "$src" "$dst"
+  done
+}
 
 link_file () {
   local src=$1 dst=$2
 
   local overwrite= backup= skip=
   local action=
+
+  if [ -d "$dst" -a -L "$dst" ]
+  then
+    success "skipped dir ${dst}"
+    return 0
+  fi
 
   if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
   then
@@ -138,6 +153,7 @@ install_dotfiles () {
 }
 
 setup_gitconfig
+setup_config
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
