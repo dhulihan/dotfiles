@@ -100,6 +100,7 @@ function! MarkdownHeader()
   put! ='# ' . expand('%:t:r')
   normal o
   normal G
+  redraw!
   startinsert
 endfunction
 
