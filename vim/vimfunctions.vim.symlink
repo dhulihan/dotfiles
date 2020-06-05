@@ -140,3 +140,8 @@ function! OpenDirInFileBrowser()
 endfunction
 
 command! OpenDirInFileBrowser call OpenDirInFileBrowser()
+
+function! NewBuffer(str)
+  execute "e " . a:str
+endfunc
+call toop#mapFunction('NewBuffer', '<leader>e')

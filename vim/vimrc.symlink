@@ -20,6 +20,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Vim
 Plugin 'mhinz/vim-startify'
+Plugin 'jeanCarloMachado/vim-toop'
 "Plugin 'chrisbra/Recover.vim'
 
 " Version Control
