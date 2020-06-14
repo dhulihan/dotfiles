@@ -37,6 +37,12 @@
         # Setting to git 2.0 default to suppress warning message
         default = simple
 
+[init]
+	templatedir = ~/.git_template
+
+[rebase]
+	autosquash = true
+
 # custom differs
 [diff "hex"]
     textconv = hexdump -v -C

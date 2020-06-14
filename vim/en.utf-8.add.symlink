@@ -445,3 +445,6 @@ ZTP
 Geocast
 Anycast
 BGP
+rebase
+autosquashing
+fixup
