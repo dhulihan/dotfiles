@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# show log-style history of git tags
+
+for t in `git tag -l`; do
+	git log -n 1 $t
+  echo
+done

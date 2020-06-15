@@ -251,6 +251,9 @@ nnoremap <Leader>d :BD<CR>
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
 
+" open new buffer with name from inner parens
+nnoremap <Leader>4 :normal si(<CR>
+
 " copy current file path to clipboard
 nnoremap <Leader>5 :RelPathToClipboard<CR>
 nnoremap <Leader>6 :RelDirToClipboard<CR>

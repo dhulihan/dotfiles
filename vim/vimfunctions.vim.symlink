@@ -138,10 +138,24 @@ function! OpenDirInFileBrowser()
   let l:dir = expand("%:p:h")
   execute "Dispatch open " . l:dir
 endfunction
-
 command! OpenDirInFileBrowser call OpenDirInFileBrowser()
 
 function! NewBuffer(str)
   execute "e " . a:str
 endfunc
-call toop#mapFunction('NewBuffer', '<leader>e')
+call toop#mapFunction('NewBuffer', 's')
+
+" start profiling. good for tracing performance issues, debugging, etc.
+function! StartProfile()
+  profile start profile.log
+  profile func *
+  profile file *
+endfunction
+command! StartProfile call StartProfile()
+
+" stop profiling and quit
+function! StopProfile()
+  profile pause
+  noautocmd qall!
+endfunction
+command! StopProfile call StopProfile()
