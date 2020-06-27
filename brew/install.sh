@@ -1,6 +1,7 @@
 set -e
 brew install ack
 brew install baresip
+brew install bat
 brew install bwm-ng
 brew install caddy
 brew install cmake
