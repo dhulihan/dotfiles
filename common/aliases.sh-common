@@ -5,6 +5,7 @@ alias p="ps aux | grep"
 alias grin='grep -rin'
 
 alias ll='ls -pliah'
+alias t='touch-mkdir'
 alias find-recently-modified="print -rl **/*(.0m)"
 
 # Move to /tmp instead of hard delete

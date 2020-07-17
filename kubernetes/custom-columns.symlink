@@ -1,2 +1,2 @@
-NAME           NAMESPACE           START            RESTARTS                                MESSAGES                    REASON
-.metadata.name .metadata.namespace status.startTime status.containerStatuses.*.restartCount status.conditions.*.message status.containerStatuses.*.state.*.reason
+NAME           NAMESPACE           START            RESTARTS                                MESSAGES                    REASON                                    NODE
+.metadata.name .metadata.namespace status.startTime status.containerStatuses.*.restartCount status.conditions.*.message status.containerStatuses.*.state.*.reason *.nodeName

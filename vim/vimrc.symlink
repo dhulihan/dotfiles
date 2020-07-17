@@ -539,6 +539,8 @@ let g:markdown_gfm_languages = ["ruby", "erb=eruby"]
 
 " Open md files with system tool
 autocmd FileType markdown let b:dispatch = "open '%'"
+autocmd FileType sh let b:dispatch = "'%'"
+autocmd FileType go let b:dispatch = "go run '%'"
 " tpope/vim-dispatch END ------------------------------------
 
 " plasticboy/vim-markdown -----------------------------------

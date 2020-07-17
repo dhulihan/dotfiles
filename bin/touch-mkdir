@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# recursively creates a directory and touches a file inside it
+TARGET=${1:?"you must specify a path"}
+DIR=$(dirname "$TARGET")
+
+mkdir -p $DIR
+touch $TARGET
