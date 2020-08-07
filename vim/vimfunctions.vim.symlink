@@ -99,6 +99,8 @@ command! SplitFour call SplitTwoByTwo()
 function! MarkdownHeader()
   put! ='# ' . expand('%:t:r')
   normal o
+  normal o
+  put! ='## Resources'
   normal G
   redraw!
   startinsert

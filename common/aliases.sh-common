@@ -26,7 +26,7 @@ alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Disk
-alias bigfiles="du -hs | sort -rn | head"
+alias bigfiles="du -hs * | sort -rn | head"
 
 # Directories & Files
 #alias pd="pushd"
