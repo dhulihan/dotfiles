@@ -161,3 +161,5 @@ function! StopProfile()
   noautocmd qall!
 endfunction
 command! StopProfile call StopProfile()
+
+command! IndentInfo execute 'set ts? sts? sw? ex? autoindent? smartindent?'

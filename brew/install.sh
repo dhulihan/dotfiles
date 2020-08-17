@@ -166,6 +166,10 @@ brew cask install vlc
 brew install derailed/k9s/k9s
 brew install rainbarf
 
+# go-swagger
+brew tap go-swagger/go-swagger
+brew install go-swagger
+
 # kudo
 brew tap kudobuilder/tap
 brew install kudo-cli
