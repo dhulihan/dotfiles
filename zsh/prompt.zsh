@@ -107,7 +107,7 @@ random_emoji() {
 
 
 set_prompt() {
-	export PROMPT=$'\n$(random_emoji) $(datestamp) %(?.%F{green}.%F{red}%?)%f\n$(directory_name) $(git_dirty) $(git_commit)$(need_push)\n%F{Grey35}$ %f'
+	export PROMPT=$'\n$(random_emoji) $(datestamp) %(?.%F{green}.%F{red}%?)%f\n$(directory_name) $(git_dirty) $(git_commit)$(need_push)\n%F{242}$ %f'
 }
 
 precmd() {
