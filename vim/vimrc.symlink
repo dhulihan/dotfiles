@@ -873,7 +873,8 @@ let g:lightline.component_type = {
 " sometimes
 let g:disabled_ale_fixers = {
 \   'python': ['black'],
-\   'ruby': ['rufo']
+\   'ruby': ['rufo'],
+\   'sql': ['sqlint'],
 \}
 
 let g:ale_linters = {
@@ -888,6 +889,7 @@ let g:ale_fixers = {
 \   'go': ['gofmt', 'goimports'],
 \   'json': ['fixjson'],
 \   'terraform': ['terraform'],
+\   'sql': ['pgformatter'],
 \}
 
 " Set this setting in vimrc if you want to fix files automatically on save.

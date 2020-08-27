@@ -55,6 +55,7 @@ brew install mosh
 brew install mpv
 brew install mysql
 brew install packer
+brew install pgformatter
 brew install ncdu
 brew install ncdu
 brew install ngrep
