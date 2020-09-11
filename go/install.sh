@@ -19,7 +19,7 @@ go get -u golang.org/x/tools/cmd/goimports
 go get -u golang.org/x/tools/gopls
 go get -u golang.org/x/tools/refactor/rename
 go get -u google.golang.org/grpc
-go get -v github.com/kyleconroy/sqlc
+go get -u github.com/kyleconroy/sqlc/cmd/sqlc
 
 
 # bindata
