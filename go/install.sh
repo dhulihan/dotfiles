@@ -10,6 +10,8 @@ go get -u github.com/jsha/minica
 go get -u github.com/jstemmer/gotags
 go get -u github.com/kardianos/govendor
 go get -u github.com/nshmura/dsio
+go get -u github.com/projectdiscovery/httpx/cmd/httpx
+go get -u github.com/projectdiscovery/subfinder/cmd/subfinder
 go get -u github.com/rogpeppe/gohack
 go get -u github.com/salrashid123/gce_metadata_server
 go get -u golang.org/x/lint/golint
@@ -17,6 +19,7 @@ go get -u golang.org/x/tools/cmd/goimports
 go get -u golang.org/x/tools/gopls
 go get -u golang.org/x/tools/refactor/rename
 go get -u google.golang.org/grpc
+go get -v github.com/kyleconroy/sqlc
 
 
 # bindata
