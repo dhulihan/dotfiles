@@ -11,7 +11,7 @@ fi
 # Configuration
 # -------------
 #FZF_DEFAULT_COMMAND='find . -name .git -prune -o -name node_modules -prune -o -name vendor -prune -o'
-export FZF_DEFAULT_COMMAND="fd --no-ignore --type f --hidden --follow --exclude .git --exclude vendor --exclude '*.sw*'"
+export FZF_DEFAULT_COMMAND="fd --no-ignore --type f --hidden --follow --exclude .git --exclude tmp --exclude '*.sw*'"
 
 # Key bindings
 # ------------

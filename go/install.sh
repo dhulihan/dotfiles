@@ -20,7 +20,8 @@ go get -u golang.org/x/tools/gopls
 go get -u golang.org/x/tools/refactor/rename
 go get -u google.golang.org/grpc
 go get -u github.com/kyleconroy/sqlc/cmd/sqlc
-
+go get -u github.com/buraksezer/olric/cmd/olricd
+go get -u github.com/buraksezer/olric/cmd/olric-cli
 
 # bindata
 go get -u github.com/jteeuwen/go-bindata/...

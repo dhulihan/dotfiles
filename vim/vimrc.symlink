@@ -87,6 +87,7 @@ Plugin 'maximbaz/lightline-ale'
 " Utility
 Plugin 'tpope/tpope-vim-abolish'
 Plugin 'mileszs/ack.vim'
+Plugin 'jremmen/vim-ripgrep'
 Plugin 'Rename2'
 "Plugin 'scrooloose/nerdtree'
 Plugin 'tmhedberg/matchit'
@@ -195,7 +196,7 @@ autocmd BufNewFile,BufRead .envrc set filetype=sh
 autocmd Filetype noft setlocal number
 autocmd Filetype markdown setlocal spell
 autocmd Filetype terraform setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 autoindent smartindent
 autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype groovy setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -351,6 +352,9 @@ ino <C-C> <Esc>
 inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 
+" paste from system clipboard
+inoremap <C-Space> <C-r><C-o>*
+
 " Easier saving
 "nnoremap S :w<CR>
 "nnoremap <C-i> :q<CR>
@@ -432,7 +436,7 @@ set hlsearch
 syntax on
 
 " ignore these things
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,.*.sw*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,.*.sw*
 
 " netrw/Explorer
 let g:netrw_preview = 1 " preview file vertical split

@@ -25,6 +25,7 @@ brew install fortune
 brew install fzy
 brew install gifsicle
 #brew install gimp
+brew install gh
 brew install git
 brew install git-secrets
 brew install gnu-sed
