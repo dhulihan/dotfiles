@@ -81,6 +81,7 @@ brew install rbenv ruby-build rbenv-vars
 brew install redis
 brew install restic
 brew install riak
+brew install ripgrep
 brew install sipcalc
 brew install sipp
 brew install sox
@@ -110,8 +111,6 @@ brew link --force node@10
 # install universal-ctags, which has golang support
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
-brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
-brew install burntsushi/ripgrep/ripgrep-bin
 
 # Hack fonts
 brew tap caskroom/fonts
