@@ -6,3 +6,6 @@ git config --global core.excludesfile ~/.gitignore_global
 
 # autosquash
 git config --global rebase.autosquash true
+
+# rebase to reconcile pulls
+git config pull.rebase true

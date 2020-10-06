@@ -1,5 +1,6 @@
 set -x
 go get -u github.com/ashleyschuett/kubernetes-secret-decode
+go get -u github.com/davecgh/go-spew/spew
 go get -u github.com/derekparker/delve/cmd/dlv
 go get -u github.com/erning/gorun
 go get -u github.com/facebook/ent/cmd/entc

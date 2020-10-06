@@ -162,6 +162,12 @@ function! StopProfile()
 endfunction
 command! StopProfile call StopProfile()
 
-command! IndentInfo execute 'set ts? sts? sw? ex? autoindent? smartindent?'
+" remove file from disk and delete buffer
+function! RM()
+  execute "! rm %"
+  execute "BD!"
+endfunction
+command! RM call RM()
 
+command! IndentInfo execute 'set ts? sts? sw? ex? autoindent? smartindent?'
 command! PrettifyJSON execute '%!jq .'

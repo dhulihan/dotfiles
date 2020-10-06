@@ -1,10 +1,13 @@
-# tmux-session
-# 
+# tmux-session [existing-session-name]
+#
 # Author: Dave Hulihan <dhulihan@gmail.com>
 # Description: Create/attach tmux session based on project directory
-# 
+#
+# * existing-session-name - omit to create a new session based on the name of
+# your current directory
 
-SESSION_NAME=$(basename $PWD)
+BASENAME=$(basename $PWD)
+SESSION_NAME=${1:-$BASENAME}
 
 # set iterm2 title
 iterm-tab-title $SESSION_NAME

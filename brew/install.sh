@@ -68,6 +68,7 @@ brew install operator-sdk
 brew install peco
 brew install pg_top
 brew install pkgconfig
+brew install pyenv
 brew install pipenv
 brew install postgresql
 brew install prettier
