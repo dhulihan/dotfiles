@@ -268,7 +268,7 @@ nnoremap <Leader>gg :.Gbrowse!<CR>
 nnoremap <Leader>gx :.Gbrowse<CR>
 nnoremap <Leader>gm :Gbrowse @master:%<CR>
 nnoremap <Leader>ge :Gedit master:%<CR>
-nnoremap <Leader>vv :Ack<CR>
+nnoremap <Leader>vv :Rg<CR>
 
 " Leader ) #####################################################################
 
