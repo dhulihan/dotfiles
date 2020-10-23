@@ -262,8 +262,8 @@ nnoremap <Leader>6 :RelDirToClipboard<CR>
 " Shortcut to rapidly toggle `set list`
 nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>; :ColorColumnToggle<CR>
-nnoremap <Leader>] :ALENextWrap<CR>
-nnoremap <Leader>[ :ALEPreviousWrap<CR>
+nnoremap <Leader>] :ALENext -wrap -error<CR>
+nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
 nnoremap <Leader>gg :.Gbrowse!<CR>
 nnoremap <Leader>gx :.Gbrowse<CR>
 nnoremap <Leader>gm :Gbrowse @master:%<CR>

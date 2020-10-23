@@ -466,3 +466,6 @@ bourne
 Websockets
 nsqds
 QUIC
+autoscaling
+SOM
+Syslog

@@ -8,4 +8,4 @@ git config --global core.excludesfile ~/.gitignore_global
 git config --global rebase.autosquash true
 
 # rebase to reconcile pulls
-git config pull.rebase true
+git config --global pull.rebase true

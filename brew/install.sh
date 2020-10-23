@@ -17,6 +17,7 @@ brew install direnv
 brew install direnv
 brew install editorconfig
 brew install elixir
+brew install eqnxio/equinox/release-tool
 brew install erlang
 brew install etcd
 brew install fd
