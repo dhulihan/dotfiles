@@ -208,6 +208,7 @@ autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab textwidth=80
 autocmd FileType xml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 
 " better tab completion of filepaths
 set wildmode=longest,list
@@ -542,6 +543,7 @@ let g:markdown_gfm_languages = ["ruby", "erb=eruby"]
 " tpope/vim-dispatch ----------------------------------------
 
 " Open md files with system tool
+autocmd FileType html let b:dispatch = "open '%'"
 autocmd FileType markdown let b:dispatch = "open '%'"
 autocmd FileType sh let b:dispatch = "'%'"
 autocmd FileType go let b:dispatch = "go run '%'"
@@ -875,10 +877,11 @@ let g:lightline.component_type = {
 
 " this isn't an actual ale var, this is just a placeholder for stuff i use
 " sometimes
+    " pgformatter doesn't support \COPY
 let g:disabled_ale_fixers = {
 \   'python': ['black'],
 \   'ruby': ['rufo'],
-\   'sql': ['sqlint'],
+\   'sql': ['sqlint', 'pgformatter'],
 \}
 
 let g:ale_linters = {
@@ -893,7 +896,6 @@ let g:ale_fixers = {
 \   'go': ['gofmt', 'goimports'],
 \   'json': ['fixjson'],
 \   'terraform': ['terraform'],
-\   'sql': ['pgformatter'],
 \}
 
 " Set this setting in vimrc if you want to fix files automatically on save.

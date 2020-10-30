@@ -169,5 +169,6 @@ function! RM()
 endfunction
 command! RM call RM()
 
+command! Executable silent execute '! chmod +x %' | execute ':redraw!'
 command! IndentInfo execute 'set ts? sts? sw? ex? autoindent? smartindent?'
 command! PrettifyJSON execute '%!jq .'
