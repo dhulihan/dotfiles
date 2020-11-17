@@ -439,6 +439,24 @@ syntax on
 " ignore these things
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,.*.sw*
 
+" command-line ----------------------------------------------------------------
+"
+" start of line
+cnoremap <C-A>		<Home>
+" back one character
+cnoremap <C-B>		<Left>
+" delete character under cursor
+cnoremap <C-D>		<Del>
+" end of line
+cnoremap <C-E>		<End>
+" forward one character
+cnoremap <C-F>		<Right>
+" recall newer command-line
+cnoremap <C-N>		<Down>
+" recall previous (older) command-line
+cnoremap <C-P>		<Up>
+" command-line END ------------------------------------------------------------
+
 " netrw/Explorer
 let g:netrw_preview = 1 " preview file vertical split
 let g:netrw_liststyle = 1 " one file, timestamps
