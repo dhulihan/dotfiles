@@ -8,6 +8,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " load fzf from git
 set rtp+=~/.fzf
 
+" load sensitive config
+if filereadable(expand("~/.vimprivate.vim"))
+  source ~/.vimprivate.vim
+endif
+
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')

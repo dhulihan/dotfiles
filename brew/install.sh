@@ -109,10 +109,8 @@ brew install zsh
 brew install node@10
 brew link --force node@10
 
-
 # install universal-ctags, which has golang support
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-
 
 # Hack fonts
 brew tap caskroom/fonts
