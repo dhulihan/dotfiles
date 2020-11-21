@@ -8,6 +8,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " load fzf from git
 set rtp+=~/.fzf
 
+" Pre-plugin config
+" notational-fzf-vim ##########################################################
+let g:nv_search_paths = ['~/Notes']
+let g:nv_show_preview = 1
+" notational-fzf-vim END #######################################################
+
 " load sensitive config
 if filereadable(expand("~/.vimprivate.vim"))
   source ~/.vimprivate.vim
@@ -102,6 +108,7 @@ Plugin 'tmhedberg/matchit'
 "Plugin 'vim-scripts/SearchComplete'
 Plugin 'junegunn/fzf.vim'
 "Plugin 'ronakg/quickr-preview.vim'
+Plugin 'alok/notational-fzf-vim'
 
 " Colors
 Plugin 'flazz/vim-colorschemes'
@@ -727,7 +734,7 @@ command! FZFBuffer call fzf#run({
 \ })
 
 " disable fzf preview
-let g:fzf_preview_window = ''
+"let g:fzf_preview_window = ''
 
 "nnoremap <silent> <C-p> :FZF<CR>
 "nnoremap <silent> <C-\> :FZFBuffer<CR>
