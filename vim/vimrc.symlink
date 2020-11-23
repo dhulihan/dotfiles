@@ -924,7 +924,7 @@ let g:ale_linters = {
 " fixers
 let g:ale_fixers = {
 \   'go': ['gofmt', 'goimports'],
-\   'json': ['fixjson'],
+\   'json': ['prettier'],
 \   'terraform': ['terraform'],
 \   'sql': ['pgformatter'],
 \}
@@ -935,6 +935,7 @@ let g:ale_fix_on_save = 1
 
 " don't autofix these filetypes
 autocmd FileType sql let g:ale_fix_on_save = 0
+autocmd FileType json let g:ale_fix_on_save = 0
 " ale END ---------------------------------------------------
 "
 
