@@ -146,6 +146,7 @@ brew install neovim/neovim/neovim
 brew tap wata727/tflint
 brew install tflint
 
+brew cask install bitbar
 brew cask install macvim
 
 # Sierra
