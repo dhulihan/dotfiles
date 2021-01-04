@@ -10,8 +10,8 @@ set rtp+=~/.fzf
 
 " Pre-plugin config
 " notational-fzf-vim ##########################################################
-let g:nv_search_paths = ['~/Notes']
-let g:nv_show_preview = 1
+"let g:nv_search_paths = ['~/Notes']
+"let g:nv_show_preview = 1
 " notational-fzf-vim END #######################################################
 
 " load sensitive config
@@ -108,7 +108,7 @@ Plugin 'tmhedberg/matchit'
 "Plugin 'vim-scripts/SearchComplete'
 Plugin 'junegunn/fzf.vim'
 "Plugin 'ronakg/quickr-preview.vim'
-Plugin 'alok/notational-fzf-vim'
+"Plugin 'alok/notational-fzf-vim'
 
 " Colors
 Plugin 'flazz/vim-colorschemes'
@@ -166,7 +166,8 @@ set hidden
 set splitright
 set splitbelow
 
-
+" vertical diff columns
+set diffopt=vertical,filler
 
 "make sure to escape the spaces in the name properly
 "set guifont=Source\ Code\ Pro\ for\ Powerline
@@ -734,7 +735,7 @@ command! FZFBuffer call fzf#run({
 \ })
 
 " disable fzf preview
-"let g:fzf_preview_window = ''
+let g:fzf_preview_window = ''
 
 "nnoremap <silent> <C-p> :FZF<CR>
 "nnoremap <silent> <C-\> :FZFBuffer<CR>
@@ -851,9 +852,16 @@ endfunction
 "###############################################################################
 " Prettier END
 "###############################################################################
+"
+"###############################################################################
+" vim-fugitive
+"###############################################################################
+autocmd FileType git set foldlevel=2
+"###############################################################################
+" vim-fugitive END
+"###############################################################################
 
 " lightline --------------------------------------------------
-
 let g:lightline = {
 \ 'colorscheme': 'wombat',
 \ 'component_function': {

@@ -12,7 +12,9 @@ fi
 # -------------
 #FZF_DEFAULT_COMMAND='find . -name .git -prune -o -name node_modules -prune -o -name vendor -prune -o'
 export FZF_DEFAULT_COMMAND="fd --no-ignore --type f --hidden --follow --exclude .git --exclude tmp --exclude '*.sw*'"
-export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
+# with preview
+#export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 # Key bindings
 # ------------
