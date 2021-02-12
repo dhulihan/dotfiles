@@ -181,5 +181,13 @@ brew install kudo-cli
 brew tap bufbuild/buf
 brew install buf
 
+# rectangle windows manager
+brew cask install rectangle
+
+# monitor control
+brew install --cask monitorcontrol
+
+brew install achannarasappa/tap/ticker
+
 set +e
 say "brew is done"
