@@ -43,6 +43,11 @@ bind '"' split-window -c "#{pane_current_path}" -v
 bind '%' split-window -c "#{pane_current_path}" -h
 bind c new-window -c "#{pane_current_path}"
 
+# zoom toggle pane on double LMB click
+bind-key -n DoubleClick1Pane \
+    select-pane \; \
+    resize-pane -Z \;
+
 # synchronize panes
 bind-key a set-window-option synchronize-panes\; display-message "synchronize-panes is now #{?pane_synchronized,on,off}"
 
