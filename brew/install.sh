@@ -189,5 +189,15 @@ brew install --cask monitorcontrol
 
 brew install achannarasappa/tap/ticker
 
+# brew install netdata
+
+# lagrange gemini GUI client
+brew tap skyjake/lagrange
+brew install lagrange
+
+# amfora gemini CLI client
+brew tap makeworld-the-better-one/tap
+brew install amfora
+
 set +e
 say "brew is done"
