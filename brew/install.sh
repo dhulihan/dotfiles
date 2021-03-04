@@ -199,5 +199,8 @@ brew install lagrange
 brew tap makeworld-the-better-one/tap
 brew install amfora
 
+# bloom grpc client
+brew install --cask bloomrpc
+
 set +e
 say "brew is done"

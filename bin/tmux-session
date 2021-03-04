@@ -1,3 +1,4 @@
+#!/bin/bash
 # tmux-session [existing-session-name]
 #
 # Author: Dave Hulihan <dhulihan@gmail.com>
@@ -7,13 +8,33 @@
 # your current directory
 
 BASENAME=$(basename $PWD)
-SESSION_NAME=${1:-$BASENAME}
+SESSION_NAME_RAW=${1:-$BASENAME}
+SESSION_NAME=$(gecho -n $SESSION_NAME_RAW | sed 's/^\.//')
 
 # set iterm2 title
 iterm-tab-title $SESSION_NAME
 
 # set iterm2 color
-iterm-tab-color green
+case $SESSION_NAME in
+    dotfiles)
+      TAB_COLOR=blue
+      ;;
+    secrets)
+      TAB_COLOR=purple
+      ;;
+    dev)
+      TAB_COLOR=orange
+      ;;
+    prod)
+      TAB_COLOR=red
+      ;;
+    *)
+      TAB_COLOR=green
+      ;;
+esac
+
+#
+iterm-tab-color $TAB_COLOR
 
 # attempt to attach to
 tmux a -t $SESSION_NAME

@@ -7,16 +7,31 @@ echo -e "\033]6;1;bg;green;brightness;128\a"
 echo -e "\033]6;1;bg;blue;brightness;0\a"
 ;;
 red)
-echo -e "\033]6;1;bg;red;brightness;270\a"
-echo -e "\033]6;1;bg;green;brightness;60\a"
-echo -e "\033]6;1;bg;blue;brightness;83\a"
+echo -e "\033]6;1;bg;red;brightness;255\a"
+echo -e "\033]6;1;bg;green;brightness;0\a"
+echo -e "\033]6;1;bg;blue;brightness;0\a"
 ;;
 orange)
-echo -e "\033]6;1;bg;red;brightness;227\a"
-echo -e "\033]6;1;bg;green;brightness;143\a"
+echo -e "\033]6;1;bg;red;brightness;255\a"
+echo -e "\033]6;1;bg;green;brightness;165\a"
+echo -e "\033]6;1;bg;blue;brightness;0\a"
+;;
+yellow)
+echo -e "\033]6;1;bg;red;brightness;128\a"
+echo -e "\033]6;1;bg;green;brightness;128\a"
 echo -e "\033]6;1;bg;blue;brightness;10\a"
 ;;
+purple)
+echo -e "\033]6;1;bg;red;brightness;128\a"
+echo -e "\033]6;1;bg;green;brightness;0\a"
+echo -e "\033]6;1;bg;blue;brightness;128\a"
+;;
 blue)
+echo -e "\033]6;1;bg;red;brightness;0\a"
+echo -e "\033]6;1;bg;green;brightness;0\a"
+echo -e "\033]6;1;bg;blue;brightness;128\a"
+;;
+aqua)
 echo -e "\033]6;1;bg;red;brightness;16\a"
 echo -e "\033]6;1;bg;green;brightness;221\a"
 echo -e "\033]6;1;bg;blue;brightness;255\a"
