@@ -8,7 +8,7 @@ fi
 # logger
 debug() {
 	if [[ $LOG_LEVEL == "debug" ]]; then
-		echo "$fg_bold[grey]$(gdate --iso-8601=ns) $fg_bold[green]$1"
+		echo "$fg_bold[grey]$(gdate --iso-8601=ns) loading $fg_bold[green]$1"
 	fi
 }
 

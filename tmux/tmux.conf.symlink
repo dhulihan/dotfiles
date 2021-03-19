@@ -27,6 +27,10 @@ setw -g pane-base-index 1
 bind -n S-Right next-window
 bind -n S-Left previous-window
 
+# shift-arrows for pane/up/down
+bind -n S-Up select-pane -U
+bind -n S-Down select-pane -D
+
 # ctrl-shift arrows to move window
 bind -n C-S-Left swap-window -t -1
 bind -n C-S-Right swap-window -t +1
