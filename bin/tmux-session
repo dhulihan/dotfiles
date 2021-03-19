@@ -23,6 +23,9 @@ case $SESSION_NAME in
       TAB_COLOR=purple
       ;;
     dev)
+      TAB_COLOR=yellow
+      ;;
+    staging)
       TAB_COLOR=orange
       ;;
     prod)

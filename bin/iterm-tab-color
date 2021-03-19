@@ -12,9 +12,9 @@ echo -e "\033]6;1;bg;green;brightness;0\a"
 echo -e "\033]6;1;bg;blue;brightness;0\a"
 ;;
 orange)
-echo -e "\033]6;1;bg;red;brightness;255\a"
-echo -e "\033]6;1;bg;green;brightness;165\a"
-echo -e "\033]6;1;bg;blue;brightness;0\a"
+echo -e "\033]6;1;bg;red;brightness;181\a"
+echo -e "\033]6;1;bg;green;brightness;113\a"
+echo -e "\033]6;1;bg;blue;brightness;24\a"
 ;;
 yellow)
 echo -e "\033]6;1;bg;red;brightness;128\a"

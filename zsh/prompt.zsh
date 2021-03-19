@@ -112,6 +112,7 @@ set_prompt() {
 
 precmd() {
   export SELECTED_EMOJI=${PROMPT_EMOJIS[$RANDOM % ${#PROMPT_EMOJIS[@]}]};
-  title "zsh" "%m" "%55<...<%~"
+  # set title
+  #title "zsh" "%m" "%55<...<%~"
   set_prompt
 }
