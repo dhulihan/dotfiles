@@ -1,13 +1,27 @@
-#!/bin/bash -eu
+#!/bin/bash -e
 
 # Recursive text replacement for OSX
+
+while getopts ":d:" o; do
+    case "${o}" in
+        d)
+            echo "only showing potential matches"
+            DRYRUN=true
+            shift
+            ;;
+        *)
+            ;;
+    esac
+done
+
 FROM=$1
 TO=$2
 DIR=${3:-.}
 
-
 # NOTE: you must escape special characters (here's an example in ruby)
-# grep -rl "upsert(:" app/observers | xargs gsed -i "s/upsert(:/upsert(environment, \:/g"
-
-grep -rl "${FROM}" $DIR | xargs gsed -i "s/${FROM}/${TO}/g"
-
+# rg "upsert(:" app/observers | xargs gsed -i "s/upsert(:/upsert(environment, \:/g"
+if [[ -n $DRYRUN ]]; then
+            rg -l "${FROM}" $DIR
+else
+            rg -l "${FROM}" $DIR | xargs gsed -i "s/${FROM}/${TO}/g"
+fi
