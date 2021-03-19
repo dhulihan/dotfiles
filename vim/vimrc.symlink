@@ -428,9 +428,14 @@ imap kk <Esc>:UTCTime<CR>a
 set mouse=a
 
 " tmux mousefix
-if &term =~ '^screen'
+"if &term =~ '^screen'
     " tmux knows the extended mouse mode
-    set ttymouse=xterm2
+    "set ttymouse=xterm2
+"endif
+
+" enable sgr mousemode to support wide terminal columns
+if has('mouse_sgr')
+    set ttymouse=sgr
 endif
 
 " Smooth scroll
