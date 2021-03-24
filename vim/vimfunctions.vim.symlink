@@ -169,20 +169,19 @@ function! RM()
 endfunction
 command! RM call RM()
 
-" Duplicate creates a copy of file in same directory as original.
-"   * `dstFilename` should not contain slashes or dots at this time: `foo.txt`
-"
-"   :Duplicate foo.txt
+" Duplicate creates a copy of a file in the same directory as the original.
+"   * `dstFilename` should not contain slashes or dots.
 function! Duplicate(dstFilename)
   let l:src=expand("%:p")
   let l:dst=expand("%:p:h")."/".a:dstFilename
   let l:cmd="sav! ".l:dst
-  execute l:cmd
+  silent execute l:cmd
   redraw!
-  echo l:src." duplicated to ".l:dst
 endfunction
+" :Duplicate foo.txt
 command! -nargs=1 Duplicate call Duplicate(<q-args>)
 
 command! Executable silent execute '! chmod +x %' | execute ':redraw!'
 command! IndentInfo execute 'set ts? sts? sw? ex? autoindent? smartindent?'
+command! CopyBufferToClipboard execute '0,$y*'
 command! PrettifyJSON execute '%!jq .'

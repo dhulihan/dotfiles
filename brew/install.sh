@@ -202,5 +202,7 @@ brew install amfora
 # bloom grpc client
 brew install --cask bloomrpc
 
+brew tap johanhaleby/kubetail && brew install kubetail
+
 set +e
 say "brew is done"
