@@ -293,6 +293,14 @@ nnoremap <C-W>\ :vertical resize 82<CR>
 " Classic backspace
 "nnoremap <BS> X
 
+" F Keys
+" ███████╗
+" ██╔════╝
+" █████╗░░
+" ██╔══╝░░
+" ██║░░░░░
+" ╚═╝░░░░░
+"
 " Paste mode toggle
 nnoremap <F2> :set invpaste paste?<CR>
 imap <F2> <C-O>:set invpaste paste?<CR>
@@ -306,9 +314,15 @@ inoremap <F3> <C-O>:set invnumber<CR>
 noremap <silent> <F4> :ColorColumnToggle<CR>
 inoremap <silent> <F4> :ColorColumnToggle<CR>
 
+noremap <silent> <F4> :ColorColumnToggle<CR>
+inoremap <silent> <F4> :ColorColumnToggle<CR>
+
 " reload file
 noremap <F5> :e!<CR>
 inoremap <F5> <C-O>:e!<CR>
+
+noremap <F6> :GblameToggle<CR>
+inoremap <F5> :GblameToggle<CR>
 
 " space mappings (
 " ░░░░░░░░░░░░░░░░░
@@ -481,17 +495,18 @@ let g:netrw_preview = 1 " preview file vertical split
 let g:netrw_liststyle = 1 " one file, timestamps
 "nnoremap <C-n> :Vexplore<CR> " explorer in vertical split
 
-" Ack: map
+" Grep and friends -------------------------------------------------------------
 set grepprg=rg\ --vimgrep
 let g:ackprg='rg --vimgrep'
+" ------------------------------------------------------------------------------
 
-" taboo ----------------------------------------------------------------------
+" taboo ------------------------------------------------------------------------
 
 " aliases
 cnoreabbrev TR TabooRename
-" taboo END ------------------------------------------------------------------
+" taboo END --------------------------------------------------------------------
 
-" easyclip -------------------------------------------------------------------
+" easyclip ---------------------------------------------------------------------
 
 " disable black hole deletes
 let g:EasyClipEnableBlackHoleRedirect = 0
@@ -862,7 +877,15 @@ endfunction
 "###############################################################################
 " vim-fugitive
 "###############################################################################
-autocmd FileType git set foldlevel=2
+function! GblameToggle()
+    if &l:filetype ==# 'fugitiveblame'
+        close
+    else
+        Gblame
+    endif
+endfunction
+command! GblameToggle call GblameToggle()
+
 "###############################################################################
 " vim-fugitive END
 "###############################################################################
@@ -948,8 +971,7 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 " don't autofix these filetypes
-autocmd FileType sql let g:ale_fix_on_save = 0
-autocmd FileType json let g:ale_fix_on_save = 0
+autocmd FileType sql,json ALEDisableBuffer
 " ale END ---------------------------------------------------
 "
 
@@ -1013,8 +1035,8 @@ colors lucius
 " ) Color Schemes
 
 " Cross-scheme colors (dark background)
-"hi! link ColorColumn Tabline
-"hi! link ColorColumn TablineFill
+"hi clear ColorColumn
+"hi ColorColumn ctermbg=237
 hi clear SignColumn
 hi clear SpellCap
 hi SpellBad ctermfg=197

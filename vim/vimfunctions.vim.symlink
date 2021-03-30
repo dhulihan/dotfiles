@@ -115,7 +115,7 @@ function! ColorColumnToggle()
     setlocal colorcolumn=
     let g:color_column_toggle = 0
   else
-    setlocal colorcolumn=1,5,9,13,17,21
+    setlocal colorcolumn=1,5,9,13,17,21,80
     let g:color_column_toggle = 1
   endif
 endfunction
@@ -170,7 +170,6 @@ endfunction
 command! RM call RM()
 
 " Duplicate creates a copy of a file in the same directory as the original.
-"   * `dstFilename` should not contain slashes or dots.
 function! Duplicate(dstFilename)
   let l:src=expand("%:p")
   let l:dst=expand("%:p:h")."/".a:dstFilename
