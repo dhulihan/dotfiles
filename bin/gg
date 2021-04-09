@@ -7,6 +7,8 @@
 # This it what we should open the go project with
 #INIT_PROJECT_CMD="vim"
 INIT_PROJECT_CMD="tmux-session"
-go get -v $1 || echo "problem fetching $1"
+
+# disable module supportfor this since we want to download to src not pkg/mod
+GO111MODULE=off go get -v $1 || echo "problem fetching $1"
 cd ${GOPATH}/src/$1
 $INIT_PROJECT_CMD

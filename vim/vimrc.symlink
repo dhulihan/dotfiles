@@ -144,11 +144,6 @@ Plugin 'tpope/vim-dispatch'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" load custom functions
-source ~/.vimfunctions.vim
-
-" K, Add custom stuff below ---
-
 " Line Numbers
 set nonumber
 "highlight LineNr ctermfg=darkgrey
@@ -195,7 +190,9 @@ set autoindent
 " First entry is for public things, Second is for secret/confidential terms
 " (eg: internal business, etc.)
 " use `1zg`, or `2zg`, etc.
-set spellfile=~/.en.utf-8.add,~/.en-secret.utf-8.add
+"
+" TODO: reenable. currently busted, see: https://github.com/vim/vim/issues/7068
+"set spellfile=$HOME/.en.utf-8.add,$HOME/.en-secret.utf-8.add
 " spelling END ---------------------------------------------------------------
 
 " set filetype based on filename
@@ -251,129 +248,15 @@ autocmd BufReadPost *
   \ |   exe "normal! g`\""
   \ | endif
 
-" Key Mappings  ----------------------------------------------------------------
+" General Key Mappings
+"     ________________________________
+"    /    o   oooo ooo oooo   o o o  /\
+"   /    oo  ooo  oo  oooo   o o o  / /
+"  /    _________________________  / /
+" / // / // /// // /// // /// / / / /
+"/___ //////////////////////////_/ /
+"\____\________________________\_\/
 "
-" Leader ( #####################################################################
-
-" <Leader>s requires release of <Leader> :(
-
-"nnoremap <Leader>s :bn!<esc><CR>
-"nnoremap <Leader>a :bp!<esc><CR>
-nnoremap <Leader>s :BufSurfForward<CR>
-nnoremap <Leader>a :BufSurfBack<CR>
-nnoremap <Leader>y :TagbarToggle<cr>
-"nnoremap <Leader>d :bd<esc><CR>
-nnoremap <Leader>d :BD<CR>
-"nnoremap <Tab> :bnext<CR>
-"nnoremap <S-Tab> :bprevious<CR>
-
-" open new buffer with name from inner parens
-nnoremap <Leader>4 :normal si(<CR>
-
-" copy current file path to clipboard
-nnoremap <Leader>5 :RelPathToClipboard<CR>
-nnoremap <Leader>6 :RelDirToClipboard<CR>
-"
-" Shortcut to rapidly toggle `set list`
-nnoremap <Leader>l :set list!<CR>
-"nnoremap <Leader>; :ColorColumnToggle<CR>
-nnoremap <Leader>] :ALENext -wrap -error<CR>
-nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
-nnoremap <Leader>gg :.Gbrowse!<CR>
-nnoremap <Leader>gx :.Gbrowse<CR>
-nnoremap <Leader>gm :Gbrowse @master:%<CR>
-nnoremap <Leader>ge :Gedit master:%<CR>
-nnoremap <Leader>vv :Rg<CR>
-
-" Leader ) #####################################################################
-
-" widen split to favorite width (I like 80 char width plus some gutter)
-nnoremap <C-W>\ :vertical resize 82<CR>
-
-" Classic backspace
-"nnoremap <BS> X
-
-" F Keys
-" ███████╗
-" ██╔════╝
-" █████╗░░
-" ██╔══╝░░
-" ██║░░░░░
-" ╚═╝░░░░░
-"
-" Paste mode toggle
-nnoremap <F2> :set invpaste paste?<CR>
-imap <F2> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F2>
-
-" number mode toggle
-noremap <F3> :set invnumber<CR>
-inoremap <F3> <C-O>:set invnumber<CR>
-
-" Save search matches in separate file
-noremap <silent> <F4> :ColorColumnToggle<CR>
-inoremap <silent> <F4> :ColorColumnToggle<CR>
-
-noremap <silent> <F4> :ColorColumnToggle<CR>
-inoremap <silent> <F4> :ColorColumnToggle<CR>
-
-" reload file
-noremap <F5> :e!<CR>
-inoremap <F5> <C-O>:e!<CR>
-
-noremap <F6> :GblameToggle<CR>
-inoremap <F5> :GblameToggle<CR>
-
-" space mappings (
-" ░░░░░░░░░░░░░░░░░
-" ░░░░░▀▄░░░▄▀░░░░░
-" ░░░░▄█▀███▀█▄░░░░
-" ░░░█▀███████▀█░░░
-" ░░░█░█▀▀▀▀▀█░█░░░
-" ░░░░░░▀▀░▀▀░░░░░░
-" ░░░░░░░░░░░░░░░░░
-" map leader to spacebar
-"let mapleader=" "
-" map <space> <Leader>
-nnoremap <space>5 :AbsPathToClipboard<CR>
-nnoremap <space>6 :AbsDirToClipboard<CR>
-nnoremap <space>7 :OpenDirInFileBrowser<CR>
-nnoremap <space>l :lnext<CR>
-nnoremap <space>p :lprevious<CR>
-nnoremap <space>r :lrewind<CR>
-
-" git things
-nnoremap <space>ga :Git add %:p<CR><CR>
-nnoremap <space>gs :Gstatus<CR>
-nnoremap <space>gc :Gcommit -v -q<CR>
-nnoremap <space>gt :Gcommit -v -q %:p<CR>
-nnoremap <space>gd :Gdiff<CR>
-nnoremap <space>ge :Gedit<CR>
-nnoremap <space>gr :Gread<CR>
-nnoremap <space>gw :Gwrite<CR><CR>
-nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
-nnoremap <space>gp :Ggrep<Space>
-nnoremap <space>gm :Gmove<Space>
-nnoremap <space>gb :Git branch<Space>
-nnoremap <space>go :Git checkout<Space>
-nnoremap <space>gps :Dispatch! git push<CR>
-nnoremap <space>gpl :Dispatch! git pull<CR>
-" ) space leader
-
-" git h
-
-" system clipboard helpers
-"nnoremap <Space>yy "*yy<CR>
-"nnoremap <Space>dd "*dd<CR>
-"nnoremap <Space>C "*C<CR>
-"nnoremap <Space>p "*p<CR>
-"nnoremap <Space>P "*P<CR>
-"vnoremap <Space>y "*y<CR>
-"vnoremap <Space>d "*d<CR>
-"vnoremap <Space>c "*c<CR>
-"vnoremap <Space>p "*p<CR>
-"vnoremap <Space>P "*P<CR>
-
 " make C-C esc for InsertLeave, etc (insert)
 ino <C-C> <Esc>
 
@@ -384,9 +267,17 @@ inoremap <C-a> <Esc>I
 " paste from system clipboard
 inoremap <C-Space> <C-r><C-o>*
 
+" #!! - shebang helper for current filetype (junegunn)
+inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)
+
 " Easier saving
 "nnoremap S :w<CR>
 "nnoremap <C-i> :q<CR>
+"
+" widen split to favorite width (I like 80 char width plus some gutter)
+nnoremap <C-W>\ :vertical resize 82<CR>
+" Classic backspace
+"nnoremap <BS> X
 
 " Tabs
 nnoremap { :cprev<CR>
@@ -420,7 +311,124 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 " select pasted text
 nnoremap gp `[v`]
 
-" Key Mappings END -----------------------------------------------------------
+" Leader Key Mappings
+"      ____________
+"     /\  ________ \
+"    /  \ \______/\ \
+"   / /\ \ \  / /\ \ \
+"  / / /\ \ \/ / /\ \ \
+" / / /__\_\/ / /__\_\ \
+"/ /_/_______/ /________\
+"\ \ \______ \ \______  /
+" \ \ \  / /\ \ \  / / /
+"  \ \ \/ / /\ \ \/ / /
+"   \ \/ / /__\_\/ / /
+"    \  / /______\/ /
+"     \/___________/
+"
+"nnoremap <Leader>s :bn!<esc><CR>
+"nnoremap <Leader>a :bp!<esc><CR>
+nnoremap <Leader>s :BufSurfForward<CR>
+nnoremap <Leader>a :BufSurfBack<CR>
+nnoremap <Leader>y :TagbarToggle<cr>
+"nnoremap <Leader>d :bd<esc><CR>
+nnoremap <Leader>d :BD<CR>
+"nnoremap <Tab> :bnext<CR>
+"nnoremap <S-Tab> :bprevious<CR>
+" open new buffer with name from inner parens
+nnoremap <Leader>4 :normal si(<CR>
+" copy current file path to clipboard
+nnoremap <Leader>5 :RelPathToClipboard<CR>
+nnoremap <Leader>6 :RelDirToClipboard<CR>
+" Shortcut to rapidly toggle `set list`
+nnoremap <Leader>l :set list!<CR>
+"nnoremap <Leader>; :ColorColumnToggle<CR>
+nnoremap <Leader>] :ALENext -wrap -error<CR>
+nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
+nnoremap <Leader>gg :.Gbrowse!<CR>
+nnoremap <Leader>gx :.Gbrowse<CR>
+nnoremap <Leader>gm :Gbrowse @master:%<CR>
+nnoremap <Leader>ge :Gedit master:%<CR>
+nnoremap <Leader>vv :Rg<CR>
+
+" F Keys
+" ███████╗
+" ██╔════╝
+" █████╗░░
+" ██╔══╝░░
+" ██║░░░░░
+" ╚═╝░░░░░
+"
+" Paste mode toggle
+nnoremap <F2> :set invpaste paste?<CR>
+imap <F2> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F2>
+
+" number mode toggle
+noremap <F3> :set invnumber<CR>
+inoremap <F3> <C-O>:set invnumber<CR>
+
+" Save search matches in separate file
+noremap <silent> <F4> :ColorColumnToggle<CR>
+inoremap <silent> <F4> :ColorColumnToggle<CR>
+
+noremap <silent> <F4> :ColorColumnToggle<CR>
+inoremap <silent> <F4> :ColorColumnToggle<CR>
+
+" reload file
+noremap <F5> :e!<CR>
+inoremap <F5> <C-O>:e!<CR>
+
+noremap <F6> :GblameToggle<CR>
+inoremap <F5> :GblameToggle<CR>
+
+" Space Key Mappings
+" ░░░░░░░░░░░░░░░░░
+" ░░░░░▀▄░░░▄▀░░░░░
+" ░░░░▄█▀███▀█▄░░░░
+" ░░░█▀███████▀█░░░
+" ░░░█░█▀▀▀▀▀█░█░░░
+" ░░░░░░▀▀░▀▀░░░░░░
+" ░░░░░░░░░░░░░░░░░
+" map leader to spacebar
+"let mapleader=" "
+" map <space> <Leader>
+nnoremap <space>5 :AbsPathToClipboard<CR>
+nnoremap <space>6 :AbsDirToClipboard<CR>
+nnoremap <space>7 :OpenDirInFileBrowser<CR>
+nnoremap <space>l :lnext<CR>
+nnoremap <space>p :lprevious<CR>
+nnoremap <space>r :lrewind<CR>
+
+" git things
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>ge :Gedit<CR>
+nnoremap <space>gr :Gread<CR>
+nnoremap <space>gw :Gwrite<CR><CR>
+nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <space>gp :Ggrep<Space>
+nnoremap <space>gm :Gmove<Space>
+nnoremap <space>gb :Git branch<Space>
+nnoremap <space>go :Git checkout<Space>
+nnoremap <space>gps :Dispatch! git push<CR>
+nnoremap <space>gpl :Dispatch! git pull<CR>
+
+" system clipboard helpers
+"nnoremap <Space>yy "*yy<CR>
+"nnoremap <Space>dd "*dd<CR>
+"nnoremap <Space>C "*C<CR>
+"nnoremap <Space>p "*p<CR>
+"nnoremap <Space>P "*P<CR>
+"vnoremap <Space>y "*y<CR>
+"vnoremap <Space>d "*d<CR>
+"vnoremap <Space>c "*c<CR>
+"vnoremap <Space>p "*p<CR>
+"vnoremap <Space>P "*P<CR>
+
 
 " Visuals
 set cinkeys=0{,0},:,0#,!^F
@@ -1078,3 +1086,254 @@ hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
 
 " Colors END -----------------------------------------------
+
+
+" Commands
+"          ________
+"         /\       \
+"        /  \       \
+"       /    \       \
+"      /      \_______\
+"      \      /       /
+"    ___\    /   ____/___
+"   /\   \  /   /\       \
+"  /  \   \/___/  \       \
+" /    \       \   \       \
+"/      \_______\   \_______\
+"\      /       /   /       /
+" \    /       /   /       /
+"  \  /       /\  /       /
+"   \/_______/  \/_______/
+"
+" ------------------------------------------------------------------------------
+" Highlight Repeating Lines
+" ------------------------------------------------------------------------------
+function! HighlightRepeats() range
+  let lineCounts = {}
+  let lineNum = a:firstline
+  while lineNum <= a:lastline
+    let lineText = getline(lineNum)
+    if lineText != ""
+      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+    endif
+    let lineNum = lineNum + 1
+  endwhile
+  exe 'syn clear Repeat'
+  for lineText in keys(lineCounts)
+    if lineCounts[lineText] >= 2
+      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+    endif
+  endfor
+endfunction
+command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+
+" ------------------------------------------------------------------------------
+" Matches - Write all search matches to a file, open that file
+" ------------------------------------------------------------------------------
+function! Matches()
+  redir! >/tmp/matches.tmp
+  g//
+  redir END
+  new /tmp/matches.tmp
+endfunction
+command! Matches <line1>,<line2>call Matches()
+
+" ------------------------------------------------------------------------------
+" rm newlines from string
+" ------------------------------------------------------------------------------
+function! Chomp(string)
+    return substitute(a:string, '\n\+$', '', '')
+endfunction
+
+" ------------------------------------------------------------------------------
+" Chomp system() call
+" ------------------------------------------------------------------------------
+function! ChompedSystem( ... )
+    return substitute(call('system', a:000), '\n\+$', '', '')
+endfunction
+
+" ------------------------------------------------------------------------------
+" Print UTC date
+" ------------------------------------------------------------------------------
+function! UTCDate()
+  let @z = ChompedSystem('date -u \+"%Y-%m-%d"')
+  normal! "zp
+endfunction
+command! UD call UTCDate()
+command! Date call UTCDate()
+command! UTCDate call UTCDate()
+
+" ------------------------------------------------------------------------------
+" Print ISO-8601 UTC datetime
+" ------------------------------------------------------------------------------
+function! UTCTime()
+  let @z = ChompedSystem('date -u \+"%Y-%m-%dT%H:%MZ"')
+  normal! "zp
+endfunction
+command! Time call UTCTime()
+command! UTCTime call UTCTime()
+command! UT call UTCTime()
+
+" ------------------------------------------------------------------------------
+" LocalDate
+" ------------------------------------------------------------------------------
+function! LocalDate()
+  let @z = ChompedSystem('date \+"%Y-%m-%d"')
+  normal! "zp
+endfunction
+command! LocalDate call LocalDate()
+command! LD call LocalDate()
+
+" ------------------------------------------------------------------------------
+" LocalTime
+" ------------------------------------------------------------------------------
+function! LocalTime()
+  let @z = ChompedSystem('date \+"%Y-%m-%dT%H:%M%z"')
+  normal! "zp
+endfunction
+command! LocalTime call LocalTime()
+command! LT call LocalTime()
+
+" Map case typos
+command! E e
+command! W w
+command! Q q
+command! Qa qa
+
+" ------------------------------------------------------------------------------
+" Splits
+" ------------------------------------------------------------------------------
+function! SplitTwoByTwo()
+  sp
+  vsp
+  winc k
+  vsp
+endfunction
+"command! SplitTwoByTwo call SplitTwoByTwo()
+command! SplitFour call SplitTwoByTwo()
+
+function! SplitThree()
+  vsp
+  sp
+endfunction
+command! SplitThree call SplitThree()
+
+" ------------------------------------------------------------------------------
+" Print filename header in markdown
+" ------------------------------------------------------------------------------
+function! MarkdownHeader()
+  put! ='# ' . expand('%:t:r')
+  normal o
+  normal o
+  put! ='## Resources'
+  normal G
+  redraw!
+  startinsert
+endfunction
+command! MarkdownHeader call MarkdownHeader()
+
+" ------------------------------------------------------------------------------
+" toggle color columns
+" ------------------------------------------------------------------------------
+let g:color_column_toggle = 0
+function! ColorColumnToggle()
+  if g:color_column_toggle
+    setlocal colorcolumn=
+    let g:color_column_toggle = 0
+  else
+    setlocal colorcolumn=1,5,9,13,17,21,80
+    let g:color_column_toggle = 1
+  endif
+endfunction
+command! ColorColumnToggle call ColorColumnToggle()
+
+" ------------------------------------------------------------------------------
+" open directory of current file in system file browser
+" uses vim-dispatch.
+" ------------------------------------------------------------------------------
+function! OpenDirInFileBrowser()
+  let l:dir = expand("%:p:h")
+  execute "Dispatch open " . l:dir
+endfunction
+command! OpenDirInFileBrowser call OpenDirInFileBrowser()
+
+function! NewBuffer(str)
+  execute "e " . a:str
+endfunc
+call toop#mapFunction('NewBuffer', 's')
+
+" ------------------------------------------------------------------------------
+" start profiling. good for tracing performance issues, debugging, etc.
+" ------------------------------------------------------------------------------
+function! StartProfile()
+  profile start profile.log
+  profile func *
+  profile file *
+endfunction
+command! StartProfile call StartProfile()
+
+" ------------------------------------------------------------------------------
+" stop profiling and quit
+" ------------------------------------------------------------------------------
+function! StopProfile()
+  profile pause
+  noautocmd qall!
+endfunction
+command! StopProfile call StopProfile()
+
+" ------------------------------------------------------------------------------
+" remove file from disk and delete buffer
+" ------------------------------------------------------------------------------
+function! RM()
+  execute "! rm %"
+  execute "BD!"
+endfunction
+command! RM call RM()
+
+" ------------------------------------------------------------------------------
+" Duplicate creates a copy of a file in the same directory as the original.
+" ------------------------------------------------------------------------------
+function! Duplicate(dstFilename)
+  let l:src=expand("%:p")
+  let l:dst=expand("%:p:h")."/".a:dstFilename
+  let l:cmd="sav! ".l:dst
+  silent execute l:cmd
+  redraw!
+endfunction
+" :Duplicate foo.txt
+command! -nargs=1 Duplicate call Duplicate(<q-args>)
+
+" ----------------------------------------------------------------------------
+" :Root | Change directory to the root of the Git repository (junegunn)
+" ----------------------------------------------------------------------------
+function! s:root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  if v:shell_error
+    echo 'Not in git repo'
+  else
+    execute 'lcd' root
+    echo 'Changed directory to: '.root
+  endif
+endfunction
+command! Root call s:root()
+
+" ------------------------------------------------------------------------------
+" One-liners
+" ------------------------------------------------------------------------------
+command! Executable silent execute '! chmod +x %' | execute ':redraw!'
+command! IndentInfo execute 'set ts? sts? sw? ex? autoindent? smartindent?'
+command! CopyBufferToClipboard execute '0,$y*'
+command! PrettifyJSON execute '%!jq .'
+
+" copy relative path of current file to clipboard
+command! RelPathToClipboard execute ':let @*=@% | echo @*'
+
+" copy absolute path of current file to clipboard
+command! AbsPathToClipboard execute ':let @*=expand("%:p") | echo expand("%:p")'
+
+" copy relative  dir of current file to clipboard
+command! RelDirToClipboard execute ':let @*=expand("%:h") | echo expand("%:h")'
+
+" copy absolute dir of current file to clipboard
+command! AbsDirToClipboard execute ':let @*=expand("%:p:h") | echo expand("%:p:h")'
+
