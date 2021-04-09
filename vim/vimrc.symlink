@@ -32,6 +32,8 @@ Plugin 'gmarik/Vundle.vim'
 " Vim
 Plugin 'mhinz/vim-startify'
 Plugin 'jeanCarloMachado/vim-toop'
+"Plugin 'Yggdroot/indentLine' " don't need this, use list
+Plugin 'machakann/vim-highlightedyank'
 "Plugin 'chrisbra/Recover.vim'
 
 " Version Control
@@ -44,14 +46,12 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-endwise'
 "Plugin 'tpope/vim-surround'
 "Plugin 'tpope/vim-repeat'
-"Plugin 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go,
-"slow
+"Plugin 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go, slow
 Plugin 'The-NERD-Commenter'
 "Plugin 'ludovicchabant/vim-gutentags' " blocking too much
 Plugin 'vitalk/vim-shebang'
 " Plugin 'junegunn/vim-easy-align' " TODO: fix = mapping
 Plugin 'ntpeters/vim-better-whitespace'
-
 Plugin 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'branch': 'release/1.x',
@@ -109,6 +109,7 @@ Plugin 'tmhedberg/matchit'
 Plugin 'junegunn/fzf.vim'
 "Plugin 'ronakg/quickr-preview.vim'
 "Plugin 'alok/notational-fzf-vim'
+Plugin 'justinmk/vim-gtfo'
 
 " Colors
 Plugin 'flazz/vim-colorschemes'
@@ -345,6 +346,8 @@ nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>; :ColorColumnToggle<CR>
 nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
+nnoremap <Leader>, zr<CR>
+nnoremap <Leader>. zm<CR>
 nnoremap <Leader>gg :.Gbrowse!<CR>
 nnoremap <Leader>gx :.Gbrowse<CR>
 nnoremap <Leader>gm :Gbrowse @master:%<CR>
@@ -706,9 +709,9 @@ let g:ctrlp_switch_buffer = '' " don't switch to already displayed buffers
 " list buffers nicely
 "nnoremap <C-\> :CtrlPBuffer<cr>
 
-"###############################################################################
+" ------------------------------------------------------------------------------
 " FZF
-"###############################################################################
+" ------------------------------------------------------------------------------
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -770,9 +773,9 @@ let g:fzf_preview_window = ''
 "nnoremap <silent> <C-\> :FZFBuffer<CR>
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-\> :Buffers<CR>
-"###############################################################################
+" ------------------------------------------------------------------------------
 " FZF END
-"###############################################################################
+" ------------------------------------------------------------------------------
 
 
 " mtth/scratch.vim ------------------------------------------
@@ -1159,7 +1162,6 @@ function! UTCDate()
   let @z = ChompedSystem('date -u \+"%Y-%m-%d"')
   normal! "zp
 endfunction
-command! UD call UTCDate()
 command! Date call UTCDate()
 command! UTCDate call UTCDate()
 
@@ -1172,7 +1174,6 @@ function! UTCTime()
 endfunction
 command! Time call UTCTime()
 command! UTCTime call UTCTime()
-command! UT call UTCTime()
 
 " ------------------------------------------------------------------------------
 " LocalDate
@@ -1182,7 +1183,6 @@ function! LocalDate()
   normal! "zp
 endfunction
 command! LocalDate call LocalDate()
-command! LD call LocalDate()
 
 " ------------------------------------------------------------------------------
 " LocalTime
@@ -1192,7 +1192,6 @@ function! LocalTime()
   normal! "zp
 endfunction
 command! LocalTime call LocalTime()
-command! LT call LocalTime()
 
 " Map case typos
 command! E e
