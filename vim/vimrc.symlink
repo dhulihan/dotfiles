@@ -33,7 +33,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'jeanCarloMachado/vim-toop'
 "Plugin 'Yggdroot/indentLine' " don't need this, use list
-Plugin 'machakann/vim-highlightedyank'
+"Plugin 'machakann/vim-highlightedyank' " cool but annoying after a while
 "Plugin 'chrisbra/Recover.vim'
 
 " Version Control
@@ -223,7 +223,8 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 
 " better tab completion of filepaths
-set wildmode=longest,list
+set wildmenu
+set wildmode=longest:full,full
 
 " File Types & Indentation END -----------------------------------------------
 
@@ -240,8 +241,8 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noerrorbells visualbell t_vb=
 
 " Persist undos
+set undodir=$HOME/.vim/undo " mkdir this if you need to
 set undofile " Maintain undo history between sessions
-set undodir=~/.vim/undodir
 
 " Persist cursor
 autocmd BufReadPost *
@@ -327,13 +328,11 @@ nnoremap gp `[v`]
 "    \  / /______\/ /
 "     \/___________/
 "
-"nnoremap <Leader>s :bn!<esc><CR>
-"nnoremap <Leader>a :bp!<esc><CR>
 nnoremap <Leader>s :BufSurfForward<CR>
 nnoremap <Leader>a :BufSurfBack<CR>
 nnoremap <Leader>y :TagbarToggle<cr>
-"nnoremap <Leader>d :bd<esc><CR>
 nnoremap <Leader>d :BD<CR>
+nnoremap <Leader>z :Cd 
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
 " open new buffer with name from inner parens
@@ -341,13 +340,14 @@ nnoremap <Leader>4 :normal si(<CR>
 " copy current file path to clipboard
 nnoremap <Leader>5 :RelPathToClipboard<CR>
 nnoremap <Leader>6 :RelDirToClipboard<CR>
-" Shortcut to rapidly toggle `set list`
+" Shortcut to rapidly toggle `set list`. Moved to F2.
 nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>; :ColorColumnToggle<CR>
 nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
 nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
+nnoremap <Leader>gb :CopyBufferToClipboard<CR>
 nnoremap <Leader>gg :.Gbrowse!<CR>
 nnoremap <Leader>gx :.Gbrowse<CR>
 nnoremap <Leader>gm :Gbrowse @master:%<CR>
@@ -363,9 +363,7 @@ nnoremap <Leader>vv :Rg<CR>
 " ╚═╝░░░░░
 "
 " Paste mode toggle
-nnoremap <F2> :set invpaste paste?<CR>
-imap <F2> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F2>
+nnoremap <F2> :set list!<cr>
 
 " number mode toggle
 noremap <F3> :set invnumber<CR>
@@ -379,11 +377,16 @@ noremap <silent> <F4> :ColorColumnToggle<CR>
 inoremap <silent> <F4> :ColorColumnToggle<CR>
 
 " reload file
-noremap <F5> :e!<CR>
-inoremap <F5> <C-O>:e!<CR>
+noremap <F5> :source ~/.vimrc<CR>
+inoremap <F5> <C-O>:source ~/.vimrc<CR>
 
 noremap <F6> :GblameToggle<CR>
-inoremap <F5> :GblameToggle<CR>
+inoremap <F6> :GblameToggle<CR>
+
+" Paste mode toggle
+nnoremap <F7> :set invpaste paste?<CR>
+imap <F7> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F7>
 
 " Space Key Mappings
 " ░░░░░░░░░░░░░░░░░
@@ -981,8 +984,14 @@ let g:ale_fixers = {
 " This is off by default.
 let g:ale_fix_on_save = 1
 
+" ale convenience commands
+command! ALEDisableFixers       let g:ale_fix_on_save=0
+command! ALEEnableFixers        let g:ale_fix_on_save=1
+command! ALEDisableFixersBuffer let b:ale_fix_on_save=0
+command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
+
 " don't autofix these filetypes
-autocmd FileType sql,json ALEDisableBuffer
+autocmd FileType sql,json ALEDisableFixersBuffer
 " ale END ---------------------------------------------------
 "
 
@@ -1023,72 +1032,6 @@ let g:strip_whitespace_confirm = 0
 "hi MBEVisibleActiveChanged ctermfg=214 guifg=#F1266F guibg=fg
 
 " MiniBufExplorer END --------------------------------------------------------
-
-" Color Schemes (
-set background=dark
-"colors apprentice
-colors lucius
-"colors dracula
-"colors falcon
-"colors jellybeans
-"colors hybrid
-"colors molokai
-"colors blackboard
-"colors hemisu
-"colorscheme bubblegum
-"colors noctu
-"colorscheme nefertiti
-"colorscheme pencil
-"colorscheme badwolf
-"" enable transparent term support
-"let g:solarized_termtrans=1
-"colorscheme solarized
-" ) Color Schemes
-
-" Cross-scheme colors (dark background)
-"hi clear ColorColumn
-"hi ColorColumn ctermbg=237
-hi clear SignColumn
-hi clear SpellCap
-hi SpellBad ctermfg=197
-hi clear SpellBad
-hi SpellBad ctermfg=197
-hi clear LineNr
-hi LineNr ctermfg=240
-hi clear Error
-hi Error ctermfg=167
-hi clear GitGutterAdd
-hi GitGutterAdd ctermfg=118
-hi clear GitGutterChange
-hi GitGutterChange ctermfg=186
-hi clear GitGutterDelete
-hi GitGutterDelete ctermfg=1
-hi clear GitGutterChangeDelete
-hi GitGutterChangeDelete ctermfg=166
-
-" lucius color overrides
-hi Visual   term=underline ctermbg=18
-hi! VertSplit ctermfg=237 ctermbg=237
-
-" apprentice color overrides
-"hi! link SignColumn Normal
-"hi! link LineNr Comment
-"hi TabLine     term=bold cterm=bold ctermfg=225 ctermbg=053
-"hi TabLineFill term=bold cterm=bold ctermfg=225 ctermbg=053
-"hi TabLineSel  term=bold cterm=bold ctermfg=053 ctermbg=225
-
-" old
-"hi! link GitGutterAddDefault String
-"hi! link GitGutterChangeDefault Function
-"hi! link GitGutterDelete GitGutterDeleteDefault
-"hi! link GitGutterChangeDelete GitGutterChangeDeleteDefault
-"hi default GitGutterAddDefault ctermbg=234
-
-hi Visual   term=underline ctermbg=238
-hi NonText guifg=#4a4a59
-hi SpecialKey guifg=#4a4a59
-
-" Colors END -----------------------------------------------
 
 
 " Commands
@@ -1302,9 +1245,9 @@ endfunction
 " :Duplicate foo.txt
 command! -nargs=1 Duplicate call Duplicate(<q-args>)
 
-" ----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " :Root | Change directory to the root of the Git repository (junegunn)
-" ----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 function! s:root()
   let root = systemlist('git rev-parse --show-toplevel')[0]
   if v:shell_error
@@ -1317,10 +1260,21 @@ endfunction
 command! Root call s:root()
 
 " ------------------------------------------------------------------------------
+" CdComplete | $CDPATH friendly directory changing (credit: dhruvasagar)
+" ------------------------------------------------------------------------------
+function! s:CdComplete(ArgLead, CmdLine, CursorPos)
+  let pattern = empty(a:ArgLead) ? '*/' : '*' . a:ArgLead . '*/'
+  return map(globpath(&cdpath, pattern, 1, 1), 'fnamemodify(v:val, ":h:t")')
+endfunction
+
+command! -bar -nargs=1 -complete=customlist,s:CdComplete Cd cd <args>
+command! -bar -nargs=1 -complete=customlist,s:CdComplete Lcd lcd <args>
+
+" ------------------------------------------------------------------------------
 " One-liners
 " ------------------------------------------------------------------------------
 command! Executable silent execute '! chmod +x %' | execute ':redraw!'
-command! IndentInfo execute 'set ts? sts? sw? ex? autoindent? smartindent?'
+command! IndentInfo execute 'set ts? sts? sw? ex? expandtab? autoindent? smartindent?'
 command! CopyBufferToClipboard execute '0,$y*'
 command! PrettifyJSON execute '%!jq .'
 
@@ -1336,3 +1290,71 @@ command! RelDirToClipboard execute ':let @*=expand("%:h") | echo expand("%:h")'
 " copy absolute dir of current file to clipboard
 command! AbsDirToClipboard execute ':let @*=expand("%:p:h") | echo expand("%:p:h")'
 
+
+" ------------------------------------------------------------------------------
+" Colors & Highlighting
+" ------------------------------------------------------------------------------
+set background=dark
+"colors apprentice
+colors lucius
+"colors dracula
+"colors falcon
+"colors jellybeans
+"colors hybrid
+"colors molokai
+"colors blackboard
+"colors hemisu
+"colorscheme bubblegum
+"colors noctu
+"colorscheme nefertiti
+"colorscheme pencil
+"colorscheme badwolf
+"" enable transparent term support
+"let g:solarized_termtrans=1
+"colorscheme solarized
+" ) Color Schemes
+
+" Cross-scheme colors (dark background)
+"hi clear ColorColumn
+"hi ColorColumn ctermbg=237
+hi clear SignColumn
+hi clear SpellCap
+hi SpellBad ctermfg=197
+hi clear SpellBad
+hi SpellBad ctermfg=197
+hi clear LineNr
+hi LineNr ctermfg=240
+"hi clear Error
+hi Error ctermfg=167
+hi clear GitGutterAdd
+hi GitGutterAdd ctermfg=118
+hi clear GitGutterChange
+hi GitGutterChange ctermfg=186
+hi clear GitGutterDelete
+hi GitGutterDelete ctermfg=1
+hi clear GitGutterChangeDelete
+hi GitGutterChangeDelete ctermfg=166
+
+" lucius color overrides
+hi Visual   term=underline ctermbg=18
+hi! VertSplit ctermfg=237 ctermbg=237
+
+" apprentice color overrides
+"hi! link SignColumn Normal
+"hi! link LineNr Comment
+"hi TabLine     term=bold cterm=bold ctermfg=225 ctermbg=053
+"hi TabLineFill term=bold cterm=bold ctermfg=225 ctermbg=053
+"hi TabLineSel  term=bold cterm=bold ctermfg=053 ctermbg=225
+
+" old
+"hi! link GitGutterAddDefault String
+"hi! link GitGutterChangeDefault Function
+"hi! link GitGutterDelete GitGutterDeleteDefault
+"hi! link GitGutterChangeDelete GitGutterChangeDeleteDefault
+"hi default GitGutterAddDefault ctermbg=234
+
+hi Visual   term=underline ctermbg=238
+hi NonText guifg=#4a4a59
+hi SpecialKey guifg=#4a4a59
+
+" Colors END -----------------------------------------------

@@ -25,6 +25,7 @@ go get -u github.com/buraksezer/olric/cmd/olricd
 go get -u github.com/buraksezer/olric/cmd/olric-cli
 go get -u github.com/asciimoo/wuzz
 go get -u github.com/qeesung/image2ascii
+go get -u github.com/google/gops
 
 # bindata
 go get -u github.com/jteeuwen/go-bindata/...

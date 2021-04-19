@@ -37,6 +37,7 @@ bind -n C-S-Right swap-window -t +1
 
 # layouts
 bind '='  select-layout 'even-vertical'
+bind '|'  select-layout 'even-horizontal'
 
 # page up down
 bind Pageup copy-mode -u
@@ -60,7 +61,7 @@ bind-key a set-window-option synchronize-panes\; display-message "synchronize-pa
 #bind -T root C-r send fzf-history-widget-accept C-m
 
 # history length
-set-option -g history-limit 5000
+set-option -g history-limit 10000
 
 # Fix long name issue with tmuxinator
 #set -g automatic-rename off
