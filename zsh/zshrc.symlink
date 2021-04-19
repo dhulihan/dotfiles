@@ -1,8 +1,13 @@
 # if we already loaded, perform verbose logging
 if [[ $ZSH_LOADED == true ]] ; then
-	export LOG_LEVEL=debug
+	export LOG_LEVEL=${LOG_LEVEL:-info}
 else
-	export LOG_LEVEL=info
+	export LOG_LEVEL=${LOG_LEVEL:-info}
+fi
+
+if [[ $LOG_LEVEL == "trace" ]]; then
+	# start profiling
+	zmodload zsh/zprof
 fi
 
 # logger
@@ -56,8 +61,14 @@ do
 done
 
 # initialize autocomplete here, otherwise functions won't be loaded
-debug "compinit"
-autoload -U compinit && compinit
+# only reload compinit every 24h
+debug "compinit check"
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  debug "compinit"
+  compinit
+done
+compinit -C
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
@@ -85,3 +96,8 @@ debug "$HOME/.fzf.zsh"
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 export ZSH_LOADED=true
+
+if [[ $LOG_LEVEL == "trace" ]]; then
+	# finish profiling
+	zprof
+fi

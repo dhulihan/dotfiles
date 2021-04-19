@@ -1,5 +1,6 @@
 alias reload!='source ~/.zshrc'
-alias reload_d!='source ~/.zshrc'
+alias reload_d!='LOG_LEVEL=debug source ~/.zshrc'
+alias reload_t!='LOG_LEVEL=trace source ~/.zshrc'
 
 # Serve current directory on port (default 3000)
 # Usage: serve 80
