@@ -19,6 +19,9 @@ case $SESSION_NAME in
     dotfiles)
       TAB_COLOR=blue
       ;;
+    explore)
+      TAB_COLOR=aqua
+      ;;
     secrets)
       TAB_COLOR=purple
       ;;
