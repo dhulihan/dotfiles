@@ -330,6 +330,7 @@ nnoremap gp `[v`]
 "
 nnoremap <Leader>s :BufSurfForward<CR>
 nnoremap <Leader>a :BufSurfBack<CR>
+nnoremap <silent> <leader>e :ToggleNetrw<CR>
 nnoremap <Leader>y :TagbarToggle<cr>
 nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
@@ -349,10 +350,10 @@ nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
 nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
 nnoremap <Leader>gb :CopyBufferToClipboard<CR>
-nnoremap <Leader>gg :.Gbrowse!<CR>
-nnoremap <Leader>gx :.Gbrowse<CR>
-nnoremap <Leader>gm :Gbrowse @master:%<CR>
-nnoremap <Leader>ge :Gedit master:%<CR>
+nnoremap <Leader>gg :.GBrowse!<CR>
+nnoremap <Leader>gx :.GBrowse<CR>
+nnoremap <Leader>gm :GBrowse @master:%<CR>
+nnoremap <Leader>ge :GEdit master:%<CR>
 nnoremap <Leader>vv :Rg<CR>
 
 " F Keys
@@ -505,10 +506,23 @@ cnoremap <C-N>		<Down>
 cnoremap <C-P>		<Up>
 " command-line END ------------------------------------------------------------
 
+" ------------------------------------------------------------------------------
 " netrw/Explorer
+" ------------------------------------------------------------------------------
 let g:netrw_preview = 1 " preview file vertical split
-let g:netrw_liststyle = 1 " one file, timestamps
-"nnoremap <C-n> :Vexplore<CR> " explorer in vertical split
+let g:netrw_banner = 0
+" 0 - thin listing (one file per line)
+" 1 - long listing (one file per line with timestamp information and file size)
+" 2 - wide listing (multiple files in columns)
+" 3 - tree style listing
+let g:netrw_liststyle = 3
+" 1 - open files in a new horizontal split
+" 2 - open files in a new vertical split
+" 3 - open files in a new tab
+" 4 - open in previous window
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1 "change from left splitting to right splitting
+let g:netrw_winsize = 25
 
 " Grep and friends -------------------------------------------------------------
 set grepprg=rg\ --vimgrep
@@ -1267,9 +1281,29 @@ function! s:CdComplete(ArgLead, CmdLine, CursorPos)
   let pattern = empty(a:ArgLead) ? '*/' : '*' . a:ArgLead . '*/'
   return map(globpath(&cdpath, pattern, 1, 1), 'fnamemodify(v:val, ":h:t")')
 endfunction
-
 command! -bar -nargs=1 -complete=customlist,s:CdComplete Cd cd <args>
 command! -bar -nargs=1 -complete=customlist,s:CdComplete Lcd lcd <args>
+
+" ------------------------------------------------------------------------------
+" ToggleNetrw - toggle netrw
+" ------------------------------------------------------------------------------
+let g:NetrwIsOpen=0
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i 
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
+command! ToggleNetrw call ToggleNetrw()
 
 " ------------------------------------------------------------------------------
 " One-liners
