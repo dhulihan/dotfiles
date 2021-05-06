@@ -1,1 +1,2 @@
 alias ts="tmux-session"
+alias tma="tmux a -t"

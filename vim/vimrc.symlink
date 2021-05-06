@@ -155,6 +155,9 @@ set display+=lastline
 " Recognize dash-separated values as words
 set iskeyword+=-
 
+" use number column for signs, to save on space
+set signcolumn=number
+
 " hide modified buffers instead of closing them
 set hidden
 
@@ -334,7 +337,7 @@ nnoremap <silent> <leader>e :ToggleNetrw<CR>
 nnoremap <Leader>y :TagbarToggle<cr>
 nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
-nnoremap <Leader><tab> :Cd
+nnoremap <Leader><tab> :Cd 
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
 " open new buffer with name from inner parens
