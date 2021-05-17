@@ -406,6 +406,11 @@ set pastetoggle=<F7>
 " map leader to spacebar
 "let mapleader=" "
 " map <space> <Leader>
+
+" disable space cursor movement
+nnoremap <Space> <NOP>
+
+" single character space commands
 nnoremap <space>5 :AbsPathToClipboard<CR>
 nnoremap <space>6 :AbsDirToClipboard<CR>
 nnoremap <space>7 :OpenDirInFileBrowser<CR>
