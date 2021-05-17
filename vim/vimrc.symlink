@@ -1274,6 +1274,18 @@ endfunction
 command! -nargs=1 Duplicate call Duplicate(<q-args>)
 
 " ------------------------------------------------------------------------------
+" T - recursive touch
+" ------------------------------------------------------------------------------
+function! T(dst)
+  silent execute "!t ". a:dst
+  execute "e " . a:dst
+  redraw! " we must redraw whenever we silence external output
+endfunction
+" :T foo/bar/bar.txt
+command! -nargs=1 T call T(<q-args>)
+
+
+" ------------------------------------------------------------------------------
 " :Root | Change directory to the root of the Git repository (junegunn)
 " ------------------------------------------------------------------------------
 function! s:root()
