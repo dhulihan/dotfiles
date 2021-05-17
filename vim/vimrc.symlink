@@ -111,7 +111,7 @@ Plugin 'tmhedberg/matchit'
 Plugin 'junegunn/fzf.vim'
 "Plugin 'ronakg/quickr-preview.vim'
 "Plugin 'alok/notational-fzf-vim'
-Plugin 'justinmk/vim-gtfo'
+Plugin 'dhulihan/vim-gtfo'
 
 " Colors
 Plugin 'flazz/vim-colorschemes'
