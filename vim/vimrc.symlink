@@ -63,6 +63,7 @@ Plugin 'prettier/vim-prettier', {
 " Language-specific
 "Plugin 'stamblerre/gocode' " trouble getting this to work
 "Plugin 'fatih/vim-go'
+Plugin 'sebdah/vim-delve'
 " ^ spinning up a gopls server for every vim session
 Plugin 'robbles/logstash.vim'
 Plugin 'hashivim/vim-terraform'
@@ -429,6 +430,13 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :Dispatch! git push<CR>
 nnoremap <space>gpl :Dispatch! git pull<CR>
+
+" debuggy things
+nnoremap <space>db :DlvToggleBreakpoint<CR>
+nnoremap <space>dx :DlvToggleTracepoint<CR>
+nnoremap <space>dt :DlvTest<CR>
+nnoremap <space>dd :DlvDebug<CR>
+nnoremap <space>dc :DlvClearAll<CR>
 
 " system clipboard helpers
 "nnoremap <Space>yy "*yy<CR>
