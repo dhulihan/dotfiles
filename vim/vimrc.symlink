@@ -1259,11 +1259,12 @@ command! StopProfile call StopProfile()
 " ------------------------------------------------------------------------------
 " remove file from disk and delete buffer
 " ------------------------------------------------------------------------------
-function! RM()
-  execute "! rm %"
+function! Rm()
+  silent execute "! rm '%'"
   execute "BD!"
+  redraw!
 endfunction
-command! RM call RM()
+command! Rm call Rm()
 
 " ------------------------------------------------------------------------------
 " Duplicate creates a copy of a file in the same directory as the original.
