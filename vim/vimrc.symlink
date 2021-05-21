@@ -59,6 +59,7 @@ Plugin 'prettier/vim-prettier', {
   \ 'for': [
   \   'javascript'
   \ ] }
+" Plugin 'wellle/context.vim' " cool but slow
 
 " Language-specific
 "Plugin 'stamblerre/gocode' " trouble getting this to work
