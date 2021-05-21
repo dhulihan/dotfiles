@@ -370,6 +370,9 @@ nnoremap <Leader>vv :Rg<CR>
 " ██║░░░░░
 " ╚═╝░░░░░
 "
+" open a terminal to pwd
+nnoremap <F1> :terminal<cr>
+
 " Paste mode toggle
 nnoremap <F2> :set list!<cr>
 
