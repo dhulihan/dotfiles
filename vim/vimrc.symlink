@@ -546,6 +546,20 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1 "change from left splitting to right splitting
 let g:netrw_winsize = 25
 
+" fix gx bug, see https://github.com/vim/vim/issues/4738
+let g:netrw_nogx=1
+if has('macunix')
+  function! OpenURLUnderCursor()
+    let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;()]*')
+    let s:uri = shellescape(s:uri, 1)
+    if s:uri != ''
+      exec "!open '".s:uri."'"
+      :redraw!
+    endif
+  endfunction
+  nnoremap gx :call OpenURLUnderCursor()<CR>
+endif
+
 " Grep and friends -------------------------------------------------------------
 set grepprg=rg\ --vimgrep
 let g:ackprg='rg --vimgrep'
@@ -932,7 +946,7 @@ function! GblameToggle()
     if &l:filetype ==# 'fugitiveblame'
         close
     else
-        Gblame
+        Git blame
     endif
 endfunction
 command! GblameToggle call GblameToggle()
