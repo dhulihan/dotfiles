@@ -59,7 +59,10 @@ Plugin 'prettier/vim-prettier', {
   \ 'for': [
   \   'javascript'
   \ ] }
+
 " Plugin 'wellle/context.vim' " cool but slow
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " Language-specific
 "Plugin 'stamblerre/gocode' " trouble getting this to work
@@ -1059,6 +1062,13 @@ let g:strip_whitespace_on_save = 1
 let g:strip_whitespace_confirm = 0
 
 " ) vim-better-whitespace
+
+" ------------------------------------------------------------------------------
+" utltisnips
+" ------------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-b>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.ultisnips']
 
 " MiniBufExplorer ------------------------------------------------------------
 " Allow single clicks
