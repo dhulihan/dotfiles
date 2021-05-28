@@ -1070,7 +1070,12 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.ultisnips']
+if !exists("g:UltiSnipsSnippetDirectories")
+  let g:UltiSnipsSnippetDirectories=[$HOME.'/.ultisnips']
+else
+  let g:UltiSnipsSnippetDirectories+=[$HOME.'/.ultisnips']
+endif
+
 
 " MiniBufExplorer ------------------------------------------------------------
 " Allow single clicks
@@ -1373,6 +1378,9 @@ command! Executable silent execute '! chmod +x %' | execute ':redraw!'
 command! IndentInfo execute 'set ts? sts? sw? ex? expandtab? autoindent? smartindent?'
 command! CopyBufferToClipboard execute '0,$y*'
 command! PrettifyJSON execute '%!jq .'
+
+" dump runtimepath(s) in a pretty way
+command! RuntimePathDump execute "tabnew | put =execute('echo &rtp') | %s/,/\r/g"
 
 " copy relative path of current file to clipboard
 command! RelPathToClipboard execute ':let @*=@% | echo @*'

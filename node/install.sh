@@ -9,4 +9,5 @@ npm install -g \
     fixjson \
     htmlhint \
     json2csv \
+    terminalizer \
     grunt
