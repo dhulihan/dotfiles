@@ -95,6 +95,7 @@ brew install terminal-notifier
 brew install tfenv
 brew install tidy-html5
 brew install tmate
+brew install ttygif
 brew install tmux
 brew install tmux-xpanes
 brew install tree

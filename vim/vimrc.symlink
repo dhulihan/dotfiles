@@ -340,7 +340,7 @@ nnoremap gp `[v`]
 nnoremap <Leader>s :BufSurfForward<CR>
 nnoremap <Leader>a :BufSurfBack<CR>
 nnoremap <silent> <leader>e :ToggleNetrw<CR>
-nnoremap <Leader>y :TagbarToggle<cr>
+nnoremap <Leader>t :TagbarToggle<cr>
 nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
 nnoremap <Leader><tab> :Cd 
@@ -358,12 +358,15 @@ nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
 nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
-nnoremap <Leader>gb :CopyBufferToClipboard<CR>
-nnoremap <Leader>gg :.GBrowse!<CR>
+" git
+nnoremap <Leader>gg :GitURLPrimary<CR>
+nnoremap <Leader>gb :.GBrowse!<CR>
 nnoremap <Leader>gx :.GBrowse<CR>
-nnoremap <Leader>gm :GBrowse @master:%<CR>
+nnoremap <Leader>gm :GBrowse @origin<CR>
 nnoremap <Leader>ge :GEdit master:%<CR>
 nnoremap <Leader>vv :Rg<CR>
+" yanks
+nnoremap <Leader>yb :CopyBufferToClipboard<CR>
 
 " F Keys
 " ███████╗
@@ -946,11 +949,11 @@ endfunction
 " vim-fugitive
 "###############################################################################
 function! GblameToggle()
-    if &l:filetype ==# 'fugitiveblame'
-        close
-    else
-        Git blame
-    endif
+  if &l:filetype ==# 'fugitiveblame'
+    close
+  else
+    Git blame
+  endif
 endfunction
 command! GblameToggle call GblameToggle()
 
@@ -1156,7 +1159,7 @@ command! Matches <line1>,<line2>call Matches()
 " rm newlines from string
 " ------------------------------------------------------------------------------
 function! Chomp(string)
-    return substitute(a:string, '\n\+$', '', '')
+  return substitute(a:string, '\n\+$', '', '')
 endfunction
 
 " ------------------------------------------------------------------------------
@@ -1355,21 +1358,49 @@ command! -bar -nargs=1 -complete=customlist,s:CdComplete Lcd lcd <args>
 " ------------------------------------------------------------------------------
 let g:NetrwIsOpen=0
 function! ToggleNetrw()
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
-            endif
-            let i-=1
-        endwhile
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        silent Lexplore
-    endif
+  if g:NetrwIsOpen
+    let i = bufnr("$")
+    while (i >= 1)
+      if (getbufvar(i, "&filetype") == "netrw")
+        silent exe "bwipeout " . i 
+      endif
+      let i-=1
+    endwhile
+    let g:NetrwIsOpen=0
+  else
+    let g:NetrwIsOpen=1
+    silent Lexplore
+  endif
 endfunction
 command! ToggleNetrw call ToggleNetrw()
+
+" ------------------------------------------------------------------------------
+" GitPrimaryBranchName - get main or master
+" ------------------------------------------------------------------------------
+function! GitPrimaryBranchName()
+  " check master first, flip this later
+  let l:out = system("git rev-parse --abbrev-ref origin/master")
+
+  if v:shell_error == 0
+    return "master"
+  else
+    return "main"
+  endif
+endfunction
+command! GitPrimaryBranchName call GitPrimaryBranchName()
+
+" ------------------------------------------------------------------------------
+" GitURLPrimary - copy link to git repo at currrent line, master/main branch
+" ------------------------------------------------------------------------------
+function! GitURLPrimary()
+  silent .GBrowse!
+  let l:rev_url = @*
+  " replace git commit ref with primary branch name
+  let l:url = substitute(l:rev_url, 'blob/[a-z0-9A-Z]\{40}/', "blob/" .  GitPrimaryBranchName() . "/", "")
+  let @* = l:url
+  echo l:url
+endfunction
+command! GitURLPrimary call GitURLPrimary()
 
 " ------------------------------------------------------------------------------
 " One-liners
