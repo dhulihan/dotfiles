@@ -359,7 +359,7 @@ nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
 nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
 " git
-nnoremap <Leader>gg :GitURLPrimary<CR>
+nnoremap <Leader>gg :GitPrimaryURL<CR>
 nnoremap <Leader>gb :.GBrowse!<CR>
 nnoremap <Leader>gx :.GBrowse<CR>
 nnoremap <Leader>gm :GBrowse @origin<CR>
@@ -1390,9 +1390,9 @@ endfunction
 command! GitPrimaryBranchName call GitPrimaryBranchName()
 
 " ------------------------------------------------------------------------------
-" GitURLPrimary - copy link to git repo at currrent line, master/main branch
+" GitPrimaryURL - copy link to git repo at currrent line, master/main branch
 " ------------------------------------------------------------------------------
-function! GitURLPrimary()
+function! GitPrimaryURL()
   silent .GBrowse!
   let l:rev_url = @*
   " replace git commit ref with primary branch name
@@ -1400,7 +1400,7 @@ function! GitURLPrimary()
   let @* = l:url
   echo l:url
 endfunction
-command! GitURLPrimary call GitURLPrimary()
+command! GitPrimaryURL call GitPrimaryURL()
 
 " ------------------------------------------------------------------------------
 " One-liners
