@@ -9,7 +9,9 @@
 
 BASENAME=$(basename $PWD)
 SESSION_NAME_RAW=${1:-$BASENAME}
-SESSION_NAME=$(gecho -n $SESSION_NAME_RAW | sed 's/^\.//')
+SESSION_NAME=$(gecho -n $SESSION_NAME_RAW | sed 's/\.//g')
+
+echo "creating session $SESSION_NAME"
 
 # set iterm2 title
 iterm-tab-title $SESSION_NAME
