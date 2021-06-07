@@ -367,6 +367,12 @@ nnoremap <Leader>ge :GEdit master:%<CR>
 nnoremap <Leader>vv :Rg<CR>
 " yanks
 nnoremap <Leader>yb :CopyBufferToClipboard<CR>
+nnoremap <Leader>yyy "*y<CR>
+vnoremap <Leader>yyy "*y<CR>
+nnoremap <Leader>ppp "*p<CR>
+vnoremap <Leader>ppp "*p<CR>
+nnoremap <Leader>PPP "*P<CR>
+vnoremap <Leader>PPP "*P<CR>
 
 " F Keys
 " ███████╗
@@ -400,10 +406,13 @@ inoremap <F5> <C-O>:source ~/.vimrc<CR>
 noremap <F6> :GblameToggle<CR>
 inoremap <F6> :GblameToggle<CR>
 
+noremap <F7> :GitTimeLapse<CR>
+inoremap <F7> :GitTimeLapse<CR>
+
 " Paste mode toggle
-nnoremap <F7> :set invpaste paste?<CR>
-imap <F7> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F7>
+"nnoremap <F7> :set invpaste paste?<CR>
+"imap <F7> <C-O>:set invpaste paste?<CR>
+"set pastetoggle=<F7>
 
 " Space Key Mappings
 " ░░░░░░░░░░░░░░░░░
@@ -481,6 +490,8 @@ set cinkeys=0{,0},:,0#,!^F
 imap qq <Esc>:LocalDate<CR>a
 imap jj <Esc>:LocalTime<CR>a
 imap kk <Esc>:UTCTime<CR>a
+imap yyy <Esc>"*y<CR>a
+imap ppp <C-R><C-O>*
 
 " mouse mode
 set mouse=a
