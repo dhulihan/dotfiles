@@ -367,12 +367,12 @@ nnoremap <Leader>ge :GEdit master:%<CR>
 nnoremap <Leader>vv :Rg<CR>
 " yanks
 nnoremap <Leader>yb :CopyBufferToClipboard<CR>
-nnoremap <Leader>yyy "*y<CR>
-vnoremap <Leader>yyy "*y<CR>
-nnoremap <Leader>ppp "*p<CR>
-vnoremap <Leader>ppp "*p<CR>
-nnoremap <Leader>PPP "*P<CR>
-vnoremap <Leader>PPP "*P<CR>
+"nnoremap <Leader>yyy "*y<CR>
+"vnoremap <Leader>yyy "*y<CR>
+"nnoremap <Leader>ppp "*p<CR>
+"vnoremap <Leader>ppp "*p<CR>
+"nnoremap <Leader>PPP "*P<CR>
+"vnoremap <Leader>PPP "*P<CR>
 
 " F Keys
 " ███████╗
@@ -408,6 +408,13 @@ inoremap <F6> :GblameToggle<CR>
 
 noremap <F7> :GitTimeLapse<CR>
 inoremap <F7> :GitTimeLapse<CR>
+
+noremap <F10> "*y<CR>
+vnoremap <F10> "*y<CR>
+inoremap <F10> "*y<CR>
+noremap <F11> "*p
+vnoremap <F11> "*p
+inoremap <F11> <C-R><C-O>*
 
 " Paste mode toggle
 "nnoremap <F7> :set invpaste paste?<CR>
