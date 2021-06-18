@@ -60,7 +60,6 @@ Plugin 'prettier/vim-prettier', {
   \   'javascript'
   \ ] }
 Plugin 'rhysd/clever-f.vim'
-Plugin 'sickill/vim-pasta'
 
 " Plugin 'wellle/context.vim' " cool but slow
 Plugin 'SirVer/ultisnips'
@@ -424,8 +423,8 @@ inoremap <F7> :GitTimeLapse<CR>
 noremap <F10> "*y<CR>
 vnoremap <F10> "*y<CR>
 inoremap <F10> "*y<CR>
-noremap <F11> "*p
-vnoremap <F11> "*p
+noremap <F11> "*]p
+vnoremap <F11> "*]p
 inoremap <F11> <C-R><C-O>*
 
 " Paste mode toggle
