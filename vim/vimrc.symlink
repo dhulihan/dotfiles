@@ -59,6 +59,8 @@ Plugin 'prettier/vim-prettier', {
   \ 'for': [
   \   'javascript'
   \ ] }
+Plugin 'rhysd/clever-f.vim'
+Plugin 'sickill/vim-pasta'
 
 " Plugin 'wellle/context.vim' " cool but slow
 Plugin 'SirVer/ultisnips'
@@ -69,16 +71,16 @@ Plugin 'honza/vim-snippets'
 "Plugin 'fatih/vim-go'
 Plugin 'sebdah/vim-delve'
 " ^ spinning up a gopls server for every vim session
-Plugin 'robbles/logstash.vim'
+"Plugin 'robbles/logstash.vim'
 Plugin 'hashivim/vim-terraform'
-Plugin 'tpope/vim-cucumber'
-Plugin 'elubow/cql-vim'
+"Plugin 'tpope/vim-cucumber'
+"Plugin 'elubow/cql-vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'jparise/vim-graphql'
-Plugin 'rmelcer/vim-icinga'
-Plugin 'skreuzer/vim-prometheus'
+"Plugin 'jparise/vim-graphql'
+"Plugin 'rmelcer/vim-icinga'
+"Plugin 'skreuzer/vim-prometheus'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 "Plugin 'wannesm/wmgraphviz.vim'
 "Plugin 'elixir-lang/vim-elixir' " not using elixir right now
@@ -113,6 +115,7 @@ Plugin 'tmhedberg/matchit'
 "Plugin 'mtth/scratch.vim'
 "Plugin 'vim-scripts/SearchComplete'
 Plugin 'junegunn/fzf.vim'
+Plugin 'stsewd/fzf-checkout.vim'
 "Plugin 'ronakg/quickr-preview.vim'
 "Plugin 'alok/notational-fzf-vim'
 Plugin 'dhulihan/vim-gtfo'
@@ -322,6 +325,10 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 " select pasted text
 nnoremap gp `[v`]
 
+" :terminal Mappings
+tnoremap <PageUp> <C-W>N<PageUp>
+tnoremap <PageDown> <C-W>N<PageDown>
+
 " Leader Key Mappings
 "      ____________
 "     /\  ________ \
@@ -347,6 +354,8 @@ nnoremap <Leader><tab> :Cd
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
 " open new buffer with name from inner parens
+nnoremap <Leader>1 :DlvToggleBreakpoint<CR>
+nnoremap <Leader>2 :DlvTest<CR>
 nnoremap <Leader>4 :normal si(<CR>
 " copy current file path to clipboard
 nnoremap <Leader>5 :RelPathToClipboard<CR>
@@ -360,7 +369,8 @@ nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
 " git
 nnoremap <Leader>gg :GitPrimaryURL<CR>
-nnoremap <Leader>gb :.GBrowse!<CR>
+nnoremap <Leader>gb :GBranches<CR>
+nnoremap <Leader>gc :.GBrowse!<CR>
 nnoremap <Leader>gx :.GBrowse<CR>
 nnoremap <Leader>gm :GBrowse @origin<CR>
 nnoremap <Leader>ge :GEdit master:%<CR>
@@ -386,7 +396,9 @@ nnoremap <Leader>yb :CopyBufferToClipboard<CR>
 nnoremap <F1> :terminal<cr>
 
 " Paste mode toggle
-nnoremap <F2> :set list!<cr>
+nnoremap <F2> :set invpaste paste?<CR>
+imap <F2> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F2>
 
 " number mode toggle
 noremap <F3> :set invnumber<CR>
@@ -417,9 +429,6 @@ vnoremap <F11> "*p
 inoremap <F11> <C-R><C-O>*
 
 " Paste mode toggle
-"nnoremap <F7> :set invpaste paste?<CR>
-"imap <F7> <C-O>:set invpaste paste?<CR>
-"set pastetoggle=<F7>
 
 " Space Key Mappings
 " ░░░░░░░░░░░░░░░░░
@@ -855,6 +864,13 @@ nnoremap <silent> <C-\> :Buffers<CR>
 " FZF END
 " ------------------------------------------------------------------------------
 
+" ------------------------------------------------------------------------------
+" vim-delve
+" ------------------------------------------------------------------------------
+"use horiz split
+let g:delve_new_command="new"
+" use vimux
+"let g:delve_use_vimux=1
 
 " mtth/scratch.vim ------------------------------------------
 

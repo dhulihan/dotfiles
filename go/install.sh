@@ -1,7 +1,6 @@
 set -x
 go get -u github.com/ashleyschuett/kubernetes-secret-decode
 go get -u github.com/davecgh/go-spew/spew
-go get -u github.com/derekparker/delve/cmd/dlv
 go get -u github.com/erning/gorun
 go get -u github.com/facebook/ent/cmd/entc
 go get -u github.com/fullstorydev/grpcui/cmd/grpcui
@@ -30,5 +29,7 @@ go get -u github.com/google/gops
 # bindata
 go get -u github.com/jteeuwen/go-bindata/...
 go get -u github.com/elazarl/go-bindata-assetfs/...
+
+go get -u github.com/derekparker/delve/cmd/dlv
 
 set +x
