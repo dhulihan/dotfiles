@@ -36,3 +36,4 @@ alias gpogh="git checkout gh-pages && git merge master && git push origin gh-pag
 alias gdiff="git diff --word-diff-regex=. --word-diff=color --no-index"
 alias gt="git show-ref --tags"
 alias gtt="git-tag-log"
+alias branch="git rev-parse --abbrev-ref HEAD"
