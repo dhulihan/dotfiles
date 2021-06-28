@@ -67,7 +67,7 @@ Plugin 'honza/vim-snippets'
 
 " Language-specific
 "Plugin 'stamblerre/gocode' " trouble getting this to work
-"Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go' " gopls issues
 Plugin 'sebdah/vim-delve'
 " ^ spinning up a gopls server for every vim session
 "Plugin 'robbles/logstash.vim'
@@ -217,7 +217,7 @@ autocmd BufNewFile,BufRead .envrc set filetype=sh
 " filetype-specific config
 autocmd Filetype noft setlocal number
 autocmd Filetype markdown setlocal spell
-autocmd Filetype terraform setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype terraform,proto setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 autoindent smartindent
 autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -226,7 +226,6 @@ autocmd Filetype go setlocal tabstop=4 shiftwidth=4
 autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType kamailio setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype proto setlocal tabstop=4 shiftwidth=4
 autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab textwidth=80
 autocmd FileType xml setlocal ts=4 sts=4 sw=4 expandtab
@@ -420,14 +419,12 @@ inoremap <F6> :GblameToggle<CR>
 noremap <F7> :GitTimeLapse<CR>
 inoremap <F7> :GitTimeLapse<CR>
 
-noremap <F10> "*y<CR>
+noremap <F10> "*yy<CR>
 vnoremap <F10> "*y<CR>
 inoremap <F10> "*y<CR>
 noremap <F11> "*]p
 vnoremap <F11> "*]p
 inoremap <F11> <C-R><C-O>*
-
-" Paste mode toggle
 
 " Space Key Mappings
 " ░░░░░░░░░░░░░░░░░
@@ -489,6 +486,24 @@ nnoremap <space>dc :DlvClearAll<CR>
 "vnoremap <Space>p "*p<CR>
 "vnoremap <Space>P "*P<CR>
 
+" Backspace (BS) Keys
+"                  ______
+"                  \     \.
+"                  |`\_____\
+"                  |` |    |
+"     __-====-__   |  |    |
+"    (~<       >~>_|  |    |
+"    {~~-====--~~:  \ |    |
+"    !~~------~~/----`+----/
+"     \         \___     /
+"      >------\     \  <
+"     <_________________>
+
+" disable space cursor movement
+nnoremap <BS> <NOP>
+
+" git things
+nnoremap <BS>gl :GitTimeLapse<CR>
 
 " Visuals
 set cinkeys=0{,0},:,0#,!^F
@@ -1385,6 +1400,17 @@ function! s:CdComplete(ArgLead, CmdLine, CursorPos)
 endfunction
 command! -bar -nargs=1 -complete=customlist,s:CdComplete Cd cd <args>
 command! -bar -nargs=1 -complete=customlist,s:CdComplete Lcd lcd <args>
+
+
+" ------------------------------------------------------------------------------
+" GoPkg | golang package docs/reference
+" ------------------------------------------------------------------------------
+function! GoPkg(pkg)
+  " TODO: add github detection
+  let url = "https://golang.org/pkg/" . (a:pkg)
+  execute "OpenBrowser " . l:url
+endfunction
+command! -nargs=1 GoPkg call GoPkg(<q-args>)
 
 " ------------------------------------------------------------------------------
 " ToggleNetrw - toggle netrw
