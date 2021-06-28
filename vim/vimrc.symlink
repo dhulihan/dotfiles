@@ -420,7 +420,7 @@ inoremap <F6> :GblameToggle<CR>
 noremap <F7> :GitTimeLapse<CR>
 inoremap <F7> :GitTimeLapse<CR>
 
-noremap <F10> "*yy<CR>
+noremap <F10> "*yy
 vnoremap <F10> "*y<CR>
 inoremap <F10> "*y<CR>
 noremap <F11> "*]p
