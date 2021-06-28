@@ -363,6 +363,7 @@ nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>; :ColorColumnToggle<CR>
 nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
+nnoremap <Leader><Leader> :ToggleQuickFix<CR>
 nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
 " git
@@ -1460,6 +1461,18 @@ function! GitPrimaryURL()
   echo l:url
 endfunction
 command! GitPrimaryURL call GitPrimaryURL()
+
+" ------------------------------------------------------------------------------
+" ToggleQuickFix
+" ------------------------------------------------------------------------------
+function! ToggleQuickFix()
+if empty(filter(getwininfo(), 'v:val.quickfix'))
+    copen
+else
+    cclose
+endif
+endfunction
+command! ToggleQuickFix call ToggleQuickFix()
 
 " ------------------------------------------------------------------------------
 " One-liners
