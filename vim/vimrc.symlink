@@ -221,7 +221,7 @@ autocmd Filetype terraform,proto setlocal expandtab tabstop=2 shiftwidth=2 softt
 autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 autoindent smartindent
 autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-autocmd Filetype groovy setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype groovy,sql setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4
 autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType kamailio setlocal ts=4 sts=4 sw=4 expandtab
@@ -364,8 +364,8 @@ nnoremap <Leader>l :set list!<CR>
 nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
 nnoremap <Leader><Leader> :ToggleQuickFix<CR>
-nnoremap <Leader>, zr<CR>
-nnoremap <Leader>. zm<CR>
+"nnoremap <Leader>, zr<CR>
+"nnoremap <Leader>. zm<CR>
 " git
 nnoremap <Leader>gg :GitPrimaryURL<CR>
 nnoremap <Leader>gb :GBranches<CR>
@@ -505,6 +505,8 @@ nnoremap <BS> <NOP>
 
 " git things
 nnoremap <BS>gl :GitTimeLapse<CR>
+nnoremap <BS>= zm
+nnoremap <BS>- zr
 
 " Visuals
 set cinkeys=0{,0},:,0#,!^F
@@ -1461,6 +1463,22 @@ function! GitPrimaryURL()
   echo l:url
 endfunction
 command! GitPrimaryURL call GitPrimaryURL()
+
+" ------------------------------------------------------------------------------
+" Create directory on save
+" ------------------------------------------------------------------------------
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
 
 " ------------------------------------------------------------------------------
 " ToggleQuickFix

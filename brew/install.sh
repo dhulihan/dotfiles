@@ -101,6 +101,7 @@ brew install tmux
 brew install tmux-xpanes
 brew install tree
 brew install vault
+brew install vaulted
 brew install watch
 brew install wdiff
 brew install wget
