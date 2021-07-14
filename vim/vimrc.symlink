@@ -364,8 +364,8 @@ nnoremap <Leader>l :set list!<CR>
 nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
 nnoremap <Leader><Leader> :ToggleQuickFix<CR>
-"nnoremap <Leader>, zr<CR>
-"nnoremap <Leader>. zm<CR>
+nnoremap <Leader>, zr<CR>
+nnoremap <Leader>. zm<CR>
 " git
 nnoremap <Leader>gg :GitPrimaryURL<CR>
 nnoremap <Leader>gb :GBranches<CR>
@@ -419,6 +419,12 @@ inoremap <F6> :GblameToggle<CR>
 
 noremap <F7> :GitTimeLapse<CR>
 inoremap <F7> :GitTimeLapse<CR>
+
+noremap <F9> :vsp<CR>
+inoremap <F9> <C-O>:vsp<CR>
+" open tag in vertical split
+"noremap <F9> :exec "vert norm <C-V><C-W>f"<CR>
+"inoremap <F9> <C-O>:exec "vert norm <C-V><C-W>f"<CR>
 
 noremap <F10> "*yy
 vnoremap <F10> "*y<CR>
@@ -1475,6 +1481,7 @@ function s:MkNonExDir(file, buf)
         endif
     endif
 endfunction
+
 augroup BWCCreateDir
     autocmd!
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
