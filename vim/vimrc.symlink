@@ -1502,7 +1502,7 @@ command! ToggleQuickFix call ToggleQuickFix()
 " ------------------------------------------------------------------------------
 " One-liners
 " ------------------------------------------------------------------------------
-command! Executable silent execute '! chmod +x %' | execute ':redraw!'
+command! Executable silent execute '! chmod +x %' | execute 'e!' | execute ':redraw!'
 command! IndentInfo execute 'set ts? sts? sw? ex? expandtab? autoindent? smartindent?'
 command! CopyBufferToClipboard execute '0,$y*'
 command! PrettifyJSON execute '%!jq .'
