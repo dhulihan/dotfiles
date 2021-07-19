@@ -313,12 +313,17 @@ imap <C-Return> <CR><CR><C-o>k<Tab>
 " imap wq <Esc>:wq<CR>
 " imap ww <Esc>:w<CR>i
 
+" Visual Mode mappings
+
 " In visual mode, make indent/unindent reselect after indent
 "vmap <TAB> >gv
 "vmap <S-TAB> <gv
 
 " easier visual mode replace
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" like . but for visual mode
+vnoremap . :normal .<CR>
 
 " select pasted text
 nnoremap gp `[v`]
