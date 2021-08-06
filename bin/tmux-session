@@ -52,7 +52,7 @@ if [[ $? -ne 0 ]] ; then
 
 	# create windows
 	tmux new-window -t $SESSION_NAME -n vim
-	tmux new-window -t $SESSION_NAME -n zsh
+	#tmux new-window -t $SESSION_NAME -n zsh
 
 	# open vim on second window
 	tmux send-keys -t $SESSION_NAME:2 "vim4" C-m

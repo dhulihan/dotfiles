@@ -1131,14 +1131,15 @@ let g:strip_whitespace_confirm = 0
 " ------------------------------------------------------------------------------
 " utltisnips
 " ------------------------------------------------------------------------------
+
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 if !exists("g:UltiSnipsSnippetDirectories")
-  let g:UltiSnipsSnippetDirectories=[$HOME.'/.ultisnips']
+  let g:UltiSnipsSnippetDirectories=[$HOME.'/.ultisnips',$HOME.'/.vim/bundle/vim-snippets/UltiSnips']
 else
-  let g:UltiSnipsSnippetDirectories+=[$HOME.'/.ultisnips']
+  let g:UltiSnipsSnippetDirectories=[$HOME.'/.ultisnips',$HOME.'/.vim/bundle/vim-snippets/UltiSnips']
 endif
 
 
