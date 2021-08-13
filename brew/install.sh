@@ -100,6 +100,7 @@ brew install ttygif
 brew install tmux
 brew install tmux-xpanes
 brew install tree
+brew install broot
 brew install vault
 brew install vaulted
 brew install watch

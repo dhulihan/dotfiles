@@ -1,12 +1,23 @@
 priority -10
 
-snippet cb "Codeblock" b
+snippet ``` "Codeblock" i
 \`\`\`$1
 $2
 \`\`\`
 $0
 endsnippet
 
-snippet l "Link to something"
-[${2}](${1:URL})$0
+snippet * "Internal Page Link"
+* [${1}](${1/\w+/$0.md/g})$0
+endsnippet
+
+snippet [ "Link to something"
+[${1}](${2:URL})$0
+endsnippet
+
+snippet ad "Advantages/Disadvantages"
+* Advantages
+	* ${1}
+* Disadvantages
+	* ${2}
 endsnippet
