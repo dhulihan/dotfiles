@@ -8,16 +8,23 @@ $0
 endsnippet
 
 snippet * "Internal Page Link"
-* [${1}](${1/\w+/$0.md/g})$0
+* [${1}](${1/\w+/$0.md/g}$0)
 endsnippet
 
 snippet [ "Link to something"
 [${1}](${2:URL})$0
 endsnippet
 
-snippet ad "Advantages/Disadvantages"
+snippet "* a" "Advantages/Disadvantages"
 * Advantages
 	* ${1}
 * Disadvantages
+	* ${2}
+endsnippet
+
+snippet "* l" "Likes/Disllikes"
+* Likes
+	* ${1}
+* Dislikes
 	* ${2}
 endsnippet
