@@ -32,7 +32,6 @@ Plugin 'gmarik/Vundle.vim'
 " Vim
 Plugin 'mhinz/vim-startify'
 Plugin 'jeanCarloMachado/vim-toop'
-Plugin 'dhruvasagar/vim-zoom'
 "Plugin 'Yggdroot/indentLine' " don't need this, use list
 "Plugin 'machakann/vim-highlightedyank' " cool but annoying after a while
 "Plugin 'chrisbra/Recover.vim'
@@ -438,8 +437,8 @@ inoremap <F10> "*y<CR>
 noremap <F11> "*]p
 vnoremap <F11> "*]p
 inoremap <F11> <C-R><C-O>*
-noremap <F12> :eval g:zoom#toggle()<CR>
-inoremap <F12> :eval g:zoom#toggle()<CR>
+noremap <F12> :ZoomToggle<CR>
+inoremap <F12> :ZoomToggle<CR>
 
 " Space Key Mappings
 " ░░░░░░░░░░░░░░░░░
@@ -1032,7 +1031,6 @@ let g:lightline = {
 \ 'component_function': {
 \   'gitbranch': 'fugitive#head',
 \   'gitcommit': 'GitCommit',
-\   'zoom': 'zoom#statusline',
 \ },
 \ '_component': {
 \   '_lineinfo': ' %3l:%-2v',
@@ -1044,17 +1042,11 @@ let g:lightline = {
 
 let g:lightline.active = {
 \  'left': [ [ 'mode', 'paste' ],
-\            [ 'zoom' ],
 \             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ],
 \  'right': [ ['lineinfo'],
 \            [ 'percent' ],
 \            [ 'fileformat', 'fileencoding', 'filetype' ],
 \            ['ruler', 'linter_errors', 'linter_warnings', 'linter_ok' ] ] }
-
-" colorize components
-let g:lightline.component_type = {
-      \     'zoom': 'warning',
-      \ }
 
 " show all the time, not just on splits
 set laststatus=2
@@ -1332,6 +1324,22 @@ function! ColorColumnToggle()
   endif
 endfunction
 command! ColorColumnToggle call ColorColumnToggle()
+
+" ------------------------------------------------------------------------------
+" zoom toogle
+" ------------------------------------------------------------------------------
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
 
 " ------------------------------------------------------------------------------
 " open directory of current file in system file browser
