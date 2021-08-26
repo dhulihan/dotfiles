@@ -416,8 +416,8 @@ noremap <silent> <F4> :ColorColumnToggle<CR>
 inoremap <silent> <F4> :ColorColumnToggle<CR>
 
 " reload buffer
-noremap <F6> :e!<CR>
-inoremap <F6> <C-O>:e!<CR>
+noremap <F5> :e!<CR>
+inoremap <F5> <C-O>:e!<CR>
 
 " reload vim config
 noremap <F6> :source ~/.vimrc \| UltiSnipsReload <CR>
