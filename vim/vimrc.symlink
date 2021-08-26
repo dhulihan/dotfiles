@@ -40,7 +40,7 @@ Plugin 'jeanCarloMachado/vim-toop'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junkblocker/git-time-lapse'
 Plugin 'tpope/vim-rhubarb'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter' " performance issues 2021-08-24, try to update
 
 " General Syntax
 "Plugin 'jiangmiao/auto-pairs'
@@ -415,15 +415,19 @@ inoremap <silent> <F4> :ColorColumnToggle<CR>
 noremap <silent> <F4> :ColorColumnToggle<CR>
 inoremap <silent> <F4> :ColorColumnToggle<CR>
 
-" reload file
-noremap <F5> :source ~/.vimrc \| UltiSnipsReload <CR>
-inoremap <F5> <C-O>:source ~/.vimrc \| UltiSnipsReload <CR>
+" reload buffer
+noremap <F6> :e!<CR>
+inoremap <F6> <C-O>:e!<CR>
 
-noremap <F6> :GblameToggle<CR>
-inoremap <F6> :GblameToggle<CR>
+" reload vim config
+noremap <F6> :source ~/.vimrc \| UltiSnipsReload <CR>
+inoremap <F6> <C-O>:source ~/.vimrc \| UltiSnipsReload <CR>
 
-noremap <F7> :GitTimeLapse<CR>
-inoremap <F7> :GitTimeLapse<CR>
+noremap <F7> :GblameToggle<CR>
+inoremap <F7> :GblameToggle<CR>
+
+noremap <F8> :GitTimeLapse<CR>
+inoremap <F8> :GitTimeLapse<CR>
 
 noremap <F9> :vsp<CR>
 inoremap <F9> <C-O>:vsp<CR>
@@ -438,7 +442,7 @@ noremap <F11> "*]p
 vnoremap <F11> "*]p
 inoremap <F11> <C-R><C-O>*
 noremap <F12> :ZoomToggle<CR>
-inoremap <F12> :ZoomToggle<CR>
+inoremap <F12> <C-O>:ZoomToggle<CR>
 
 " Space Key Mappings
 " ░░░░░░░░░░░░░░░░░
@@ -1329,14 +1333,14 @@ command! ColorColumnToggle call ColorColumnToggle()
 " zoom toogle
 " ------------------------------------------------------------------------------
 function! s:ZoomToggle() abort
-    if exists('t:zoomed') && t:zoomed
-        execute t:zoom_winrestcmd
-        let t:zoomed = 0
+    if exists('w:zoomed') && w:zoomed
+        execute w:zoom_winrestcmd
+        let w:zoomed = 0
     else
-        let t:zoom_winrestcmd = winrestcmd()
+        let w:zoom_winrestcmd = winrestcmd()
         resize
         vertical resize
-        let t:zoomed = 1
+        let w:zoomed = 1
     endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
