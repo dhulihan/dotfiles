@@ -207,30 +207,37 @@ set autoindent
 "set spellfile=$HOME/.en.utf-8.add,$HOME/.en-secret.utf-8.add
 " spelling END ---------------------------------------------------------------
 
-" set filetype based on filename
-"autocmd BufNewFile,BufRead *.md set filetype=markdown
-autocmd BufNewFile,BufRead *.template set filetype=json
-autocmd BufNewFile,BufRead *.json.tmpl, *.js.symlink set filetype=json
-autocmd BufNewFile,BufRead *.yaml.dockercompose,*.yaml.tmpl set filetype=yaml
-autocmd BufNewFile,BufRead .envrc set filetype=sh
+augroup filetypes
+  autocmd!
+  autocmd BufNewFile,BufRead *.template set filetype=json
+  autocmd BufNewFile,BufRead *.json.tmpl, *.js.symlink set filetype=json
+  autocmd BufNewFile,BufRead *.yaml.dockercompose,*.yaml.tmpl set filetype=yaml
+  autocmd BufNewFile,BufRead .envrc set filetype=sh
 
-" filetype-specific config
-autocmd Filetype noft setlocal number
-autocmd Filetype markdown setlocal spell
-autocmd Filetype terraform,proto setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 autoindent smartindent
-autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-autocmd Filetype groovy,sql setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd Filetype go setlocal tabstop=4 shiftwidth=4
-autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType kamailio setlocal ts=4 sts=4 sw=4 expandtab
-autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab textwidth=80
-autocmd FileType xml setlocal ts=4 sts=4 sw=4 expandtab
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+  " filetype-specific config
+  autocmd Filetype noft setlocal number
+  autocmd Filetype markdown setlocal spell
+  autocmd Filetype terraform,proto setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 autoindent smartindent
+  autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd Filetype logstash setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd Filetype groovy,sql setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd Filetype go setlocal tabstop=4 shiftwidth=4
+  autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType kamailio setlocal ts=4 sts=4 sw=4 expandtab
+  autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab textwidth=80
+  autocmd FileType xml setlocal ts=4 sts=4 sw=4 expandtab
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+
+  " Open md files with system tool
+  autocmd FileType html let b:dispatch = "open '%'"
+  autocmd FileType markdown let b:dispatch = "open '%'"
+  autocmd FileType sh let b:dispatch = "'%'"
+  autocmd FileType go let b:dispatch = "go run '%'"
+augroup END
 
 " better tab completion of filepaths
 set wildmenu
@@ -255,10 +262,13 @@ set undodir=$HOME/.vim/undo " mkdir this if you need to
 set undofile " Maintain undo history between sessions
 
 " Persist cursor
-autocmd BufReadPost *
-  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-  \ |   exe "normal! g`\""
-  \ | endif
+augroup persist_cursor
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
+augroup END
 
 " General Key Mappings
 "     ________________________________
@@ -717,7 +727,11 @@ let g:EasyClipShareYanks=0
 " Airline END -----------------------------------------------
 
 " Markdown
-autocmd BufNewFile *.md MarkdownHeader
+augroup filetype_markdown
+  " clear out all autocmds to prevent duplicates
+  autocmd!
+  autocmd BufNewFile *.md MarkdownHeader
+augroup END
 
 " tpope/vim-markdown ----------------------------------------
 let g:markdown_gfm_languages = ["ruby", "erb=eruby"]
@@ -726,11 +740,6 @@ let g:markdown_gfm_languages = ["ruby", "erb=eruby"]
 
 " tpope/vim-dispatch ----------------------------------------
 
-" Open md files with system tool
-autocmd FileType html let b:dispatch = "open '%'"
-autocmd FileType markdown let b:dispatch = "open '%'"
-autocmd FileType sh let b:dispatch = "'%'"
-autocmd FileType go let b:dispatch = "go run '%'"
 " tpope/vim-dispatch END ------------------------------------
 
 " plasticboy/vim-markdown -----------------------------------
@@ -1116,7 +1125,10 @@ command! ALEDisableFixersBuffer let b:ale_fix_on_save=0
 command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
 
 " don't autofix these filetypes
-autocmd FileType sql,json ALEDisableFixersBuffer
+augroup ale_fixers_disabled
+  autocmd!
+  autocmd FileType sql,json ALEDisableFixersBuffer
+augroup END
 " ale END ---------------------------------------------------
 "
 
