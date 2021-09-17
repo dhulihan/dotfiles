@@ -1297,6 +1297,18 @@ command! Qa qa
 " ------------------------------------------------------------------------------
 " Splits
 " ------------------------------------------------------------------------------
+" TODO: make this parameter-based
+function! SplitSix()
+  sp
+  sp
+  vsp
+  winc k
+  vsp
+  winc k
+  vsp
+endfunction
+command! SplitSix call SplitSix()
+
 function! SplitTwoByTwo()
   sp
   vsp
