@@ -8,6 +8,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " load fzf from git
 set rtp+=~/.fzf
 
+" add rtp path for custom syntax, functions, etc.
+set rtp+=~/.vim-dotfiles
+
 " Pre-plugin config
 " notational-fzf-vim ##########################################################
 "let g:nv_search_paths = ['~/Notes']
@@ -439,8 +442,8 @@ inoremap <F7> :GblameToggle<CR>
 noremap <F8> :GitTimeLapse<CR>
 inoremap <F8> :GitTimeLapse<CR>
 
-noremap <F9> :vsp<CR>
-inoremap <F9> <C-O>:vsp<CR>
+noremap <F9> :CopyBufferToClipboard<CR>
+inoremap <F9> <C-O>:CopyBufferToClipboard<CR>
 " open tag in vertical split
 "noremap <F9> :exec "vert norm <C-V><C-W>f"<CR>
 "inoremap <F9> <C-O>:exec "vert norm <C-V><C-W>f"<CR>
