@@ -1,0 +1,46 @@
+if exists('g:dotfiles_loaded_markdown')
+  finish
+endif
+let g:dotfiles_loaded_markdown = 1
+
+imap ** <Esc>:MarkdownInternalLink<CR>
+imap *& <Esc>:MarkdownExternalLink<CR>
+
+" ------------------------------------------------------------------------------
+" MarkdownInternalLink - add link to new/existing markdown file and open
+" ------------------------------------------------------------------------------
+function! MarkdownInternalLink(name)
+  if a:name == ""
+    let l:name = input("Friendly name: ")
+  else
+    let l:name = a:name
+  endif
+
+  let l:filename = l:name . ".md"
+  let l:line = printf("[%s](%s)", l:name, l:filename)
+  let @z = l:line
+  normal! "zp
+  execute 'edit' l:filename
+endfunction
+command! MarkdownInternalLink call MarkdownInternalLink(<q-args>)
+
+" ------------------------------------------------------------------------------
+" MarkdownExternalLink - add link to external URL
+" ------------------------------------------------------------------------------
+function! MarkdownExternalLink(name)
+  let l:url = input("URL: ")
+  let l:title = input("Title: ")
+  let l:line = printf("[%s](%s)", l:title, l:url)
+  let @z = l:line
+  normal! "zp
+
+  " move to title field to fill out
+  if l:title == ""
+    normal F]
+    startinsert
+  else
+    normal o
+    startinsert
+  endif
+endfunction
+command! MarkdownExternalLink call MarkdownExternalLink(<q-args>)

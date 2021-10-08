@@ -209,5 +209,7 @@ brew install --cask bloomrpc
 
 brew tap johanhaleby/kubetail && brew install kubetail
 
+brew install txn2/tap/kubefwd
+
 set +e
 say "brew is done"

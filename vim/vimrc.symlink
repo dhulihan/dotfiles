@@ -433,8 +433,8 @@ noremap <F5> :e!<CR>
 inoremap <F5> <C-O>:e!<CR>
 
 " reload vim config
-noremap <F6> :source ~/.vimrc \| UltiSnipsReload <CR>
-inoremap <F6> <C-O>:source ~/.vimrc \| UltiSnipsReload <CR>
+noremap <F6> :Reload<CR>
+inoremap <F6> <C-O>:Reload<CR>
 
 noremap <F7> :GblameToggle<CR>
 inoremap <F7> :GblameToggle<CR>
@@ -454,6 +454,7 @@ inoremap <F10> "*y<CR>
 noremap <F11> "*]p
 vnoremap <F11> "*]p
 inoremap <F11> <C-R><C-O>*
+cnoremap <F11> <C-R><C-O>*
 noremap <F12> :ZoomToggle<CR>
 inoremap <F12> <C-O>:ZoomToggle<CR>
 
