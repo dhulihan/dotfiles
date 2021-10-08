@@ -9,20 +9,25 @@ imap *& <Esc>:MarkdownExternalLink<CR>
 " ------------------------------------------------------------------------------
 " MarkdownInternalLink - add link to new/existing markdown file and open
 " ------------------------------------------------------------------------------
-function! MarkdownInternalLink(name)
-  if a:name == ""
-    let l:name = input("Friendly name: ")
-  else
-    let l:name = a:name
+function! MarkdownInternalLink()
+  let l:filename = input("Filename (no ext): ")
+
+  if l:filename == ""
+    echoerr "you must provide a filename"
   endif
 
-  let l:filename = l:name . ".md"
+  let l:name = input("Friendly name (optional): ", l:filename)
+  if l:name == ""
+    let l:name = l:filename
+  endif
+
+  let l:filename = l:filename . ".md"
   let l:line = printf("[%s](%s)", l:name, l:filename)
   let @z = l:line
   normal! "zp
   execute 'edit' l:filename
 endfunction
-command! MarkdownInternalLink call MarkdownInternalLink(<q-args>)
+command! MarkdownInternalLink call MarkdownInternalLink()
 
 " ------------------------------------------------------------------------------
 " MarkdownExternalLink - add link to external URL
