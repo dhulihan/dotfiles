@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# a tool for getting PID info
+#
+# get user/memory
+ps -o pid,vsz=MEMORY -o user,group=GROUP -o comm,args=ARGS -p $1
+
+# get cwd
+lsof -a -d cwd -p $1
