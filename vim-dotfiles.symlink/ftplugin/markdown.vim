@@ -34,7 +34,11 @@ command! MarkdownInternalLink call MarkdownInternalLink()
 " ------------------------------------------------------------------------------
 function! MarkdownExternalLink(name)
   let l:url = input("URL: ")
-  let l:title = input("Title: ")
+
+  " get html title
+  let l:html_title = SystemChomp("html-title " . l:url)
+
+  let l:title = input("Title: ", l:html_title)
   let l:line = printf("[%s](%s)", l:title, l:url)
   let @z = l:line
   normal! "zp
