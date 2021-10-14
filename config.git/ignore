@@ -5,3 +5,4 @@ tags
 *.tags
 matches.tmp
 tmp/cache
+.git/
