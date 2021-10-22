@@ -48,8 +48,8 @@ function! MarkdownExternalLink(name)
     normal F]
     startinsert
   else
-    normal o
-    startinsert
+    "normal o
+    "startinsert
   endif
 endfunction
 command! MarkdownExternalLink call MarkdownExternalLink(<q-args>)

@@ -8,12 +8,27 @@ interval: 5
 currency: USD
 currency-summary-only: false
 watchlist:
-  - GOLD
-  - TGT
-  - NFLX
+  - ABNB
   - BTC-USD
+  - NFLX
+  - TGT
   - VGT
   - FXI
+  - GC=F # gold
+  - SI=F # silver
+  - HG=F # copper
+  #- PL=F # platinum
+  - KE=F # rough wheat
+  - ZR=F # rough rice
+  - ZS=F # soybeans
+  - ZC=F # corn
+  - ZO=F # oats
+  - SB=F # sugar
+  - HE=F # lean hogs
+  - LE=F # live cattle
+  - GF=F # feeder cattle
+  - CT=F # cotton
+  - CL=F # crude oil
 lots:
   - symbol: "ABNB"
     quantity: 35.0
