@@ -1,0 +1,21 @@
+# ~/.ticker.yaml
+show-summary: false
+show-tags: false
+show-fundamentals: true
+show-separator: true
+show-holdings: false
+interval: 5
+currency: USD
+currency-summary-only: false
+watchlist:
+  - GOLD
+  - TGT
+  - NFLX
+  - BTC-USD
+  - VGT
+  - FXI
+lots:
+  - symbol: "ABNB"
+    quantity: 35.0
+    unit_cost: 146.00
+    fixed_cost: 7.00 # e.g. brokerage commission fee
