@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# purpose: santize and dasherize/kebabify a filename
+#
+#   $ dash "what in the FlyInG burritO brother's 27 ghosts is going on here?\!"
+#   what-in-the-flying-burrito-brothers-27-ghosts-is-going-on-here
+#
+if [ $# -eq 0 ]
+then
+  echo "No arguments supplied"
+fi
+
+SRC=$1
+DST=$(echo $1 | tr ' ' '-' | tr [:upper:] [:lower:] | tr -cd '[:alnum:]._-')
+echo -n $DST
