@@ -289,6 +289,11 @@ ino <C-C> <Esc>
 inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 
+" command mode word operations, shell style
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right><Right>
+cnoremap <Esc>d <S-Right><C-w>
+
 " paste from system clipboard
 inoremap <C-Space> <C-r><C-o>*
 
