@@ -289,6 +289,10 @@ ino <C-C> <Esc>
 inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 
+" save file
+inoremap <C-s> <Esc>:w<cr>
+noremap <C-s> :w<cr>
+
 " command mode word operations, shell style
 cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right><Right>
@@ -428,10 +432,7 @@ inoremap <F3> <C-O>:set invnumber<CR>
 
 " Save search matches in separate file
 noremap <silent> <F4> :ColorColumnToggle<CR>
-inoremap <silent> <F4> :ColorColumnToggle<CR>
-
-noremap <silent> <F4> :ColorColumnToggle<CR>
-inoremap <silent> <F4> :ColorColumnToggle<CR>
+inoremap <silent> <F4> <C-O>:ColorColumnToggle<CR>
 
 " reload buffer
 noremap <F5> :e!<CR>
@@ -456,6 +457,8 @@ inoremap <F9> <C-O>:CopyBufferToClipboard<CR>
 noremap <F10> "*yy
 vnoremap <F10> "*y<CR>
 inoremap <F10> "*y<CR>
+" TODO: this works well for multi-line (code blocks) but not so great for
+" one-liner snippets
 noremap <F11> "*]p
 vnoremap <F11> "*]p
 inoremap <F11> <C-R><C-O>*
@@ -612,6 +615,7 @@ cnoremap <C-F>		<Right>
 cnoremap <C-N>		<Down>
 " recall previous (older) command-line
 cnoremap <C-P>		<Up>
+
 " command-line END ------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
@@ -771,6 +775,12 @@ let g:vim_markdown_fenced_languages = [
 \'prom=prometheus',
 \'kam=kamailio',
 \]
+
+let g:vim_markdown_auto_insert_bullets = 1
+
+" save any edits you made before moving you to linked file
+let g:vim_markdown_autowrite = 1
+
 " plasticboy/vim-markdown END -------------------------------
 
 " jiangmiao/auto-pairs --------------------------------------

@@ -24,8 +24,15 @@ function! MarkdownInternalLink()
   let l:filename = l:filename . ".md"
   let l:line = printf("[%s](%s)", l:name, l:filename)
   let @z = l:line
+
+  " put link
   normal! "zp
-  execute 'edit' l:filename
+
+  " open file using plasticboy/vim-markdown (which supports autosave)
+  normal ge
+
+  " open file classic mode
+  "execute 'edit' l:filename
 endfunction
 command! MarkdownInternalLink call MarkdownInternalLink()
 
