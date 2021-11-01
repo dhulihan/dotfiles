@@ -10,6 +10,7 @@ currency-summary-only: false
 watchlist:
   - ABNB
   - BTC-USD
+  - ETH-USD
   - NFLX
   - TGT
   - VGT
