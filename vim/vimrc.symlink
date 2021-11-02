@@ -1044,6 +1044,8 @@ endfunction
 "###############################################################################
 " vim-fugitive
 "###############################################################################
+command! Gplo execute "Git pull origin"
+
 function! GblameToggle()
   if &l:filetype ==# 'fugitiveblame'
     close
