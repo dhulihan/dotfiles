@@ -15,6 +15,7 @@ watchlist:
   - TGT
   - VGT
   - FXI
+  - NET  # cloudflare
   - GC=F # gold
   - SI=F # silver
   - HG=F # copper

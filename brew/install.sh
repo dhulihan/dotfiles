@@ -156,6 +156,8 @@ brew install tflint
 brew cask install bitbar
 brew cask install macvim
 
+brew install ericm/stonks/stonks
+
 # Sierra
 brew install reattach-to-user-namespace
 

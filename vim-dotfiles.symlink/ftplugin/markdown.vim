@@ -40,12 +40,12 @@ command! MarkdownInternalLink call MarkdownInternalLink()
 " MarkdownExternalLink - add link to external URL
 " ------------------------------------------------------------------------------
 function! MarkdownExternalLink(name)
-  let l:url = input("Enter URL: ")
+  let l:url = input("URL: ")
 
   " get html title
   let l:html_title = SystemChomp("html-title " . l:url)
 
-  let l:title = input(l:html_title)
+  let l:title = input("Title: ", l:html_title)
   let l:line = printf("[%s](%s)", l:title, l:url)
   let @z = l:line
   normal! "zp
