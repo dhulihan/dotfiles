@@ -68,6 +68,7 @@ brew install openssl
 brew install opencv
 brew install operator-sdk
 brew install peco
+brew install pgcli
 brew install pg_top
 brew install pkgconfig
 brew install pyenv
