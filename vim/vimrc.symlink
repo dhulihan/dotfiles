@@ -296,7 +296,7 @@ noremap <C-s> :w<cr>
 " command mode word operations, shell style
 cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right><Right>
-cnoremap <Esc>d <S-Right><C-w>
+cnoremap <Esc>d <S-Right><C-w><Del>
 
 " paste from system clipboard
 inoremap <C-Space> <C-r><C-o>*
