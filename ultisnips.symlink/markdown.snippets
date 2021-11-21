@@ -1,10 +1,24 @@
 priority -10
 
-snippet ``` "Codeblock" i
+
+snippet ``` "standalone fenced codeblock" i
 \`\`\`$1
 $2
 \`\`\`
-$0
+endsnippet
+
+snippet ` "fenced multi-line codeblock after inline code" i
+
+	\`\`\`$1
+	$2
+	\`\`\`
+endsnippet
+
+snippet "* Example"  "fenced multi-line codeblock after bullet item"
+* Example
+	\`\`\`$1
+	$2
+	\`\`\`
 endsnippet
 
 snippet * "Internal Page Link"
