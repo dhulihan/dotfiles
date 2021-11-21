@@ -457,12 +457,13 @@ inoremap <F9> <C-O>:CopyBufferToClipboard<CR>
 noremap <F10> "*yy
 vnoremap <F10> "*y<CR>
 inoremap <F10> "*y<CR>
-" TODO: this works well for multi-line (code blocks) but not so great for
-" one-liner snippets
+
+" put from clipboard and adjust indent to match current line
 noremap <F11> "*]p
 vnoremap <F11> "*]p
-inoremap <F11> <C-R><C-O>*
-cnoremap <F11> <C-R><C-O>*
+cnoremap <F11> <C-R><C-0>*
+inoremap <F11> <C-R><C-P>*
+
 noremap <F12> :ZoomToggle<CR>
 inoremap <F12> <C-O>:ZoomToggle<CR>
 
