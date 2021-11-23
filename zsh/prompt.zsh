@@ -38,6 +38,10 @@ git_commit() {
   echo "%{$fg_bold[grey]%}$($git rev-parse --short HEAD 2>/dev/null)%{$reset_color%}"
 }
 
+git_commit_timestamp() {
+  echo "%{$fg_bold[grey]%}$(git log -1 --format="%at" | xargs -I{} gdate -d @{} +%Y-%m-%dT%H:%M:%S)%{$reset_color%}"
+}
+
 git_dirty() {
   if $(! $git status -s &> /dev/null)
   then
@@ -107,7 +111,7 @@ random_emoji() {
 
 
 set_prompt() {
-	export PROMPT=$'\n$(random_emoji) $(datestamp) %(?.%F{green}.%F{red}%?)%f\n$(directory_name) $(git_dirty) $(git_commit)$(need_push)\n%F{242}$ %f'
+	export PROMPT=$'\n$(random_emoji) $(datestamp) %(?.%F{green}.%F{red}%?)%f\n$(directory_name) $(git_dirty) $(git_commit) $(git_commit_timestamp)$(need_push)\n%F{242}$ %f'
 }
 
 precmd() {
