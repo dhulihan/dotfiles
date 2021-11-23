@@ -35,11 +35,11 @@ git_branch() {
 }
 
 git_commit() {
-  echo "%{$fg_bold[grey]%}$($git rev-parse --short HEAD 2>/dev/null)%{$reset_color%}"
+  echo "%{$fg_bold[blue]%}$($git rev-parse --short HEAD 2>/dev/null)%{$reset_color%}"
 }
 
 git_commit_timestamp() {
-  echo "%{$fg_bold[grey]%}$(git log -1 --format="%at" | xargs -I{} gdate -d @{} +%Y-%m-%dT%H:%M:%S)%{$reset_color%}"
+	echo "%{$fg_bold[grey]%}($(git log -1 --format="%at" | xargs -I{} gdate -d @{} +%Y-%m-%d))%{$reset_color%}"
 }
 
 git_dirty() {
