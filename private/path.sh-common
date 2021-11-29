@@ -1,0 +1,5 @@
+# private path
+if [[ -a ~/.path-private.sh ]]
+then
+  source ~/.path-private.sh
+fi
