@@ -30,7 +30,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " System
-"Plugin 'benmills/vimux'
+Plugin 'benmills/vimux'
 
 " Vim
 Plugin 'mhinz/vim-startify'
@@ -63,6 +63,7 @@ Plugin 'prettier/vim-prettier', {
   \   'javascript'
   \ ] }
 Plugin 'rhysd/clever-f.vim'
+Plugin 'bogado/file-line' " open file:line
 
 " Plugin 'wellle/context.vim' " cool but slow
 Plugin 'SirVer/ultisnips'
@@ -390,7 +391,8 @@ nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>; :ColorColumnToggle<CR>
 nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
-nnoremap <Leader><Leader> :ToggleQuickFix<CR>
+nnoremap <Leader><Leader> :ToggleQuickFix<CR> 
+"nnoremap <Leader>' :ToggleQuickFix<CR>
 nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
 " git
@@ -932,8 +934,9 @@ nnoremap <silent> <C-\> :Buffers<CR>
 " ------------------------------------------------------------------------------
 "use horiz split
 let g:delve_new_command="new"
+
 " use vimux
-"let g:delve_use_vimux=1
+let g:delve_use_vimux=1
 
 " mtth/scratch.vim ------------------------------------------
 

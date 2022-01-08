@@ -92,6 +92,7 @@ brew install sipp
 brew install sox
 brew install sngrep
 brew install ssh-copy-id
+brew install stern
 brew install stuntman
 brew install telnet
 brew install terminal-notifier
