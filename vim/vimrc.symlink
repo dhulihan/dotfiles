@@ -456,9 +456,12 @@ inoremap <F9> <C-O>:CopyBufferToClipboard<CR>
 "noremap <F9> :exec "vert norm <C-V><C-W>f"<CR>
 "inoremap <F9> <C-O>:exec "vert norm <C-V><C-W>f"<CR>
 
-noremap <F10> "*yy
+" start at beginning of line
+noremap <F10> ^"*y$
 vnoremap <F10> "*y<CR>
-inoremap <F10> "*y<CR>
+
+" TODO: this needs some love
+inoremap <F10> <C-o>^"*y<CR>
 
 " put from clipboard and adjust indent to match current line
 noremap <F11> "*]p

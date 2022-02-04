@@ -1,4 +1,10 @@
-git branch -m master main
-git fetch origin
-git branch -u origin/main main
-git remote set-head origin -a
+#!/bin/bash
+
+# gh recommended
+#git branch -m master main
+#git fetch origin
+#git branch -u origin/main main
+#git remote set-head origin -a
+
+# dave nuke and prune
+git checkout main && git branch -D master && git fetch --prune
