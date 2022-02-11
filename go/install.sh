@@ -32,4 +32,6 @@ go get -u github.com/elazarl/go-bindata-assetfs/...
 
 go get -u github.com/derekparker/delve/cmd/dlv
 
+go install github.com/google/gops@latest
+
 set +x

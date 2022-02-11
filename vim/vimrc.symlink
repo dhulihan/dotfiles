@@ -666,6 +666,10 @@ let g:ackprg='rg --vimgrep'
 " aliases
 cnoreabbrev TR TabooRename
 " taboo END --------------------------------------------------------------------
+"
+" tagbar -----------------------------------------------------------------------
+let g:tagbar_width=26 " Default is 40, seems too wide
+" tagbar END -------------------------------------------------------------------
 
 " easyclip ---------------------------------------------------------------------
 
@@ -973,9 +977,6 @@ let g:delve_use_vimux=1
 
 " tags
 "set tags=./tags
-
-" tagbar
-"let g:tagbar_width=26 " Default is 40, seems too wide
 
 " easytags
 "let g:easytags_dynamic_files = 2 " write project-specific tags
