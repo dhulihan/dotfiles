@@ -2,18 +2,15 @@ set -e
 brew install ack
 brew install baresip
 brew install bat
-brew install ewm-ng
+#brew install ewm-ng
 brew install bvi
 brew install caddy
-brew install cmake
 brew install cmake
 brew install coreutils
 brew install cowsay
 # brew install ctags # swapping out for universal-ctags
 brew install curl
 brew install dep
-brew install direnv
-brew install direnv
 brew install direnv
 brew install editorconfig
 brew install elixir
@@ -34,7 +31,7 @@ brew install go
 brew install goreleaser/tap/goreleaser
 brew install graphviz
 brew install grpcurl
-brew install hyperkit
+#brew install hyperkit
 brew install id3lib
 brew install id3tool
 brew install iftop
@@ -42,7 +39,6 @@ brew install ipcalc
 brew install jq
 brew install k3d
 brew install kubectx
-brew install kubernetes-cli
 brew install kubernetes-cli
 brew install kubernetes-helm
 brew install libcouchbase
@@ -84,7 +80,7 @@ brew install python3
 brew install rbenv ruby-build rbenv-vars
 brew install redis
 brew install restic
-brew install riak
+#brew install riak
 brew install ripgrep
 brew install sshuttle
 brew install sipcalc
@@ -121,31 +117,32 @@ brew link --force node@10
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 # Hack fonts
-brew tap caskroom/fonts
-brew cask install font-hack-nerd-font
-brew cask install font-source-code-pro
+brew tap homebrew/cask-fonts
+brew install font-hack-nerd-font
+brew install font-source-code-pro
+brew install font-cascadia-code
+brew install font-cascadia-code-pl
+brew install font-cascadia-mono
+brew install font-cascadia-mono-pl
 
 brew cask install ngrok
-
-brew tap homebrew/cask-fonts
-brew cask install font-cascadia
 
 # grump
 brew tap dhulihan/grump
 brew install grump
 
 # wireshark
-brew cask install wireshark
+brew install --cask wireshark
 
 # gcloud
 brew tap caskroom/cask
-brew cask install google-cloud-sdk
+brew install google-cloud-sdk
 
 # kubeval
 brew tap garethr/kubeval
 brew install kubeval
 
-brew cask install minikube
+brew install minikube
 
 #brew cask install gitify
 
@@ -154,8 +151,8 @@ brew install neovim/neovim/neovim
 brew tap wata727/tflint
 brew install tflint
 
-brew cask install bitbar
-brew cask install macvim
+brew install bitbar
+brew install macvim
 
 brew install ericm/stonks/stonks
 
@@ -163,7 +160,7 @@ brew install ericm/stonks/stonks
 brew install reattach-to-user-namespace
 
 # java stuff
-brew cask install java
+brew install java
 brew install logstash
 
 brew cask install imagemagick
