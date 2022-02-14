@@ -1373,10 +1373,13 @@ command! MarkdownHeader call MarkdownHeader()
 function! MarkdownExternalLink(name)
   let l:url = input("URL: ")
 
-  " get html title
-  let l:html_title = SystemChomp("html-title " . l:url)
+  " set title (get from HTML)
+  "let l:raw_title = SystemChomp("html-title " . l:url)
+  
+  " set title (empty)
+  let l:raw_title = ""
 
-  let l:title = input("Title: ", l:html_title)
+  let l:title = input("Title: ", l:raw_title)
   let l:line = printf("[%s](%s)", l:title, l:url)
   let @z = l:line
   normal! "zp
