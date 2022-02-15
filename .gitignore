@@ -13,3 +13,4 @@ vim/en-secret.utf-8.add.symlink
 
 *.sw*
 *.sublime-workspace
+*.log
