@@ -47,8 +47,6 @@ brew install libyaml
 brew install lolcat
 brew install lua
 brew install luarocks
-brew install macvim
-brew install macvim
 brew install markdown
 brew install mosh
 brew install mpv
@@ -125,7 +123,7 @@ brew install font-cascadia-code-pl
 brew install font-cascadia-mono
 brew install font-cascadia-mono-pl
 
-brew cask install ngrok
+brew install --cask ngrok
 
 # grump
 brew tap dhulihan/grump
@@ -144,7 +142,7 @@ brew install kubeval
 
 brew install minikube
 
-#brew cask install gitify
+#brew install --cask gitify
 
 brew install neovim/neovim/neovim
 
@@ -152,7 +150,9 @@ brew tap wata727/tflint
 brew install tflint
 
 brew install bitbar
-brew install macvim
+
+# cask install macvim since it has the .app
+brew install --cask macvim
 
 brew install ericm/stonks/stonks
 
@@ -163,15 +163,15 @@ brew install reattach-to-user-namespace
 brew install java
 brew install logstash
 
-brew cask install imagemagick
-brew cask install ffmpeg
+brew install --cask imagemagick
+brew install ffmpeg
 
 brew install graphicsmagick
 
 brew tap filippo.io/age https://filippo.io/age
 brew install age
 
-brew cask install vlc
+brew install --cask vlc
 
 brew install derailed/k9s/k9s
 brew install rainbarf
@@ -189,7 +189,7 @@ brew tap bufbuild/buf
 brew install buf
 
 # rectangle windows manager
-brew cask install rectangle
+brew install --cask rectangle
 
 # monitor control
 brew install --cask monitorcontrol

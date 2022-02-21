@@ -1,5 +1,3 @@
 .git/
 *.sw*
 .restic-repo
-.restic-password
-.restic-files
