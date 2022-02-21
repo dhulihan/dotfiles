@@ -12,7 +12,7 @@ INIT_PROJECT_CMD="tmux-session"
 GIT_REPO="https://github.com/${1}.git"
 
 cd $PROJECTS
-git clone $GIT_REPO || echo "problem fetching ${GIT_REPO}"
+git clone $GIT_REPO
 
 PROJECT_NAME=$(basename $1)
 cd $PROJECT_NAME
