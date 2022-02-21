@@ -1,0 +1,23 @@
+#!/bin/bash -ex
+#
+# download a github project into default project dir and open
+# Author: Dave Hulihan
+#
+# $ gp some-user/some-project.git
+
+
+# This it what we should open the go project with
+INIT_PROJECT_CMD="tmux-session"
+
+GIT_REPO="https://github.com/${1}.git"
+
+cd $PROJECTS
+git clone $GIT_REPO || echo "problem fetching ${GIT_REPO}"
+
+PROJECT_NAME=$(basename $1)
+cd $PROJECT_NAME
+
+# don't start up the project if we're already in tmux
+if [[ -z $TMUX ]] ; then
+  $INIT_PROJECT_CMD
+fi
