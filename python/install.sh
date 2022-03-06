@@ -8,6 +8,7 @@ easy_install pip
 pip install requests[security] # for grip
 pip install \
   grip \
+  eyeD3 \
   vim-vint \
   ansible \
   black \
