@@ -1,0 +1,43 @@
+#!/bin/bash -eux
+
+# download youtube video, transcode to mp3 and add metadata
+#   youtube-dl-mp3-meta "https://www.youtube.com/watch?v=iEOozwKlP-4"
+PROCESSING_DIR=/tmp
+cd $PROCESSING_DIR
+URL=${1:?"$0 <url>"}
+
+#METADATA_FILE=/tmp/youtube-metadata.json
+#youtube-metadata --format ndjson "${1}" > $METADATA_FILE
+#echo "metadata written to $METADATA_FILE"
+
+## extract metadata
+#RELEASE_YEAR=$(cat $METADATA_FILE | jq -r .release_year)
+#TITLE=$(cat $METADATA_FILE | jq -r .title)
+#ALBUM=$(cat $METADATA_FILE | jq -r .album)
+#ARTIST=$(cat $METADATA_FILE | jq -r .creator)
+#FILENAME=$(dasherize "$ARTIST $TITLE").mp3
+
+#echo "Title: [$TITLE] Album: [$ALBUM] Artist: [$ARTIST] Filename: [$FILENAME]"
+
+# download
+OUTPUT_FILE=foo.mp3
+youtube-dl --extract-audio --audio-format mp3 --no-mtime --write-info-json --output=$OUTPUT_FILE $1
+
+# extract metadata (youtube-dl)
+METADATA_FILE="${OUTPUT_FILE}.info.json"
+RELEASE_YEAR=$(cat $METADATA_FILE | jq -r .release_year)
+TITLE=$(cat $METADATA_FILE | jq -r .title)
+ALBUM=$(cat $METADATA_FILE | jq -r .album)
+ARTIST=$(cat $METADATA_FILE | jq -r .artist)
+FILENAME=$(dasherize "$ARTIST $TITLE").mp3
+
+echo "Title: [$TITLE] Album: [$ALBUM] Artist: [$ARTIST] Filename: [$FILENAME]"
+
+# add metadata
+eyeD3 --artist "$ARTIST" --artist "$ALBUM" --title "$TITLE" $OUTPUT_FILE
+
+# copy file
+cd -
+cp "$PROCESSING_DIR/$OUTPUT_FILE" $FILENAME
+
+

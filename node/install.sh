@@ -10,4 +10,5 @@ npm install -g \
     htmlhint \
     json2csv \
     terminalizer \
+    youtube-metadata-cli \
     grunt
