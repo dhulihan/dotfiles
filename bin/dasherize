@@ -1,8 +1,10 @@
 #!/bin/bash
 
-# convert string to dasherized format (camel case gets squashed)
-#  dasherize MyDirectoryFileLine # mydirectoryfileline
-#  dasherize 'asd ADA 3$$$--CamelCase 47%' # asd-a-d-a-3-camel-case-47
+# convert string to dasherized format (camel case gets squashed). Similar to
+# `dash`, but uses sed/regexp instead of tr.
+#
+#   dasherize MyDirectoryFileLine # mydirectoryfileline
+#   dasherize 'asd ADA 3$$$--CamelCase 47%' # asd-a-d-a-3-camel-case-47
 
 gsed --expression 's/\([A-Z]\)/\L\1/g' \
     --expression 's/^-//'              \

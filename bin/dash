@@ -5,6 +5,9 @@
 #   $ dash "what in the FlyInG burritO brother's 27 ghosts is going on here?\!"
 #   what-in-the-flying-burrito-brothers-27-ghosts-is-going-on-here
 #
+#   $ dash 'asd ADA 3$$$--CamelCase 47%
+#   asd-ada-3--camelcase-47
+#
 if [ $# -eq 0 ]
 then
   echo "No arguments supplied"
