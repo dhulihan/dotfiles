@@ -213,5 +213,9 @@ brew tap johanhaleby/kubetail && brew install kubetail
 
 brew install txn2/tap/kubefwd
 
+# dive - osx docker image inspection
+brew tap wagoodman/dive
+brew install dive
+
 set +e
 say "brew is done"

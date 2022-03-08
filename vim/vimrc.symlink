@@ -1586,12 +1586,12 @@ command! ToggleNetrw call ToggleNetrw()
 " ------------------------------------------------------------------------------
 function! GitPrimaryBranchName()
   " check master first, flip this later
-  let l:out = system("git rev-parse --abbrev-ref origin/master")
+  let l:out = system("git rev-parse --abbrev-ref origin/main")
 
   if v:shell_error == 0
-    return "master"
-  else
     return "main"
+  else
+    return "master"
   endif
 endfunction
 command! GitPrimaryBranchName call GitPrimaryBranchName()
