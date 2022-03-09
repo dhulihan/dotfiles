@@ -13,7 +13,13 @@ then
 fi
 
 # ruby version to install
-RUBY_VERSION=2.6.2
+RUBY_VERSION=2.7.5
+
+# brew deps for ruby
+brew install openssl libffi zlib rbenv readline ruby-build
+
+# use homebrew openssl
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
