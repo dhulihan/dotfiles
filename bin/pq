@@ -1,0 +1,5 @@
+#!/bin/bash -eux
+
+# helper file for running queries from a dir containing a collection of queries
+SRC=${QUERY_DIR:?}/${1:?}
+psql -f $SRC

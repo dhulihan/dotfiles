@@ -1,0 +1,33 @@
+#!/bin/bash -eux
+
+# take query file, flatten and run dump results as csv
+
+# TODO - support absolute paths here
+SRC=${QUERY_DIR:?}/${1:?}
+TMP_FILE=/tmp/$(basename $SRC)
+DST=$HOME/Downloads/$(basename -s .sql $SRC).csv
+
+# back up query file
+cp $SRC $TMP_FILE
+
+# remove block level comments
+gsed -i 's/;//g' $TMP_FILE
+
+# remove block level comments
+gsed -i '/\/\*.*\*\// d; /\/\*/,/\*\//d' $TMP_FILE
+
+# remove single line comments
+gsed -i '/--/d' $TMP_FILE
+
+# make single line
+gsed -i ':b;N;$!bb;s/\n/ /g' $TMP_FILE
+
+# ADD copy
+gsed -i 's/^/\\copy \(/' $TMP_FILE
+
+# ADD end
+truncate -s-1 $TMP_FILE
+echo ") TO '${DST}' WITH CSV HEADER" >> $TMP_FILE
+
+echo "executing query and dumping to $DST"
+psql -f $TMP_FILE
