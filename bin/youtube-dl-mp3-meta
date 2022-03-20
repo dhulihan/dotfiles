@@ -28,7 +28,7 @@ FILENAME=$(dasherize "$TITLE").mp3
 echo "Title: [$TITLE] Track: [$TRACK] Album: [$ALBUM] Artist: [$ARTIST] Filename: [${FILENAME:?}]"
 
 # add metadata
-eyeD3 --artist "$ARTIST" --album "$ALBUM" --title "$TRACK" $OUTPUT_MP3
+eyeD3 --artist "$ARTIST" --album "$ALBUM" --title "${TRACK:-$TITLE}" $OUTPUT_MP3
 
 # copy/move file
 #rm $METADATA_FILE
