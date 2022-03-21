@@ -458,7 +458,9 @@ inoremap <F9> <C-O>:CopyBufferToClipboard<CR>
 
 " start at beginning of line
 noremap <F10> ^"*y$
-vnoremap <F10> "*y<CR>
+
+" for visual block mode, go to end of line
+vnoremap <F10> $"*y<CR>
 
 " TODO: this needs some love
 inoremap <F10> <C-o>^"*y<CR>
@@ -867,6 +869,24 @@ let g:ctrlp_switch_buffer = '' " don't switch to already displayed buffers
 
 " list buffers nicely
 "nnoremap <C-\> :CtrlPBuffer<cr>
+
+" ------------------------------------------------------------------------------
+" vim-emoji
+" ------------------------------------------------------------------------------
+"let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+"let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+"let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+"let g:gitgutter_sign_modified_removed = emoji#for('collision')
+set completefunc=emoji#complete
+
+" convert :smile: to 😄
+function! ConvertEmoji()
+  %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
+endfunction
+command! ConvertEmoji call ConvertEmoji()
+" ------------------------------------------------------------------------------
+" vim-emoji END
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " FZF
@@ -1580,6 +1600,16 @@ function! ToggleNetrw()
   endif
 endfunction
 command! ToggleNetrw call ToggleNetrw()
+
+" ------------------------------------------------------------------------------
+" prettify mod_xml_cdr json file
+" TODO: move to freeswitch plugin
+" ------------------------------------------------------------------------------
+function! CDRPrettify()
+  exec '%s/,\({"core_uuid"\)/\1/g'
+  PrettifyJSON
+endfunction
+command! CDRPrettify call CDRPrettify()
 
 " ------------------------------------------------------------------------------
 " GitPrimaryBranchName - get main or master

@@ -22,7 +22,6 @@ brew install findutils
 brew install fortune
 brew install fzy
 brew install gifsicle
-#brew install gimp
 brew install gh
 brew install git
 brew install git-secrets
@@ -216,6 +215,8 @@ brew install txn2/tap/kubefwd
 # dive - osx docker image inspection
 brew tap wagoodman/dive
 brew install dive
+
+brew install --cask gimp
 
 set +e
 say "brew is done"
