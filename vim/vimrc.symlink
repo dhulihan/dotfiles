@@ -1390,14 +1390,11 @@ command! MarkdownHeader call MarkdownHeader()
 " ------------------------------------------------------------------------------
 " MarkdownExternalLink - add link to external URL
 " ------------------------------------------------------------------------------
-function! MarkdownExternalLink(name)
+function! MarkdownExternalLink(fetch_title)
   let l:url = input("URL: ")
 
-  " set title (get from HTML)
-  "let l:raw_title = SystemChomp("html-title " . l:url)
-  
-  " set title (empty)
-  let l:raw_title = ""
+  " determine if we should fetch the title or not
+  let l:raw_title = ((a:fetch_title)? SystemChomp("html-title " . l:url) : "")
 
   let l:title = input("Title: ", l:raw_title)
   let l:line = printf("[%s](%s)", l:title, l:url)
@@ -1413,7 +1410,8 @@ function! MarkdownExternalLink(name)
     "startinsert
   endif
 endfunction
-command! MarkdownExternalLink call MarkdownExternalLink(<q-args>)
+command! MarkdownExternalLink call MarkdownExternalLink(0)
+command! MarkdownExternalLinkFetchTitle call MarkdownExternalLink(1)
 
 " ------------------------------------------------------------------------------
 " MarkdownInternalLink - add link to new/existing markdown file and open
