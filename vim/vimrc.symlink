@@ -208,7 +208,7 @@ set autoindent
 " use `1zg`, or `2zg`, etc.
 "
 " TODO: reenable. currently busted, see: https://github.com/vim/vim/issues/7068
-"set spellfile=$HOME/.en.utf-8.add,$HOME/.en-secret.utf-8.add
+set spellfile=$HOME/.en.utf-8.add,$HOME/.en-secret.utf-8.add
 " spelling END ---------------------------------------------------------------
 
 augroup filetypes

@@ -4,5 +4,6 @@ alias kdg=kube-delete-pods-grep
 alias kgp='kubectl get pods -o wide -o custom-columns-file=$HOME/.custom-columns'
 alias kl="k logs -f \$(k get pods | tail -n 1 | awk '{print \$1}')"
 alias klg=kube-logs-grep
-alias kn='kubens'
+#alias kn='kubens'
+alias kn='kubectl config set-context --current --namespace '
 alias ku='kubectx'
