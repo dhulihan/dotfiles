@@ -4,8 +4,9 @@ brew install baresip
 brew install bat
 #brew install ewm-ng
 brew install bvi
-brew install caddy
-brew install cmake
+#brew install caddy
+#brew install cmake
+brew install colima
 brew install coreutils
 brew install cowsay
 # brew install ctags # swapping out for universal-ctags

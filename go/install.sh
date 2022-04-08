@@ -35,5 +35,6 @@ go install github.com/derekparker/delve/cmd/dlv@latest
 go install -v github.com/google/gops@latest
 go install -v github.com/jnewmano/grpc-json-proxy@latest
 go install -v github.com/dhulihan/grump@latest
+go install -v github.com/golang/mock/mockgen@latest
 
 set +x

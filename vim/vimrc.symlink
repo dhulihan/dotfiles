@@ -1404,7 +1404,16 @@ function! MarkdownExternalLink(fetch_title)
   let l:url = input("URL: ")
 
   " determine if we should fetch the title or not
-  let l:raw_title = ((a:fetch_title)? SystemChomp("html-title " . l:url) : "")
+  if a:fetch_title
+    let html_title = SystemChomp("html-title " . l:url)
+
+    " filter out annoying patterns
+     let l:html_title = substitute(l:html_title, "GitHub - ", "", "")
+
+    let l:raw_title = l:html_title
+  else
+    let l:raw_title = ""
+  endif
 
   let l:title = input("Title: ", l:raw_title)
   let l:line = printf("[%s](%s)", l:title, l:url)
