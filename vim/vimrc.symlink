@@ -1433,7 +1433,11 @@ function! MarkdownInternalLink()
     echoerr "you must provide a filename"
   endif
 
-  let l:name = input("Friendly name (optional): ", l:filename)
+  " pick the last word for the prompt
+  let name_words = split(l:filename)[-1]
+  let prompt_name = name_words
+
+  let l:name = input("Friendly name (optional): ", l:prompt_name)
   if l:name == ""
     let l:name = l:filename
   endif
