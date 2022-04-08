@@ -30,7 +30,7 @@ go get -u github.com/google/gops
 go get -u github.com/jteeuwen/go-bindata/...
 go get -u github.com/elazarl/go-bindata-assetfs/...
 
-go get -u github.com/derekparker/delve/cmd/dlv
+go install github.com/derekparker/delve/cmd/dlv@latest
 
 go install -v github.com/google/gops@latest
 go install -v github.com/jnewmano/grpc-json-proxy@latest

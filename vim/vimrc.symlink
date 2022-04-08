@@ -64,6 +64,7 @@ Plugin 'prettier/vim-prettier', {
   \ ] }
 Plugin 'rhysd/clever-f.vim'
 Plugin 'bogado/file-line' " open file:line
+" Plugin 'vim-test/vim-test' " not needed
 
 " Plugin 'wellle/context.vim' " cool but slow
 Plugin 'SirVer/ultisnips'
@@ -101,6 +102,7 @@ Plugin 'kamailio/vim-kamailio-syntax'
 "Plugin 'tpope/vim-rbenv' " supposed to work with recent vim-ruby
 Plugin 'bufbuild/vim-buf'
 Plugin 'trayo/vim-ginkgo-snippets'
+Plugin 'buoto/gotests-vim'
 
 " Lint
 Plugin 'w0rp/ale'
@@ -1063,11 +1065,18 @@ endfunction
 "###############################################################################
 
 "###############################################################################
-" Prettier
+" vim-test
 "###############################################################################
+"let test#strategy = "vimux"
 
+function! DebugNearest()
+  let g:test#go#runner = 'delve'
+  TestNearest
+  unlet g:test#go#runner
+endfunction
+command! DebugNearest call DebugNearest()
 "###############################################################################
-" Prettier END
+" vim-test END
 "###############################################################################
 "
 "###############################################################################
