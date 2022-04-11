@@ -1,0 +1,2 @@
+# decode base64 string
+echo -n "$1" | base64 -d
