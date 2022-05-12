@@ -23,5 +23,6 @@ DIR=${3:-.}
 if [[ -n $DRYRUN ]]; then
             rg -l "${FROM}" $DIR
 else
-            rg -l "${FROM}" $DIR | xargs gsed -i "s/${FROM}/${TO}/g"
+    # change delimiter so you don't have to escape `/`. This may be annoying if you're replacing a `|`
+    rg -l "${FROM}" $DIR | xargs gsed -i "s|${FROM}|${TO}|g"
 fi

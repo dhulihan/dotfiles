@@ -14,7 +14,6 @@ go get -u github.com/projectdiscovery/httpx/cmd/httpx
 go get -u github.com/projectdiscovery/subfinder/cmd/subfinder
 go get -u github.com/rogpeppe/gohack
 go get -u github.com/salrashid123/gce_metadata_server
-go get -u golang.org/x/lint/golint
 go get -u golang.org/x/tools/cmd/goimports
 go get -u golang.org/x/tools/gopls
 go get -u golang.org/x/tools/refactor/rename
@@ -36,5 +35,9 @@ go install -v github.com/google/gops@latest
 go install -v github.com/jnewmano/grpc-json-proxy@latest
 go install -v github.com/dhulihan/grump@latest
 go install -v github.com/golang/mock/mockgen@latest
+
+# install with brew to ensure stability
+# https://golangci-lint.run/usage/install/#local-installation
+brew install golangci-lint
 
 set +x

@@ -1,5 +1,5 @@
-if [[ -a ~/.functions-private.sh ]]
+if [[ -a ~/.private-functions.sh ]]
 then
-  source ~/.functions-private.sh
+  source ~/.private-functions.sh
 fi
 

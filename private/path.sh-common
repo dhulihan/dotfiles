@@ -1,5 +1,5 @@
 # private path
-if [[ -a ~/.path-private.sh ]]
+if [[ -a ~/.private-path.sh ]]
 then
-  source ~/.path-private.sh
+  source ~/.private-path.sh
 fi
