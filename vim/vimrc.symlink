@@ -1159,7 +1159,7 @@ let g:disabled_ale_fixers = {
 \}
 
 let g:ale_linters = {
-\   'go': ['gobuild', 'govet', 'golint'],
+\   'go': ['gobuild', 'govet', 'golint', 'golangci-lint'],
 \   'proto': ['buf-check-lint',],
 \   'ruby': ['rails_best_practices', 'ruby', 'rubocop'],
 \   'terraform': ['tflint'],
@@ -1167,11 +1167,14 @@ let g:ale_linters = {
 
 " fixers
 let g:ale_fixers = {
-\   'go': ['gofmt', 'goimports'],
+\   'go': ['goimports', 'gofmt', 'gofumpt'],
 \   'json': ['prettier'],
 \   'terraform': ['terraform'],
 \   'sql': ['pgformatter'],
 \}
+
+" lint the package, not file
+let g:ale_go_golangci_lint_package = 1
 
 " Set this setting in vimrc if you want to fix files automatically on save.
 " This is off by default.
@@ -1722,6 +1725,7 @@ command! GoSandbox execute ':e $GOPATH/src/github.com/dhulihan/go-sandbox/main.g
 set background=dark
 "colors apprentice
 colors lucius
+"colors iceberg "misspell is gnarly
 "colors dracula
 "colors falcon
 "colors jellybeans
