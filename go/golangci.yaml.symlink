@@ -1,14 +1,10 @@
 linters:
-  disable:
-  - exhaustivestruct
-  - exhaustruct
-  - lll
-  - structcheck
-  - wsl
-  - godot
-  - exhaustive
-  - wrapcheck
-  - varnamelen
+  disable-all: true
+  enable:
+  - govet
+  - golint
+
+
 
 severity:
   default-severity: info
