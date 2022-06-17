@@ -1082,7 +1082,7 @@ command! DebugNearest call DebugNearest()
 "###############################################################################
 " vim-fugitive
 "###############################################################################
-command! Gplo execute "Git pull origin"
+command! Gplo execute "e README.md | Git pull origin"
 
 function! GblameToggle()
   if &l:filetype ==# 'fugitiveblame'
