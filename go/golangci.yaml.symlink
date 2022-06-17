@@ -1,10 +1,26 @@
 linters:
-  disable-all: true
-  enable:
-  - govet
-  - golint
+#disable-all: true
+#  enable:
+#  - govet
+#  - golint
 
-
+  fast: true
+  enable-all: true
+  disable:
+  - exhaustivestruct
+  - exhaustruct
+  - lll
+  - structcheck
+  - wsl
+  - godot
+  - exhaustive
+  - wrapcheck
+  - varnamelen
+  - funlen
+  - interfacer
+  - scopelint
+  - maligned
+  - gofumpt
 
 severity:
   default-severity: info
