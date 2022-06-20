@@ -394,6 +394,8 @@ nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>; :ColorColumnToggle<CR>
 nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
+nnoremap <Leader>= :ALENext -wrap -warning<CR>
+nnoremap <Leader>- :ALEPrevious -wrap -warning<CR>
 nnoremap <Leader><Leader> :ToggleQuickFix<CR> 
 "nnoremap <Leader>' :ToggleQuickFix<CR>
 nnoremap <Leader>, zr<CR>
@@ -1767,6 +1769,8 @@ hi GitGutterChangeDelete ctermfg=166
 " lucius color overrides
 hi Visual   term=underline ctermbg=18
 hi! VertSplit ctermfg=237 ctermbg=237
+hi! Todo term=standout ctermfg=186 cterm=bold gui=underline guifg=#e0e090
+hi! Error term=standout ctermfg=167 cterm=bold gui=underline guifg=#e37170 ctermbg=NONE
 
 " apprentice color overrides
 "hi! link SignColumn Normal

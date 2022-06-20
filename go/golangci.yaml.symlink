@@ -9,11 +9,8 @@ linters:
   disable:
   - exhaustivestruct
   - exhaustruct
-  - lll
-  - structcheck
-  - wsl
-  - godot
   - exhaustive
+  - lll
   - wrapcheck
   - varnamelen
   - funlen
