@@ -1,11 +1,6 @@
 linters:
-#disable-all: true
-#  enable:
-#  - govet
-#  - golint
-
-  fast: true
   enable-all: true
+  fast: true
   disable:
   - exhaustivestruct
   - exhaustruct
