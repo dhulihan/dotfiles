@@ -1596,6 +1596,12 @@ command! -bar -nargs=1 -complete=customlist,s:CdComplete Cd cd <args>
 command! -bar -nargs=1 -complete=customlist,s:CdComplete Lcd lcd <args>
 
 
+function! CdAndPull(path)
+  execute 'cd ' . a:path
+  execute 'Gplo'
+endfunction
+command! -bar -nargs=1 -complete=customlist,s:CdComplete Cdp call CdAndPull(<q-args>)
+
 " ------------------------------------------------------------------------------
 " GoPkg | golang package docs/reference
 " ------------------------------------------------------------------------------
