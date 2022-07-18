@@ -1,6 +1,6 @@
 linters:
   enable-all: true
-  fast: true
+  #fast: true
   disable:
   - exhaustivestruct
   - exhaustruct
@@ -13,6 +13,9 @@ linters:
   - scopelint
   - maligned
   - gofumpt
+  - dupl # buggy, showing false positives
+  - paralleltest
+  - gochecknoglobals
 
 severity:
   default-severity: info

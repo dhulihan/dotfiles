@@ -17,9 +17,9 @@ set rtp+=~/.vim-dotfiles
 "let g:nv_show_preview = 1
 " notational-fzf-vim END #######################################################
 
-" load sensitive config
-if filereadable(expand("~/.vimprivate.vim"))
-  source ~/.vimprivate.vim
+" load sensitive vim components
+if filereadable(expand("~/.private.vim"))
+  source ~/.private.vim
 endif
 
 call vundle#begin()
@@ -379,7 +379,7 @@ nnoremap <silent> <leader>e :ToggleNetrw<CR>
 nnoremap <Leader>t :TagbarToggle<cr>
 nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
-nnoremap <Leader><tab> :Cd 
+nnoremap <Leader><tab> :Cdp 
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
 " open new buffer with name from inner parens
@@ -601,6 +601,9 @@ set exrc
 
 " search highlighting
 set hlsearch
+
+" enable shortmess (number of matches)
+set shortmess-=S
 
 " incremental search
 "set incsearch
