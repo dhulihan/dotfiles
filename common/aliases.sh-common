@@ -15,7 +15,7 @@ alias rmv="mv -t /tmp"
 #alias whois="whois -h whois-servers.net"
 
 # Misc
-alias youtube-dl-mp3="youtube-dl --extract-audio --audio-format mp3 --title --no-mtime"
+alias youtube-dl-mp3="youtube-dl -i --extract-audio --audio-format mp3 --title --no-mtime"
 
 # WAN IP
 alias lan-ip="ipconfig getifaddr en0"
