@@ -31,6 +31,7 @@ brew install go
 brew install goreleaser/tap/goreleaser
 brew install graphviz
 brew install grpcurl
+brew install hugo
 #brew install hyperkit
 brew install id3lib
 brew install id3tool
@@ -218,6 +219,9 @@ brew tap wagoodman/dive
 brew install dive
 
 brew install --cask gimp
+
+brew tap incu6us/homebrew-tap
+brew install incu6us/homebrew-tap/goimports-reviser
 
 set +e
 say "brew is done"

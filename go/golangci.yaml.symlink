@@ -2,7 +2,7 @@ run:
   max-same-issues: 0
 linters:
   enable-all: true
-  #fast: true
+  fast: true
   disable:
   - exhaustivestruct
   - exhaustruct

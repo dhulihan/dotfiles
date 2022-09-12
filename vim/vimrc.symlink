@@ -65,10 +65,10 @@ Plugin 'prettier/vim-prettier', {
 Plugin 'rhysd/clever-f.vim'
 Plugin 'bogado/file-line' " open file:line
 " Plugin 'vim-test/vim-test' " not needed
-
 " Plugin 'wellle/context.vim' " cool but slow
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+"Plugin 'glts/vim-radical' " not using this much atm
 
 " Language-specific
 "Plugin 'stamblerre/gocode' " trouble getting this to work
