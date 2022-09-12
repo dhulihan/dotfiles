@@ -1,2 +1,2 @@
-#compdef pq pqdump
+#compdef pq pqdump pqe
 _files -W $QUERY_DIR -/

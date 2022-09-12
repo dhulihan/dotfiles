@@ -1,1 +1,1 @@
-cd $1 && gplo
+cd $1 && git pull origin && ts

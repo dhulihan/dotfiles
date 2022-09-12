@@ -85,7 +85,7 @@ Plugin 'plasticboy/vim-markdown'
 "Plugin 'jparise/vim-graphql'
 "Plugin 'rmelcer/vim-icinga'
 "Plugin 'skreuzer/vim-prometheus'
-Plugin 'Glench/Vim-Jinja2-Syntax'
+"Plugin 'Glench/Vim-Jinja2-Syntax'
 "Plugin 'wannesm/wmgraphviz.vim'
 "Plugin 'elixir-lang/vim-elixir' " not using elixir right now
 "Plugin 'tpope/vim-rails'
@@ -103,6 +103,7 @@ Plugin 'kamailio/vim-kamailio-syntax'
 Plugin 'bufbuild/vim-buf'
 Plugin 'trayo/vim-ginkgo-snippets'
 Plugin 'buoto/gotests-vim'
+Plugin 'mracos/mermaid.vim'
 
 " Lint
 Plugin 'w0rp/ale'
@@ -316,6 +317,9 @@ inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype
 nnoremap <C-W>\ :vertical resize 82<CR>
 " Classic backspace
 "nnoremap <BS> X
+
+" keywordprg doesn't allow to use vim commands, override it
+nnoremap <buffer> <silent> K :GoDoc<cr>
 
 " Tabs
 nnoremap { :cprev<CR>
@@ -1599,8 +1603,9 @@ command! -bar -nargs=1 -complete=customlist,s:CdComplete Cd cd <args>
 command! -bar -nargs=1 -complete=customlist,s:CdComplete Lcd lcd <args>
 
 
-function! CdAndPull(path)
+function! CdAndPull(path) abort
   execute 'cd ' . a:path
+  " silence this if you want
   execute 'Gplo'
 endfunction
 command! -bar -nargs=1 -complete=customlist,s:CdComplete Cdp call CdAndPull(<q-args>)

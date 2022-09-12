@@ -1,0 +1,22 @@
+#!/bin/bash -eux
+
+# take query file and explain it
+
+# TODO - support absolute paths here
+SRC=${QUERY_DIR:?}/${1:?}
+TMP_FILE=/tmp/explain-$(basename $SRC)
+
+# back up query file
+cp $SRC $TMP_FILE
+
+# make single line
+gsed -i ':b;N;$!bb;s/\n/ /g' $TMP_FILE
+
+# ADD copy
+gsed -i 's/^/EXPLAIN ANALYZE /' $TMP_FILE
+
+# ADD end
+truncate -s-1 $TMP_FILE
+
+echo "executing query file: $TMP_FILE"
+psql -f $TMP_FILE

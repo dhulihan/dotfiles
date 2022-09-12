@@ -42,4 +42,7 @@ go install -v mvdan.cc/gofumpt@latest
 # https://golangci-lint.run/usage/install/#local-installation
 brew install golangci-lint
 
+# interactive grpc client
+go install github.com/vadimi/grpc-client-cli/cmd/grpc-client-cli@latest
+
 set +x
