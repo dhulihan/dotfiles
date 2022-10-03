@@ -1,2 +1,0 @@
-# cd into directory, pull latest, and start editor session
-cd $1 ; git pull origin && exec tmux-session
