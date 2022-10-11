@@ -223,5 +223,7 @@ brew install --cask gimp
 brew tap incu6us/homebrew-tap
 brew install incu6us/homebrew-tap/goimports-reviser
 
+brew install agrinman/tap/tunnelto
+
 set +e
 say "brew is done"

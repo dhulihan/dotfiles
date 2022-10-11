@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 # tmux-session [existing-session-name]
 #
 # Author: Dave Hulihan <dhulihan@gmail.com>
