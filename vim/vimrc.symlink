@@ -82,6 +82,7 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'iamcco/markdown-preview.nvim' " :call mkdp#util#install() afterwards
 "Plugin 'jparise/vim-graphql'
 "Plugin 'rmelcer/vim-icinga'
 "Plugin 'skreuzer/vim-prometheus'
@@ -159,7 +160,6 @@ Plugin 'tpope/vim-dispatch'
 
 "nvim plugins - remember to call :UpdateRemotePlugins after changing (annoying)
 if has('nvim')
-  Plugin 'iamcco/markdown-preview.nvim' " :call mkdp#util#install() afterwards
   Plugin 'gelguy/wilder.nvim' " fancy wildmenu
 end
 
