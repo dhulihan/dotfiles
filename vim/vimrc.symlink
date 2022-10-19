@@ -411,9 +411,10 @@ nnoremap <Leader><Leader> :ToggleQuickFix<CR>
 nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
 " git
-nnoremap <Leader>gg :GitPrimaryURL<CR>
+nnoremap <Leader>gg :.GBrowse<CR>
+"nnoremap <Leader>gg :GitPrimaryURL<CR>
 nnoremap <Leader>gb :GBranches<CR>
-nnoremap <Leader>gc :.GBrowse!<CR>
+"nnoremap <Leader>gc :.GBrowse!<CR>
 nnoremap <Leader>gx :.GBrowse<CR>
 nnoremap <Leader>gm :GBrowse @origin<CR>
 nnoremap <Leader>ge :GEdit master:%<CR>
