@@ -5,6 +5,9 @@ source ~/.vimrc
 
 " neovim stuff here
 "
+" Persist undos, incompatible with vim
+set undodir=$HOME/.nvim/undo " mkdir this if you need to
+set undofile " Maintain undo history between sessions
 
 " nvim plugin config
 "
