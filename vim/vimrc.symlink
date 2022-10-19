@@ -157,6 +157,12 @@ Plugin 'majutsushi/tagbar'
 " Build
 Plugin 'tpope/vim-dispatch'
 
+"nvim plugins - remember to call :UpdateRemotePlugins after changing (annoying)
+if has('nvim')
+  Plugin 'iamcco/markdown-preview.nvim' " :call mkdp#util#install() afterwards
+  Plugin 'gelguy/wilder.nvim' " fancy wildmenu
+end
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required

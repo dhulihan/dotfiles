@@ -17,11 +17,12 @@ function! Reload()
   endif
 
   if has('nvim')
-    echom "neovim detected, reloading init.vim"
+    "echom "neovim detected, reloading init.vim"
     source ~/.config/nvim/init.vim
   else
     source ~/.vimrc
   endif
+
   UltiSnipsReload
 
   " todo reload plugin
