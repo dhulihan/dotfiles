@@ -16,7 +16,12 @@ function! Reload()
     unlet g:dotfiles_loaded_markdown
   endif
 
-  source ~/.vimrc
+  if has('nvim')
+    echom "neovim detected, reloading init.vim"
+    source ~/.config/nvim/init.vim
+  else
+    source ~/.vimrc
+  endif
   UltiSnipsReload
 
   " todo reload plugin
