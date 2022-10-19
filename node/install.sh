@@ -12,3 +12,5 @@ npm install -g \
     terminalizer \
     youtube-metadata-cli \
     grunt
+
+yarn global add @mermaid-js/mermaid-cli

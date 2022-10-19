@@ -112,6 +112,12 @@ set -g @plugin 'seebi/tmux-colors-solarized'
 set -g default-shell $SHELL
 set -g default-command "reattach-to-user-namespace -l ${SHELL}"
 
+# set neovim options
+# https://github.com/neovim/neovim/wiki/FAQ#esc-in-tmux-or-gnu-screen-is-delayed
+set-option -sg escape-time 10
+set-option -g focus-events on
+set-option -sa terminal-overrides ',screen-256color:RGB'
+
 # empty right status
 set -g status-right ""
 
