@@ -1,6 +1,5 @@
 # Sample gitconfig
 #
-
 [hub]
         protocol = https
 [user]
@@ -39,6 +38,7 @@
 
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = main
 
 [rebase]
 	autosquash = true

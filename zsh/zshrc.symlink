@@ -21,6 +21,7 @@ debug() {
 # your project folder that we can `c [tab]` to
 export PROJECTS=$HOME/Projects
 export CDPATH=$PROJECTS:$CDPATH
+export EDITOR_CMD="vim4"
 # shortcut to this dotfiles path is $ZSH
 #
 export ZSH=$HOME/.dotfiles
@@ -101,3 +102,6 @@ if [[ $LOG_LEVEL == "trace" ]]; then
 	# finish profiling
 	zprof
 fi
+
+# set up dev session on cd
+chpwd_functions=(${chpwd_functions[@]} "dev-session")

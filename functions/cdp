@@ -1,5 +1,5 @@
 # cd to directory, switch to main, pull latest, start dev session
 set -x
 cd $1
-(git checkout main || git checkout master) && git pull origin && tmux-session
+dev-session
 set +x
