@@ -1,4 +1,5 @@
 # cd to directory, switch to main, pull latest, start dev session
+# 2022-11-04: deprecated by chpwd hooks in zsh, which uses CDPATH properly
 set -x
 cd $1
 dev-session

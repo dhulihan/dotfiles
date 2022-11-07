@@ -1,17 +1,15 @@
 # start a dev session in the current dir
-set -x
-
 # check if we're in
 NON_DEV_DIRS=( \
+  "$HOME" \
   "$HOME/Downloads" \
 )
 for NON_DEV_DIR in "${NON_DEV_DIRS[@]}" ; do
-  echo $NON_DEV_DIR
 	if [[ $PWD == "$NON_DEV_DIR" ]] ; then
-    echo "$PWD is a non-dev dir not creating dev session"
+    debug "$PWD is a non-dev dir not creating dev session"
     return
   else
-    echo "$PWD is a dev dir"
+    debug "$PWD is a dev dir"
   fi
 done
 
@@ -21,7 +19,5 @@ done
 if [[ -z $TMUX ]] ; then
 	tmux-session
 else
-	# we're already in tmux
-	echo "already in tmux"
+	warn "already in tmux"
 fi
-set +x
