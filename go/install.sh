@@ -35,8 +35,11 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 go install -v github.com/google/gops@latest
 go install -v github.com/jnewmano/grpc-json-proxy@latest
 go install -v github.com/dhulihan/grump@latest
+go install -v github.com/dhulihan/httpeeved@latest
 go install -v github.com/golang/mock/mockgen@latest
 go install -v mvdan.cc/gofumpt@latest
+go install -v github.com/kyoh86/richgo@latest
+
 
 # install with brew to ensure stability
 # https://golangci-lint.run/usage/install/#local-installation

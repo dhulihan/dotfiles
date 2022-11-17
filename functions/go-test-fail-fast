@@ -1,0 +1,6 @@
+# fail fast, with color
+for s in $(go list ./...); do
+	if ! richgo test -failfast -v -p 1 $s; then
+		break;
+	fi;
+done

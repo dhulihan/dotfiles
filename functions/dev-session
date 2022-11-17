@@ -1,5 +1,4 @@
 # start a dev session in the current dir
-# check if we're in
 NON_DEV_DIRS=( \
   "$HOME" \
   "$HOME/Downloads" \
@@ -13,6 +12,7 @@ for NON_DEV_DIR in "${NON_DEV_DIRS[@]}" ; do
   fi
 done
 
+# pull in latest
 (git checkout main || git checkout master) && git pull origin
 
 # don't start up the project if we're already in tmux
