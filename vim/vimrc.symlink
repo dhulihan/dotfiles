@@ -41,7 +41,8 @@ Plugin 'jeanCarloMachado/vim-toop'
 
 " Version Control
 Plugin 'tpope/vim-fugitive'
-Plugin 'junkblocker/git-time-lapse'
+"Plugin 'junegunn/gv.vim' " not needed
+"Plugin 'junkblocker/git-time-lapse' " using :0Gclog instead
 Plugin 'tpope/vim-rhubarb'
 "Plugin 'airblade/vim-gitgutter' " performance issues 2021-08-24, try to update
 
@@ -83,6 +84,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/markdown-preview.nvim' " :call mkdp#util#install() afterwards
+Plugin 'img-paste-devs/img-paste.vim'
 "Plugin 'jparise/vim-graphql'
 "Plugin 'rmelcer/vim-icinga'
 "Plugin 'skreuzer/vim-prometheus'
@@ -115,7 +117,8 @@ Plugin 'maximbaz/lightline-ale'
 Plugin 'tpope/tpope-vim-abolish'
 Plugin 'mileszs/ack.vim'
 Plugin 'jremmen/vim-ripgrep'
-Plugin 'Rename2'
+"Plugin 'Rename2' " using eunuch's rename
+Plugin 'tpope/vim-eunuch'
 "Plugin 'scrooloose/nerdtree'
 Plugin 'tmhedberg/matchit'
 "Plugin 'vim-scripts/ruby-matchit'
@@ -140,7 +143,7 @@ Plugin 'guns/xterm-color-table.vim'
 Plugin 'ton/vim-bufsurf'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'gcmt/taboo.vim'
-Plugin 'danro/rename.vim'
+"Plugin 'danro/rename.vim'
 "Plugin 'fholgado/minibufexpl.vim'
 
 " Layout
@@ -465,8 +468,10 @@ inoremap <F6> <C-O>:Reload<CR>
 noremap <F7> :GblameToggle<CR>
 inoremap <F7> :GblameToggle<CR>
 
-noremap <F8> :GitTimeLapse<CR>
-inoremap <F8> :GitTimeLapse<CR>
+noremap <F8> :0Gclog<CR>
+inoremap <F8> :0Gclog<CR>
+"noremap <F8> :GitTimeLapse<CR>
+"inoremap <F8> :GitTimeLapse<CR>
 
 noremap <F9> :CopyBufferToClipboard<CR>
 inoremap <F9> <C-O>:CopyBufferToClipboard<CR>
@@ -1107,6 +1112,7 @@ command! DebugNearest call DebugNearest()
 " vim-fugitive
 "###############################################################################
 command! Gplo execute "e README.md | Git pull origin"
+command -nargs=* Gl Git l <args>
 
 function! GblameToggle()
   if &l:filetype ==# 'fugitiveblame'

@@ -31,7 +31,7 @@ alias gpou="git push -u origin HEAD"
 alias gpu="git push upsteam"
 alias gcam="git commit -am"
 alias gcm="git commit -m"
-alias gcf="git commit --fixup HEAD"
+alias gcf="git commit --fixup HEAD && git rebase origin/main"
 # mirror gh-pages with master & push
 alias gpogh="git checkout gh-pages && git merge master && git push origin gh-pages && git checkout -"
 alias gdiff="git diff --word-diff-regex=. --word-diff=color --no-index"

@@ -17,7 +17,6 @@ go get -u github.com/rogpeppe/gohack
 go get -u github.com/salrashid123/gce_metadata_server
 go get -u golang.org/x/tools/cmd/goimports
 go get -u golang.org/x/tools/gopls
-go get -u golang.org/x/tools/refactor/rename
 go get -u google.golang.org/grpc
 go get -u github.com/kyleconroy/sqlc/cmd/sqlc
 go get -u github.com/buraksezer/olric/cmd/olricd
@@ -32,6 +31,7 @@ go get -u github.com/elazarl/go-bindata-assetfs/...
 
 go install github.com/go-delve/delve/cmd/dlv@latest
 
+go install -v golang.org/x/tools/cmd/gorename@latest
 go install -v github.com/google/gops@latest
 go install -v github.com/jnewmano/grpc-json-proxy@latest
 go install -v github.com/dhulihan/grump@latest

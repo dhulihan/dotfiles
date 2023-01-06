@@ -42,6 +42,7 @@ brew install k3d
 brew install kubectx
 brew install kubernetes-cli
 brew install kubernetes-helm
+brew install lft
 brew install libcouchbase
 brew install libffi
 brew install libyaml
