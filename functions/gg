@@ -6,7 +6,14 @@
 INIT_PROJECT_CMD="tmux-session"
 
 # disable module supportfor this since we want to download to src not pkg/mod
-GO111MODULE=off go get -v $1 || echo "problem fetching $1"
+GO111MODULE=off go get -v $1
+
+if [ $? -ne 0 ]; then
+	echo "could not fetch project"
+	return
+fi
+
+
 cd ${GOPATH}/src/$1
 
 # don't start up the project if we're already in tmux
