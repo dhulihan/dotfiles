@@ -1,12 +1,11 @@
-# don't do anything if we're already in tmux
-if [[ -z $TMUX ]] ; then
-	tmux-session
-else
+# start a dev session in the current dir
+
+# if we're already in tmux, we're in a dev session
+if [[ -v TMUX ]] ; then
 	debug "already in tmux"
 	return
 fi
 
-# start a dev session in the current dir
 NON_DEV_DIRS=( \
   "$HOME" \
   "$HOME/Downloads" \
@@ -23,3 +22,4 @@ done
 # pull in latest
 (git checkout main || git checkout master) && git pull origin
 
+tmux-session

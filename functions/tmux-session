@@ -6,6 +6,14 @@
 # * existing-session-name - omit to create a new session based on the name of
 # your current directory
 
+
+# don't do anything if we're already in tmux
+if [[ -v TMUX ]] ; then
+	debug "already in tmux"
+	return
+fi
+
+
 BASENAME=$(basename $PWD)
 SESSION_NAME_RAW=${1:-$BASENAME}
 SESSION_NAME=$(gecho -n $SESSION_NAME_RAW | sed 's/\.//g')
