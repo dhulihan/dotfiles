@@ -69,6 +69,7 @@ Plugin 'bogado/file-line' " open file:line
 " Plugin 'wellle/context.vim' " cool but slow
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'yssl/QFEnter' " quickfix helpers
 "Plugin 'glts/vim-radical' " not using this much atm
 
 " Language-specific
