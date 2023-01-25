@@ -22,4 +22,9 @@ done
 # pull in latest
 (git checkout main || git checkout master) && git pull origin
 
+if [[ $? -ne 0 ]] ; then
+	warn "failed to pull latest changes, not starting dev session"
+	return
+fi
+
 tmux-session

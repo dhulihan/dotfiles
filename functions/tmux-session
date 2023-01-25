@@ -55,6 +55,7 @@ iterm-tab-color $TAB_COLOR
 tmux a -t $SESSION_NAME
 
 if [[ $? -ne 0 ]] ; then
+	debug "cannot find existing session, creating a new session"
 	tmux new -s $SESSION_NAME -d
 
 	# create windows
