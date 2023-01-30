@@ -6,18 +6,11 @@ if [[ -v TMUX ]] ; then
 	return
 fi
 
-NON_DEV_DIRS=( \
-  "$HOME" \
-  "$HOME/Downloads" \
-)
-for NON_DEV_DIR in "${NON_DEV_DIRS[@]}" ; do
-	if [[ $PWD == "$NON_DEV_DIR" ]] ; then
-    debug "$PWD is a non-dev dir not creating dev session"
+# check for presence of git repo
+if [[ ! -d ".git" ]] ; then
+    debug "$PWD is not a git repo, not creating dev session"
     return
-  else
-    debug "$PWD is a dev dir"
-  fi
-done
+fi
 
 # pull in latest
 (git checkout main || git checkout master) && git pull origin
