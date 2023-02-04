@@ -828,6 +828,10 @@ let g:vim_markdown_autowrite = 1
 let g:mkdp_theme = 'light'
 " markdown-preview END -------------------------------
 
+" img-paste --------------------------------------------------------------------
+let g:mdip_imgdir = '.' " store in same dir as md file
+" img-paste END ----------------------------------------------------------------
+
 " jiangmiao/auto-pairs --------------------------------------
 
 " turn off indenter. Does not play nicely with fenced markdown blocks

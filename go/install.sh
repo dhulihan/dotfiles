@@ -40,6 +40,9 @@ go install -v github.com/golang/mock/mockgen@latest
 go install -v mvdan.cc/gofumpt@latest
 go install -v github.com/kyoh86/richgo@latest
 
+# spanner
+go install -v go.mercari.io/yo@latest
+
 
 # install with brew to ensure stability
 # https://golangci-lint.run/usage/install/#local-installation
