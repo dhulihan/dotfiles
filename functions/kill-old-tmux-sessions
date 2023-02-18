@@ -1,0 +1,17 @@
+# this script lists old tmux sessions and kills them to free up resources
+TOO_OLD_THRESHOLD_SECS=604800 # 7 days
+
+NOW=$((`gdate +%s`))
+
+tmux ls -F '#{session_name} #{session_activity}' | while read -r LINE; do
+  SESSION_NAME=$(echo $LINE | awk '{print $1}')
+  LAST_ACTIVITY=$(echo $LINE | awk '{print $2}')
+  LAST_ACTIVITY_SECS_ELAPSED=$(($NOW - $LAST_ACTIVITY))
+
+  debug "${SESSION_NAME} is ${LAST_ACTIVITY_SECS_ELAPSED}s inactive"
+
+  if [[ "$LAST_ACTIVITY_SECS_ELAPSED" -gt "$TOO_OLD_THRESHOLD_SECS" ]]; then
+    warn "${SESSION_NAME} is ${LAST_ACTIVITY_SECS_ELAPSED}s inactive, killing..."
+    tmux kill-session -t ${SESSION_NAME}
+  fi
+done
