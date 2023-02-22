@@ -28,6 +28,9 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 # Disk
 alias bigfiles="du -hs * | sort -rn | head"
 
+# Dev
+alias ds='dev-session'
+
 # Directories & Files
 #alias pd="pushd"
 #alias pd-="popd"
