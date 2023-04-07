@@ -49,6 +49,7 @@ brew install libyaml
 brew install lolcat
 brew install lua
 brew install luarocks
+brew install stylua
 brew install markdown
 brew install mosh
 brew install mpv
