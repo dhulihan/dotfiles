@@ -161,13 +161,20 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-dispatch'
 
 
-"nvim plugins - remember to call :PlugInstall and  :UpdateRemotePlugs after
-"changing (annoying)
+" neovim plugins - remember to call :PlugInstall and  :UpdateRemotePlugs after
+" changing (annoying)
 if has('nvim')
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'folke/neodev.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+  Plug 'nvim-telescope/telescope-dap.nvim'
   Plug 'gelguy/wilder.nvim' " fancy wildmenu
+  Plug 'mfussenegger/nvim-dap'
   Plug 'leoluz/nvim-dap-go'
-  Plug 'jonathanfilip/vim-lucius' " manually install color for now 
-  "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'rcarriga/nvim-dap-ui'
+  Plug 'theHamsta/nvim-dap-virtual-text'
+  Plug 'jonathanfilip/vim-lucius' " manually install color for now
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " call `:TSInstall go` after
 end
 
 " All of your Plugins must be added before the following line
@@ -397,7 +404,7 @@ nnoremap <silent> <leader>e :ToggleNetrw<CR>
 nnoremap <Leader>t :TagbarToggle<cr>
 nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
-nnoremap <Leader><tab> :Cdp 
+nnoremap <Leader><tab> :Cdp
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
 " open new buffer with name from inner parens
@@ -414,7 +421,7 @@ nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
 nnoremap <Leader>= :ALENext -wrap -warning<CR>
 nnoremap <Leader>- :ALEPrevious -wrap -warning<CR>
-nnoremap <Leader><Leader> :ToggleQuickFix<CR> 
+nnoremap <Leader><Leader> :ToggleQuickFix<CR>
 "nnoremap <Leader>' :ToggleQuickFix<CR>
 " folding
 nnoremap <Leader>, zr<CR>
@@ -1659,7 +1666,7 @@ function! ToggleNetrw()
     let i = bufnr("$")
     while (i >= 1)
       if (getbufvar(i, "&filetype") == "netrw")
-        silent exe "bwipeout " . i 
+        silent exe "bwipeout " . i
       endif
       let i-=1
     endwhile

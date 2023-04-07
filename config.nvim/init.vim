@@ -9,6 +9,9 @@ source ~/.vimrc
 set undodir=$HOME/.nvim/undo " mkdir this if you need to
 set undofile " Maintain undo history between sessions
 
+lua require('plugins')
+lua require('mappings')
+
 " nvim plugin config
 "
 " wilder -------------------------------------------------------------------
