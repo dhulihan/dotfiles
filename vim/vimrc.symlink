@@ -22,153 +22,154 @@ if filereadable(expand("~/.private.vim"))
   source ~/.private.vim
 endif
 
-call vundle#begin()
+call plug#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
 " System
-Plugin 'benmills/vimux'
+Plug 'benmills/vimux'
 
 " Vim
-Plugin 'mhinz/vim-startify'
-Plugin 'jeanCarloMachado/vim-toop'
-"Plugin 'Yggdroot/indentLine' " don't need this, use list
-"Plugin 'machakann/vim-highlightedyank' " cool but annoying after a while
-"Plugin 'chrisbra/Recover.vim'
+Plug 'mhinz/vim-startify'
+Plug 'jeanCarloMachado/vim-toop'
+"Plug 'Yggdroot/indentLine' " don't need this, use list
+"Plug 'machakann/vim-highlightedyank' " cool but annoying after a while
+"Plug 'chrisbra/Recover.vim'
+Plug 'inkarkat/vim-CompleteHelper'
 
 " Version Control
-Plugin 'tpope/vim-fugitive'
-"Plugin 'junegunn/gv.vim' " not needed
-"Plugin 'junkblocker/git-time-lapse' " using :0Gclog instead
-Plugin 'tpope/vim-rhubarb'
-"Plugin 'airblade/vim-gitgutter' " performance issues 2021-08-24, try to update
+Plug 'tpope/vim-fugitive'
+"Plug 'junegunn/gv.vim' " not needed
+"Plug 'junkblocker/git-time-lapse' " using :0Gclog instead
+Plug 'tpope/vim-rhubarb'
+"Plug 'airblade/vim-gitgutter' " performance issues 2021-08-24, try to update
 
 " General Syntax
-"Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-endwise'
-"Plugin 'tpope/vim-surround'
-"Plugin 'tpope/vim-repeat'
-"Plugin 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go, slow
-Plugin 'The-NERD-Commenter'
-"Plugin 'ludovicchabant/vim-gutentags' " blocking too much
-Plugin 'vitalk/vim-shebang'
-" Plugin 'junegunn/vim-easy-align' " TODO: fix = mapping
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'prettier/vim-prettier', {
+"Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
+"Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-repeat'
+"Plug 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go, slow
+Plug 'preservim/nerdcommenter'
+"Plug 'ludovicchabant/vim-gutentags' " blocking too much
+Plug 'vitalk/vim-shebang'
+" Plug 'junegunn/vim-easy-align' " TODO: fix = mapping
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'branch': 'release/1.x',
   \ 'for': [
   \   'javascript'
   \ ] }
-Plugin 'rhysd/clever-f.vim'
-Plugin 'bogado/file-line' " open file:line
-" Plugin 'vim-test/vim-test' " not needed
-" Plugin 'wellle/context.vim' " cool but slow
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'yssl/QFEnter' " quickfix helpers
-"Plugin 'glts/vim-radical' " not using this much atm
+Plug 'rhysd/clever-f.vim'
+Plug 'bogado/file-line' " open file:line
+" Plug 'vim-test/vim-test' " not needed
+" Plug 'wellle/context.vim' " cool but slow
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'yssl/QFEnter' " quickfix helpers
+"Plug 'glts/vim-radical' " not using this much atm
 
 " Language-specific
-"Plugin 'stamblerre/gocode' " trouble getting this to work
-"Plugin 'fatih/vim-go' " gopls issues
-Plugin 'sebdah/vim-delve'
+"Plug 'stamblerre/gocode' " trouble getting this to work
+"Plug 'fatih/vim-go' " gopls issues
+Plug 'sebdah/vim-delve'
 " ^ spinning up a gopls server for every vim session
-"Plugin 'robbles/logstash.vim'
-Plugin 'hashivim/vim-terraform'
-"Plugin 'tpope/vim-cucumber'
-"Plugin 'elubow/cql-vim'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'cespare/vim-toml'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'iamcco/markdown-preview.nvim' " :call mkdp#util#install() afterwards
-Plugin 'img-paste-devs/img-paste.vim'
-"Plugin 'jparise/vim-graphql'
-"Plugin 'rmelcer/vim-icinga'
-"Plugin 'skreuzer/vim-prometheus'
-"Plugin 'Glench/Vim-Jinja2-Syntax'
-"Plugin 'wannesm/wmgraphviz.vim'
-"Plugin 'elixir-lang/vim-elixir' " not using elixir right now
-"Plugin 'tpope/vim-rails'
-"Plugin 'gabrielelana/vim-markdown'
-"Plugin 'shime/vim-livedown'
-"Plugin 'JamshedVesuna/vim-markdown-preview'
-" Plugin 'amiorin/vim-fenced-code-blocks' " does not support indentation
-" Plugin 'rhysd/vim-gfm-syntax' " cute but not needed
-Plugin 'chrisbra/csv.vim'
-"Plugin 'mhinz/vim-rfc' " cool but not working well, requires vim ruby
-Plugin 'dhulihan/vim-rfc'
-Plugin 'kamailio/vim-kamailio-syntax'
-"Plugin 'vim-ruby/vim-ruby' " careful, possibly slow
-"Plugin 'tpope/vim-rbenv' " supposed to work with recent vim-ruby
-Plugin 'bufbuild/vim-buf'
-Plugin 'trayo/vim-ginkgo-snippets'
-Plugin 'buoto/gotests-vim'
-Plugin 'mracos/mermaid.vim'
+"Plug 'robbles/logstash.vim'
+Plug 'hashivim/vim-terraform'
+"Plug 'tpope/vim-cucumber'
+"Plug 'elubow/cql-vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'cespare/vim-toml'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim' " :call mkdp#util#install() afterwards
+Plug 'img-paste-devs/img-paste.vim'
+"Plug 'jparise/vim-graphql'
+"Plug 'rmelcer/vim-icinga'
+"Plug 'skreuzer/vim-prometheus'
+"Plug 'Glench/Vim-Jinja2-Syntax'
+"Plug 'wannesm/wmgraphviz.vim'
+"Plug 'elixir-lang/vim-elixir' " not using elixir right now
+"Plug 'tpope/vim-rails'
+"Plug 'gabrielelana/vim-markdown'
+"Plug 'shime/vim-livedown'
+"Plug 'JamshedVesuna/vim-markdown-preview'
+" Plug 'amiorin/vim-fenced-code-blocks' " does not support indentation
+" Plug 'rhysd/vim-gfm-syntax' " cute but not needed
+Plug 'chrisbra/csv.vim'
+"Plug 'mhinz/vim-rfc' " cool but not working well, requires vim ruby
+Plug 'dhulihan/vim-rfc'
+Plug 'kamailio/vim-kamailio-syntax'
+"Plug 'vim-ruby/vim-ruby' " careful, possibly slow
+"Plug 'tpope/vim-rbenv' " supposed to work with recent vim-ruby
+Plug 'bufbuild/vim-buf'
+Plug 'trayo/vim-ginkgo-snippets'
+Plug 'buoto/gotests-vim'
+Plug 'mracos/mermaid.vim'
 
 " Lint
-Plugin 'w0rp/ale'
-"Plugin 'vim-syntastic/syntastic'
-Plugin 'maximbaz/lightline-ale'
+Plug 'w0rp/ale'
+"Plug 'vim-syntastic/syntastic'
+Plug 'maximbaz/lightline-ale'
 
 " Utility
-Plugin 'tpope/tpope-vim-abolish'
-Plugin 'mileszs/ack.vim'
-Plugin 'jremmen/vim-ripgrep'
-"Plugin 'Rename2' " using eunuch's rename
-Plugin 'tpope/vim-eunuch'
-"Plugin 'scrooloose/nerdtree'
-Plugin 'tmhedberg/matchit'
-"Plugin 'vim-scripts/ruby-matchit'
-"Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'mtth/scratch.vim'
-"Plugin 'vim-scripts/SearchComplete'
-Plugin 'junegunn/fzf.vim'
-Plugin 'stsewd/fzf-checkout.vim'
-"Plugin 'ronakg/quickr-preview.vim'
-"Plugin 'alok/notational-fzf-vim'
-Plugin 'dhulihan/vim-gtfo'
+Plug 'tpope/tpope-vim-abolish'
+Plug 'mileszs/ack.vim'
+Plug 'jremmen/vim-ripgrep'
+"Plug 'Rename2' " using eunuch's rename
+Plug 'tpope/vim-eunuch'
+"Plug 'scrooloose/nerdtree'
+Plug 'tmhedberg/matchit'
+"Plug 'vim-scripts/ruby-matchit'
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'mtth/scratch.vim'
+"Plug 'vim-scripts/SearchComplete'
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
+"Plug 'ronakg/quickr-preview.vim'
+"Plug 'alok/notational-fzf-vim'
+Plug 'dhulihan/vim-gtfo'
 
 " Colors
-Plugin 'flazz/vim-colorschemes'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Plugin 'fenetikm/falcon'
-Plugin 'guns/xterm-color-table.vim'
-"Plugin 'vim-airline/vim-airline-themes'
+Plug 'flazz/vim-colorschemes'
+"Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plug 'fenetikm/falcon'
+Plug 'guns/xterm-color-table.vim'
+"Plug 'vim-airline/vim-airline-themes'
 
 " Files & Buffers
-"Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'ton/vim-bufsurf'
-Plugin 'qpkorr/vim-bufkill'
-Plugin 'gcmt/taboo.vim'
-"Plugin 'danro/rename.vim'
-"Plugin 'fholgado/minibufexpl.vim'
+"Plug 'jeetsukumaran/vim-buffergator'
+Plug 'ton/vim-bufsurf'
+Plug 'qpkorr/vim-bufkill'
+Plug 'gcmt/taboo.vim'
+"Plug 'danro/rename.vim'
+"Plug 'fholgado/minibufexpl.vim'
 
 " Layout
-"Plugin 'bling/vim-airline'
-Plugin 'itchyny/lightline.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'tyru/open-browser.vim'
-"Plugin 'wincent/command-t'
-"Plugin 'vim-scripts/EasyGrep'
-"Plugin 'editorconfig/editorconfig-vim.git' " not using atm
-"Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-easytags'
-Plugin 'majutsushi/tagbar'
+"Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
+Plug 'godlygeek/tabular'
+Plug 'tyru/open-browser.vim'
+"Plug 'wincent/command-t'
+"Plug 'vim-scripts/EasyGrep'
+"Plug 'editorconfig/editorconfig-vim.git' " not using atm
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-easytags'
+Plug 'majutsushi/tagbar'
 
 " Build
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
 
-"nvim plugins - remember to call :UpdateRemotePlugins after changing (annoying)
+
+"nvim plugins - remember to call :PlugInstall and  :UpdateRemotePlugs after
+"changing (annoying)
 if has('nvim')
-  Plugin 'gelguy/wilder.nvim' " fancy wildmenu
+  Plug 'gelguy/wilder.nvim' " fancy wildmenu
+  Plug 'leoluz/nvim-dap-go'
 end
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
 
 " Line Numbers
