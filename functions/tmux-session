@@ -26,13 +26,10 @@ iterm-tab-title $SESSION_NAME
 # set iterm2 color
 case $SESSION_NAME in
     dotfiles)
-      TAB_COLOR=blue
-      ;;
-    explore)
-      TAB_COLOR=aqua
+      TAB_COLOR=darkpurple
       ;;
     secrets)
-      TAB_COLOR=purple
+      TAB_COLOR=darkpurple
       ;;
     dev)
       TAB_COLOR=yellow
@@ -42,6 +39,9 @@ case $SESSION_NAME in
       ;;
     prod)
       TAB_COLOR=red
+      ;;
+    explore)
+      TAB_COLOR=aqua
       ;;
     *)
       TAB_COLOR=green
