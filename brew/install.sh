@@ -37,6 +37,7 @@ brew install id3lib
 brew install id3tool
 brew install iftop
 brew install ipcalc
+brew install jless
 brew install jq
 brew install k3d
 brew install kubectx
