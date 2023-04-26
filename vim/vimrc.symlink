@@ -29,13 +29,14 @@ call plug#begin()
 " System
 Plug 'benmills/vimux'
 
-" Vim
+" Vim itself
 Plug 'mhinz/vim-startify'
 Plug 'jeanCarloMachado/vim-toop'
 "Plug 'Yggdroot/indentLine' " don't need this, use list
 "Plug 'machakann/vim-highlightedyank' " cool but annoying after a while
 "Plug 'chrisbra/Recover.vim'
 Plug 'inkarkat/vim-CompleteHelper'
+Plug 'unblevable/quick-scope'
 
 " Version Control
 Plug 'tpope/vim-fugitive'
@@ -131,7 +132,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'dhulihan/vim-gtfo'
 
 " Colors
-Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes' " note: not working in nvim, need to fix
 "Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plug 'fenetikm/falcon'
 Plug 'guns/xterm-color-table.vim'
@@ -1063,6 +1064,9 @@ let g:startify_custom_header = []
 let g:startify_relative_path = 1
 let g:startify_list_order = ['dir', 'files', 'bookmarks', 'sessions']
 let g:startify_change_to_dir = 0
+
+" gotests-vim
+let g:gotests_template="testify"
 
 " vim-markdown-preview
 "let vim_markdown_preview_github=1 " use grip disable to use markdown cli

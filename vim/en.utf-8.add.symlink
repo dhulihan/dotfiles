@@ -480,3 +480,4 @@ autovacuum
 Inlining
 Underrun
 linters
+passthrough
