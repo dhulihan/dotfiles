@@ -111,6 +111,7 @@ brew install wdiff
 brew install wget
 brew install yarn
 brew install youtube-dl
+brew install yq
 brew install zsh
 
 brew install node@10

@@ -1,6 +1,3 @@
--- telescope
-require("telescope").setup()
-
 -- nvim-dap --------------------------------------------------------------------
 --
 local ok, dap = pcall(require, "dap")
@@ -28,5 +25,6 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 -- nvim-dap END ----------------------------------------------------------------
---
+-- telescope
+require("telescope").setup()
 require("telescope").load_extension("dap")
