@@ -1,3 +1,5 @@
+#!/bin/bash
+#
 # tmux-session [existing-session-name]
 #
 # Author: Dave Hulihan <dhulihan@gmail.com>
@@ -9,8 +11,8 @@
 
 # don't do anything if we're already in tmux
 if [[ -v TMUX ]] ; then
-	debug "already in tmux"
-	return
+  debug "already in tmux"
+  return
 fi
 
 
@@ -25,27 +27,27 @@ iterm-tab-title $SESSION_NAME
 
 # set iterm2 color
 case $SESSION_NAME in
-    dotfiles)
-      TAB_COLOR=darkpurple
-      ;;
-    secrets)
-      TAB_COLOR=darkpurple
-      ;;
-    dev)
-      TAB_COLOR=yellow
-      ;;
-    staging)
-      TAB_COLOR=orange
-      ;;
-    prod)
-      TAB_COLOR=red
-      ;;
-    explore)
-      TAB_COLOR=aqua
-      ;;
-    *)
-      TAB_COLOR=green
-      ;;
+  dotfiles)
+    TAB_COLOR=darkpurple
+    ;;
+  secrets)
+    TAB_COLOR=darkpurple
+    ;;
+  dev)
+    TAB_COLOR=yellow
+    ;;
+  staging)
+    TAB_COLOR=orange
+    ;;
+  prod)
+    TAB_COLOR=red
+    ;;
+  explore)
+    TAB_COLOR=aqua
+    ;;
+  *)
+    TAB_COLOR=green
+    ;;
 esac
 
 #
@@ -55,16 +57,35 @@ iterm-tab-color $TAB_COLOR
 tmux a -t $SESSION_NAME
 
 if [[ $? -ne 0 ]] ; then
-	debug "cannot find existing session, creating a new session"
-	tmux new -s $SESSION_NAME -d
+  debug "cannot find existing session, creating a new session"
+  tmux new -s $SESSION_NAME -d
 
-	# create windows
-	tmux new-window -t $SESSION_NAME -n vim
-	#tmux new-window -t $SESSION_NAME -n zsh
+  # create windows
+  case $SESSION_NAME in
+    Notes|explore)
+      # no shell session, only editor
+      EDITOR_WINDOW=1
+      ;;
+    prod|staging)
+      # no editor session, only shell
+      SHELL_WINDOW=1
+      ;;
+    *)
+      tmux new-window -t $SESSION_NAME -n vim
 
-	# open vim on second window
-	tmux send-keys -t $SESSION_NAME:2 $EDITOR_CMD C-m
-	tmux select-window -t $SESSION_NAME:2
+      # open vim on second window
+      SHELL_WINDOW=1
+      EDITOR_WINDOW=2
 
-	tmux a -t $SESSION_NAME
+      ;;
+  esac
+
+  # setup windows
+  if [[ ! -z $EDITOR_WINDOW ]] ; then
+    tmux send-keys -t $SESSION_NAME:$EDITOR_WINDOW $EDITOR_CMD C-m
+    tmux select-window -t $SESSION_NAME:$EDITOR_WINDOW
+  fi
+
+  # attach to session
+  tmux a -t $SESSION_NAME
 fi
