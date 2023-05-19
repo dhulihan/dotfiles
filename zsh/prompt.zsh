@@ -39,7 +39,11 @@ git_commit() {
 }
 
 git_commit_timestamp() {
-	echo "%{$fg_bold[grey]%}$(git log -1 --format="%ar" 2>/dev/null)%{$reset_color%}"
+	echo "%{$fg_bold[grey]%}$(git log -1 --format="%ar ⠿ %B" 2>/dev/null)%{$reset_color%}"
+}
+
+git_commit_msg() {
+	echo "%{$fg_bold[grey]%}$(git log -1 --format="%B" | head -n 1 2>/dev/null)%{$reset_color%}"
 }
 
 git_dirty() {
