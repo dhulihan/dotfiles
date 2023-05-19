@@ -10,7 +10,6 @@ GO111MODULE=off go get -v $1
 
 if [ $? -ne 0 ]; then
 	echo "could not fetch project"
-	return
 fi
 
 
