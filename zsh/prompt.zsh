@@ -38,12 +38,8 @@ git_commit() {
   echo "%{$fg_bold[blue]%}$($git rev-parse --short HEAD 2>/dev/null)%{$reset_color%}"
 }
 
-git_commit_info() {
-	echo "%{$fg_bold[grey]%}$(git log -1 --format="%ar ⠿ %B" | head -n 1 2>/dev/null)%{$reset_color%}"
-}
-
-git_commit_msg() {
-	echo "%{$fg_bold[grey]%}$(git log -1 --format="%B" | head -n 1 2>/dev/null)%{$reset_color%}"
+git_commit_timestamp() {
+	echo "%{$fg_bold[grey]%}$(git log -1 --format="%ar" 2>/dev/null)%{$reset_color%}"
 }
 
 git_dirty() {
@@ -115,7 +111,7 @@ random_emoji() {
 
 
 set_prompt() {
-	export PROMPT=$'\n$(random_emoji) $(datestamp) %(?.%F{green}.%F{red}%?)%f\n$(directory_name) $(git_dirty) $(git_commit)$(need_push)\n%F{242}$ %f'
+	export PROMPT=$'\n$(random_emoji) $(datestamp) %(?.%F{green}.%F{red}%?)%f\n$(directory_name) $(git_dirty) $(git_commit) $(git_commit_timestamp)$(need_push)\n%F{242}$ %f'
 }
 
 precmd() {

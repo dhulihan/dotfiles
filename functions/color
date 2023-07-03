@@ -1,0 +1,25 @@
+# determine the color of a directory, considering programming language, etc
+
+LANG=$(lang)
+case $LANG in
+  Go)
+    # if there's no main.go, consider this a shared package
+    if [[ ! -e main.go ]] ; then
+      COLOR=darkgray
+    elif ; then
+      COLOR=goblue
+    fi
+    ;;
+  Ruby)
+    COLOR=rubyred
+    ;;
+  Shell)
+    COLOR=neongreen
+    ;;
+  *)
+    warn "color not detected for ${LANG}"
+    COLOR=grey
+    ;;
+esac
+
+echo -n $COLOR

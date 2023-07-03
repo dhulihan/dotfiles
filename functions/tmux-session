@@ -28,29 +28,29 @@ iterm-tab-title $SESSION_NAME
 # set iterm2 color
 case $SESSION_NAME in
   dotfiles)
-    TAB_COLOR=darkpurple
+    TAB_COLOR=blue
     ;;
   secrets)
-    TAB_COLOR=darkpurple
+    TAB_COLOR=darkblue
     ;;
   dev)
-    TAB_COLOR=yellow
+    TAB_COLOR=purple
     ;;
   staging)
-    TAB_COLOR=orange
+    TAB_COLOR=darkpurple
     ;;
   prod)
     TAB_COLOR=red
     ;;
   explore)
-    TAB_COLOR=aqua
+    TAB_COLOR=black
     ;;
   *)
-    TAB_COLOR=green
+    # color by project type
+    TAB_COLOR=$(color)
     ;;
 esac
 
-#
 iterm-tab-color $TAB_COLOR
 
 # attempt to attach to
