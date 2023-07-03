@@ -176,6 +176,7 @@ if has('nvim')
   Plug 'theHamsta/nvim-dap-virtual-text'
   Plug 'jonathanfilip/vim-lucius' " manually install color for now
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " call `:TSInstall go` after
+  Plug 'github/copilot.vim' " frickin slow
 end
 
 " All of your Plugins must be added before the following line

@@ -84,6 +84,7 @@ brew install redis
 brew install restic
 #brew install riak
 brew install ripgrep
+brew install rust
 brew install sevenzip
 brew install sshuttle
 brew install sipcalc

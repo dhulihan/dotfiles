@@ -54,7 +54,7 @@ esac
 iterm-tab-color $TAB_COLOR
 
 # attempt to attach to
-tmux a -t $SESSION_NAME
+tmux a -t "=${SESSION_NAME}"
 
 if [[ $? -ne 0 ]] ; then
   debug "cannot find existing session, creating a new session"

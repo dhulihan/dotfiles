@@ -36,6 +36,9 @@ call wilder#set_option('renderer', wilder#renderer_mux({
       \ }))
 " wilder END ---------------------------------------------------------------
 
+" copilot
+let g:copilot_enabled = v:false " disable by default
+
 " mappings
 
 " TODO: something that loads plugins and runs :UpdateRemotePlugins
