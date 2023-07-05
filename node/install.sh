@@ -11,6 +11,7 @@ npm install -g \
     json2csv \
     terminalizer \
     youtube-metadata-cli \
+    hash-emoji \
     grunt
 
 yarn global add @mermaid-js/mermaid-cli

@@ -22,35 +22,42 @@ SESSION_NAME=$(gecho -n $SESSION_NAME_RAW | sed 's/\.//g')
 
 echo "creating session $SESSION_NAME"
 
-# set iterm2 title
-iterm-tab-title $SESSION_NAME
 
 # set iterm2 color
 case $SESSION_NAME in
   dotfiles)
-    TAB_COLOR=blue
+    TAB_COLOR=black
+    TAB_EMOJI=$(emoji-hash ${SESSION_NAME})
     ;;
   secrets)
-    TAB_COLOR=darkblue
-    ;;
-  dev)
-    TAB_COLOR=purple
+    TAB_COLOR=yellow
+    TAB_EMOJI=🔒
     ;;
   staging)
-    TAB_COLOR=darkpurple
+    TAB_COLOR=orange
+    TAB_EMOJI=🏖️
     ;;
   prod)
     TAB_COLOR=red
+    TAB_EMOJI=⚠️
     ;;
   explore)
     TAB_COLOR=black
+    TAB_EMOJI=🔎
+    ;;
+  dev)
+    TAB_COLOR=purple
+    TAB_EMOJI=$(emoji-hash ${SESSION_NAME})
     ;;
   *)
     # color by project type
     TAB_COLOR=$(color)
+    TAB_EMOJI=$(emoji-hash ${SESSION_NAME})
     ;;
 esac
 
+# set iterm2 title
+iterm-tab-title "${TAB_EMOJI} ${SESSION_NAME}"
 iterm-tab-color $TAB_COLOR
 
 # attempt to attach to
