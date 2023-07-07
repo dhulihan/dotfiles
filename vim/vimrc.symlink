@@ -406,7 +406,7 @@ nnoremap <silent> <leader>e :ToggleNetrw<CR>
 nnoremap <Leader>t :TagbarToggle<cr>
 nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
-nnoremap <Leader><tab> :Cdp
+nnoremap <Leader><tab> :Cdp<Space>
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
 " open new buffer with name from inner parens

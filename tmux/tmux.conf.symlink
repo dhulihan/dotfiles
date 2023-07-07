@@ -10,7 +10,7 @@ bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft=
 bind k confirm kill-pane
 bind K confirm kill-session
 
-# fast killing
+# fast kill session
 bind C-b kill-session
 
 # bind / to search
