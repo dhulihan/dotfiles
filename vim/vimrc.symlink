@@ -36,7 +36,7 @@ Plug 'jeanCarloMachado/vim-toop'
 "Plug 'machakann/vim-highlightedyank' " cool but annoying after a while
 "Plug 'chrisbra/Recover.vim'
 Plug 'inkarkat/vim-CompleteHelper'
-Plug 'unblevable/quick-scope'
+"Plug 'unblevable/quick-scope' " cool but I don't use much
 
 " Version Control
 Plug 'tpope/vim-fugitive'
@@ -130,6 +130,7 @@ Plug 'stsewd/fzf-checkout.vim'
 "Plug 'ronakg/quickr-preview.vim'
 "Plug 'alok/notational-fzf-vim'
 Plug 'dhulihan/vim-gtfo'
+Plug 'romainl/vim-cool'
 
 " Colors
 Plug 'flazz/vim-colorschemes' " note: not working in nvim, need to fix

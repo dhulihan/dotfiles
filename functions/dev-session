@@ -20,4 +20,6 @@ if [[ $? -ne 0 ]] ; then
 	return
 fi
 
-tmux-session
+# exec in to replace current process
+exec tmux-session
+

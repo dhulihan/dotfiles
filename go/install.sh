@@ -53,4 +53,6 @@ brew install golang-migrate
 # interactive grpc client
 go install github.com/vadimi/grpc-client-cli/cmd/grpc-client-cli@latest
 
+go install honnef.co/go/tools/cmd/staticcheck@latest
+
 set +x
