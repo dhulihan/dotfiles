@@ -1,3 +1,6 @@
+# unbind everything to start with a clean slate on reload
+unbind-key -a
+
 # Add mouse support
 setw -g mouse on
 
@@ -11,7 +14,7 @@ bind k confirm kill-pane
 bind K confirm kill-session
 
 # fast kill session
-bind C-b kill-session
+bind C-v kill-session
 
 # bind / to search
 bind / copy-mode \; send-key ?
