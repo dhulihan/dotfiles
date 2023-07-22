@@ -12,7 +12,7 @@ OUTPUT_MP3="$OUTPUT_NAME.mp3"
 
 # download
 # we must set output name dynamically for both the webm and the post-processed mp3
-yt-dlp --extract-audio --audio-format mp3 --no-mtime --write-info-json --output="$OUTPUT_NAME.%(ext)s" $1
+yt-dlp --write-thumbnail --extract-audio --audio-format mp3 --no-mtime --write-info-json --output="$OUTPUT_NAME.%(ext)s" $1
 
 # extract metadata (youtube-dl)
 METADATA_FILE="${OUTPUT_NAME}.info.json"
@@ -29,6 +29,17 @@ echo "Title: [$TITLE] Track: [$TRACK] Album: [$ALBUM] Artist: [$ARTIST] Filename
 
 # add metadata
 eyeD3 --artist "$ARTIST" --album "$ALBUM" --title "${TRACK:-$TITLE}" $OUTPUT_MP3
+
+# convert to jpg
+magick $OUTPUT_NAME.webp $OUTPUT_NAME.jpg
+
+# create thumbnail
+THUMBNAIL="${OUTPUT_NAME}-thumbnail.jpg"
+convert -define jpeg:size=500x500 $OUTPUT_NAME.jpg -thumbnail 500x500^ \
+  -gravity center -extent 500x500  $THUMBNAIL
+
+# attach image to mp3
+eyeD3 --add-image "${THUMBNAIL}:FRONT_COVER" $OUTPUT_MP3
 
 # copy/move file
 #rm $METADATA_FILE

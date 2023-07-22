@@ -34,6 +34,7 @@ brew install grpcurl
 brew install hugo
 #brew install hyperkit
 brew install id3lib
+brew install imagemagick
 brew install id3tool
 brew install iftop
 brew install ipcalc
