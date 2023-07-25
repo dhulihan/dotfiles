@@ -4,7 +4,8 @@ LANG=$(lang)
 case $LANG in
   Go)
     # if there's no main.go, consider this a shared package
-    if [[ ! -e main.go ]] ; then
+    #if [[ ! -e main.go ]] ; then
+    if ! rg --max-depth 1 -g '!*_test.go' "package main" > /dev/null ; then
       COLOR=darkgoblue
       #COLOR=darkorange
     elif ; then

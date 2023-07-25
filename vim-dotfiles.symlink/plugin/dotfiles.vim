@@ -19,8 +19,15 @@ function! Reload()
   if has('nvim')
     "echom "neovim detected, reloading init.vim"
     source ~/.config/nvim/init.vim
+
+    " install plugins
+    PlugInstall
+    UpdateRemotePlugins
   else
     source ~/.vimrc
+
+    " install plugins
+    PlugInstall
   endif
 
   UltiSnipsReload

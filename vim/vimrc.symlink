@@ -130,7 +130,7 @@ Plug 'stsewd/fzf-checkout.vim'
 "Plug 'ronakg/quickr-preview.vim'
 "Plug 'alok/notational-fzf-vim'
 Plug 'dhulihan/vim-gtfo'
-Plug 'romainl/vim-cool'
+"Plug 'romainl/vim-cool' " cool but sometimes buggy
 
 " Colors
 Plug 'flazz/vim-colorschemes' " note: not working in nvim, need to fix
@@ -163,7 +163,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-dispatch'
 
 
-" neovim plugins - remember to call :PlugInstall and  :UpdateRemotePlugs after
+" neovim plugins - remember to call :PlugInstall | :UpdateRemotePlugins after
 " changing (annoying)
 if has('nvim')
   Plug 'nvim-lua/plenary.nvim'
@@ -178,6 +178,8 @@ if has('nvim')
   Plug 'jonathanfilip/vim-lucius' " manually install color for now
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " call `:TSInstall go` after
   Plug 'github/copilot.vim' " frickin slow
+  "Plug 'fatih/vim-go'
+  Plug 'folke/trouble.nvim' " error helper 
 end
 
 " All of your Plugins must be added before the following line
@@ -1209,8 +1211,13 @@ let g:disabled_ale_fixers = {
 \   'sql': ['sqlint', 'pgformatter'],
 \}
 
-let g:ale_linters = {
+
+let g:disabled_ale_linters = {
 \   'go': ['gobuild', 'govet', 'golint', 'golangci-lint'],
+\}
+
+let g:ale_linters = {
+\   'go': ['gobuild', 'golangci-lint'],
 \   'proto': ['buf-check-lint',],
 \   'ruby': ['rails_best_practices', 'ruby', 'rubocop'],
 \   'terraform': ['tflint'],
@@ -1219,7 +1226,7 @@ let g:ale_linters = {
 " fixers
 let g:ale_fixers = {
 \   'lua': ['stylua'],
-\   'go': ['goimports', 'gofmt', 'gofumpt'],
+\   'go': ['goimports', 'gofumpt'],
 \   'json': ['prettier'],
 \   'terraform': ['terraform'],
 \   'sql': ['pgformatter'],
