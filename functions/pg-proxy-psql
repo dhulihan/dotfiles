@@ -1,0 +1,20 @@
+# spin up a cloud sql proxy, and connect to it with psql, then exit
+
+# start up pg proxy cmd in background
+eval "${PGPROXYCMD:?} &"
+
+PGPROXYPID=$!
+
+# wait for port to become available
+while ! nc -z localhost $PGPORT; do
+  sleep 0.1 # wait for 1/10 of the second before check again
+  echo "waiting for $PGPORT"
+done
+
+# hop into psql
+psql
+
+# kill the proxy
+kill $PGPROXYPID
+
+return
