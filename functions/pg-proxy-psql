@@ -1,4 +1,4 @@
-# spin up a cloud sql proxy, and connect to it with psql, then exit
+# start up a pg proxy, connect to it with psql, then exit
 
 # start up pg proxy cmd in background
 eval "${PGPROXYCMD:?} &"
