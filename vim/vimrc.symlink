@@ -107,6 +107,7 @@ Plug 'bufbuild/vim-buf'
 Plug 'trayo/vim-ginkgo-snippets'
 Plug 'buoto/gotests-vim'
 Plug 'mracos/mermaid.vim'
+Plug 'direnv/direnv.vim'
 
 " Lint
 Plug 'w0rp/ale'
@@ -1855,3 +1856,7 @@ hi NonText guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
 
 " Colors END -----------------------------------------------
+"
+if filereadable(expand("~/.private-after.vim"))
+  source ~/.private-after.vim
+endif
