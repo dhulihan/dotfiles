@@ -170,6 +170,7 @@ brew install reattach-to-user-namespace
 # java stuff
 brew install java
 brew install logstash
+brew install kafka
 
 brew install --cask imagemagick
 brew install ffmpeg
