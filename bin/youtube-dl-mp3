@@ -12,7 +12,15 @@ OUTPUT_MP3="$OUTPUT_NAME.mp3"
 
 # download
 # we must set output name dynamically for both the webm and the post-processed mp3
-yt-dlp --write-thumbnail --extract-audio --audio-format mp3 --no-mtime --write-info-json --output="$OUTPUT_NAME.%(ext)s" $1
+yt-dlp \
+  --write-thumbnail \
+  --extract-audio \
+  --audio-format mp3 \
+  --no-mtime \
+  --write-info-json \
+  --output="$OUTPUT_NAME.%(ext)s" \
+  --no-playlist \
+  $1
 
 # extract metadata (youtube-dl)
 METADATA_FILE="${OUTPUT_NAME}.info.json"
