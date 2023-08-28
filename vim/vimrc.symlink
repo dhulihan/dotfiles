@@ -188,8 +188,7 @@ call plug#end()            " required
 filetype plugin indent on    " required
 
 " Line Numbers
-set nonumber
-"highlight LineNr ctermfg=darkgrey
+set number
 
 " show as much of a line as possible
 set display+=lastline
@@ -198,7 +197,7 @@ set display+=lastline
 set iskeyword+=-
 
 " use number column for signs, to save on space
-"set signcolumn=number
+set signcolumn=number
 
 " hide modified buffers instead of closing them
 set hidden

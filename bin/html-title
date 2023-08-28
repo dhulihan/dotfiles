@@ -1,5 +1,9 @@
 #!/bin/bash
-curl -L "$1" -so  - | \
-  perl -l -0777 -ne 'print $1 if /<title.*?>\s*(.*?)\s*<\/title/si'
-#wget -qO- "$1" |
-  #perl -l -0777 -ne 'print $1 if /<title.*?>\s*(.*?)\s*<\/title/si'
+RESPONSE_CODE=$(http-response-code $1)
+
+if [[ $RESPONSE_CODE == 200 ]] ; then
+  curl -L "$1" -so  - | \
+    perl -l -0777 -ne 'print $1 if /<title.*?>\s*(.*?)\s*<\/title/si'
+else
+  echo $RESPONSE_CODE
+fi
