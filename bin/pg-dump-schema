@@ -1,0 +1,1 @@
+pg_dump --no-owner --schema-only -x --section=pre-data > schema.sql

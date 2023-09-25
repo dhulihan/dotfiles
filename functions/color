@@ -18,6 +18,9 @@ case $LANG in
   Shell)
     COLOR=neongreen
     ;;
+  TSX)
+    COLOR=blue
+    ;;
   *)
     warn "color not detected for ${LANG}"
     COLOR=grey
