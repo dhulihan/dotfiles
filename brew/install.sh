@@ -234,5 +234,7 @@ brew install incu6us/homebrew-tap/goimports-reviser
 
 brew install agrinman/tap/tunnelto
 
+brew install mike-engel/jwt-cli/jwt-cli
+
 set +e
 say "brew is done"

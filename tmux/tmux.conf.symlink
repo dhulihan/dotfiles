@@ -1,5 +1,7 @@
-# unbind everything to start with a clean slate on reload
-unbind-key -a
+# unbind everything to start with a clean slate on reload.
+#   WARNING: this will unbind default bindings like zoom/prompt. You can also
+#   manually unbind and rebind if desired.
+#unbind-key -a
 
 # Add mouse support
 setw -g mouse on
