@@ -10,14 +10,30 @@ import (
 	"os"
 	"strconv"
 	"time"
+	"io"
+	"strings"
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		log.Fatalf("must supply an epoch time")
-	}
+	var s string
+	switch len(os.Args){
+	case 1: // no args supplied
+			// check stdin
+			stat, _ := os.Stdin.Stat()
+			if (stat.Mode() & os.ModeCharDevice) == 0 {
+				b, err := io.ReadAll(os.Stdin)
+				if err != nil {
+					log.Fatalf(err.Error())
+				}
 
-	s := os.Args[1]
+				s = strings.TrimSuffix(string(b), "\n")
+			} else { // not stdin
+				log.Fatalf("must supply an epoch time argument or from stdin")
+			}
+
+	default:
+		s = os.Args[1]
+	}
 
 	t, err := UnixEpochToTime(s)
 	if err != nil {
