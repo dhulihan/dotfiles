@@ -22,6 +22,92 @@ return {
 
 	-- color/style
 	{ "jonathanfilip/vim-lucius" },
+
+	{ "benmills/vimux" },
+	-- Vim itself
+	{ "mhinz/vim-startify" },
+	{ "jeanCarloMachado/vim-toop" },
+	--{ 'Yggdroot/indentLine' " don't need this, use list
+	--{ 'machakann/vim-highlightedyank' " cool but annoying after a while
+	--{ 'chrisbra/Recover.vim' },
+	{ "inkarkat/vim-CompleteHelper" },
+	--{ 'unblevable/quick-scope' " cool but I don't use much
+
+	-- Version Control
+	{ "tpope/vim-fugitive" },
+	--{ 'junegunn/gv.vim' " not needed
+	--{ 'junkblocker/git-time-lapse' " using :0Gclog instead
+	{ "tpope/vim-rhubarb" },
+	--{ 'airblade/vim-gitgutter' " performance issues 2021-08-24, try to update
+
+	-- General Syntax
+	--{ 'jiangmiao/auto-pairs' },
+	{ "tpope/vim-endwise" },
+	--{ 'tpope/vim-surround' },
+	--{ 'tpope/vim-repeat' },
+	--{ 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go, slow
+	{ "preservim/nerdcommenter" },
+	--{ 'ludovicchabant/vim-gutentags' " blocking too much
+	{ "vitalk/vim-shebang" },
+	-- { 'junegunn/vim-easy-align' " TODO: fix = mapping
+	{ "ntpeters/vim-better-whitespace" },
+	{ "rhysd/clever-f.vim" },
+	{ "bogado/file-line" }, -- " open file:line
+	-- { 'vim-test/vim-test' }, -- not needed atm
+	-- { 'wellle/context.vim' },-- cool but slow
+	{ "SirVer/ultisnips" },
+	{ "honza/vim-snippets" },
+	{ "yssl/QFEnter" }, -- quickfix helpers
+
+	-- Language-specific
+	{ "sebdah/vim-delve" },
+	{ "hashivim/vim-terraform" },
+	{ "ekalinin/Dockerfile.vim" },
+	{ "cespare/vim-toml" },
+	{ "plasticboy/vim-markdown" },
+	{ "iamcco/markdown-preview.nvim" }, -- :call mkdp#util#install() afterwards
+	{ "img-paste-devs/img-paste.vim" },
+	{ "chrisbra/csv.vim" },
+	{ "dhulihan/vim-rfc" },
+	{ "kamailio/vim-kamailio-syntax" },
+	{ "bufbuild/vim-buf" },
+	{ "trayo/vim-ginkgo-snippets" },
+	{ "buoto/gotests-vim" },
+	{ "mracos/mermaid.vim" },
+	{ "direnv/direnv.vim" },
+
+	-- Lint
+	{ "w0rp/ale" },
+	{ "maximbaz/lightline-ale" },
+
+	-- Utility
+	{ "tpope/tpope-vim-abolish" },
+	{ "mileszs/ack.vim" },
+	{ "jremmen/vim-ripgrep" },
+	{ "tpope/vim-eunuch" },
+	{ "tmhedberg/matchit" },
+	{ "junegunn/fzf.vim" },
+	{ "stsewd/fzf-checkout.vim" },
+	{ "dhulihan/vim-gtfo" },
+
+	-- Colors
+	{ "fenetikm/falcon" },
+	{ "guns/xterm-color-table.vim" },
+
+	-- Files & Buffers
+	{ "ton/vim-bufsurf" },
+	{ "qpkorr/vim-bufkill" },
+	{ "gcmt/taboo.vim" },
+
+	-- Layout
+	{ "itchyny/lightline.vim" },
+	{ "godlygeek/tabular" },
+	{ "tyru/open-browser.vim" },
+	{ "majutsushi/tagbar" },
+
+	-- Build
+	{ "tpope/vim-dispatch" },
+	{ "ryanoasis/vim-devicons" },
 }
 
 -- nvim-dap --------------------------------------------------------------------

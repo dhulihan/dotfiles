@@ -163,6 +163,8 @@ Plug 'majutsushi/tagbar'
 " Build
 Plug 'tpope/vim-dispatch'
 
+Plug 'ryanoasis/vim-devicons' " add font glyph icons to popular plugins
+
 
 " neovim plugins - remember to call :PlugInstall | :UpdateRemotePlugins after
 " changing (annoying)
