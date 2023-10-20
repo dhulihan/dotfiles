@@ -171,7 +171,7 @@ if has('nvim')
   Plug 'folke/neodev.nvim'
   Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
   Plug 'nvim-telescope/telescope-dap.nvim'
-  Plug 'gelguy/wilder.nvim' " fancy wildmenu
+  "Plug 'gelguy/wilder.nvim' " fancy wildmenu
   Plug 'mfussenegger/nvim-dap'
   Plug 'leoluz/nvim-dap-go'
   Plug 'rcarriga/nvim-dap-ui'
@@ -179,8 +179,9 @@ if has('nvim')
   Plug 'jonathanfilip/vim-lucius' " manually install color for now
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " call `:TSInstall go` after
   Plug 'github/copilot.vim' " frickin slow
-  "Plug 'fatih/vim-go'
+  Plug 'fatih/vim-go'
   Plug 'folke/trouble.nvim' " error helper 
+  "Plug 'nvim-tree/nvim-web-devicons' " adds color
 end
 
 " All of your Plugins must be added before the following line

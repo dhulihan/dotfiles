@@ -25,7 +25,7 @@ warn() {
 # your project folder that we can `c [tab]` to
 export PROJECTS=$HOME/Projects
 export CDPATH=$PROJECTS:$CDPATH
-export EDITOR_CMD="vim4"
+export EDITOR_CMD="nvim4"
 # shortcut to this dotfiles path is $ZSH
 #
 export ZSH=$HOME/.dotfiles
