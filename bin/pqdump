@@ -5,7 +5,8 @@
 # TODO - support absolute paths here
 SRC=${QUERY_DIR:?}/${1:?}
 TMP_FILE=/tmp/$(basename $SRC)
-DST=$HOME/Downloads/$(basename -s .sql $SRC).csv
+TIMESTAMP=$(gdate +%s)
+DST=$HOME/Downloads/$(basename -s .sql $SRC)-$TIMESTAMP.csv
 
 # back up query file
 cp $SRC $TMP_FILE

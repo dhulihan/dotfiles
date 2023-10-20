@@ -1,0 +1,6 @@
+# get the human-readable expiration time of a jwt token
+# requires jwt-cli, jq, and github.com/dhulihan/depoch
+EXP_EPOCH=$(cat $1 | jwt decode - --json | jq '.payload.exp')
+NOW_EPOCH=$(gdate +%s)
+EXP_SECS=$(($EXP_EPOCH - $NOW_EPOCH))
+echo "Expires at $(depoch "$EXP_EPOCH") in ${EXP_SECS} secs"
