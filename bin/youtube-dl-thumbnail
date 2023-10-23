@@ -1,1 +1,0 @@
-yt-dlp --write-thumbnail --skip-download $1

@@ -1,0 +1,19 @@
+set -ex
+# $1 - the audio file
+# $2 - the image
+AUDIO_FILE=$1 # foo.mp3
+IMAGE_FILE=$2 # cover.webp
+IMAGE_BASE="${IMAGE_FILE%.*}" # cover
+IMAGE_OUT=$IMAGE_BASE.jpg
+THUMBNAIL=$IMAGE_BASE-thumbnail.jpg
+
+# convert to jpeg
+magick $IMAGE_FILE $IMAGE_OUT
+
+# create thumbnail
+convert -define jpeg:size=500x500 $IMAGE_OUT -thumbnail 500x500^ \
+  -gravity center -extent 500x500  $THUMBNAIL
+
+# attach image to mp3
+eyeD3 --add-image "${THUMBNAIL}:FRONT_COVER" $AUDIO_FILE
+

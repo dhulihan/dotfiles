@@ -38,16 +38,8 @@ echo "Title: [$TITLE] Track: [$TRACK] Album: [$ALBUM] Artist: [$ARTIST] Filename
 # add metadata
 eyeD3 --artist "$ARTIST" --album "$ALBUM" --title "${TRACK:-$TITLE}" $OUTPUT_MP3
 
-# convert to jpg
-magick $OUTPUT_NAME.webp $OUTPUT_NAME.jpg
-
-# create thumbnail
-THUMBNAIL="${OUTPUT_NAME}-thumbnail.jpg"
-convert -define jpeg:size=500x500 $OUTPUT_NAME.jpg -thumbnail 500x500^ \
-  -gravity center -extent 500x500  $THUMBNAIL
-
-# attach image to mp3
-eyeD3 --add-image "${THUMBNAIL}:FRONT_COVER" $OUTPUT_MP3
+# embed thumbnail
+embed-mp3-image $OUTPUT_MP3 $OUTPUT_NAME.webp || echo "could not embed mp3 image"
 
 # copy/move file
 #rm $METADATA_FILE
