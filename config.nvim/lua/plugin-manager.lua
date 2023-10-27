@@ -16,4 +16,11 @@ require("lazy").setup("plugins", {
 	change_detection = {
 		notify = false, -- don't notify panes of config change
 	},
+	install = {
+		-- install missing plugins on startup. This doesn't increase startup time.
+		missing = true,
+	},
+	dev = {
+		path = "~/.config/nvim/plugins",
+	},
 })

@@ -780,13 +780,6 @@ let g:EasyClipShareYanks=0
 
 " Airline END -----------------------------------------------
 
-" Markdown
-augroup filetype_markdown
-  " clear out all autocmds to prevent duplicates
-  autocmd!
-  autocmd BufNewFile *.md MarkdownHeader
-augroup END
-
 " tpope/vim-markdown ----------------------------------------
 let g:markdown_gfm_languages = ["ruby", "erb=eruby"]
 
@@ -1430,20 +1423,6 @@ endfunction
 command! SplitThree call SplitThree()
 
 " ------------------------------------------------------------------------------
-" Print filename header in markdown
-" ------------------------------------------------------------------------------
-function! MarkdownHeader()
-  put! ='# ' . expand('%:t:r')
-  normal o
-  normal o
-  put! ='## Resources'
-  normal G
-  redraw!
-  startinsert
-endfunction
-command! MarkdownHeader call MarkdownHeader()
-
-" ------------------------------------------------------------------------------
 " MarkdownExternalLink - add link to external URL
 " ------------------------------------------------------------------------------
 function! MarkdownExternalLink(fetch_title)
@@ -1504,13 +1483,44 @@ function! MarkdownInternalLink()
   " put link
   normal! "zp
 
+  " move cursor under filename
+  normal h
+
   " open file using plasticboy/vim-markdown (which supports autosave)
-  normal ge
+  normal si(
 
   " open file classic mode
   "execute 'edit' l:filename
 endfunction
 command! MarkdownInternalLink call MarkdownInternalLink()
+
+" ------------------------------------------------------------------------------
+" Print filename header in markdown
+" ------------------------------------------------------------------------------
+function! MarkdownHeader()
+  put! ='# ' . expand('%:t:r')
+  normal o
+  normal o
+  put! ='## Resources'
+  normal G
+  redraw!
+  startinsert
+endfunction
+command! MarkdownHeader call MarkdownHeader()
+
+imap ** <Esc>:MarkdownInternalLink<CR>
+imap *& <Esc>:MarkdownExternalLink<CR>
+imap *( <Esc>:MarkdownExternalLinkFetchTitle<CR>
+imap *^ <Esc>:call mdip#MarkdownClipboardImage()<CR>
+
+" open in browser
+nnoremap <Leader>x :MarkdownPreviewToggle<CR>
+
+augroup filetype_markdown
+  " clear out all autocmds to prevent duplicates
+  autocmd!
+  autocmd BufNewFile *.md MarkdownHeader
+augroup END
 
 " ------------------------------------------------------------------------------
 " toggle color columns

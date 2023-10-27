@@ -154,6 +154,10 @@ return {
 
 	-- Build
 	{ "tpope/vim-dispatch" },
+
+	-- Local
+	{ "vim-dotfiles", dev = true },
+	{ "vim-conceal-secrets", dev = true },
 }
 
 -- nvim-dap --------------------------------------------------------------------

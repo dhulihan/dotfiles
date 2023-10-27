@@ -22,6 +22,7 @@ brew install fd
 brew install findutils
 brew install fortune
 brew install fzy
+brew install fx
 brew install gifsicle
 brew install gh
 brew install git

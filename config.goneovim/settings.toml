@@ -1,8 +1,8 @@
 [Editor]
 # Editor minimum width (>= 800)
-Width = 1600
+Width = 1280
 # Editor minimum height (>= 600)
-Height = 8000
+Height = 800
 
 # Start maximized window
 StartMaximizedWindow = false

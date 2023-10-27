@@ -17,12 +17,8 @@ function! Reload()
   endif
 
   if has('nvim')
-    "echom "neovim detected, reloading init.vim"
-    source ~/.config/nvim/init.vim
-
-    " install plugins
-    PlugInstall
-    UpdateRemotePlugins
+    "echom "neovim detected, reloading init.lua"
+    luafile ~/.config/nvim/init.lua
   else
     source ~/.vimrc
 
