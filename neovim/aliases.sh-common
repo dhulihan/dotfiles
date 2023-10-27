@@ -1,1 +1,2 @@
 alias nvim4='nvim -p3 -c "tabdo Startify"'
+alias nview='nvim -R'

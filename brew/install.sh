@@ -55,6 +55,7 @@ brew install luarocks
 brew install stylua
 brew install markdown
 brew install mosh
+brew install code-minimap
 brew install mpv
 brew install mysql
 brew install neofetch
@@ -132,6 +133,12 @@ brew install font-cascadia-code-pl
 brew install font-cascadia-mono
 brew install font-cascadia-mono-pl
 
+brew install --cask font-iosevka-term-nerd-font
+brew install --cask font-bitstream-vera-sans-mono-nerd-font
+brew install --cask font-ubuntu-nerd-font
+brew install --cask font-aurulent-sans-mono-nerd-font
+
+
 brew install --cask ngrok
 
 # grump
@@ -154,6 +161,7 @@ brew install minikube
 #brew install --cask gitify
 
 brew install neovim/neovim/neovim
+brew install --cask goneovim # UI app
 
 brew tap wata727/tflint
 brew install tflint

@@ -2,8 +2,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
 
 " load fzf from git
 set rtp+=~/.fzf
@@ -22,170 +20,155 @@ if filereadable(expand("~/.private.vim"))
   source ~/.private.vim
 endif
 
-call plug#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+if !has('nvim')
+  " set the runtime path to include Vundle and initialize
+  set rtp+=~/.vim/bundle/Vundle.vim
 
-" System
-Plug 'benmills/vimux'
+  call plug#begin()
+  " alternatively, pass a path where Vundle should install plugins
+  "call vundle#begin('~/some/path/here')
 
-" Vim itself
-Plug 'mhinz/vim-startify'
-Plug 'jeanCarloMachado/vim-toop'
-"Plug 'Yggdroot/indentLine' " don't need this, use list
-"Plug 'machakann/vim-highlightedyank' " cool but annoying after a while
-"Plug 'chrisbra/Recover.vim'
-Plug 'inkarkat/vim-CompleteHelper'
-"Plug 'unblevable/quick-scope' " cool but I don't use much
+  " System
+  Plug 'benmills/vimux'
 
-" Version Control
-Plug 'tpope/vim-fugitive'
-"Plug 'junegunn/gv.vim' " not needed
-"Plug 'junkblocker/git-time-lapse' " using :0Gclog instead
-Plug 'tpope/vim-rhubarb'
-"Plug 'airblade/vim-gitgutter' " performance issues 2021-08-24, try to update
+  " Vim itself
+  Plug 'mhinz/vim-startify'
+  Plug 'jeanCarloMachado/vim-toop'
+  "Plug 'Yggdroot/indentLine' " don't need this, use list
+  "Plug 'machakann/vim-highlightedyank' " cool but annoying after a while
+  "Plug 'chrisbra/Recover.vim'
+  Plug 'inkarkat/vim-CompleteHelper'
+  "Plug 'unblevable/quick-scope' " cool but I don't use much
 
-" General Syntax
-"Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-endwise'
-"Plug 'tpope/vim-surround'
-"Plug 'tpope/vim-repeat'
-"Plug 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go, slow
-Plug 'preservim/nerdcommenter'
-"Plug 'ludovicchabant/vim-gutentags' " blocking too much
-Plug 'vitalk/vim-shebang'
-" Plug 'junegunn/vim-easy-align' " TODO: fix = mapping
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'branch': 'release/1.x',
-  \ 'for': [
-  \   'javascript'
-  \ ] }
-Plug 'rhysd/clever-f.vim'
-Plug 'bogado/file-line' " open file:line
-" Plug 'vim-test/vim-test' " not needed
-" Plug 'wellle/context.vim' " cool but slow
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'yssl/QFEnter' " quickfix helpers
-"Plug 'glts/vim-radical' " not using this much atm
+  " Version Control
+  Plug 'tpope/vim-fugitive'
+  "Plug 'junegunn/gv.vim' " not needed
+  "Plug 'junkblocker/git-time-lapse' " using :0Gclog instead
+  Plug 'tpope/vim-rhubarb'
+  "Plug 'airblade/vim-gitgutter' " performance issues 2021-08-24, try to update
 
-" Language-specific
-"Plug 'stamblerre/gocode' " trouble getting this to work
-"Plug 'fatih/vim-go' " gopls issues
-Plug 'sebdah/vim-delve'
-" ^ spinning up a gopls server for every vim session
-"Plug 'robbles/logstash.vim'
-Plug 'hashivim/vim-terraform'
-"Plug 'tpope/vim-cucumber'
-"Plug 'elubow/cql-vim'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'cespare/vim-toml'
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim' " :call mkdp#util#install() afterwards
-Plug 'img-paste-devs/img-paste.vim'
-"Plug 'jparise/vim-graphql'
-"Plug 'rmelcer/vim-icinga'
-"Plug 'skreuzer/vim-prometheus'
-"Plug 'Glench/Vim-Jinja2-Syntax'
-"Plug 'wannesm/wmgraphviz.vim'
-"Plug 'elixir-lang/vim-elixir' " not using elixir right now
-"Plug 'tpope/vim-rails'
-"Plug 'gabrielelana/vim-markdown'
-"Plug 'shime/vim-livedown'
-"Plug 'JamshedVesuna/vim-markdown-preview'
-" Plug 'amiorin/vim-fenced-code-blocks' " does not support indentation
-" Plug 'rhysd/vim-gfm-syntax' " cute but not needed
-Plug 'chrisbra/csv.vim'
-"Plug 'mhinz/vim-rfc' " cool but not working well, requires vim ruby
-Plug 'dhulihan/vim-rfc'
-Plug 'kamailio/vim-kamailio-syntax'
-"Plug 'vim-ruby/vim-ruby' " careful, possibly slow
-"Plug 'tpope/vim-rbenv' " supposed to work with recent vim-ruby
-Plug 'bufbuild/vim-buf'
-Plug 'trayo/vim-ginkgo-snippets'
-Plug 'buoto/gotests-vim'
-Plug 'mracos/mermaid.vim'
-Plug 'direnv/direnv.vim'
+  " General Syntax
+  "Plug 'jiangmiao/auto-pairs'
+  Plug 'tpope/vim-endwise'
+  "Plug 'tpope/vim-surround'
+  "Plug 'tpope/vim-repeat'
+  "Plug 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go, slow
+  Plug 'preservim/nerdcommenter'
+  "Plug 'ludovicchabant/vim-gutentags' " blocking too much
+  Plug 'vitalk/vim-shebang'
+  " Plug 'junegunn/vim-easy-align' " TODO: fix = mapping
+  Plug 'ntpeters/vim-better-whitespace'
+  Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'branch': 'release/1.x',
+    \ 'for': [
+    \   'javascript'
+    \ ] }
+  Plug 'rhysd/clever-f.vim'
+  Plug 'bogado/file-line' " open file:line
+  " Plug 'vim-test/vim-test' " not needed
+  " Plug 'wellle/context.vim' " cool but slow
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  Plug 'yssl/QFEnter' " quickfix helpers
+  "Plug 'glts/vim-radical' " not using this much atm
 
-" Lint
-Plug 'w0rp/ale'
-"Plug 'vim-syntastic/syntastic'
-Plug 'maximbaz/lightline-ale'
+  " Language-specific
+  "Plug 'stamblerre/gocode' " trouble getting this to work
+  "Plug 'fatih/vim-go' " gopls issues
+  Plug 'sebdah/vim-delve'
+  " ^ spinning up a gopls server for every vim session
+  "Plug 'robbles/logstash.vim'
+  Plug 'hashivim/vim-terraform'
+  "Plug 'tpope/vim-cucumber'
+  "Plug 'elubow/cql-vim'
+  Plug 'ekalinin/Dockerfile.vim'
+  Plug 'cespare/vim-toml'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'iamcco/markdown-preview.nvim' " :call mkdp#util#install() afterwards
+  Plug 'img-paste-devs/img-paste.vim'
+  "Plug 'jparise/vim-graphql'
+  "Plug 'rmelcer/vim-icinga'
+  "Plug 'skreuzer/vim-prometheus'
+  "Plug 'Glench/Vim-Jinja2-Syntax'
+  "Plug 'wannesm/wmgraphviz.vim'
+  "Plug 'elixir-lang/vim-elixir' " not using elixir right now
+  "Plug 'tpope/vim-rails'
+  "Plug 'gabrielelana/vim-markdown'
+  "Plug 'shime/vim-livedown'
+  "Plug 'JamshedVesuna/vim-markdown-preview'
+  " Plug 'amiorin/vim-fenced-code-blocks' " does not support indentation
+  " Plug 'rhysd/vim-gfm-syntax' " cute but not needed
+  Plug 'chrisbra/csv.vim'
+  "Plug 'mhinz/vim-rfc' " cool but not working well, requires vim ruby
+  Plug 'dhulihan/vim-rfc'
+  Plug 'kamailio/vim-kamailio-syntax'
+  "Plug 'vim-ruby/vim-ruby' " careful, possibly slow
+  "Plug 'tpope/vim-rbenv' " supposed to work with recent vim-ruby
+  Plug 'bufbuild/vim-buf'
+  Plug 'trayo/vim-ginkgo-snippets'
+  Plug 'buoto/gotests-vim'
+  Plug 'mracos/mermaid.vim'
+  Plug 'direnv/direnv.vim'
 
-" Utility
-Plug 'tpope/tpope-vim-abolish'
-Plug 'mileszs/ack.vim'
-Plug 'jremmen/vim-ripgrep'
-"Plug 'Rename2' " using eunuch's rename
-Plug 'tpope/vim-eunuch'
-"Plug 'scrooloose/nerdtree'
-Plug 'tmhedberg/matchit'
-"Plug 'vim-scripts/ruby-matchit'
-"Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'mtth/scratch.vim'
-"Plug 'vim-scripts/SearchComplete'
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
-"Plug 'ronakg/quickr-preview.vim'
-"Plug 'alok/notational-fzf-vim'
-Plug 'dhulihan/vim-gtfo'
-"Plug 'romainl/vim-cool' " cool but sometimes buggy
+  " Lint
+  Plug 'w0rp/ale'
+  "Plug 'vim-syntastic/syntastic'
+  Plug 'maximbaz/lightline-ale'
 
-" Colors
-Plug 'flazz/vim-colorschemes' " note: not working in nvim, need to fix
-"Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Plug 'fenetikm/falcon'
-Plug 'guns/xterm-color-table.vim'
-"Plug 'vim-airline/vim-airline-themes'
+  " Utility
+  Plug 'tpope/tpope-vim-abolish'
+  Plug 'mileszs/ack.vim'
+  Plug 'jremmen/vim-ripgrep'
+  "Plug 'Rename2' " using eunuch's rename
+  Plug 'tpope/vim-eunuch'
+  "Plug 'scrooloose/nerdtree'
+  Plug 'tmhedberg/matchit'
+  "Plug 'vim-scripts/ruby-matchit'
+  "Plug 'ctrlpvim/ctrlp.vim'
+  "Plug 'mtth/scratch.vim'
+  "Plug 'vim-scripts/SearchComplete'
+  Plug 'junegunn/fzf.vim'
+  Plug 'stsewd/fzf-checkout.vim'
+  "Plug 'ronakg/quickr-preview.vim'
+  "Plug 'alok/notational-fzf-vim'
+  Plug 'dhulihan/vim-gtfo'
+  "Plug 'romainl/vim-cool' " cool but sometimes buggy
 
-" Files & Buffers
-"Plug 'jeetsukumaran/vim-buffergator'
-Plug 'ton/vim-bufsurf'
-Plug 'qpkorr/vim-bufkill'
-Plug 'gcmt/taboo.vim'
-"Plug 'danro/rename.vim'
-"Plug 'fholgado/minibufexpl.vim'
+  " Colors
+  Plug 'flazz/vim-colorschemes' " note: not working in nvim, need to fix
+  "Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+  Plug 'fenetikm/falcon'
+  Plug 'guns/xterm-color-table.vim'
+  "Plug 'vim-airline/vim-airline-themes'
 
-" Layout
-"Plug 'bling/vim-airline'
-Plug 'itchyny/lightline.vim'
-Plug 'godlygeek/tabular'
-Plug 'tyru/open-browser.vim'
-"Plug 'wincent/command-t'
-"Plug 'vim-scripts/EasyGrep'
-"Plug 'editorconfig/editorconfig-vim.git' " not using atm
-"Plug 'xolox/vim-misc'
-"Plug 'xolox/vim-easytags'
-Plug 'majutsushi/tagbar'
+  " Files & Buffers
+  "Plug 'jeetsukumaran/vim-buffergator'
+  Plug 'ton/vim-bufsurf'
+  Plug 'qpkorr/vim-bufkill'
+  Plug 'gcmt/taboo.vim'
+  "Plug 'danro/rename.vim'
+  "Plug 'fholgado/minibufexpl.vim'
 
-" Build
-Plug 'tpope/vim-dispatch'
+  " Layout
+  "Plug 'bling/vim-airline'
+  Plug 'itchyny/lightline.vim'
+  Plug 'godlygeek/tabular'
+  Plug 'tyru/open-browser.vim'
+  "Plug 'wincent/command-t'
+  "Plug 'vim-scripts/EasyGrep'
+  "Plug 'editorconfig/editorconfig-vim.git' " not using atm
+  "Plug 'xolox/vim-misc'
+  "Plug 'xolox/vim-easytags'
+  Plug 'majutsushi/tagbar'
 
+  " Build
+  Plug 'tpope/vim-dispatch'
 
-" neovim plugins - remember to call :PlugInstall | :UpdateRemotePlugins after
-" changing (annoying)
-if has('nvim')
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'folke/neodev.nvim'
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
-  Plug 'nvim-telescope/telescope-dap.nvim'
-  Plug 'gelguy/wilder.nvim' " fancy wildmenu
-  Plug 'mfussenegger/nvim-dap'
-  Plug 'leoluz/nvim-dap-go'
-  Plug 'rcarriga/nvim-dap-ui'
-  Plug 'theHamsta/nvim-dap-virtual-text'
-  Plug 'jonathanfilip/vim-lucius' " manually install color for now
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " call `:TSInstall go` after
-  Plug 'github/copilot.vim' " frickin slow
-  "Plug 'fatih/vim-go'
-  Plug 'folke/trouble.nvim' " error helper 
-end
-
-" All of your Plugins must be added before the following line
-call plug#end()            " required
-filetype plugin indent on    " required
+  Plug 'ryanoasis/vim-devicons' " add font glyph icons to popular plugins
+  call plug#end()            " required
+  filetype plugin indent on    " required
+endif
 
 " Line Numbers
 set number
@@ -291,8 +274,8 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set noerrorbells visualbell t_vb=
 
 " Persist undos
-set undodir=$HOME/.vim/undo " mkdir this if you need to
-set undofile " Maintain undo history between sessions
+"set undodir=$HOME/.vim/undo " mkdir this if you need to
+"set undofile " Maintain undo history between sessions
 
 " Persist cursor
 augroup persist_cursor
@@ -403,6 +386,7 @@ tnoremap <PageDown> <C-W>N<PageDown>
 "    \  / /______\/ /
 "     \/___________/
 "
+nnoremap <Leader><Enter> :Rg -F<Space>
 nnoremap <Leader>s :BufSurfForward<CR>
 nnoremap <Leader>a :BufSurfBack<CR>
 nnoremap <silent> <leader>e :ToggleNetrw<CR>
@@ -466,8 +450,8 @@ imap <F2> <C-O>:set invpaste paste?<CR>
 set pastetoggle=<F2>
 
 " number mode toggle
-noremap <F3> :set invnumber<CR>
-inoremap <F3> <C-O>:set invnumber<CR>
+"noremap <F3> :set invnumber<CR>
+"inoremap <F3> <C-O>:set invnumber<CR>
 
 " Save search matches in separate file
 noremap <silent> <F4> :ColorColumnToggle<CR>
@@ -1791,6 +1775,7 @@ command! GoSandbox execute ':e $GOPATH/src/github.com/dhulihan/go-sandbox/main.g
 set background=dark
 "colors apprentice
 colors lucius
+"colors tokyonight
 "colors iceberg "misspell is gnarly
 "colors dracula
 "colors falcon
@@ -1830,11 +1815,15 @@ hi GitGutterDelete ctermfg=1
 hi clear GitGutterChangeDelete
 hi GitGutterChangeDelete ctermfg=166
 
-" lucius color overrides
+" lucius color overrides -----
+"
+" change default background
+hi Normal ctermbg=234 guibg=#202020
 hi Visual   term=underline ctermbg=18
 hi! VertSplit ctermfg=237 ctermbg=237
 hi! Todo term=standout ctermfg=186 cterm=bold gui=underline guifg=#e0e090
 hi! Error term=standout ctermfg=167 cterm=bold gui=underline guifg=#e37170 ctermbg=NONE
+" -----
 
 " apprentice color overrides
 "hi! link SignColumn Normal
