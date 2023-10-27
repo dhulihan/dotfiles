@@ -1,5 +1,7 @@
-alias vim='mvim -v'
-alias v="vim"
+alias vim="nvim"
+alias view="nvim -R"
+#alias vim='mvim -v'
+#alias v="vim"
 
 # Three tabs split into four
 alias vim4='vim -p3 -c "tabdo Startify"'

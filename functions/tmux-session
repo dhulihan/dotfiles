@@ -15,7 +15,7 @@ if [[ -v TMUX ]] ; then
   return
 fi
 
-
+export EDITOR_CMD="nvim4"
 BASENAME=$(basename $PWD)
 SESSION_NAME_RAW=${1:-$BASENAME}
 SESSION_NAME=$(gecho -n $SESSION_NAME_RAW | sed 's/\.//g')

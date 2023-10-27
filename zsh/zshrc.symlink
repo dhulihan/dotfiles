@@ -25,7 +25,6 @@ warn() {
 # your project folder that we can `c [tab]` to
 export PROJECTS=$HOME/Projects
 export CDPATH=$PROJECTS:$CDPATH
-export EDITOR_CMD="nvim4"
 # shortcut to this dotfiles path is $ZSH
 #
 export ZSH=$HOME/.dotfiles
@@ -84,7 +83,7 @@ done
 
 unset config_files
 
-export EDITOR=vim
+export EDITOR=nvim
 
 # shift-tab reverse complete
 bindkey '^[[Z' reverse-menu-complete

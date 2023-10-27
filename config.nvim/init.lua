@@ -11,6 +11,9 @@ print(vim.fn.expand("%"))
 require("config/options")
 require("config/keymaps")
 
+-- load old vimrc
+vim.cmd("source ~/.vimrc")
+
 --" nvim plugin config
 --"
 --" wilder -------------------------------------------------------------------

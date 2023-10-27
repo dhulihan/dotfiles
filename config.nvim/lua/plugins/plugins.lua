@@ -20,9 +20,6 @@ return {
 	{ "github/copilot.vim" },
 	{ "folke/trouble.nvim" }, -- error helpers
 
-	-- color/style
-	{ "jonathanfilip/vim-lucius" },
-
 	{ "benmills/vimux" },
 	-- Vim itself
 	{ "mhinz/vim-startify" },
@@ -39,6 +36,17 @@ return {
 	--{ 'junkblocker/git-time-lapse' " using :0Gclog instead
 	{ "tpope/vim-rhubarb" },
 	--{ 'airblade/vim-gitgutter' " performance issues 2021-08-24, try to update
+	{
+		"pwntester/octo.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("octo").setup()
+		end,
+	},
 
 	-- General Syntax
 	--{ 'jiangmiao/auto-pairs' },
@@ -77,15 +85,36 @@ return {
 	{ "direnv/direnv.vim" },
 
 	-- Lint
-	{ "w0rp/ale" },
+	{
+		"w0rp/ale",
+		config = function()
+			vim.g.ale_virtualtext_cursor = "current" -- only show virtualtext on current line
+			vim.g.ale_use_neovim_diagnostics_api = 0 -- disable diagnostic mode, affects other settings.
+		end,
+	},
 	{ "maximbaz/lightline-ale" },
 
 	-- Utility
 	{ "tpope/tpope-vim-abolish" },
+	{
+		"gabrielpoca/replacer.nvim", -- replace using quickfix!
+		--opts = {rename_files = false},
+		keys = {
+			{
+				"<leader>h",
+				function()
+					require("replacer").run()
+				end,
+				desc = "run replacer.nvim",
+			},
+		},
+	},
 	{ "mileszs/ack.vim" },
 	{ "jremmen/vim-ripgrep" },
 	{ "tpope/vim-eunuch" },
-	{ "tmhedberg/matchit" },
+	--{ "tmhedberg/matchit" },
+	{ "andymass/vim-matchup" },
+	{ "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
 	{ "junegunn/fzf.vim" },
 	{ "stsewd/fzf-checkout.vim" },
 	{ "dhulihan/vim-gtfo" },
@@ -93,6 +122,10 @@ return {
 	-- Colors
 	{ "fenetikm/falcon" },
 	{ "guns/xterm-color-table.vim" },
+	{ "catppuccin/nvim", priority = 1000 },
+	{ "rebelot/kanagawa.nvim", priority = 1000 },
+	{ "folke/tokyonight.nvim", lazy = false, priority = 1000 },
+	{ "jonathanfilip/vim-lucius" },
 
 	-- Files & Buffers
 	{ "ton/vim-bufsurf" },
@@ -104,10 +137,23 @@ return {
 	{ "godlygeek/tabular" },
 	{ "tyru/open-browser.vim" },
 	{ "majutsushi/tagbar" },
+	{
+		"wfxr/minimap.vim", -- sublime-style minimap
+		config = function()
+			--vim.g.minimap_width = 10
+			--vim.g.minimap_auto_start = 1
+			--vim.g.minimap_auto_start_win_enter = 1
+			vim.g.minimap_highlight_search = 1 -- highlight search patterns
+		end,
+		keys = {
+			{ "<F3>", "<cmd>MinimapToggle<cr>", mode = { "n", "i" } },
+		},
+	}, -- requires code-minimap to be installed separately
+	--{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" }, -- maybe later
+	{ "ryanoasis/vim-devicons" },
 
 	-- Build
 	{ "tpope/vim-dispatch" },
-	{ "ryanoasis/vim-devicons" },
 }
 
 -- nvim-dap --------------------------------------------------------------------
