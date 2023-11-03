@@ -232,7 +232,7 @@ augroup filetypes
 
   " filetype-specific config
   autocmd Filetype noft setlocal number
-  autocmd Filetype markdown setlocal spell
+  autocmd Filetype markdown setlocal spell noexpandtab
   autocmd Filetype terraform,proto setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
   autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 autoindent smartindent
   autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -386,7 +386,6 @@ tnoremap <PageDown> <C-W>N<PageDown>
 "    \  / /______\/ /
 "     \/___________/
 "
-nnoremap <Leader><Enter> :Rg -F<Space>
 nnoremap <Leader>s :BufSurfForward<CR>
 nnoremap <Leader>a :BufSurfBack<CR>
 nnoremap <silent> <leader>e :ToggleNetrw<CR>
@@ -394,6 +393,9 @@ nnoremap <Leader>t :TagbarToggle<cr>
 nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
 nnoremap <Leader><tab> :Cdp<Space>
+
+" super literal, case insentive grep search. supports `--foo`
+nnoremap <Leader><Enter> :Rg -F -i -- ""<Left>
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
 " open new buffer with name from inner parens
