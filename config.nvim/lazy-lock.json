@@ -65,9 +65,9 @@
   "vim-shebang": { "branch": "master", "commit": "ae2e6f8f258ad7572cefdff4948c045203ee0bd9" },
   "vim-snippets": { "branch": "master", "commit": "ccc2fa1529d372f7ac16d5eb07a385a72b50e05d" },
   "vim-startify": { "branch": "master", "commit": "4e089dffdad46f3f5593f34362d530e8fe823dcf" },
+  "vim-startuptime": { "branch": "master", "commit": "454b3de856b7bd298700de33d79774ca9b9e3875" },
   "vim-terraform": { "branch": "master", "commit": "d37ae7e7828aa167877e338dea5d4e1653ed3eb1" },
   "vim-toml": { "branch": "main", "commit": "d36caa6b1cf508a4df1c691f915572fc02143258" },
   "vim-toop": { "branch": "master", "commit": "a054d54f2fde69958cb652a7a81f7e38865dd0c5" },
-  "vimux": { "branch": "master", "commit": "616fcb4799674a7a809b14ca2dc155bb6ba25788" },
   "xterm-color-table.vim": { "branch": "master", "commit": "8785bb47a38a8bce3f5e452c083907e1a9b32763" }
 }

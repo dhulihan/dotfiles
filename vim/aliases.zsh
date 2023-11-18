@@ -1,6 +1,6 @@
-alias vim="nvim"
+#alias vim="nvim"
 alias view="nvim -R"
-#alias vim='mvim -v'
+alias vim='mvim -v'
 #alias v="vim"
 
 # Three tabs split into four

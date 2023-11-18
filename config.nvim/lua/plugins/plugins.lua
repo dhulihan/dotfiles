@@ -19,8 +19,8 @@ return {
 	{ "theHamsta/nvim-dap-virtual-text" },
 	{ "github/copilot.vim" },
 	{ "folke/trouble.nvim" }, -- error helpers
+	--{ "benmills/vimux" }, -- not using recently
 
-	{ "benmills/vimux" },
 	-- Vim itself
 	{ "mhinz/vim-startify" },
 	{ "jeanCarloMachado/vim-toop" },
@@ -29,6 +29,7 @@ return {
 	--{ 'chrisbra/Recover.vim' },
 	{ "inkarkat/vim-CompleteHelper" },
 	--{ 'unblevable/quick-scope' " cool but I don't use much
+	--{ "dstein64/vim-startuptime" }, -- enable as needed
 
 	-- Version Control
 	{ "tpope/vim-fugitive" },
@@ -158,6 +159,7 @@ return {
 	-- Local
 	{ "vim-dotfiles", dev = true },
 	{ "vim-conceal-secrets", dev = true },
+	{ dir = "~/.private-vim-plugin" }, -- private plugin(s), `ln -s <plugin-dir> ~/.private-plugin.vim
 }
 
 -- nvim-dap --------------------------------------------------------------------
