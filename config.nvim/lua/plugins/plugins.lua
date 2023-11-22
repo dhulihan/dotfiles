@@ -141,6 +141,7 @@ return {
 	{ "Mofiqul/dracula.nvim" },
 	{ "tomasiser/vim-code-dark" },
 	{ "hzchirs/vim-material" },
+	{ "cocopon/iceberg.vim" },
 	{ "bluz71/vim-moonfly-colors" },
 
 	-- Files & Buffers
@@ -181,7 +182,7 @@ return {
 				lualine_c = { "filename" },
 				lualine_x = { "filetype" },
 				lualine_y = {},
-				lualine_z = { "location" },
+				lualine_z = { "progress", "location" },
 			},
 			inactive_sections = {
 				lualine_a = {},

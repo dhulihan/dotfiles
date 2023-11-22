@@ -1815,7 +1815,6 @@ colors vim-material
 "let g:solarized_termtrans=1
 "colorscheme solarized
 " ) Color Schemes
-"
 
 " Cross-scheme colors (dark background)
 "hi clear ColorColumn
