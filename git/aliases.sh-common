@@ -1,5 +1,5 @@
 # The rest of my fun git aliases
-alias gap='git add -p'
+alias ga='git add -p'
 alias gm='git checkout master'
 alias gpl='git pull --prune'
 alias gplo='git pull origin'

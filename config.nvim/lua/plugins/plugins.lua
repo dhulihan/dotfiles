@@ -67,13 +67,22 @@ return {
 	{ "SirVer/ultisnips" },
 	{ "honza/vim-snippets" },
 	{ "yssl/QFEnter" }, -- quickfix helpers
+	{ "godlygeek/tabular" },
 
 	-- Language-specific
 	{ "sebdah/vim-delve" },
 	{ "hashivim/vim-terraform" },
 	{ "ekalinin/Dockerfile.vim" },
 	{ "cespare/vim-toml" },
-	{ "plasticboy/vim-markdown" },
+	{
+		"preservim/vim-markdown",
+		config = function()
+			vim.g.vim_markdown_folding_disabled = 1
+			vim.g.vim_markdown_override_foldtext = 0
+			vim.g.vim_markdown_conceal = 0 -- disable syntax concealing
+			vim.g.vim_markdown_conceal_code_blocks = 0 -- disable conceal for fences
+		end,
+	},
 	{ "iamcco/markdown-preview.nvim" }, -- :call mkdp#util#install() afterwards
 	{ "img-paste-devs/img-paste.vim" },
 	{ "chrisbra/csv.vim" },
@@ -127,6 +136,8 @@ return {
 	{ "rebelot/kanagawa.nvim", priority = 1000 },
 	{ "folke/tokyonight.nvim", lazy = false, priority = 1000 },
 	{ "jonathanfilip/vim-lucius" },
+	{ "morhetz/gruvbox" },
+	{ "Mofiqul/dracula.nvim" },
 
 	-- Files & Buffers
 	{ "ton/vim-bufsurf" },
@@ -150,7 +161,6 @@ return {
 			{ "<F3>", "<cmd>MinimapToggle<cr>", mode = { "n", "i" } },
 		},
 	}, -- requires code-minimap to be installed separately
-	--{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" }, -- maybe later
 	{ "ryanoasis/vim-devicons" },
 
 	-- Build

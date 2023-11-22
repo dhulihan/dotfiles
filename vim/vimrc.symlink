@@ -232,7 +232,7 @@ augroup filetypes
 
   " filetype-specific config
   autocmd Filetype noft setlocal number
-  autocmd Filetype markdown setlocal spell noexpandtab nofoldenable
+  autocmd Filetype markdown setlocal spell noexpandtab
   autocmd Filetype terraform,proto setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
   autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 autoindent smartindent
   autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
