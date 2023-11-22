@@ -20,7 +20,13 @@ if filereadable(expand("~/.private.vim"))
   source ~/.private.vim
 endif
 
-if !has('nvim')
+if (has('termguicolors'))
+  set termguicolors
+endif
+
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+else
   " set the runtime path to include Vundle and initialize
   set rtp+=~/.vim/bundle/Vundle.vim
 
@@ -1788,7 +1794,9 @@ command! GoSandbox execute ':e $GOPATH/src/github.com/dhulihan/go-sandbox/main.g
 " ------------------------------------------------------------------------------
 set background=dark
 "colors apprentice
-colors lucius
+"colors lucius
+"colors codedark
+colors vim-material
 "colors tokyonight
 "colors iceberg "misspell is gnarly
 "colors dracula
@@ -1807,36 +1815,37 @@ colors lucius
 "let g:solarized_termtrans=1
 "colorscheme solarized
 " ) Color Schemes
+"
 
 " Cross-scheme colors (dark background)
 "hi clear ColorColumn
 "hi ColorColumn ctermbg=237
-hi clear SignColumn
-hi clear SpellCap
-hi SpellBad ctermfg=197
-hi clear SpellBad
-hi SpellBad ctermfg=197
-hi clear LineNr
-hi LineNr ctermfg=240
+"hi clear SignColumn
+"hi clear SpellCap
+"hi SpellBad ctermfg=197
+"hi clear SpellBad
+"hi SpellBad ctermfg=197
+"hi clear LineNr
+"hi LineNr ctermfg=240
 "hi clear Error
-hi Error ctermfg=167
-hi clear GitGutterAdd
-hi GitGutterAdd ctermfg=118
-hi clear GitGutterChange
-hi GitGutterChange ctermfg=186
-hi clear GitGutterDelete
-hi GitGutterDelete ctermfg=1
-hi clear GitGutterChangeDelete
-hi GitGutterChangeDelete ctermfg=166
+"hi Error ctermfg=167
+"hi clear GitGutterAdd
+"hi GitGutterAdd ctermfg=118
+"hi clear GitGutterChange
+"hi GitGutterChange ctermfg=186
+"hi clear GitGutterDelete
+"hi GitGutterDelete ctermfg=1
+"hi clear GitGutterChangeDelete
+"hi GitGutterChangeDelete ctermfg=166
 
 " lucius color overrides -----
 "
 " change default background
-hi Normal ctermbg=234 guibg=#202020
-hi Visual   term=underline ctermbg=18
-hi! VertSplit ctermfg=237 ctermbg=237
-hi! Todo term=standout ctermfg=186 cterm=bold gui=underline guifg=#e0e090
-hi! Error term=standout ctermfg=167 cterm=bold gui=underline guifg=#e37170 ctermbg=NONE
+"hi Normal ctermbg=234 guibg=#202020
+"hi Visual   term=underline ctermbg=18
+"hi! VertSplit ctermfg=237 ctermbg=237
+"hi! Todo term=standout ctermfg=186 cterm=bold gui=underline guifg=#e0e090
+"hi! Error term=standout ctermfg=167 cterm=bold gui=underline guifg=#e37170 ctermbg=NONE
 " -----
 
 " apprentice color overrides
@@ -1853,9 +1862,9 @@ hi! Error term=standout ctermfg=167 cterm=bold gui=underline guifg=#e37170 cterm
 "hi! link GitGutterChangeDelete GitGutterChangeDeleteDefault
 "hi default GitGutterAddDefault ctermbg=234
 
-hi Visual   term=underline ctermbg=238
-hi NonText guifg=#4a4a59
-hi SpecialKey guifg=#4a4a59
+"hi Visual   term=underline ctermbg=238
+"hi NonText guifg=#4a4a59
+"hi SpecialKey guifg=#4a4a59
 
 " Colors END -----------------------------------------------
 "
