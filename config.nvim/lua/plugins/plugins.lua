@@ -99,7 +99,6 @@ return {
 		"w0rp/ale",
 		config = function()
 			vim.g.ale_virtualtext_cursor = "current" -- only show virtualtext on current line
-			vim.g.ale_use_neovim_diagnostics_api = 1
 			--vim.g.ale_use_neovim_diagnostics_api = 0 -- disable diagnostic mode, affects other settings.
 		end,
 	},

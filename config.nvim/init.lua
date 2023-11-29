@@ -14,6 +14,10 @@ require("config/keymaps")
 -- load old vimrc
 vim.cmd("source ~/.vimrc")
 
+if vim.g.neovide then
+	require("neovide")
+end
+
 --" nvim plugin config
 --"
 --" wilder -------------------------------------------------------------------

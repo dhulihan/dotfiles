@@ -1518,10 +1518,10 @@ function! MarkdownHeader()
 endfunction
 command! MarkdownHeader call MarkdownHeader()
 
-imap ** <Esc>:MarkdownInternalLink<CR>
-imap *& <Esc>:MarkdownExternalLink<CR>
-imap *( <Esc>:MarkdownExternalLinkFetchTitle<CR>
 imap *^ <Esc>:call mdip#MarkdownClipboardImage()<CR>
+imap *& <Esc>:MarkdownInternalLink<CR>
+imap *( <Esc>:MarkdownExternalLinkFetchTitle<CR>
+imap *) <Esc>:MarkdownExternalLink<CR>
 
 " open in browser
 nnoremap <Leader>x :MarkdownPreviewToggle<CR>
@@ -1846,6 +1846,12 @@ colors vim-material
 "hi! Todo term=standout ctermfg=186 cterm=bold gui=underline guifg=#e0e090
 "hi! Error term=standout ctermfg=167 cterm=bold gui=underline guifg=#e37170 ctermbg=NONE
 " -----
+
+" material overrides
+hi! link DiagnosticWarn BufferLineHintDiagnosticSelected
+hi! link ALEWarningSign BufferLineHintDiagnosticSelected
+hi! link SpellBad ErrorMsg
+hi! Search ctermfg=236 ctermbg=172 guifg=bg guibg=#d78700
 
 " apprentice color overrides
 "hi! link SignColumn Normal
