@@ -18,12 +18,17 @@ return {
 	{ "rcarriga/nvim-dap-ui" },
 	{ "theHamsta/nvim-dap-virtual-text" },
 	{ "github/copilot.vim" },
-	{ "folke/trouble.nvim" }, -- error helpers
+	{
+		"folke/trouble.nvim",
+		opts = {
+			mode = "quickfix", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+		},
+	}, -- error helpers
 	--{ "benmills/vimux" }, -- not using recently
 
 	-- Vim itself
 	{ "mhinz/vim-startify" },
-	{ "jeanCarloMachado/vim-toop" },
+	{ "jeanCarloMachado/vim-toop" }, -- fancy text-object functions
 	--{ 'Yggdroot/indentLine' " don't need this, use list
 	--{ 'machakann/vim-highlightedyank' " cool but annoying after a while
 	--{ 'chrisbra/Recover.vim' },
@@ -205,6 +210,7 @@ return {
 			options = {
 				mode = "tabs",
 				separator_style = "slant",
+				show_duplicate_prefix = false, -- don't show (Duplicate)
 			},
 		},
 	},
