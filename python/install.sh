@@ -17,6 +17,8 @@ pip install \
   isort \
   aws \
   grpcio-tools \
+  neovim \
+  pynvim \
   yapf
 
 set +x

@@ -18,12 +18,17 @@ return {
 	{ "rcarriga/nvim-dap-ui" },
 	{ "theHamsta/nvim-dap-virtual-text" },
 	{ "github/copilot.vim" },
-	{ "folke/trouble.nvim" }, -- error helpers
+	{
+		"folke/trouble.nvim",
+		opts = {
+			mode = "quickfix", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+		},
+	}, -- error helpers
 	--{ "benmills/vimux" }, -- not using recently
 
 	-- Vim itself
 	{ "mhinz/vim-startify" },
-	{ "jeanCarloMachado/vim-toop" },
+	{ "jeanCarloMachado/vim-toop" }, -- fancy text-object functions
 	--{ 'Yggdroot/indentLine' " don't need this, use list
 	--{ 'machakann/vim-highlightedyank' " cool but annoying after a while
 	--{ 'chrisbra/Recover.vim' },
@@ -99,10 +104,10 @@ return {
 		"w0rp/ale",
 		config = function()
 			vim.g.ale_virtualtext_cursor = "current" -- only show virtualtext on current line
-			vim.g.ale_use_neovim_diagnostics_api = 0 -- disable diagnostic mode, affects other settings.
+			--vim.g.ale_use_neovim_diagnostics_api = 0 -- disable diagnostic mode, affects other settings.
 		end,
 	},
-	{ "maximbaz/lightline-ale" },
+	--{ "maximbaz/lightline-ale" },
 
 	-- Utility
 	{ "tpope/tpope-vim-abolish" },
@@ -138,15 +143,77 @@ return {
 	{ "jonathanfilip/vim-lucius" },
 	{ "morhetz/gruvbox" },
 	{ "Mofiqul/dracula.nvim" },
+	{ "tomasiser/vim-code-dark" },
+	{ "hzchirs/vim-material" },
+	{ "cocopon/iceberg.vim" },
+	{ "bluz71/vim-moonfly-colors" },
 
 	-- Files & Buffers
 	{ "ton/vim-bufsurf" },
 	{ "qpkorr/vim-bufkill" },
-	{ "gcmt/taboo.vim" },
+	--{ "gcmt/taboo.vim" },
 
 	-- Layout
-	{ "itchyny/lightline.vim" },
-	{ "godlygeek/tabular" },
+	--{ "itchyny/lightline.vim" }, -- takes over tabbar
+	--
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		opts = {
+			options = {
+				icons_enabled = true,
+				theme = "auto",
+				--theme = "auto",
+				--theme = "dracula",
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				disabled_filetypes = {
+					statusline = {},
+					winbar = {},
+				},
+				ignore_focus = {},
+				always_divide_middle = true,
+				globalstatus = false,
+				refresh = {
+					statusline = 1000,
+					tabline = 1000,
+					winbar = 1000,
+				},
+			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff", { "diagnostics", sources = { "ale" } } },
+				lualine_c = { "filename" },
+				lualine_x = { "filetype" },
+				lualine_y = {},
+				lualine_z = { "progress", "location" },
+			},
+			inactive_sections = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = { "filename" },
+				lualine_x = { "location" },
+				lualine_y = {},
+				lualine_z = {},
+			},
+			tabline = {},
+			winbar = {},
+			inactive_winbar = {},
+			extensions = {},
+		},
+	},
+	{
+		"akinsho/bufferline.nvim",
+		version = "*",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		opts = {
+			options = {
+				mode = "tabs",
+				separator_style = "slant",
+				show_duplicate_prefix = false, -- don't show (Duplicate)
+			},
+		},
+	},
 	{ "tyru/open-browser.vim" },
 	{ "majutsushi/tagbar" },
 	{
