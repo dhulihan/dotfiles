@@ -182,7 +182,8 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", { "diagnostics", sources = { "ale" } } },
+				--lualine_b = { "branch", "diff", { "diagnostics", sources = { "ale" } } },
+				lualine_b = { "diff", { "diagnostics", sources = { "ale" } } },
 				lualine_c = { "filename" },
 				lualine_x = { "filetype" },
 				lualine_y = {},

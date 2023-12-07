@@ -38,7 +38,7 @@ go install -v github.com/dhulihan/grump@latest
 go install -v github.com/dhulihan/httpeeved@latest
 go install -v github.com/golang/mock/mockgen@latest
 go install -v mvdan.cc/gofumpt@latest
-go install -v github.com/kyoh86/richgo@latest
+go install github.com/rakyll/gotest@latest
 go install github.com/dhulihan/emoji-hash@latest
 
 # spanner

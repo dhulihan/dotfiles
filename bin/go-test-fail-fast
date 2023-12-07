@@ -1,6 +1,7 @@
-# fail fast, with color
+# fail fast
+set -x
 for s in $(go list ./...); do
-	if ! richgo test -failfast -v -p 1 $s; then
+	if ! gotest -failfast -v -p 1 $s $*; then
 		exit 1
 	fi;
 done
