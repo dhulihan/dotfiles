@@ -396,7 +396,7 @@ nnoremap <Leader>s :BufSurfForward<CR>
 nnoremap <Leader>a :BufSurfBack<CR>
 nnoremap <silent> <leader>e :ToggleNetrw<CR>
 nnoremap <Leader>t :TagbarToggle<cr>
-nnoremap <Leader>d :BD<CR>
+"nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
 nnoremap <Leader><tab> :Cdp<Space>
 

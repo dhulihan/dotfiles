@@ -12,10 +12,6 @@ return {
 	{ "nvim-treesitter/nvim-treesitter" }, -- {'do': ':TSUpdate'} " call `:TSInstall go` after},
 
 	-- dap
-	{ "nvim-telescope/telescope-dap.nvim" },
-	{ "mfussenegger/nvim-dap" },
-	{ "leoluz/nvim-dap-go" },
-	{ "rcarriga/nvim-dap-ui" },
 	{ "theHamsta/nvim-dap-virtual-text" },
 	{ "github/copilot.vim" },
 	{
@@ -234,45 +230,186 @@ return {
 	-- Build
 	{ "tpope/vim-dispatch" },
 
+	-- Testing
+	{
+		"mfussenegger/nvim-dap",
+		keys = {
+			{
+				"<leader>dB",
+				function()
+					require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+				end,
+				desc = "Breakpoint Condition",
+			},
+			{
+				"<leader>db",
+				function()
+					require("dap").toggle_breakpoint()
+				end,
+				desc = "Toggle Breakpoint",
+			},
+			{
+				"<leader>dc",
+				function()
+					require("dap").continue()
+				end,
+				desc = "Continue",
+			},
+			{
+				"<leader>da",
+				function()
+					require("dap").continue({ before = get_args })
+				end,
+				desc = "Run with Args",
+			},
+			{
+				"<leader>dC",
+				function()
+					require("dap").run_to_cursor()
+				end,
+				desc = "Run to Cursor",
+			},
+			{
+				"<leader>dg",
+				function()
+					require("dap").goto_()
+				end,
+				desc = "Go to line (no execute)",
+			},
+			{
+				"<leader>di",
+				function()
+					require("dap").step_into()
+				end,
+				desc = "Step Into",
+			},
+			{
+				"<leader>dj",
+				function()
+					require("dap").down()
+				end,
+				desc = "Down",
+			},
+			{
+				"<leader>dk",
+				function()
+					require("dap").up()
+				end,
+				desc = "Up",
+			},
+			{
+				"<leader>dl",
+				function()
+					require("dap").run_last()
+				end,
+				desc = "Run Last",
+			},
+			{
+				"<leader>do",
+				function()
+					require("dap").step_out()
+				end,
+				desc = "Step Out",
+			},
+			{
+				"<leader>dO",
+				function()
+					require("dap").step_over()
+				end,
+				desc = "Step Over",
+			},
+			{
+				"<leader>dp",
+				function()
+					require("dap").pause()
+				end,
+				desc = "Pause",
+			},
+			{
+				"<leader>dr",
+				function()
+					require("dap").repl.toggle()
+				end,
+				desc = "Toggle REPL",
+			},
+			{
+				"<leader>ds",
+				function()
+					require("dap").session()
+				end,
+				desc = "Session",
+			},
+			{
+				"<leader>dt",
+				function()
+					require("dap").terminate()
+				end,
+				desc = "Terminate",
+			},
+			{
+				"<leader>dw",
+				function()
+					require("dap.ui.widgets").hover()
+				end,
+				desc = "Widgets",
+			},
+		},
+		config = function()
+			local dap = require("dap")
+			--require("dap").set_log_level("DEBUG")
+
+			-- prettier signs
+			vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
+			vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "", linehl = "", numhl = "" })
+		end,
+	},
+	{
+		"leoluz/nvim-dap-go",
+		config = true,
+		dependencies = { "mfussenegger/nvim-dap" },
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		keys = {
+			{
+				"<leader>du",
+				function()
+					require("dapui").toggle({})
+				end,
+				desc = "Dap UI",
+			},
+			{
+				"<leader>de",
+				function()
+					require("dapui").eval()
+				end,
+				desc = "Eval",
+				mode = { "n", "v" },
+			},
+		},
+		opts = {},
+		config = function(_, opts)
+			-- setup dap config by VsCode launch.json file
+			-- require("dap.ext.vscode").load_launchjs()
+			local dap = require("dap")
+			local dapui = require("dapui")
+			dapui.setup(opts)
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open({})
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close({})
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close({})
+			end
+		end,
+	},
+	{ "theHamsta/nvim-dap-virtual-text" },
+	--{ "nvim-telescope/telescope-dap.nvim" },
+
 	-- Local
 	{ "vim-dotfiles", dev = true },
 	{ "vim-conceal-secrets", dev = true },
 	{ dir = "~/.private-vim-plugin" }, -- private plugin(s), `ln -s <plugin-dir> ~/.private-plugin.vim
 }
-
--- nvim-dap --------------------------------------------------------------------
---
---local ok, dap = pcall(require, "dap")
---if not ok then
---return
---end
-
---require("dap").set_log_level("DEBUG")
---require("dapui").setup()
---require("dap-go").setup()
---require("nvim-dap-virtual-text").setup()
-----require("dapui").open()
-----require("dapui").close()
-----require("dapui").toggle()
----- events
---local dap, dapui = require("dap"), require("dapui")
---dap.listeners.after.event_initialized["dapui_config"] = function()
---dapui.open()
---end
---dap.listeners.before.event_terminated["dapui_config"] = function()
---dapui.close()
---end
---dap.listeners.before.event_exited["dapui_config"] = function()
---dapui.close()
---end
-
----- nvim-dap END ----------------------------------------------------------------
----- telescope
---require("telescope").setup()
---require("telescope").load_extension("dap")
-
---require("trouble").setup({
----- your configuration comes here
----- or leave it empty to use the default settings
----- refer to the configuration section below
---})
