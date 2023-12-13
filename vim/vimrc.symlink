@@ -396,12 +396,17 @@ nnoremap <Leader>s :BufSurfForward<CR>
 nnoremap <Leader>a :BufSurfBack<CR>
 nnoremap <silent> <leader>e :ToggleNetrw<CR>
 nnoremap <Leader>t :TagbarToggle<cr>
-"nnoremap <Leader>d :BD<CR>
+nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
 nnoremap <Leader><tab> :Cdp<Space>
 
 " super literal, case insentive grep search. supports `--foo`
 nnoremap <Leader><Enter> :Rg -F -i -- ""<Left>
+
+" replace
+nnoremap <Leader>' :%s///gc<Left><left><left><left>
+vnoremap <Leader>' :s///gc<left><left><left><left>
+
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
 " open new buffer with name from inner parens
@@ -1496,8 +1501,10 @@ function! MarkdownInternalLink()
   " move cursor under filename
   normal h
 
-  " open file using plasticboy/vim-markdown (which supports autosave)
-  normal si(
+  " open file using plasticboy/vim-markdown (which supports autosave via g:vim_markdown_autowrite
+  " NOTE: ge does not support parens in filename, while si (toop) does.
+  "normal si(
+  normal ge
 
   " open file classic mode
   "execute 'edit' l:filename
