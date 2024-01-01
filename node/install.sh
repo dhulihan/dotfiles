@@ -14,4 +14,4 @@ npm install -g \
     hash-emoji \
     grunt
 
-yarn global add @mermaid-js/mermaid-cli
+npm install -g @mermaid-js/mermaid-cli

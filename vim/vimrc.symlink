@@ -261,9 +261,14 @@ augroup filetypes
   autocmd FileType go let b:dispatch = "go run '%'"
 augroup END
 
-" better tab completion of filepaths
 set wildmenu
-set wildmode=longest:full,full
+set wildmode=longest:full,full " better tab completion of filepaths
+
+" <Left> and <Right> to move the cursor instead of selecting a different match.
+" Note: this might cause other expected effect with command mode left/right.
+cnoremap <Left> <Space><BS><Left>
+cnoremap <Right> <Space><BS><Right>
+
 
 " File Types & Indentation END -----------------------------------------------
 
@@ -364,8 +369,6 @@ imap <C-Return> <CR><CR><C-o>k<Tab>
 "vmap <TAB> >gv
 "vmap <S-TAB> <gv
 
-" easier visual mode replace
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " like . but for visual mode
 vnoremap . :normal .<CR>
@@ -402,6 +405,10 @@ nnoremap <Leader><tab> :Cdp<Space>
 
 " super literal, case insentive grep search. supports `--foo`
 nnoremap <Leader><Enter> :Rg -F -i -- ""<Left>
+
+" fast splitting, vertical split, then fuzzy file search
+nnoremap <Leader>; :vsp<CR>:Files<CR>
+inoremap <Leader>; <Esc>:vsp<CR>:Files<CR>
 
 " replace
 nnoremap <Leader>' :%s///gc<Left><left><left><left>
@@ -837,6 +844,7 @@ let g:mkdp_theme = 'light'
 
 " img-paste --------------------------------------------------------------------
 let g:mdip_imgdir = '.' " store in same dir as md file
+let g:mdip_imgdir_intext = '.' " in test
 " img-paste END ----------------------------------------------------------------
 
 " jiangmiao/auto-pairs --------------------------------------
