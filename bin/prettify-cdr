@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# This script sanitizes and prettifies a FreeSWITCH mod_xml_cdr CDR file to json and outputs to STDOUT.
+RAW_CDR=$1
+gsed 's/,\({"core_uuid"\)/\1/g' -i $RAW_CDR
+cat $RAW_CDR | jq .

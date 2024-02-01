@@ -2,6 +2,7 @@ return {
 	"folke/neodev.nvim",
 	{
 		"github/copilot.vim",
+		enabled = false,
 		config = function()
 			vim.g.copilot_enabled = false -- disable by default
 		end,
@@ -13,7 +14,6 @@ return {
 
 	-- dap
 	{ "theHamsta/nvim-dap-virtual-text" },
-	{ "github/copilot.vim" },
 	{
 		"folke/trouble.nvim",
 		opts = {
@@ -53,7 +53,7 @@ return {
 	-- General Syntax
 	--{ 'jiangmiao/auto-pairs' },
 	{ "tpope/vim-endwise" },
-	--{ 'tpope/vim-surround' },
+	{ "tpope/vim-surround" },
 	--{ 'tpope/vim-repeat' },
 	--{ 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go, slow
 	{ "preservim/nerdcommenter" },
@@ -69,6 +69,19 @@ return {
 	{ "honza/vim-snippets" },
 	{ "yssl/QFEnter" }, -- quickfix helpers
 	{ "godlygeek/tabular" },
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
 
 	-- Language-specific
 	{ "sebdah/vim-delve" },

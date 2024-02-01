@@ -1,0 +1,1 @@
+sort -R /usr/share/dict/words | awk 'NR <= 3 { printf $1 }'
