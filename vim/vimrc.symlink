@@ -261,6 +261,12 @@ augroup filetypes
   autocmd FileType go let b:dispatch = "go run '%'"
 augroup END
 
+" sql file types
+" Disable autocomplete <C-c> hijacking: https://stackoverflow.com/questions/24931088/disable-omnicomplete-or-ftplugin-or-something-in-vim
+" :help sql-completion-customization
+let g:ftplugin_sql_omni_key = '<Plug>DisableSqlOmni'
+
+
 set wildmenu
 set wildmode=longest:full,full " better tab completion of filepaths
 
@@ -676,6 +682,7 @@ cnoremap <C-N>		<Down>
 cnoremap <C-P>		<Up>
 
 " command-line END ------------------------------------------------------------
+
 
 " ------------------------------------------------------------------------------
 " netrw/Explorer

@@ -5,3 +5,7 @@ defaults write -g com.apple.mouse.scaling -float 8.0
 #   https://discussions.apple.com/thread/2570254
 launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
 
+# show hidden files in finder
+defaults write com.apple.finder AppleShowAllFiles true; killall Finder
+
+

@@ -7,6 +7,7 @@
   "bufferline.nvim": { "branch": "main", "commit": "6ecd37e0fa8b156099daedd2191130e083fb1490" },
   "clever-f.vim": { "branch": "master", "commit": "6a3ac5e3688598af9411ab741737f98c47370c22" },
   "csv.vim": { "branch": "master", "commit": "4fd88346aed02123aa5daa1a363868a576c6fdcf" },
+  "dbext.vim": { "branch": "master", "commit": "14f3d530b6189dc3f97edfa70b7a36006e21148c" },
   "direnv.vim": { "branch": "master", "commit": "165031fa2c8dbb1e78dfd7054fe064ea926384cb" },
   "dracula.nvim": { "branch": "main", "commit": "7200e64c589f899d29f8963aad7543856d1c2545" },
   "falcon": { "branch": "master", "commit": "634cef5919b14d0c68cec6fc7b094554e8ef9d7f" },

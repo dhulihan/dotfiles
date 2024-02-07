@@ -84,6 +84,7 @@ return {
 	},
 
 	-- Language-specific
+	{ "vim-scripts/dbext.vim" },
 	{ "sebdah/vim-delve" },
 	{ "hashivim/vim-terraform" },
 	{ "ekalinin/Dockerfile.vim" },

@@ -207,6 +207,9 @@ brew install kudo-cli
 brew tap bufbuild/buf
 brew install buf
 
+# task builds
+brew install go-task/tap/go-task
+
 # rectangle windows manager
 brew install --cask rectangle
 

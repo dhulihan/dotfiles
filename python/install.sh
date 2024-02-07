@@ -19,6 +19,8 @@ pip install \
   grpcio-tools \
   neovim \
   pynvim \
+  sqlfluff \
+  sqlfmt \
   yapf
 
 set +x
