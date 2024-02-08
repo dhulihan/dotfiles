@@ -234,6 +234,7 @@ augroup filetypes
   autocmd BufNewFile,BufRead *.template set filetype=json
   autocmd BufNewFile,BufRead *.json.tmpl, *.js.symlink set filetype=json
   autocmd BufNewFile,BufRead *.yaml.dockercompose,*.yaml.tmpl set filetype=yaml
+  autocmd BufNewFile,BufRead *.lua.j2 set filetype=lua
   autocmd BufNewFile,BufRead .envrc set filetype=sh
 
   " filetype-specific config
