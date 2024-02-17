@@ -40,3 +40,4 @@ alias gt="git show-ref --tags"
 alias gtt="git-tag-log"
 alias branch="git rev-parse --abbrev-ref HEAD"
 alias git-commit-timestamp='git log -1 --format="%at" | xargs -I{} gdate -d @{} +%Y-%m-%dT%H:%M:%S'
+alias squash='git reset $(git merge-base main $(git branch --show-current))'

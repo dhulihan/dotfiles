@@ -71,6 +71,7 @@ return {
 	{ "godlygeek/tabular" },
 	{
 		"folke/which-key.nvim",
+		enabled = false, -- this is fine but noisy and I don't use often
 		event = "VeryLazy",
 		init = function()
 			vim.o.timeout = true

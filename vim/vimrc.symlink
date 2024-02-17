@@ -227,12 +227,16 @@ set autoindent
 "
 " TODO: reenable. currently busted, see: https://github.com/vim/vim/issues/7068
 set spellfile=$HOME/.en.utf-8.add,$HOME/.en-secret.utf-8.add
+
+" disable capitalization checking
+set spellcapcheck=
 " spelling END ---------------------------------------------------------------
 
 augroup filetypes
   autocmd!
   autocmd BufNewFile,BufRead *.template set filetype=json
   autocmd BufNewFile,BufRead *.json.tmpl, *.js.symlink set filetype=json
+  autocmd BufNewFile,BufRead *.templ, set filetype=go
   autocmd BufNewFile,BufRead *.yaml.dockercompose,*.yaml.tmpl set filetype=yaml
   autocmd BufNewFile,BufRead *.lua.j2 set filetype=lua
   autocmd BufNewFile,BufRead .envrc set filetype=sh
@@ -1279,10 +1283,12 @@ let g:strip_whitespace_confirm = 0
 " utltisnips
 " ------------------------------------------------------------------------------
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsListSnippets="<c-b>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsListSnippets="<C-b>"
+"let g:UltiSnipsJumpForwardTrigger="<Tab>" " not working in neovim
+"let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " not working in neovim
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 if !exists("g:UltiSnipsSnippetDirectories")
   let g:UltiSnipsSnippetDirectories=[$HOME.'/.ultisnips',$HOME.'/.vim/bundle/vim-snippets/UltiSnips']
 else
