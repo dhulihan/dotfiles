@@ -1,0 +1,1 @@
+ gomodblame -o /tmp/graph.mermaid && mmdc -i /tmp/graph.mermaid -o /tmp/graph.svg && open /tmp/graph.svg

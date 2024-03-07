@@ -1233,6 +1233,7 @@ let g:ale_linters = {
 \   'proto': ['buf-check-lint',],
 \   'ruby': ['rails_best_practices', 'ruby', 'rubocop'],
 \   'terraform': ['tflint'],
+\   'sql': ['sqlfluff'],
 \}
 
 " fixers
@@ -1241,7 +1242,7 @@ let g:ale_fixers = {
 \   'go': ['goimports', 'gofumpt'],
 \   'json': ['prettier'],
 \   'terraform': ['terraform'],
-\   'sql': ['pgformatter'],
+\   'sql': ['sqlfluff'],
 \}
 
 " lint the package, not file
@@ -1260,7 +1261,7 @@ command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
 " don't autofix these filetypes
 augroup ale_fixers_disabled
   autocmd!
-  autocmd FileType sql,json ALEDisableFixersBuffer
+  "autocmd FileType sql,json ALEDisableFixersBuffer
 augroup END
 " ale END ---------------------------------------------------
 "
@@ -1468,10 +1469,6 @@ function! MarkdownExternalLink(fetch_title)
   " determine if we should fetch the title or not
   if a:fetch_title
     let html_title = SystemChomp("html-title " . l:url)
-
-    " filter out annoying patterns
-    " TODO: move this logic out of vim to binary
-     let l:html_title = substitute(l:html_title, "GitHub - ", "", "")
 
     let l:raw_title = l:html_title
   else

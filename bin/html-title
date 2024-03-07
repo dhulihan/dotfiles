@@ -2,8 +2,11 @@
 RESPONSE_CODE=$(http-response-code $1)
 
 if [[ $RESPONSE_CODE == 200 ]] ; then
-  curl -L "$1" -so  - | \
-    perl -l -0777 -ne 'print $1 if /<title.*?>\s*(.*?)\s*<\/title/si'
+  RAW_TITLE=$(curl -L "$1" -so  - | perl -l -0777 -ne 'print $1 if /<title.*?>\s*(.*?)\s*<\/title/si')
+
+  # filter out annoying patterns
+  FILTERED_TITLE=${RAW_TITLE//"GitHub -"/}
+  echo $FILTERED_TITLE
 else
   echo $RESPONSE_CODE
 fi

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Get the current git branch
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Backup the current branch
+git checkout -b backup_$branch
+
+# Push the backup branch to remote
+#git push origin backup_$branch
+
+# Switch back to the original branch
+git checkout $branch

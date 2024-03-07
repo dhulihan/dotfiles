@@ -7,6 +7,7 @@ go get -u github.com/fullstorydev/grpcui/cmd/grpcui
 go get -u github.com/gcla/termshark/cmd/termshark
 go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+go install github.com/lyft/protoc-gen-star/protoc-gen-debug@latest
 go get -u github.com/jsha/minica
 go get -u github.com/jstemmer/gotags
 go get -u github.com/kardianos/govendor
