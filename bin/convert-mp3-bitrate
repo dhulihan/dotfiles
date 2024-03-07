@@ -1,0 +1,12 @@
+#!/bin/bash
+# Creates CBR mp3s in new directory, with adjusted bitrate
+#
+# -q:a
+#   0-3 will normally produce transparent results
+#   4 (default) should be close to perceptual transparency
+#   6 usually produces an "acceptable" quality.
+#
+# -b:a 192k
+OUTDIR=converted-$(date +%s)
+mkdir $OUTDIR
+for f in *.flac; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -b:a 192k $OUTDIR/"${f%.flac}.mp3"; done
