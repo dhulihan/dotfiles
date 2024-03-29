@@ -18,6 +18,8 @@ pip install \
   aws \
   grpcio-tools \
   neovim \
+  pandas \
+  pyarrow \
   pynvim \
   sqlfluff \
   sqlfmt \

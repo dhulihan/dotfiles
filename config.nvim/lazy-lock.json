@@ -4,6 +4,7 @@
   "QFEnter": { "branch": "master", "commit": "426c04312ae67ac28dce38ccc5fafdd1ed4a3d9f" },
   "ack.vim": { "branch": "master", "commit": "36e40f9ec91bdbf6f1adf408522a73a6925c3042" },
   "ale": { "branch": "master", "commit": "53b01d6a546384a28f1ccbed41baae58d7341da4" },
+  "auto-session": { "branch": "main", "commit": "29a8c77a0579636d5520aebd38bdbc2e6079f2f5" },
   "bufferline.nvim": { "branch": "main", "commit": "6ecd37e0fa8b156099daedd2191130e083fb1490" },
   "clever-f.vim": { "branch": "master", "commit": "6a3ac5e3688598af9411ab741737f98c47370c22" },
   "csv.vim": { "branch": "master", "commit": "4fd88346aed02123aa5daa1a363868a576c6fdcf" },
@@ -76,6 +77,5 @@
   "vim-terraform": { "branch": "master", "commit": "d37ae7e7828aa167877e338dea5d4e1653ed3eb1" },
   "vim-toml": { "branch": "main", "commit": "d36caa6b1cf508a4df1c691f915572fc02143258" },
   "vim-toop": { "branch": "master", "commit": "a054d54f2fde69958cb652a7a81f7e38865dd0c5" },
-  "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
   "xterm-color-table.vim": { "branch": "master", "commit": "8785bb47a38a8bce3f5e452c083907e1a9b32763" }
 }

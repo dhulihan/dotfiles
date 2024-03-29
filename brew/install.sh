@@ -28,7 +28,7 @@ brew install gh
 brew install git
 brew install git-secrets
 brew install gnu-sed
-brew install go
+brew install homebrew/core/go
 brew install goose
 brew install goreleaser/tap/goreleaser
 brew install graphviz

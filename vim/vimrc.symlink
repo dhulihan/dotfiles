@@ -1816,6 +1816,10 @@ command! AbsDirToClipboard execute ':let @*=expand("%:p:h") | echo expand("%:p:h
 " play with golang
 command! GoSandbox execute ':e $GOPATH/src/github.com/dhulihan/go-sandbox/main.go'
 
+" get commit info of current line
+command! -range GB call setbufvar(winbufnr(popup_atcursor(systemlist("git -C ".. shellescape(expand('%:p:h')) .." log --no-merges -n 1 -L <line1>,<line2>:" .. shellescape(resolve(expand("%:t")))), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")
+
+
 " ------------------------------------------------------------------------------
 " Colors & Highlighting
 " ------------------------------------------------------------------------------

@@ -6,8 +6,8 @@
 INIT_PROJECT_CMD="tmux-session"
 
 # disable module supportfor this since we want to download to src not pkg/mod
+# NOTE: broken in go 1.22
 GO111MODULE=off go get -v $1
-
 if [ $? -ne 0 ]; then
 	echo "could not fetch project"
 fi
