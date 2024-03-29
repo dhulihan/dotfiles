@@ -1,0 +1,40 @@
+#!/bin/sh
+
+trap cleanup_1 1 # SIGHUP
+trap cleanup_2 2 # SIGINT
+trap cleanup_3 3 # SIGQUIT
+trap cleanup_6 6 # SIGABRT
+trap cleanup_15 15 # SIGTERM
+
+cleanup_1()
+{
+  echo "SIGHUP"
+  exit 1
+}
+
+cleanup_2()
+{
+  echo "SIGINT"
+  exit 2
+}
+
+cleanup_3()
+{
+  echo "SIGQUIT"
+  exit 3
+}
+
+cleanup_6()
+{
+  echo "SIGABRT"
+  exit 6
+}
+
+cleanup_15()
+{
+  echo "SIGTERM"
+  exit 15
+}
+
+echo "Started"
+cat
