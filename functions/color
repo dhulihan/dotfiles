@@ -1,5 +1,11 @@
 # determine the color of a directory, considering programming language, etc
 
+# check for presence of git repo
+if [[ ! -d ".git" ]] ; then
+    debug "$PWD is not a git repo, ignoring project color"
+    return
+fi
+
 LANG=$(lang)
 case $LANG in
   Go)
