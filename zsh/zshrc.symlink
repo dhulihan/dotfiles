@@ -13,6 +13,12 @@ fi
 # logger
 debug() {
 	if [[ $LOG_LEVEL == "debug" ]]; then
+		echo "$fg_bold[grey]$(gdate --iso-8601=ns) $fg_bold[grey]$1"
+	fi
+}
+
+info() {
+	if [[ $LOG_LEVEL == "info" || $LOG_LEVEL == "debug" ]]; then
 		echo "$fg_bold[grey]$(gdate --iso-8601=ns) $fg_bold[green]$1"
 	fi
 }

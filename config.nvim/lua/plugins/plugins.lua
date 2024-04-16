@@ -2,7 +2,7 @@ return {
 	"folke/neodev.nvim",
 	{
 		"github/copilot.vim",
-		enabled = false,
+		enabled = true,
 		config = function()
 			vim.g.copilot_enabled = false -- disable by default
 		end,
@@ -10,7 +10,22 @@ return {
 	{ "nvim-telescope/telescope.nvim" },
 	{ "nvim-lua/plenary.nvim" },
 	{ "nvim-telescope/telescope.nvim" },
-	{ "nvim-treesitter/nvim-treesitter" }, -- {'do': ':TSUpdate'} " call `:TSInstall go` after},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = {
+			ensure_installed = {
+				"html",
+				"xml",
+			},
+			conf = function()
+				require("nvim-treesitter.configs").setup({
+					autotag = {
+						enable = true,
+					},
+				})
+			end,
+		},
+	}, -- {'do': ':TSUpdate'} " call `:TSInstall go` after},
 
 	-- dap
 	{ "theHamsta/nvim-dap-virtual-text" },
@@ -153,6 +168,14 @@ return {
 	{ "junegunn/fzf.vim" },
 	{ "stsewd/fzf-checkout.vim" },
 	{ "dhulihan/vim-gtfo" },
+	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+			enable = true
+			filetypes = { "html", "xml" }
+		end,
+	},
 
 	-- Colors
 	{ "fenetikm/falcon" },

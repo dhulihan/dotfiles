@@ -1,0 +1,6 @@
+# get the number of days since last commit
+current_epoch=$(date +%s)
+target_epoch=$(git log -1 --pretty=format:%ct)
+
+difference=$((current_epoch - target_epoch))
+echo $((difference / 86400))

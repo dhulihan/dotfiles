@@ -1,21 +1,26 @@
-# go get's a package and then opens it
+# downloads a go package to go src dir (not module) and then opens it
+# with a command/editing session.
+#
+#   $ gg github.com/google/gnostic
+#
 # Author: Dave Hulihan
+# Note: Currently only supports github packages.
 
-# This it what we should open the go project with
-#INIT_PROJECT_CMD="vim"
+# run this command in the project directory after it has been downloaded.
 INIT_PROJECT_CMD="tmux-session"
 
-# disable module supportfor this since we want to download to src not pkg/mod
-# NOTE: broken in go 1.22
-GO111MODULE=off go get -v $1
+DST=${GOPATH}/src/$1
+
+# assume github
+gh repo clone $1 $DST
 if [ $? -ne 0 ]; then
 	echo "could not fetch project"
+	return
 fi
 
-
-cd ${GOPATH}/src/$1
+cd $DST
 
 # don't start up the project if we're already in tmux
 if [[ -z $TMUX ]] ; then
-  $INIT_PROJECT_CMD
+	$INIT_PROJECT_CMD
 fi

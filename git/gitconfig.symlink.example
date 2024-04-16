@@ -44,6 +44,12 @@
 [rebase]
 	autosquash = true
 
+	# stash and apply before/after rebase
+	autostash = true
+
+[rerere]
+	enabled = true
+
 # custom differs
 [diff "hex"]
     textconv = hexdump -v -C

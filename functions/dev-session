@@ -12,9 +12,19 @@ if [[ ! -d ".git" ]] ; then
     return
 fi
 
-# pull in latest
-(git checkout main || git checkout master) && git pull origin
+# check last commit time, if not recent, pull main
+DAYS_SINCE_COMMIT=$(git-days-since-last-commit)
+DAY_THRESHOLD=7
 
+if [[ "$DAYS_SINCE_COMMIT" -gt "$DAY_THRESHOLD" ]]; then
+	echo "$DAYS_SINCE_COMMIT days since last commit, checking out main"
+	(git checkout main || git checkout master)
+
+else
+	echo "$DAYS_SINCE_COMMIT days since last commit, staying on current branch"
+fi
+
+git pull origin
 if [[ $? -ne 0 ]] ; then
 	warn "failed to pull latest changes, not starting dev session"
 	return

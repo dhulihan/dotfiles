@@ -99,6 +99,7 @@ brew install ssh-copy-id
 brew install stern
 brew install stuntman
 brew install telnet
+brew install tldr
 brew install terminal-notifier
 #brew install terraform
 brew install tfenv
