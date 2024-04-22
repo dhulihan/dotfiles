@@ -61,8 +61,31 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
-			require("octo").setup()
+			require("octo").setup({
+				-- disable default mappings
+				mappings_disable_default = true,
+			})
 		end,
+		keys = {
+			{
+				"<leader>ps",
+				"<cmd>Octo review start<cr>",
+			},
+			{
+				"<leader>pc<enter>",
+				"<cmd>Octo review comments<cr>",
+				desc = "view pending review comments",
+			},
+			{
+				"<leader>p<enter>",
+				"<cmd>Octo review submit<cr>",
+			},
+			{
+				"<leader>po",
+				":Octo ",
+				desc = "open pr prompt",
+			},
+		},
 	},
 	{
 		"rmagatti/auto-session",
@@ -72,6 +95,50 @@ return {
 				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
 			})
 		end,
+	},
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		enabled = false,
+		dependencies = { "nvim-lua/plenary.nvim" },
+		keys = {
+			{
+				"<leader>ha",
+				function()
+					require("harpoon"):list():add()
+				end,
+				desc = "harpoon file",
+			},
+			{
+				"<leader>hl",
+				function()
+					local harpoon = require("harpoon")
+					harpoon.ui:toggle_quick_menu(harpoon:list())
+				end,
+				desc = "harpoon quick menu",
+			},
+			{
+				"<leader>h1",
+				function()
+					require("harpoon"):list():select(1)
+				end,
+				desc = "harpoon to file 1",
+			},
+			{
+				"<leader>h2",
+				function()
+					require("harpoon"):list():select(2)
+				end,
+				desc = "harpoon to file 2",
+			},
+			{
+				"<leader>h3",
+				function()
+					require("harpoon"):list():select(3)
+				end,
+				desc = "harpoon to file 3",
+			},
+		},
 	},
 
 	-- General Syntax
