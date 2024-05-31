@@ -1,0 +1,6 @@
+#compdef tmux-session
+#
+#local -a subcmds
+#subcmds=('c:description for c command' 'd:description for d command')
+#_describe 'command' subcmds
+ls -1

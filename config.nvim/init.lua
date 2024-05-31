@@ -3,6 +3,9 @@
 --"let &packpath=&runtimepath
 --"source ~/.vimrc
 --
+--
+-- set true colors
+vim.opt.termguicolors = true
 
 -- package manager
 require("plugin-manager")

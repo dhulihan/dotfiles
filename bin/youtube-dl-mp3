@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # download youtube video, transcode to mp3 and add id3v2 metadata. Requires youtube-dl and eyeD3
-#   youtube-dl-mp3-meta "https://www.youtube.com/watch?v=iEOozwKlP-4"
+#   youtube-dl-mp3 "https://www.youtube.com/watch?v=iEOozwKlP-4"
 
 PROCESSING_DIR=/tmp
 cd $PROCESSING_DIR

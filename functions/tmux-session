@@ -26,38 +26,48 @@ echo "starting session $SESSION_NAME"
 case $SESSION_NAME in
   dotfiles)
     TAB_COLOR=black
+    TAB_COLOR_HEX=#000000
     TAB_EMOJI=$(emoji-hash ${SESSION_NAME})
     ;;
   secrets)
     TAB_COLOR=yellow
+    TAB_COLOR_HEX=#80800a
     TAB_EMOJI=🔒
     ;;
   staging)
     TAB_COLOR=orange
+    TAB_COLOR_HEX=#ffa500
     TAB_EMOJI=🏖️
     ;;
   prod)
     TAB_COLOR=red
+    TAB_COLOR_HEX=#ff0000
     TAB_EMOJI=⚠️
     ;;
   explore)
     TAB_COLOR=black
+    TAB_COLOR_HEX=#000000
     TAB_EMOJI=🔎
     ;;
   dev)
     TAB_COLOR=purple
+    TAB_COLOR_HEX=#800080
     TAB_EMOJI=$(emoji-hash ${SESSION_NAME})
     ;;
   *)
-    # color by project type
-    TAB_COLOR=$(color)
+    ## color by project type
+    #TAB_COLOR=$(color)
+
+    # color by session name
+    TAB_COLOR_HEX=$(color-hash ${SESSION_NAME})
     TAB_EMOJI=$(emoji-hash ${SESSION_NAME})
     ;;
 esac
 
 # set iterm2 title
 iterm-tab-title "${TAB_EMOJI} ${SESSION_NAME}"
-iterm-tab-color $TAB_COLOR
+#iterm-tab-color $TAB_COLOR
+iterm-tab-color-hex $TAB_COLOR_HEX
 
 # attempt to attach to
 tmux a -t "=${SESSION_NAME}"

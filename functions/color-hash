@@ -1,0 +1,9 @@
+# given a string, output a semi-unique hex color hash
+local string="$1"
+
+# convert string to md5 hash
+local hash=$(echo -n "$string" | md5sum | awk '{print $1}')
+
+# grab first six
+local color="#${hash:0:6}"
+echo "$color"

@@ -418,12 +418,11 @@ nnoremap <Leader><tab> :Cdp<Space>
 nnoremap <Leader><Enter> :Rg -F -i -- ""<Left>
 
 " fast splitting, vertical split, then fuzzy file search
-nnoremap <Leader>; :vsp<CR>:Files<CR>
-inoremap <Leader>; <Esc>:vsp<CR>:Files<CR>
+"nnoremap <Leader>; :vsp<CR>:Files<CR>
 
 " replace
-nnoremap <Leader>' :%s///gc<Left><left><left><left>
-vnoremap <Leader>' :s///gc<left><left><left><left>
+nnoremap <Leader>' :%s///gc<Left><Left><Left><Left>
+vnoremap <Leader>' :s///gc<Left><Left><Left><Left>
 
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
@@ -439,9 +438,12 @@ nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>; :ColorColumnToggle<CR>
 nnoremap <Leader>] :ALENext -wrap -error<CR>
 nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
-nnoremap <Leader>= :ALENext -wrap -warning<CR>
-nnoremap <Leader>- :ALEPrevious -wrap -warning<CR>
+"nnoremap <Leader>= :ALENext -wrap -warning<CR>
+"nnoremap <Leader>- :ALEPrevious -wrap -warning<CR>
+"nnoremap <Leader>= :tabnew<CR>
+"nnoremap <Leader>- :tabclose<CR>
 nnoremap <Leader><Leader> :ToggleQuickFix<CR>
+nnoremap <Leader><Backspace> :ToggleQuickFix<CR>
 "nnoremap <Leader>' :ToggleQuickFix<CR>
 " folding
 nnoremap <Leader>, zr<CR>
@@ -473,7 +475,7 @@ nnoremap <Leader>yb :CopyBufferToClipboard<CR>
 " ╚═╝░░░░░
 "
 " open a terminal to pwd
-nnoremap <F1> :terminal<cr>
+"nnoremap <F1> :terminal<cr>
 
 " Paste mode toggle
 "nnoremap <F2> :set invpaste paste?<CR>
@@ -955,12 +957,6 @@ command! ConvertEmoji call ConvertEmoji()
 " ------------------------------------------------------------------------------
 " FZF
 " ------------------------------------------------------------------------------
-" This is the default extra key bindings
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
 " An action can be a reference to a function that processes selected lines
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
@@ -968,10 +964,15 @@ function! s:build_quickfix_list(lines)
   cc
 endfunction
 
+ let g:fzf_vim = {} " initalize dict
+
+" jump to the existing window if possible
+"let g:fzf_vim.buffers_jump = 1
+
 let g:fzf_action = {
   \ 'ctrl-q': function('s:build_quickfix_list'),
   \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
+  \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
@@ -1189,6 +1190,12 @@ let g:lightline.active = {
 set laststatus=2
 " lightline END ----------------------------------------------
 
+" QFEnter
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
+
 " ale START -------------------------------------------------
 
 " disable lint on text change (slow in big files)
@@ -1220,7 +1227,7 @@ let g:lightline.component_type = {
 let g:disabled_ale_fixers = {
 \   'python': ['black'],
 \   'ruby': ['rufo'],
-\   'sql': ['sqlint', 'pgformatter'],
+\   'sql': ['sqlint', 'sqlfluff'],
 \}
 
 
@@ -1242,7 +1249,7 @@ let g:ale_fixers = {
 \   'go': ['goimports', 'gofumpt'],
 \   'json': ['prettier'],
 \   'terraform': ['terraform'],
-\   'sql': ['sqlfluff'],
+\   'sql': ['pgformatter'],
 \}
 
 " lint the package, not file
@@ -1261,7 +1268,7 @@ command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
 " don't autofix these filetypes
 augroup ale_fixers_disabled
   autocmd!
-  "autocmd FileType sql,json ALEDisableFixersBuffer
+  autocmd FileType sql,json ALEDisableFixersBuffer
 augroup END
 " ale END ---------------------------------------------------
 "
@@ -1782,7 +1789,7 @@ augroup END
 " ------------------------------------------------------------------------------
 function! ToggleQuickFix()
 if empty(filter(getwininfo(), 'v:val.quickfix'))
-    copen
+  copen
 else
     cclose
 endif

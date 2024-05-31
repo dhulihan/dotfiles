@@ -14,6 +14,11 @@ GIT_REPO="https://github.com/${1}.git"
 cd $PROJECTS
 git clone $GIT_REPO
 
+if [[ $? -ne 0 ]] ; then
+  warn "failed to clone repo ${GIT_REPO}"
+  return
+fi
+
 PROJECT_NAME=$(basename $1)
 cd $PROJECT_NAME
 

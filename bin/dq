@@ -1,0 +1,6 @@
+#!/bin/bash -eux
+
+# helper file for running duckdb queries from a dir containing a collection of
+# queries.
+SRC=${QUERY_DIR:?}/${1:?}
+duckdb -c ".read $SRC"

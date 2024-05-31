@@ -1,0 +1,15 @@
+# review a pull request
+PR=$1
+
+# extract project name, assume GH PR
+# echo "https://github.com/foo/schema/pull/123" | awk -F'/' '{print $5}'
+PROJECT=$(echo $PR | awk -F'/' '{print $5}')
+
+info "switching to ${PROJECT}"
+
+cd $PROJECT
+
+
+#gh pr checkout $PR
+#
+nvim -c "Octo $1 | Octo review start"

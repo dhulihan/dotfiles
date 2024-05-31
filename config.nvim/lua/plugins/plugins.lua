@@ -6,6 +6,12 @@ return {
 		config = function()
 			vim.g.copilot_enabled = false -- disable by default
 		end,
+		keys = {
+			{
+				"<F1>",
+				"<cmd>Copilot enable<cr>",
+			},
+		},
 	},
 	{ "nvim-telescope/telescope.nvim" },
 	{ "nvim-lua/plenary.nvim" },
@@ -99,7 +105,7 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
-		enabled = false,
+		enabled = false, -- does not support setting numbered-harpoon slots
 		dependencies = { "nvim-lua/plenary.nvim" },
 		keys = {
 			{
@@ -137,6 +143,27 @@ return {
 					require("harpoon"):list():select(3)
 				end,
 				desc = "harpoon to file 3",
+			},
+			{
+				"<leader>h4",
+				function()
+					require("harpoon"):list():select(4)
+				end,
+				desc = "harpoon to file 3",
+			},
+			{
+				"<leader>hn",
+				function()
+					require("harpoon"):list():next()
+				end,
+				desc = "next buffer",
+			},
+			{
+				"<leader>hp",
+				function()
+					require("harpoon"):list():prev()
+				end,
+				desc = "prev buffer",
 			},
 		},
 	},
@@ -190,7 +217,14 @@ return {
 			vim.g.vim_markdown_conceal_code_blocks = 0 -- disable conceal for fences
 		end,
 	},
-	{ "iamcco/markdown-preview.nvim" }, -- :call mkdp#util#install() afterwards
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
 	{ "img-paste-devs/img-paste.vim" },
 	{ "chrisbra/csv.vim" },
 	{ "dhulihan/vim-rfc" },
@@ -241,6 +275,12 @@ return {
 			require("nvim-ts-autotag").setup()
 			enable = true
 			filetypes = { "html", "xml" }
+		end,
+	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
 		end,
 	},
 
