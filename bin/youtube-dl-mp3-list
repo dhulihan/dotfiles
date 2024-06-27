@@ -1,17 +1,6 @@
 #!/bin/bash -eux
 
-# download youtube video, transcode to mp3 and add id3v2 metadata. Requires youtube-dl and eyeD3
-#   youtube-dl-mp3-meta "https://www.youtube.com/watch?v=iEOozwKlP-4"
-
-PROCESSING_DIR=/tmp
-cd $PROCESSING_DIR
-URL=${1:?"$0 <url>"}
-
-OUTPUT_NAME=ydmm-$(date +%s)
-OUTPUT_MP3="$OUTPUT_NAME.mp3"
-
-# download
-# we must set output name dynamically for both the webm and the post-processed mp3
+# download list into directory
 yt-dlp \
   --extract-audio \
   --audio-format mp3 \
