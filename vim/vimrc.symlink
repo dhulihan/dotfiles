@@ -258,6 +258,9 @@ augroup filetypes
   autocmd FileType xml setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType typescript setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType typescriptreact setlocal ts=2 sts=2 sw=2 expandtab
 
   " Open md files with system tool
   autocmd FileType html let b:dispatch = "open '%'"
@@ -817,7 +820,7 @@ let g:EasyClipShareYanks=0
 " Airline END -----------------------------------------------
 
 " tpope/vim-markdown ----------------------------------------
-let g:markdown_gfm_languages = ["ruby", "erb=eruby"]
+let g:markdown_gfm_languages = ["ruby", "erb=eruby", "ts=typescriptreact"]
 
 " tpope/vim-markdown END ------------------------------------
 
@@ -844,6 +847,7 @@ let g:vim_markdown_fenced_languages = [
 \'hcl=terraform',
 \'prom=prometheus',
 \'kam=kamailio',
+\'ts=typescriptreact',
 \]
 
 let g:vim_markdown_auto_insert_bullets = 1
@@ -1250,6 +1254,8 @@ let g:ale_fixers = {
 \   'json': ['prettier'],
 \   'terraform': ['terraform'],
 \   'sql': ['pgformatter'],
+\   'javascript': ['prettier'],
+\   'typescriptreact': ['prettier'],
 \}
 
 " lint the package, not file

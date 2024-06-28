@@ -35,3 +35,5 @@ alias play-right-audio='ffplay -af "pan=stereo|c0=c1|c1=c1"'
 # Directories & Files
 #alias pd="pushd"
 #alias pd-="popd"
+#
+alias d="depoch"

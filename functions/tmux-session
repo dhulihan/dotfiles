@@ -87,7 +87,7 @@ if [[ $? -ne 0 ]] ; then
       SHELL_WINDOW=1
       ;;
     *)
-      tmux new-window -t $SESSION_NAME -n vim
+      tmux new-window -t $SESSION_NAME
 
       # open vim on second window
       SHELL_WINDOW=1

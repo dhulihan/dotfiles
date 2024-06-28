@@ -1,2 +1,4 @@
 alias nvim4='nvim -p4 -c "tabdo Startify"'
 alias nview='nvim -R'
+alias nvim-safe-mode='nvim --noplugin --clean'
+alias nvim-purge-history="rm -f ~/.local/share/nvim/shada/main.shada"

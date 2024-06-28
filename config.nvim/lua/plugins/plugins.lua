@@ -2,7 +2,7 @@ return {
 	"folke/neodev.nvim",
 	{
 		"github/copilot.vim",
-		enabled = true,
+		enabled = false,
 		config = function()
 			vim.g.copilot_enabled = false -- disable by default
 		end,
@@ -10,6 +10,72 @@ return {
 			{
 				"<F1>",
 				"<cmd>Copilot enable<cr>",
+			},
+			{
+				"<F1>",
+				"<C-o><cmd>Copilot enable<cr>",
+				mode = "i",
+			},
+		},
+	},
+	--{ "ofseed/copilot-status.nvim" },
+	{
+		"zbirenbaum/copilot.lua",
+		enabled = true, -- cannot turn off with :Copilot disable
+		event = "InsertEnter",
+		cmd = "Copilot", -- lazy load on command
+		config = {
+			panel = {
+				enabled = false, -- disable by default
+				auto_trigger = false,
+			},
+			suggestion = {
+				enabled = true, -- disable by default
+				auto_trigger = true, -- start suggesting as soon as you start typing
+				auto_refresh = true,
+				keymap = {
+					--accept = "<Tab>", -- conflicts with ultisnips
+					--accept = "<M-l>",
+					accept = "<M-Tab>",
+					--accept = "<Leader><Tab>",
+					accept_word = false,
+					accept_line = false,
+					next = "<M-]>",
+					prev = "<M-[>",
+					dismiss = "<C-]>",
+				},
+			},
+		},
+		keys = {
+			{
+				"<F1>",
+				function()
+					require("copilot.suggestion").toggle_auto_trigger()
+				end,
+			},
+			{
+				"<F1>",
+				function()
+					--vim.api.nvim_err_writeln(string.format("%s", os.time()))
+					require("copilot.suggestion").toggle_auto_trigger()
+				end,
+				mode = "i",
+			},
+		},
+	},
+	{
+		"jonahgoldwastaken/copilot-status.nvim",
+		--enabled = false, -- doesn't work
+		lazy = true,
+		event = "BufReadPost",
+		dependencies = { "zbirenbaum/copilot.lua" },
+		opts = {
+			icons = {
+				idle = "idle",
+				error = "uh-oh",
+				offline = "off",
+				warning = "warning",
+				loading = "loading",
 			},
 		},
 	},
@@ -183,7 +249,7 @@ return {
 	{ "bogado/file-line" }, -- " open file:line
 	-- { 'vim-test/vim-test' }, -- not needed atm
 	-- { 'wellle/context.vim' },-- cool but slow
-	{ "SirVer/ultisnips" },
+	{ "SirVer/ultisnips", event = { "InsertEnter" } },
 	{ "honza/vim-snippets" },
 	{ "yssl/QFEnter" }, -- quickfix helpers
 	{ "godlygeek/tabular" },
@@ -335,7 +401,12 @@ return {
 				--lualine_b = { "branch", "diff", { "diagnostics", sources = { "ale" } } },
 				lualine_b = { "diff", { "diagnostics", sources = { "ale" } } },
 				lualine_c = { "filename" },
-				lualine_x = { "filetype" },
+				lualine_x = {
+					function()
+						return require("copilot_status").status_string()
+					end,
+					"filetype",
+				},
 				lualine_y = {},
 				lualine_z = { "progress", "location" },
 			},

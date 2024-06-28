@@ -1,5 +1,5 @@
 #alias vim="nvim"
-alias view="nvim -R"
+#alias view="nvim -R"
 alias vim='mvim -v'
 #alias v="vim"
 
