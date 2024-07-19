@@ -14,4 +14,5 @@ npm install -g \
     hash-emoji \
     grunt
 
+npm install -g pnpm@8.4
 npm install -g @mermaid-js/mermaid-cli

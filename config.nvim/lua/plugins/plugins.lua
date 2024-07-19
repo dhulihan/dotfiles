@@ -45,6 +45,15 @@ return {
 					dismiss = "<C-]>",
 				},
 			},
+			filetypes = {
+				sh = function()
+					if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
+						-- disable for .env files
+						return false
+					end
+					return true
+				end,
+			},
 		},
 		keys = {
 			{
@@ -79,15 +88,126 @@ return {
 			},
 		},
 	},
-	{ "nvim-telescope/telescope.nvim" },
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		branch = "canary",
+		dependencies = {
+			{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+		},
+		opts = {
+			debug = true, -- Enable debugging
+			-- See Configuration section for rest
+		},
+		-- See Commands section for default commands if you want to lazy load on them
+	},
 	{ "nvim-lua/plenary.nvim" },
-	{ "nvim-telescope/telescope.nvim" },
+	{
+		"nvim-telescope/telescope.nvim",
+		config = function()
+			require("telescope").setup({
+				defaults = {
+					preview = false,
+				},
+				pickers = {
+					buffers = {
+						--show_all_buffers = true,
+						--sort_lastused = true,
+						--theme = "dropdown",
+						--previewer = false,
+						mappings = {
+							i = {
+								["<c-d>"] = "delete_buffer",
+							},
+						},
+						-- Add this line to hide line numbers (not yet supported)
+						disable_coordinates = true,
+					},
+				},
+			})
+		end,
+		keys = {
+			{
+				"<leader>,",
+				"<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
+				desc = "Switch Buffer",
+			},
+			--{ "<leader>/", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+			--{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+			--{ "q:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+			--{ "<leader><space>", LazyVim.pick("auto"), desc = "Find Files (Root Dir)" },
+
+			-- list
+			--{ "<C-\\>", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" }, -- override
+			--{ "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find Files" }, -- override
+			--{ "<leader>fc", LazyVim.pick.config_files(), desc = "Find Config File" },
+			--{ "<leader>ff", LazyVim.pick("auto"), desc = "Find Files (Root Dir)" },
+			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+			{ "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
+			--{ "<leader>fF", LazyVim.pick("auto", { root = false }), desc = "Find Files (cwd)" },
+			{ "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
+			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recently Opened Files" },
+			--{ "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
+
+			-- git
+			{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
+			{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
+
+			-- search
+			{ '<leader>s"', "<cmd>Telescope registers<cr>", desc = "Registers" },
+			{ "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
+			{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
+			{ "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+			{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+			{ "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
+			{ "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
+			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+			--{ "<leader>sg", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+			--{ "<leader>sG", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
+			{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
+			{ "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
+			{ "<leader>sj", "<cmd>Telescope jumplist<cr>", desc = "Jumplist" },
+			{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
+			{ "<leader>sl", "<cmd>Telescope loclist<cr>", desc = "Location List" },
+			{ "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+			{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
+			{ "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
+			{ "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
+			{ "<leader>sq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix List" },
+			--{ "<leader>sw", LazyVim.pick("grep_string", { word_match = "-w" }), desc = "Word (Root Dir)" },
+			--{ "<leader>sW", LazyVim.pick("grep_string", { root = false, word_match = "-w" }), desc = "Word (cwd)" },
+			--{ "<leader>sw", LazyVim.pick("grep_string"), mode = "v", desc = "Selection (Root Dir)" },
+			--{ "<leader>sW", LazyVim.pick("grep_string", { root = false }), mode = "v", desc = "Selection (cwd)" },
+			--{ "<leader>uC", LazyVim.pick("colorscheme", { enable_preview = true }), desc = "Colorscheme with Preview" },
+			--{
+			--"<leader>ss",
+			--function()
+			--require("telescope.builtin").lsp_document_symbols({
+			--symbols = LazyVim.config.get_kind_filter(),
+			--})
+			--end,
+			--desc = "Goto Symbol",
+			--},
+			--{
+			--"<leader>sS",
+			--function()
+			--require("telescope.builtin").lsp_dynamic_workspace_symbols({
+			--symbols = LazyVim.config.get_kind_filter(),
+			--})
+			--end,
+			--desc = "Goto Symbol (Workspace)",
+			--},
+		},
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = {
 			ensure_installed = {
 				"html",
+				"go", -- you may need to `:TSInstall go`
+				"markdown",
 				"xml",
+				"lua",
 			},
 			conf = function()
 				require("nvim-treesitter.configs").setup({
@@ -105,6 +225,38 @@ return {
 		"folke/trouble.nvim",
 		opts = {
 			mode = "quickfix", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+		},
+		keys = {
+			{
+				"<leader>ee",
+				"<cmd>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<cr>",
+				desc = "Project Errors - Diagnostics (Trouble)",
+			},
+			{
+				"<leader>eb",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Errors/Warnings - Diagnostics (Trouble)",
+			},
+			{
+				"<leader>es",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>ex",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>el",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>eq",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
 		},
 	}, -- error helpers
 	--{ "benmills/vimux" }, -- not using recently
@@ -246,10 +398,10 @@ return {
 	-- { 'junegunn/vim-easy-align' " TODO: fix = mapping
 	{ "ntpeters/vim-better-whitespace" },
 	{ "rhysd/clever-f.vim" },
-	{ "bogado/file-line" }, -- " open file:line
+	{ "bogado/file-line", enabled = false, desc = "open file:line. disabling for now since I never use. cool though." },
 	-- { 'vim-test/vim-test' }, -- not needed atm
 	-- { 'wellle/context.vim' },-- cool but slow
-	{ "SirVer/ultisnips", event = { "InsertEnter" } },
+	{ "SirVer/ultisnips", event = { "InsertEnter" } }, -- slow
 	{ "honza/vim-snippets" },
 	{ "yssl/QFEnter" }, -- quickfix helpers
 	{ "godlygeek/tabular" },
@@ -294,11 +446,11 @@ return {
 	{ "img-paste-devs/img-paste.vim" },
 	{ "chrisbra/csv.vim" },
 	{ "dhulihan/vim-rfc" },
-	{ "kamailio/vim-kamailio-syntax" },
+	{ "kamailio/vim-kamailio-syntax", enabled = false },
 	{ "bufbuild/vim-buf" },
 	{ "trayo/vim-ginkgo-snippets" },
 	{ "buoto/gotests-vim" },
-	{ "mracos/mermaid.vim" },
+	{ "mracos/mermaid.vim", enabled = false },
 	{ "direnv/direnv.vim" },
 
 	-- Lint
@@ -334,7 +486,7 @@ return {
 	{ "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
 	{ "junegunn/fzf.vim" },
 	{ "stsewd/fzf-checkout.vim" },
-	{ "dhulihan/vim-gtfo" },
+	{ "dhulihan/vim-gtfo" }, -- dave's fork for horizontal splits
 	{
 		"windwp/nvim-ts-autotag",
 		config = function()
@@ -363,6 +515,7 @@ return {
 	{ "hzchirs/vim-material" },
 	{ "cocopon/iceberg.vim" },
 	{ "bluz71/vim-moonfly-colors" },
+	{ "romgrk/doom-one.vim" },
 
 	-- Files & Buffers
 	{ "ton/vim-bufsurf" },
@@ -437,7 +590,21 @@ return {
 		},
 	},
 	{ "tyru/open-browser.vim" },
-	{ "majutsushi/tagbar" },
+	--{ "majutsushi/tagbar" }, -- super slow
+	{
+		"stevearc/aerial.nvim",
+		opts = {
+			layout = {
+				default_direction = "right", -- always keep on right side
+				placement = "edge",
+			},
+		},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
 	{
 		"wfxr/minimap.vim", -- sublime-style minimap
 		config = function()

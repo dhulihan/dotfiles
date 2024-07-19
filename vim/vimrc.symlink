@@ -411,8 +411,9 @@ tnoremap <PageDown> <C-W>N<PageDown>
 "
 nnoremap <Leader>s :BufSurfForward<CR>
 nnoremap <Leader>a :BufSurfBack<CR>
-nnoremap <silent> <leader>e :ToggleNetrw<CR>
-nnoremap <Leader>t :TagbarToggle<cr>
+"nnoremap <silent> <leader>e :ToggleNetrw<CR> " never used
+"nnoremap <Leader>t :TagbarToggle<cr>
+nnoremap <Leader>t :AerialToggle!<cr>
 nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
 nnoremap <Leader><tab> :Cdp<Space>
@@ -1841,6 +1842,7 @@ set background=dark
 "colors lucius
 "colors codedark
 colors vim-material
+"colors doom-one
 "colors tokyonight
 "colors iceberg "misspell is gnarly
 "colors dracula
