@@ -119,6 +119,7 @@ brew install yarn
 brew install youtube-dl
 brew install yq
 brew install zsh
+brew install yamllint
 
 brew install node@10
 brew link --force node@10
