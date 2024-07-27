@@ -228,7 +228,7 @@ return {
 		},
 		keys = {
 			{
-				"<leader>ee",
+				"<leader>ep",
 				"<cmd>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<cr>",
 				desc = "Project Errors - Diagnostics (Trouble)",
 			},

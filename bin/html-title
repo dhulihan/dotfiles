@@ -4,8 +4,16 @@ RESPONSE_CODE=$(http-response-code $1)
 if [[ $RESPONSE_CODE == 200 ]] ; then
   RAW_TITLE=$(curl -L "$1" -so  - | perl -l -0777 -ne 'print $1 if /<title.*?>\s*(.*?)\s*<\/title/si')
 
+  # decode html entities
+  DECODED_TITLE=$(echo -n "$RAW_TITLE" | decode-html-entities)
+
   # filter out annoying patterns
-  FILTERED_TITLE=${RAW_TITLE//"GitHub -"/}
+  #FILTERED_TITLE=${DECODED_TITLE//"GitHub -"/}
+
+
+  # discard any text after a pipe or hyphen or em/en dash
+  FILTERED_TITLE=$(echo "$DECODED_TITLE" | sed 's/[|—–-].*$//')
+
   echo $FILTERED_TITLE
 else
   echo $RESPONSE_CODE
