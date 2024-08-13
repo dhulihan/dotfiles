@@ -8,11 +8,10 @@ if [[ $RESPONSE_CODE == 200 ]] ; then
   DECODED_TITLE=$(echo -n "$RAW_TITLE" | decode-html-entities)
 
   # filter out annoying patterns
-  #FILTERED_TITLE=${DECODED_TITLE//"GitHub -"/}
-
+  FILTERED_TITLE=${DECODED_TITLE//"GitHub -"/}
 
   # discard any text after a pipe or hyphen or em/en dash
-  FILTERED_TITLE=$(echo "$DECODED_TITLE" | sed 's/[|—–-].*$//')
+  FILTERED_TITLE=$(echo "$FILTERED_TITLE" | sed 's/[|—–-].*$//')
 
   echo $FILTERED_TITLE
 else

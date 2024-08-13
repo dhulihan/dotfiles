@@ -349,6 +349,9 @@ inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype
 " widen split to favorite width (I like 80 char width plus some gutter)
 nnoremap <C-W>\ :vertical resize 82<CR>
 
+" | to vertical split
+nnoremap <Bar> :vsp<cr>
+
 " Classic backspace
 "nnoremap <BS> X
 
@@ -1482,7 +1485,7 @@ function! MarkdownExternalLink(fetch_title)
 
   " determine if we should fetch the title or not
   if a:fetch_title
-    let html_title = SystemChomp("html-title " . l:url)
+    let html_title = SystemChomp('html-title "' . l:url . '"')
 
     let l:raw_title = l:html_title
   else
