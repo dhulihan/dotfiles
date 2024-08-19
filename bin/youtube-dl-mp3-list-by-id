@@ -1,9 +1,9 @@
 #!/bin/bash -eux
 
-# download list, name by playlist position
+# download list into directory
 yt-dlp \
   --extract-audio \
   --audio-format mp3 \
   --no-mtime \
-  -o '%(playlist_index)s %(title)s.%(ext)s' \
+ -o '%(playlist)s/%(title)s - %(id)s.%(ext)s' \
   $1
