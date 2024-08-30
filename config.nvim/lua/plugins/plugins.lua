@@ -374,6 +374,7 @@ return {
 
 			-- golang
 			lspconfig.templ.setup({})
+			lspconfig.gopls.setup({})
 
 			-- lua
 			lspconfig["lua_ls"].setup({})

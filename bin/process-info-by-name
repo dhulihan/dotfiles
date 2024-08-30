@@ -1,3 +1,5 @@
+#!/bin/bash
+# get helpful process info by name
 pids=$(pidof "$1")
 
 if [ -z "$pids" ]; then
@@ -7,9 +9,8 @@ fi
 
 for pid in $pids; do
     cwd=$(pwdx $pid)
-    if [ $? -eq 0 ]; then
-	echo "PID: $pid  CWD: $cwd"
-    else
-	echo "PID: $pid  CWD: Unable to determine (permission denied)"
-    fi
+    echo "PID: $pid CWD: $cwd"
+    echo "  Open Files: $(lsof -p $pid | wc -l)"
+    echo "  CMD: $(ps -p $pid -o command=)"
+    echo
 done
