@@ -236,7 +236,7 @@ augroup filetypes
   autocmd!
   autocmd BufNewFile,BufRead *.template set filetype=json
   autocmd BufNewFile,BufRead *.json.tmpl, *.js.symlink set filetype=json
-  autocmd BufNewFile,BufRead *.templ, set filetype=go
+  "autocmd BufNewFile,BufRead *.templ, set filetype=go
   autocmd BufNewFile,BufRead *.yaml.dockercompose,*.yaml.tmpl set filetype=yaml
   autocmd BufNewFile,BufRead *.lua.j2 set filetype=lua
   autocmd BufNewFile,BufRead .envrc set filetype=sh
@@ -356,7 +356,7 @@ nnoremap <Bar> :vsp<cr>
 "nnoremap <BS> X
 
 " keywordprg doesn't allow to use vim commands, override it
-nnoremap <buffer> <silent> K :GoDoc<cr>
+"nnoremap <buffer> <silent> K :GoDoc<cr>
 
 " Tabs
 nnoremap { :cprev<CR>
@@ -1232,11 +1232,6 @@ let g:lightline.component_type = {
 " this isn't an actual ale var, this is just a placeholder for stuff i use
 " sometimes
     " pgformatter doesn't support \COPY
-let g:disabled_ale_fixers = {
-\   'python': ['black'],
-\   'ruby': ['rufo'],
-\   'sql': ['sqlint', 'sqlfluff'],
-\}
 
 
 let g:disabled_ale_linters = {
@@ -1251,10 +1246,17 @@ let g:ale_linters = {
 \   'sql': ['sqlfluff'],
 \}
 
+let g:disabled_ale_fixers = {
+\   'python': ['black'],
+\   'ruby': ['rufo'],
+\   'sql': ['sqlint', 'sqlfluff'],
+\   'go': ['gofumpt'],
+\}
+
 " fixers
 let g:ale_fixers = {
 \   'lua': ['stylua'],
-\   'go': ['goimports', 'gofumpt'],
+\   'go': ['goimports', 'gofmt'],
 \   'json': ['prettier'],
 \   'terraform': ['terraform'],
 \   'sql': ['pgformatter'],
@@ -1301,10 +1303,12 @@ let g:strip_whitespace_confirm = 0
 " utltisnips
 " ------------------------------------------------------------------------------
 
+"let g:UltiSnipsExpandTrigger=''
+"let g:UltiSnipsJumpForwardTrigger = ''
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsListSnippets="<C-b>"
-"let g:UltiSnipsJumpForwardTrigger="<Tab>" " not working in neovim
-"let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " not working in neovim
+let g:UltiSnipsJumpForwardTrigger="<Tab>" " not working in neovim
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>" " not working in neovim
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 if !exists("g:UltiSnipsSnippetDirectories")
@@ -1583,10 +1587,16 @@ let g:color_column_toggle = 0
 function! ColorColumnToggle()
   if g:color_column_toggle
     setlocal colorcolumn=
+    setlocal nocursorcolumn
+    setlocal nocursorline
     let g:color_column_toggle = 0
   else
     setlocal colorcolumn=1,5,9,13,17,21,80
     let g:color_column_toggle = 1
+
+    " crosshairs for cursor
+    setlocal cursorcolumn
+    setlocal cursorline
   endif
 endfunction
 command! ColorColumnToggle call ColorColumnToggle()
@@ -1645,7 +1655,8 @@ command! StopProfile call StopProfile()
 " remove file from disk and delete buffer
 " ------------------------------------------------------------------------------
 function! Rm()
-  silent execute "! rm '%'"
+  " move to trash
+  silent execute "! mv '%' ~/.Trash/"
   execute "BD!"
   redraw!
 endfunction
@@ -1867,6 +1878,8 @@ colors vim-material
 
 " Cross-scheme colors (dark background)
 "hi clear ColorColumn
+"highlight CursorColumn guibg=#303000
+"highlight CursorLine guibg=#303000
 "hi ColorColumn ctermbg=237
 "hi clear SignColumn
 "hi clear SpellCap

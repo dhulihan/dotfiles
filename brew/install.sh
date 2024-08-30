@@ -62,6 +62,7 @@ brew install mysql
 brew install neofetch
 brew install packer
 brew install pgformatter
+brew install pidof
 brew install ncdu
 brew install ncdu
 brew install ngrep

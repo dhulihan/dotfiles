@@ -58,5 +58,6 @@ go install github.com/vadimi/grpc-client-cli/cmd/grpc-client-cli@latest
 
 go install honnef.co/go/tools/cmd/staticcheck@latest
 go install github.com/dhulihan/depoch@latest
+go install github.com/d-led/pathdebug@latest
 
 set +x

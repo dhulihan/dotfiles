@@ -21,7 +21,7 @@ return {
 	--{ "ofseed/copilot-status.nvim" },
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = true, -- cannot turn off with :Copilot disable
+		--enabled = false, -- cannot turn off with :Copilot disable
 		event = "InsertEnter",
 		cmd = "Copilot", -- lazy load on command
 		config = {
@@ -261,15 +261,124 @@ return {
 	}, -- error helpers
 	--{ "benmills/vimux" }, -- not using recently
 
+	-- Completion
+	--{ "inkarkat/vim-CompleteHelper" },
+	{
+		"hrsh7th/nvim-cmp",
+		--enabled = false, -- i can't get to work at all
+		version = false, -- last release is way too old
+		event = "InsertEnter",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-emoji",
+			"uga-rosa/cmp-dictionary",
+			"quangnguyen30192/cmp-nvim-ultisnips",
+		},
+
+		opts = function()
+			local cmp = require("cmp")
+			local types = require("cmp.types")
+
+			return {
+				completion = {
+					autocomplete = false, -- disable autocomplete, wait for user to request completion
+				},
+				snippet = {
+					expand = function(args)
+						vim.fn["UltiSnips#Anon"](args.body)
+					end,
+				},
+				--mapping = cmp.mapping.preset.insert({
+				-- start from scratch since nvim-cmp hijacks up/dn keys
+				mapping = {
+					["<C-n>"] = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
+					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
+					--["<C-y>"] = {
+					--i = mapping.confirm({ select = false }),
+					--},
+					["<C-e>"] = cmp.mapping.abort(),
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<CR>"] = cmp.mapping.confirm({ select = false }), -- If true, accept first item in list on enter. Set `select` to `false` to only confirm explicitly selected items.
+				},
+				-- })
+				sources = {
+					{
+						name = "buffer",
+						option = {
+							get_bufnrs = function()
+								return vim.api.nvim_list_bufs().insert(vim.api.nvim_get_current_buf()) -- get content from all open buffers, plus current buffer
+							end,
+						},
+					},
+					{
+						name = "dictionary",
+						paths = { "/usr/share/dict/words" },
+						keyword_length = 2,
+					},
+					{ name = "emoji" },
+					{ name = "ultisnips" }, -- For ultisnips users.
+					{ name = "path" },
+				},
+			}
+		end,
+	},
+
 	-- Vim itself
 	{ "mhinz/vim-startify" },
 	{ "jeanCarloMachado/vim-toop" }, -- fancy text-object functions
 	--{ 'Yggdroot/indentLine' " don't need this, use list
 	--{ 'machakann/vim-highlightedyank' " cool but annoying after a while
 	--{ 'chrisbra/Recover.vim' },
-	{ "inkarkat/vim-CompleteHelper" },
 	--{ 'unblevable/quick-scope' " cool but I don't use much
 	--{ "dstein64/vim-startuptime" }, -- enable as needed
+
+	-- External Tools
+	{
+		"williamboman/mason.nvim",
+		opts = {
+			ensure_installed = {
+				"lua_ls",
+				"gopls",
+				"tsserver",
+			},
+		},
+
+		config = function(_, opts)
+			require("mason").setup(opts)
+		end,
+	},
+
+	-- LSP
+	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function(_, opts)
+			require("mason-lspconfig").setup(opts)
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
+		},
+		config = function()
+			local lspconfig = require("lspconfig")
+
+			-- use tssserver for typescript files
+			lspconfig.tsserver.setup({})
+
+			-- golang
+			lspconfig.templ.setup({})
+
+			-- lua
+			lspconfig["lua_ls"].setup({})
+		end,
+	},
 
 	-- Version Control
 	{ "tpope/vim-fugitive" },
@@ -313,6 +422,7 @@ return {
 	},
 	{
 		"rmagatti/auto-session",
+		--enabled = false,
 		config = function()
 			require("auto-session").setup({
 				log_level = "error",
@@ -452,6 +562,8 @@ return {
 	{ "buoto/gotests-vim" },
 	{ "mracos/mermaid.vim", enabled = false },
 	{ "direnv/direnv.vim" },
+	--{ "pmizio/typescript-tools.nvim" },
+	{ "joerdav/templ.vim" },
 
 	-- Lint
 	{
@@ -500,6 +612,22 @@ return {
 		config = function()
 			require("colorizer").setup()
 		end,
+	},
+
+	-- Productivity
+	{
+		"epwalsh/pomo.nvim",
+		enabled = false, -- cool but I don't use
+		version = "*", -- Recommended, use latest release instead of latest commit
+		lazy = true,
+		cmd = { "TimerStart", "TimerRepeat" },
+		dependencies = {
+			-- Optional, but highly recommended if you want to use the "Default" timer
+			"rcarriga/nvim-notify",
+		},
+		opts = {
+			-- See below for full list of options 👇
+		},
 	},
 
 	-- Colors

@@ -1,0 +1,2 @@
+alias pr-for-commit='gh pr list --state merged --web --search'
+alias pfc='pr-for-commit'

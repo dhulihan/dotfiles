@@ -1,5 +1,6 @@
 # Generic process finder
-alias p="ps aux | grep"
+#alias p="ps aux | grep"
+alias p="process-info-by-name"
 
 # grep
 alias grin='grep -rin'
