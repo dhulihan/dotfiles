@@ -1,0 +1,3 @@
+# mac version of pwdx
+# https://gist.github.com/tobym/648188
+lsof -a -d cwd -p $1 -n -Fn | awk '/^n/ {print substr($0,2)}'

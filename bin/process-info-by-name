@@ -1,0 +1,15 @@
+pids=$(pidof "$1")
+
+if [ -z "$pids" ]; then
+    echo "No processes found for '$process_name'"
+    exit 0
+fi
+
+for pid in $pids; do
+    cwd=$(pwdx $pid)
+    if [ $? -eq 0 ]; then
+	echo "PID: $pid  CWD: $cwd"
+    else
+	echo "PID: $pid  CWD: Unable to determine (permission denied)"
+    fi
+done
