@@ -11,6 +11,6 @@ for pid in $pids; do
     cwd=$(pwdx $pid)
     echo "PID: $pid CWD: $cwd"
     echo "  Open Files: $(lsof -p $pid | wc -l)"
-    echo "  CMD: $(ps -p $pid -o command=)"
+    echo "  $(ps -p $pid -o '%cpu,%mem,command')"
     echo
 done
