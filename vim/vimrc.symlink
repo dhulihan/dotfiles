@@ -443,8 +443,8 @@ nnoremap <Leader>6 :RelDirToClipboard<CR>
 " Shortcut to rapidly toggle `set list`. Moved to F2.
 nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>; :ColorColumnToggle<CR>
-nnoremap <Leader>] :ALENext -wrap -error<CR>
-nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
+"nnoremap <Leader>] :ALENext -wrap -error<CR>
+"nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
 "nnoremap <Leader>= :ALENext -wrap -warning<CR>
 "nnoremap <Leader>- :ALEPrevious -wrap -warning<CR>
 "nnoremap <Leader>= :tabnew<CR>

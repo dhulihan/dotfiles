@@ -1,3 +1,15 @@
+-- this file contains non-plugin keymaps
+--
+-- open diagnostic float
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>]", function()
+	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Go to next diagnostic" })
+vim.keymap.set("n", "<leader>[", function()
+	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Go to previous diagnostic" })
+
+-- TODO: move
 vim.keymap.set("n", "<F10>", function()
 	require("dap").step_over()
 end)
