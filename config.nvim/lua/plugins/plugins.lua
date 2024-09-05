@@ -340,16 +340,23 @@ return {
 	-- External Tools
 	{
 		"williamboman/mason.nvim",
+		config = function(_, opts)
+			require("mason").setup(opts)
+		end,
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		desc = "auto installs mason tools",
 		opts = {
 			ensure_installed = {
 				"lua_ls",
 				"gopls",
 				"tsserver",
+				"json-lsp",
 			},
 		},
-
 		config = function(_, opts)
-			require("mason").setup(opts)
+			require("mason-tool-installer").setup(opts)
 		end,
 	},
 
@@ -369,6 +376,9 @@ return {
 		config = function()
 			local lspconfig = require("lspconfig")
 
+			-- json
+			lspconfig.jsonls.setup({})
+
 			-- use tssserver for typescript files
 			lspconfig.tsserver.setup({})
 
@@ -378,6 +388,24 @@ return {
 
 			-- lua
 			lspconfig["lua_ls"].setup({})
+		end,
+	},
+	{
+		"SmiteshP/nvim-navic",
+		desc = "code context from lsp",
+		opts = {
+			click = true,
+		},
+		config = function(_, opts)
+			local navic = require("nvim-navic")
+
+			require("lspconfig").jsonls.setup({
+				on_attach = function(client, bufnr)
+					navic.attach(client, bufnr)
+				end,
+			})
+
+			navic.setup(opts)
 		end,
 	},
 
@@ -565,6 +593,10 @@ return {
 	{ "direnv/direnv.vim" },
 	--{ "pmizio/typescript-tools.nvim" },
 	{ "joerdav/templ.vim" },
+	{
+		"phelipetls/jsonpath.nvim",
+		enabled = false, -- can't get to work
+	},
 
 	-- Lint
 	{
@@ -701,7 +733,13 @@ return {
 				lualine_z = {},
 			},
 			tabline = {},
-			winbar = {},
+			winbar = {
+				lualine_c = {
+					"navic",
+					color_correction = nil,
+					navic_opts = nil,
+				},
+			},
 			inactive_winbar = {},
 			extensions = {},
 		},
