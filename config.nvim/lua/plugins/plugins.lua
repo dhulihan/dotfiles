@@ -379,8 +379,9 @@ return {
 			-- json
 			lspconfig.jsonls.setup({})
 
-			-- use tssserver for typescript files
-			lspconfig.tsserver.setup({})
+			-- typescript
+			-- note: tsserver has been renamed to ts_ls
+			lspconfig.ts_ls.setup({})
 
 			-- golang
 			lspconfig.templ.setup({})
