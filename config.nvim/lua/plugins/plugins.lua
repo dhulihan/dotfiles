@@ -384,8 +384,8 @@ return {
 			lspconfig.ts_ls.setup({})
 
 			-- golang
-			lspconfig.templ.setup({})
-			lspconfig.gopls.setup({})
+			--lspconfig.templ.setup({})
+			--lspconfig.gopls.setup({}) -- crazy slow on startup
 
 			-- lua
 			lspconfig["lua_ls"].setup({})
