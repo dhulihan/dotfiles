@@ -1,0 +1,4 @@
+length=16
+PASS=$(gtr -dc 'A-Za-z0-9!@#$%^&*()_+' < /dev/urandom | head -c "$length")
+echo -n $PASS | pbcopy
+echo $PASS
