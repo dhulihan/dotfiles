@@ -261,6 +261,7 @@ augroup filetypes
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType typescript setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType typescriptreact setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType applescript setlocal ts=2 sts=2 sw=2 expandtab
 
   " Open md files with system tool
   autocmd FileType html let b:dispatch = "open '%'"
@@ -345,9 +346,16 @@ inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype
 " Easier saving
 "nnoremap S :w<CR>
 "nnoremap <C-i> :q<CR>
-"
+
+" ------------------------------------------------------------------------------
+" Windows
+" ------------------------------------------------------------------------------
+
 " widen split to favorite width (I like 80 char width plus some gutter)
 nnoremap <C-W>\ :vertical resize 82<CR>
+
+" open tag in vertical split
+nnoremap <C-w><C-]> :vert winc ]<CR>
 
 " | to vertical split
 nnoremap <Bar> :vsp<cr>
@@ -427,9 +435,10 @@ nnoremap <Leader><Enter> :Rg -F -i -- ""<Left>
 " fast splitting, vertical split, then fuzzy file search
 "nnoremap <Leader>; :vsp<CR>:Files<CR>
 
-" replace
-nnoremap <Leader>' :%s///gc<Left><Left><Left><Left>
-vnoremap <Leader>' :s///gc<Left><Left><Left><Left>
+" replace. drops you in to second argument so you can use search term by
+" default.
+nnoremap <Leader>; :%s///gc<Left><Left><Left>
+vnoremap <Leader>; :s///gc<Left><Left><Left>
 
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
@@ -525,7 +534,10 @@ inoremap <F9> <C-O>:CopyBufferToClipboard<CR>
 noremap <F10> ^"*y$
 
 " for visual block mode, go to end of line
-vnoremap <F10> $"*y<CR>
+"vnoremap <F10> $"*y<CR>
+
+" for visual modes copy selection
+vnoremap <F10> "*y<CR>
 
 " TODO: this needs some love
 inoremap <F10> <C-o>^"*y<CR>
@@ -1475,6 +1487,15 @@ endfunction
 "command! SplitTwoByTwo call SplitTwoByTwo()
 command! SplitFour call SplitTwoByTwo()
 
+function! VSplitFour()
+  vsp
+  vsp
+  vsp
+  3 winc h
+endfunction
+"command! SplitTwoByTwo call SplitTwoByTwo()
+command! VSplitFour call VSplitFour()
+
 function! SplitThree()
   vsp
   sp
@@ -1818,6 +1839,31 @@ endfunction
 command! ToggleQuickFix call ToggleQuickFix()
 
 " ------------------------------------------------------------------------------
+" Check syntax highlighting rules under cursor
+" ------------------------------------------------------------------------------
+"function! SynStack()
+"if !exists("*synstack")
+  "return
+"endif
+"echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+"endfunc
+"command! SynStack call SynStack()
+
+
+function! ShowHighlightGroup()
+  let l:synID = synID(line('.'), col('.'), 1)
+  let l:name = synIDattr(l:synID, 'name')
+  let l:transID = synIDtrans(l:synID)
+  let l:transName = synIDattr(l:transID, 'name')
+
+  echo "Highlight group: " . l:name
+  if l:name != l:transName
+    echo "Linked to: " . l:transName
+  endif
+endfunction
+"nnoremap <silent> <LeftMouse> :call ShowHighlightGroup()<CR>
+
+" ------------------------------------------------------------------------------
 " One-liners
 " ------------------------------------------------------------------------------
 command! Executable silent execute '! chmod +x %' | execute 'e!' | execute ':redraw!'
@@ -1855,8 +1901,8 @@ set background=dark
 "colors apprentice
 "colors lucius
 "colors codedark
-colors vim-material
-"colors doom-one
+"colors vim-material " done 2024-10-15
+colors doom-one
 "colors tokyonight
 "colors iceberg "misspell is gnarly
 "colors dracula

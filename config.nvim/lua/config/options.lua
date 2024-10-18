@@ -1,3 +1,6 @@
+-- don't autoreload file changes made outside of vim. prompt.
+vim.opt.autoread = false
+
 -- Persist undos, incompatible with vim
 vim.opt.undodir = vim.fn.expand("$HOME/.nvim/undo") -- mkdir this if you need to
 vim.opt.undofile = true
@@ -33,7 +36,7 @@ end
 vim.diagnostic.config({
 	float = {
 		border = "rounded",
-		width = 200,
+		width = 300,
 		padding = 2,
 		header = "", -- hide header
 		title = "", -- no header at top

@@ -678,6 +678,8 @@ return {
 	{ "cocopon/iceberg.vim" },
 	{ "bluz71/vim-moonfly-colors" },
 	{ "romgrk/doom-one.vim" },
+	{ "rafi/awesome-vim-colorschemes" },
+	{ "baskerville/bubblegum" },
 
 	-- Files & Buffers
 	{ "ton/vim-bufsurf" },
@@ -754,6 +756,28 @@ return {
 				mode = "tabs",
 				separator_style = "slant",
 				show_duplicate_prefix = false, -- don't show (Duplicate)
+				--show_close_icon = false, -- this is the close icon way to the right
+				show_buffer_close_icons = false, -- for each tab
+				show_tab_indicators = false, -- numbered icons way right side
+			},
+
+			highlights = {
+				--fill = {
+				--bg = "blue",
+				--},
+				--background = {
+				--bg = "green",
+				--fg = "black",
+				--},
+				--tab_separator = {
+				--bg = "green",
+				--},
+				--tab = {
+				--bg = "red",
+				--},
+				--tab_selected = {
+				--bg = "blue",
+				--},
 			},
 		},
 	},
