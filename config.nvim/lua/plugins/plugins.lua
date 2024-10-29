@@ -336,6 +336,7 @@ return {
 	--{ 'chrisbra/Recover.vim' },
 	--{ 'unblevable/quick-scope' " cool but I don't use much
 	--{ "dstein64/vim-startuptime" }, -- enable as needed
+	{ "tiagovla/scope.nvim" }, -- scoped buffers
 
 	-- External Tools
 	{
