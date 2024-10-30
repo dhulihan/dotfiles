@@ -1,2 +1,12 @@
 window-height = 80
-window-width = 120
+window-width = 140
+
+# NOTE: you can apply multiple shaders, they are run in order.
+#
+#custom-shader = shaders/crt.glsl
+#custom-shader = shaders/bloom.glsl
+custom-shader = shaders/just-snow.glsl
+#custom-shader = shaders/cubes.glsl
+#custom-shader = shaders/starfield.glsl
+#custom-shader = shaders/starfield-colors.glsl
+custom-shader = shaders/animated-gradient-shader.glsl
