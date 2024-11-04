@@ -1,5 +1,7 @@
 run:
   max-same-issues: 0
+tests:
+  true
 linters:
   enable-all: true
   fast: true

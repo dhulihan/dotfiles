@@ -302,6 +302,10 @@ set noerrorbells visualbell t_vb=
 " Persist undos
 "set undodir=$HOME/.vim/undo " mkdir this if you need to
 "set undofile " Maintain undo history between sessions
+"
+
+" make help vertical
+cnoremap help vert help
 
 " Persist cursor
 augroup persist_cursor
@@ -459,7 +463,7 @@ nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>= :tabnew<CR>
 "nnoremap <Leader>- :tabclose<CR>
 nnoremap <Leader><Leader> :ToggleQuickFix<CR>
-nnoremap <Leader><Backspace> :ToggleQuickFix<CR>
+"nnoremap <Leader><Backspace> :ToggleQuickFix<CR>
 "nnoremap <Leader>' :ToggleQuickFix<CR>
 " folding
 nnoremap <Leader>, zr<CR>
@@ -754,7 +758,7 @@ cnoreabbrev TR TabooRename
 " taboo END --------------------------------------------------------------------
 "
 " tagbar -----------------------------------------------------------------------
-let g:tagbar_width=26 " Default is 40, seems too wide
+"let g:tagbar_width=40 " Default is 40
 " tagbar END -------------------------------------------------------------------
 
 " easyclip ---------------------------------------------------------------------
@@ -1213,7 +1217,7 @@ set laststatus=2
 " QFEnter
 let g:qfenter_keymap = {}
 let g:qfenter_keymap.vopen = ['<C-v>']
-let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>']
 let g:qfenter_keymap.topen = ['<C-t>']
 
 " ale START -------------------------------------------------
@@ -1267,8 +1271,8 @@ let g:disabled_ale_fixers = {
 
 " fixers
 let g:ale_fixers = {
-\   'lua': ['stylua'],
 \   'go': ['goimports', 'gofmt'],
+\   'lua': ['stylua'],
 \   'json': ['prettier'],
 \   'terraform': ['terraform'],
 \   'sql': ['pgformatter'],
@@ -1484,8 +1488,7 @@ function! SplitTwoByTwo()
   winc k
   vsp
 endfunction
-"command! SplitTwoByTwo call SplitTwoByTwo()
-command! SplitFour call SplitTwoByTwo()
+command! SplitTwoByTwo call SplitTwoByTwo()
 
 function! VSplitFour()
   vsp
@@ -1493,8 +1496,24 @@ function! VSplitFour()
   vsp
   3 winc h
 endfunction
-"command! SplitTwoByTwo call SplitTwoByTwo()
 command! VSplitFour call VSplitFour()
+command! SplitFour call VSplitFour()
+
+function! VSplitEight()
+  vsp
+  vsp
+  vsp
+  3 winc h
+  sp
+  1 winc l
+  sp
+  1 winc l
+  sp
+  1 winc l
+  sp
+endfunction
+command! VSplitEight call VSplitEight()
+command! SplitEight call VSplitEight()
 
 function! SplitThree()
   vsp
@@ -1835,6 +1854,10 @@ if empty(filter(getwininfo(), 'v:val.quickfix'))
 else
     cclose
 endif
+
+" reset cmd height, jic
+set cmdheight=1
+
 endfunction
 command! ToggleQuickFix call ToggleQuickFix()
 
@@ -1924,6 +1947,7 @@ colors doom-one
 
 " Cross-scheme colors (dark background)
 "hi clear ColorColumn
+"highlight Cursor ctermbg=red guibg=#00FF00
 "highlight CursorColumn guibg=#303000
 "highlight CursorLine guibg=#303000
 "hi ColorColumn ctermbg=237
@@ -1955,11 +1979,17 @@ colors doom-one
 "hi! Error term=standout ctermfg=167 cterm=bold gui=underline guifg=#e37170 ctermbg=NONE
 " -----
 
+" doom-one overrides
+hi StatusLine ctermbg=black guibg=#111111
+"hi TabLine     term=bold cterm=bold ctermfg=red ctermbg=053
+"hi TabLineFill term=bold cterm=bold ctermfg=green ctermbg=053
+"hi TabLineSel  term=bold cterm=bold ctermfg=blue ctermbg=225
+
 " material overrides
-hi! link DiagnosticWarn BufferLineHintDiagnosticSelected
-hi! link ALEWarningSign BufferLineHintDiagnosticSelected
-hi! link SpellBad ErrorMsg
-hi! Search ctermfg=236 ctermbg=172 guifg=bg guibg=#d78700
+"hi! link DiagnosticWarn BufferLineHintDiagnosticSelected
+"hi! link ALEWarningSign BufferLineHintDiagnosticSelected
+"hi! link SpellBad ErrorMsg
+"hi! Search ctermfg=236 ctermbg=172 guifg=bg guibg=#d78700
 
 " apprentice color overrides
 "hi! link SignColumn Normal

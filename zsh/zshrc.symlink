@@ -11,10 +11,15 @@ if [[ $LOG_LEVEL == "trace" ]]; then
 fi
 
 # logger
+PREV_TIME=$(gdate +%s.%N)
 debug() {
+	CURR_TIME=$(gdate +%s.%N)
+	ELAPSED=$(echo "$CURR_TIME - $PREV_TIME" | bc)
 	if [[ $LOG_LEVEL == "debug" ]]; then
-		echo "$fg_bold[grey]$(gdate --iso-8601=ns) $fg_bold[grey]$1"
+		echo "$fg_bold[grey]$(gdate --iso-8601=ns) $fg_bold[grey]$1 $fgbold[yellow]${ELAPSED}s"
 	fi
+
+	PREV_DATE=$CURR_DATE
 }
 
 info() {
@@ -52,21 +57,21 @@ sh_common_files=($ZSH/**/*.sh-common)
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
 do
-  debug "$file"
+  debug "about to load $file"
   source $file
 done
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
-  debug "$file"
+  debug "about to load $file"
   source $file
 done
 
 # load common sh files
 for file in ${${sh_common_files}}
 do
-  debug "$file"
+  debug "about to load $file"
   source $file
 done
 
@@ -75,7 +80,7 @@ done
 debug "compinit check"
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
-  debug "compinit"
+  warn "perfoming compinit, this can be slow"
   compinit
 done
 compinit -C
@@ -83,7 +88,7 @@ compinit -C
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
 do
-  debug "$file"
+  debug "about to load $file"
   source $file
 done
 

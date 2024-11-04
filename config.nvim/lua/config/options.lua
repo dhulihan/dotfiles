@@ -20,7 +20,8 @@ function OpenDiagnosticIfNoFloat()
 	end
 	-- THIS IS FOR BUILTIN LSP
 	vim.diagnostic.open_float(0, {
-		scope = "cursor",
+		--scope = "cursor",
+		scope = "line",
 		focusable = false,
 		close_events = {
 			"CursorMoved",

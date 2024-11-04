@@ -410,6 +410,12 @@ return {
 			navic.setup(opts)
 		end,
 	},
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+		},
+	},
 
 	-- Version Control
 	{ "tpope/vim-fugitive" },
@@ -419,6 +425,7 @@ return {
 	--{ 'airblade/vim-gitgutter' " performance issues 2021-08-24, try to update
 	{
 		"pwntester/octo.nvim",
+		enabled = false, -- 2024-10-21 disable for now, not using much
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
@@ -678,14 +685,19 @@ return {
 	{ "hzchirs/vim-material" },
 	{ "cocopon/iceberg.vim" },
 	{ "bluz71/vim-moonfly-colors" },
-	{ "romgrk/doom-one.vim" },
+	{
+		"NTBBloodbath/doom-one.nvim",
+		config = function()
+			--vim.g.doom_one_italic_comments = true
+		end,
+	},
 	{ "rafi/awesome-vim-colorschemes" },
 	{ "baskerville/bubblegum" },
 
 	-- Files & Buffers
 	{ "ton/vim-bufsurf" },
 	{ "qpkorr/vim-bufkill" },
-	--{ "gcmt/taboo.vim" },
+	--{ "gcmt/taboo.vim" }, -- interfering with bufferline tabs
 
 	-- Layout
 	--{ "itchyny/lightline.vim" }, -- takes over tabbar
@@ -755,43 +767,88 @@ return {
 		opts = {
 			options = {
 				mode = "tabs",
+				numbers = "buffer_id",
+				--numbers = "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
 				separator_style = "slant",
 				show_duplicate_prefix = false, -- don't show (Duplicate)
-				--show_close_icon = false, -- this is the close icon way to the right
+				show_close_icon = false, -- this is the close icon way to the right
 				show_buffer_close_icons = false, -- for each tab
 				show_tab_indicators = false, -- numbered icons way right side
+				groups = {
+					items = {
+						{
+							name = "Tests", -- Mandatory
+							--highlight = { underline = false, sp = "blue" }, -- Optional
+							priority = 2, -- determines where it will appear relative to other groups (Optional)
+							icon = "", -- Optional
+							matcher = function(buf) -- Mandatory
+								--vim.print(buf)
+								return buf.path:match("%_test") or buf.path:match("%_spec")
+							end,
+						},
+					},
+				},
 			},
 
-			highlights = {
-				--fill = {
-				--bg = "blue",
-				--},
-				--background = {
-				--bg = "green",
-				--fg = "black",
-				--},
-				--tab_separator = {
-				--bg = "green",
-				--},
-				--tab = {
-				--bg = "red",
-				--},
-				--tab_selected = {
-				--bg = "blue",
-				--},
-			},
+			--highlights = {
+			--fill = {
+			--bg = "blue",
+			--},
+			--background = {
+			--bg = "green",
+			--fg = "black",
+			--},
+			--tab_separator = {
+			--bg = "green",
+			--},
+			--tab = {
+			--bg = "red",
+			--},
+			--tab_selected = {
+			--bg = "blue",
+			--},
+			--},
 		},
 	},
 	{ "tyru/open-browser.vim" },
-	--{ "majutsushi/tagbar" }, -- super slow
+	--{ "majutsushi/tagbar" }, -- super slow in nvim, decent in nvim
 	{
 		"stevearc/aerial.nvim",
 		opts = {
 			layout = {
-				default_direction = "right", -- always keep on right side
+				--default_direction = "right", -- always keep on right side
+				default_direction = "float", -- floating window
 				placement = "edge",
+				-- max_width = {40, 0.2} means "the lesser of 40 columns or 20% of total"
+				--max_width = { 40, 0.2 },
+				--width = 40,
 			},
+			float = {
+				relative = "win",
+				override = function(conf)
+					local padding = 1
+					conf.anchor = "NE"
+					conf.row = padding
+					conf.col = vim.api.nvim_win_get_width(0) - padding
+					return conf
+				end,
+			},
+			--open_automatic_events = { "BufEnter", "InsertEnter", "FocusLost" },
+			close_automatic_events = { "switch_buffer" }, -- close when you switch buffers
 		},
+		config = function(_, opts)
+			local aerial = require("aerial")
+			opts.open_automatic = function(bufnr)
+				-- Enforce a minimum line count
+				return vim.api.nvim_buf_line_count(bufnr) > 60
+					-- Enforce a minimum symbol count
+					and aerial.num_symbols(bufnr) > 4
+					-- A useful way to keep aerial closed when closed manually
+					and not aerial.was_closed()
+			end
+
+			aerial.setup(opts)
+		end,
 		-- Optional dependencies
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",

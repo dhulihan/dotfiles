@@ -11,7 +11,7 @@ if [[ $RESPONSE_CODE == 200 ]] ; then
   FILTERED_TITLE=${DECODED_TITLE//"GitHub -"/}
 
   # discard any text after a pipe or hyphen or em/en dash
-  FILTERED_TITLE=$(echo "$FILTERED_TITLE" | sed 's/[|—–-].*$//')
+  FILTERED_TITLE=$(echo "$FILTERED_TITLE" | sed 's/ [|—–-] .*$//')
 
   echo $FILTERED_TITLE
 else
