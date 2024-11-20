@@ -2,5 +2,14 @@
 
 # helper file for running duckdb queries from a dir containing a collection of
 # queries.
-SRC=${QUERY_DIR:?}/${1:?}
-duckdb -c ".read $SRC"
+#SRC=${QUERY_DIR:?}/${1:?}
+SRC=${1:?}
+DB=mydb
+
+# check if local db file exists
+if [ ! -f $DB ]; then
+  echo "db file $DB does not exist, using in-memory db"
+  DB=""
+fi
+
+duckdb $DB -c ".read $SRC"

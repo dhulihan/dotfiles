@@ -1,0 +1,38 @@
+#!/bin/bash -eux
+
+# dqdump - given query duckdb sql file, flatten and run dump results as csv
+
+SRC=${1:?}
+TMP_FILE=/tmp/$(basename $SRC)
+TIMESTAMP=$(gdate +%s)
+DST=$HOME/Downloads/$(basename -s .sql $SRC)-$TIMESTAMP.csv
+DB=mydb
+
+# back up query file
+cp $SRC $TMP_FILE
+
+# remove ; termination
+gsed -i 's/;//g' $TMP_FILE
+
+# remove block level comments
+#gsed -i '/\/\*.*\*\// d; /\/\*/,/\*\//d' $TMP_FILE
+
+# remove single line comments
+#gsed -i '/--/d' $TMP_FILE
+
+# make single line
+#gsed -i ':b;N;$!bb;s/\n/ /g' $TMP_FILE
+
+# ADD copy as first line
+printf '%s\n%s\n' "COPY (" "$(cat $TMP_FILE)" > $TMP_FILE
+#gsed -i 's/^/COPY \(/' $TMP_FILE
+
+echo ") TO '${DST}' (FORMAT CSV, HEADER, NULLSTR '<null>')" >> $TMP_FILE
+
+if [ ! -f $DB ]; then
+  echo "db file $DB does not exist, using in-memory db"
+  DB=""
+fi
+
+echo "executing query and dumping to $DST"
+duckdb $DB -c ".read $TMP_FILE"
