@@ -284,7 +284,7 @@ return {
 
 			return {
 				completion = {
-					autocomplete = false, -- disable autocomplete, wait for user to request completion
+					--autocomplete = false, -- disable autocomplete, wait for user to request completion. you must remove/comment this line completely instead of setting to `true`.
 				},
 				snippet = {
 					expand = function(args)
@@ -352,7 +352,7 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"gopls",
-				"tsserver",
+				"ts_ls",
 				"json-lsp",
 			},
 		},
@@ -741,12 +741,12 @@ return {
 				lualine_z = { "progress", "location" },
 			},
 			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
+				--lualine_a = {},
+				--lualine_b = {},
 				lualine_c = { "filename" },
-				lualine_x = { "location" },
-				lualine_y = {},
-				lualine_z = {},
+				--lualine_x = { "location" },
+				--lualine_y = {},
+				--lualine_z = {},
 			},
 			tabline = {},
 			winbar = {
@@ -839,8 +839,19 @@ return {
 		config = function(_, opts)
 			local aerial = require("aerial")
 			opts.open_automatic = function(bufnr)
-				-- Enforce a minimum line count
-				return vim.api.nvim_buf_line_count(bufnr) > 60
+				-- List of filetypes you want Aerial to open automatically for
+				local auto_open_filetypes = {
+					"markdown",
+					"go",
+				}
+
+				-- Get the filetype of the buffer
+				local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
+
+				-- Check if the filetype is in the auto_open_filetypes list
+				return vim.tbl_contains(auto_open_filetypes, filetype)
+					-- Enforce a minimum line count
+					and vim.api.nvim_buf_line_count(bufnr) > 40
 					-- Enforce a minimum symbol count
 					and aerial.num_symbols(bufnr) > 4
 					-- A useful way to keep aerial closed when closed manually
@@ -871,304 +882,6 @@ return {
 
 	-- Build
 	{ "tpope/vim-dispatch" },
-
-	-- Testing
-	{
-		"nvim-neotest/neotest",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"antoinemadec/FixCursorHold.nvim",
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-neotest/neotest-go",
-		},
-		opts = {
-			adapters = {
-				["neotest-go"] = {
-					--args = { "-tags=integration" },
-				},
-			},
-			status = { virtual_text = true },
-			output = { open_on_run = true },
-			quickfix = {
-				open = function()
-					if require("lazyvim.util").has("trouble.nvim") then
-						require("trouble").open({ mode = "quickfix", focus = false })
-					else
-						vim.cmd("copen")
-					end
-				end,
-			},
-		},
-		config = function(_, opts)
-			local neotest_ns = vim.api.nvim_create_namespace("neotest")
-			vim.diagnostic.config({
-				virtual_text = {
-					format = function(diagnostic)
-						-- Replace newline and tab characters with space for more compact diagnostics
-						local message =
-							diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
-						return message
-					end,
-				},
-			}, neotest_ns)
-
-			if opts.adapters then
-				local adapters = {}
-				for name, config in pairs(opts.adapters or {}) do
-					if type(name) == "number" then
-						if type(config) == "string" then
-							config = require(config)
-						end
-						adapters[#adapters + 1] = config
-					elseif config ~= false then
-						local adapter = require(name)
-						if type(config) == "table" and not vim.tbl_isempty(config) then
-							local meta = getmetatable(adapter)
-							if adapter.setup then
-								adapter.setup(config)
-							elseif meta and meta.__call then
-								adapter(config)
-							else
-								error("Adapter " .. name .. " does not support setup")
-							end
-						end
-						adapters[#adapters + 1] = adapter
-					end
-				end
-				opts.adapters = adapters
-			end
-
-			require("neotest").setup(opts)
-		end,
-		keys = {
-			{
-				"<leader>tt",
-				function()
-					require("neotest").run.run(vim.fn.expand("%"))
-				end,
-				desc = "Run File",
-			},
-			{
-				"<leader>tT",
-				function()
-					require("neotest").run.run(vim.loop.cwd())
-				end,
-				desc = "Run All Test Files",
-			},
-			{
-				"<leader>tr",
-				function()
-					require("neotest").run.run()
-				end,
-				desc = "Run Nearest",
-			},
-			{
-				"<leader>ts",
-				function()
-					require("neotest").summary.toggle()
-				end,
-				desc = "Toggle Summary",
-			},
-			{
-				"<leader>to",
-				function()
-					require("neotest").output.open({ enter = true, auto_close = true })
-				end,
-				desc = "Show Output",
-			},
-			{
-				"<leader>tO",
-				function()
-					require("neotest").output_panel.toggle()
-				end,
-				desc = "Toggle Output Panel",
-			},
-			{
-				"<leader>tS",
-				function()
-					require("neotest").run.stop()
-				end,
-				desc = "Stop",
-			},
-		},
-	},
-	{ "nvim-neotest/neotest-go" },
-	{
-		"mfussenegger/nvim-dap",
-		keys = {
-			{
-				"<leader>dB",
-				function()
-					require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-				end,
-				desc = "Breakpoint Condition",
-			},
-			{
-				"<leader>db",
-				function()
-					require("dap").toggle_breakpoint()
-				end,
-				desc = "Toggle Breakpoint",
-			},
-			{
-				"<leader>dc",
-				function()
-					require("dap").continue()
-				end,
-				desc = "Continue",
-			},
-			{
-				"<leader>da",
-				function()
-					require("dap").continue({ before = get_args })
-				end,
-				desc = "Run with Args",
-			},
-			{
-				"<leader>dC",
-				function()
-					require("dap").run_to_cursor()
-				end,
-				desc = "Run to Cursor",
-			},
-			{
-				"<leader>dg",
-				function()
-					require("dap").goto_()
-				end,
-				desc = "Go to line (no execute)",
-			},
-			{
-				"<leader>di",
-				function()
-					require("dap").step_into()
-				end,
-				desc = "Step Into",
-			},
-			{
-				"<leader>dj",
-				function()
-					require("dap").down()
-				end,
-				desc = "Down",
-			},
-			{
-				"<leader>dk",
-				function()
-					require("dap").up()
-				end,
-				desc = "Up",
-			},
-			{
-				"<leader>dl",
-				function()
-					require("dap").run_last()
-				end,
-				desc = "Run Last",
-			},
-			{
-				"<leader>do",
-				function()
-					require("dap").step_out()
-				end,
-				desc = "Step Out",
-			},
-			{
-				"<leader>dO",
-				function()
-					require("dap").step_over()
-				end,
-				desc = "Step Over",
-			},
-			{
-				"<leader>dp",
-				function()
-					require("dap").pause()
-				end,
-				desc = "Pause",
-			},
-			{
-				"<leader>dr",
-				function()
-					require("dap").repl.toggle()
-				end,
-				desc = "Toggle REPL",
-			},
-			{
-				"<leader>ds",
-				function()
-					require("dap").session()
-				end,
-				desc = "Session",
-			},
-			{
-				"<leader>dt",
-				function()
-					require("dap").terminate()
-				end,
-				desc = "Terminate",
-			},
-			{
-				"<leader>dw",
-				function()
-					require("dap.ui.widgets").hover()
-				end,
-				desc = "Widgets",
-			},
-		},
-		config = function()
-			local dap = require("dap")
-			--require("dap").set_log_level("DEBUG")
-
-			-- prettier signs
-			vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
-			vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "", linehl = "", numhl = "" })
-		end,
-	},
-	{
-		"leoluz/nvim-dap-go",
-		config = true,
-		dependencies = { "mfussenegger/nvim-dap" },
-	},
-	{
-		"rcarriga/nvim-dap-ui",
-		keys = {
-			{
-				"<leader>du",
-				function()
-					require("dapui").toggle({})
-				end,
-				desc = "Dap UI",
-			},
-			{
-				"<leader>de",
-				function()
-					require("dapui").eval()
-				end,
-				desc = "Eval",
-				mode = { "n", "v" },
-			},
-		},
-		opts = {},
-		config = function(_, opts)
-			-- setup dap config by VsCode launch.json file
-			-- require("dap.ext.vscode").load_launchjs()
-			local dap = require("dap")
-			local dapui = require("dapui")
-			dapui.setup(opts)
-			dap.listeners.before.event_initialized["dapui_config"] = function()
-				dapui.open({})
-			end
-			dap.listeners.before.event_terminated["dapui_config"] = function()
-				dapui.close({})
-			end
-			dap.listeners.before.event_exited["dapui_config"] = function()
-				dapui.close({})
-			end
-		end,
-	},
-	{ "theHamsta/nvim-dap-virtual-text" },
-	--{ "nvim-telescope/telescope-dap.nvim" },
 
 	-- Local
 	{ "vim-dotfiles", dev = true },

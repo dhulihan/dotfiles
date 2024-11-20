@@ -1211,7 +1211,7 @@ let g:lightline.active = {
 \            ['ruler', 'linter_errors', 'linter_warnings', 'linter_ok' ] ] }
 
 " show all the time, not just on splits
-set laststatus=2
+"set laststatus=2
 " lightline END ----------------------------------------------
 
 " QFEnter
@@ -1981,6 +1981,9 @@ colors doom-one
 
 " doom-one overrides
 hi StatusLine ctermbg=black guibg=#111111
+"hi StatusLine ctermbg=black guibg=#282c34
+"hi clear StatusLine
+"hi! link StatusLine Normal
 "hi TabLine     term=bold cterm=bold ctermfg=red ctermbg=053
 "hi TabLineFill term=bold cterm=bold ctermfg=green ctermbg=053
 "hi TabLineSel  term=bold cterm=bold ctermfg=blue ctermbg=225
