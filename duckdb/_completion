@@ -1,2 +1,2 @@
 #compdef dq dqump
-_files -g '*(-*).sql'
+_files  -g '*.sql'
