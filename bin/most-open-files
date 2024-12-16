@@ -1,0 +1,2 @@
+# list number of open files, then pid, then name
+lsof -n | awk '{print $2,$1}' | sort | uniq -c | sort -rn | head -n 25

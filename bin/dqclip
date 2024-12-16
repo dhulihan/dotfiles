@@ -1,0 +1,36 @@
+#!/bin/bash -eux
+
+# dqclip - copy results of query to clipboard in csv format
+
+SRC=${1:?}
+TMP_FILE=/tmp/$(basename $SRC)
+TIMESTAMP=$(gdate +%s)
+DB=mydb
+
+# back up query file
+cp $SRC $TMP_FILE
+
+# remove ; termination
+gsed -i 's/;//g' $TMP_FILE
+
+# remove block level comments
+#gsed -i '/\/\*.*\*\// d; /\/\*/,/\*\//d' $TMP_FILE
+
+# remove single line comments
+#gsed -i '/--/d' $TMP_FILE
+
+# make single line
+#gsed -i ':b;N;$!bb;s/\n/ /g' $TMP_FILE
+
+# ADD copy as first line
+printf '%s\n%s\n' "COPY (" "$(cat $TMP_FILE)" > $TMP_FILE
+#gsed -i 's/^/COPY \(/' $TMP_FILE
+
+echo ") TO '/dev/stdout' (FORMAT CSV, NULLSTR '<null>')" >> $TMP_FILE
+
+if [ ! -f $DB ]; then
+  echo "db file $DB does not exist, using in-memory db"
+  DB=""
+fi
+
+duckdb $DB -c ".read $TMP_FILE" | pbcopy

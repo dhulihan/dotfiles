@@ -80,3 +80,6 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 	command = "lua OpenDiagnosticIfNoFloat()",
 	group = "lsp_diagnostics_hold",
 })
+
+-- session options (global for tabby.nvim names)
+vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"

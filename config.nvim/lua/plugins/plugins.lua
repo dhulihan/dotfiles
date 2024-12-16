@@ -1,25 +1,6 @@
 return {
 	"folke/neodev.nvim",
 	{
-		"github/copilot.vim",
-		enabled = false,
-		config = function()
-			vim.g.copilot_enabled = false -- disable by default
-		end,
-		keys = {
-			{
-				"<F1>",
-				"<cmd>Copilot enable<cr>",
-			},
-			{
-				"<F1>",
-				"<C-o><cmd>Copilot enable<cr>",
-				mode = "i",
-			},
-		},
-	},
-	--{ "ofseed/copilot-status.nvim" },
-	{
 		"zbirenbaum/copilot.lua",
 		--enabled = false, -- cannot turn off with :Copilot disable
 		event = "InsertEnter",
@@ -98,8 +79,16 @@ return {
 		opts = {
 			debug = true, -- Enable debugging
 			-- See Configuration section for rest
+			model = "claude-3.5-sonnet",
 		},
 		-- See Commands section for default commands if you want to lazy load on them
+		keys = {
+			{
+				"<M-c>",
+				"<cmd>:CopilotChat<cr>",
+				desc = "open copilot chat",
+			},
+		},
 	},
 	{ "nvim-lua/plenary.nvim" },
 	{
@@ -1196,32 +1185,6 @@ return {
 		},
 	},
 	{
-		"romgrk/barbar.nvim",
-		enabled = false, -- need to deal with sessions
-		dependencies = {
-			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
-			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
-		},
-		init = function()
-			vim.g.barbar_auto_setup = false
-		end,
-		opts = {
-			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-			-- animation = true,
-			-- insert_at_start = true,
-			-- …etc.
-			animation = false,
-			preset = "slanted",
-			icons = {
-				buffer_index = true,
-				buffer_number = "subscript",
-			},
-		},
-		--keys = {},
-
-		version = "^1.0.0", -- optional: only update when a new 1.x version is released
-	},
-	{
 		"nanozuki/tabby.nvim",
 		-- event = 'VimEnter', -- if you want lazy load, see below
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -1237,9 +1200,62 @@ return {
 				vim.cmd("tabby rename_tab " .. name)
 			end
 
+			local api = require("tabby.module.api")
+			local win_name = require("tabby.feature.win_name")
+
+			local theme = {
+				fill = "TabLineFill",
+				-- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
+				head = "TabLine",
+				current_tab = "TabLineSel",
+				tab = "TabLine",
+				win = "TabLine",
+				tail = "TabLine",
+			}
+
 			require("tabby").setup({
 				--preset = "active_tab_with_wins",
 				preset = "tab_only",
+				line = function(line)
+					return {
+						{
+							--{ "  ", hl = theme.head },
+							{ "  ", hl = theme.head },
+							line.sep("", theme.head, theme.fill),
+						},
+						line.tabs().foreach(function(tab)
+							local hl = tab.is_current() and theme.current_tab or theme.tab
+							return {
+								line.sep("", hl, theme.fill),
+								tab.is_current() and "" or "",
+								--tab.number(),
+								tab.name(),
+								tab.close_btn(""),
+								--line.sep("", hl, theme.fill),
+								line.sep("", hl, theme.fill),
+								hl = hl,
+								margin = " ",
+							}
+						end),
+						-- right bar
+						--line.spacer(),
+						--line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
+						--return {
+						--line.sep("", theme.win, theme.fill),
+						--win.is_current() and "" or "",
+						--win.buf_name(),
+						--line.sep("", theme.win, theme.fill),
+						--hl = theme.win,
+						--margin = " ",
+						--}
+						--end),
+						--{
+						--line.sep("", theme.tail, theme.fill),
+						--{ "  ", hl = theme.tail },
+						--},
+						hl = "red",
+					}
+				end,
 				option = {
 					--theme = {
 					--fill = "TabLineFill", -- tabline background
@@ -1251,11 +1267,22 @@ return {
 					--},
 					--nerdfont = true, -- whether use nerdfont
 					lualine_theme = "doom-one", -- lualine theme name
-					--tab_name = {
-					--name_fallback = function(tabid)
-					--return tabid
-					--end,
-					--},
+					tab_name = {
+						name_fallback = function(tabid)
+							local wins = api.get_tab_wins(tabid)
+							local cur_win = api.get_tab_current_win(tabid)
+							local name = ""
+							if api.is_float_win(cur_win) then
+								name = "[Floating]"
+							else
+								name = win_name.get(cur_win)
+							end
+							if #wins > 1 then
+								name = string.format("%s [%d]", name, #wins - 1)
+							end
+							return name
+						end,
+					},
 					buf_name = {
 						--mode = "'unique'|'relative'|'tail'|'shorten'",
 						mode = "unique",

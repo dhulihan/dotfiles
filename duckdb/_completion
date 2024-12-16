@@ -1,2 +1,2 @@
-#compdef dq dqump
+#compdef dq dqump dqclip
 _files  -g '*.sql'
