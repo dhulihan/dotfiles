@@ -71,13 +71,14 @@ return {
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "canary",
+		branch = "main",
+		event = "BufEnter",
 		dependencies = {
 			{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
 			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
 		},
 		opts = {
-			debug = true, -- Enable debugging
+			--debug = true, -- Enable debugging
 			-- See Configuration section for rest
 			model = "claude-3.5-sonnet",
 		},
@@ -87,6 +88,7 @@ return {
 				"<M-c>",
 				"<cmd>:CopilotChat<cr>",
 				desc = "open copilot chat",
+				mode = { "n", "v" },
 			},
 		},
 	},
@@ -457,71 +459,6 @@ return {
 				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
 			})
 		end,
-	},
-	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		enabled = false, -- does not support setting numbered-harpoon slots
-		dependencies = { "nvim-lua/plenary.nvim" },
-		keys = {
-			{
-				"<leader>ha",
-				function()
-					require("harpoon"):list():add()
-				end,
-				desc = "harpoon file",
-			},
-			{
-				"<leader>hl",
-				function()
-					local harpoon = require("harpoon")
-					harpoon.ui:toggle_quick_menu(harpoon:list())
-				end,
-				desc = "harpoon quick menu",
-			},
-			{
-				"<leader>h1",
-				function()
-					require("harpoon"):list():select(1)
-				end,
-				desc = "harpoon to file 1",
-			},
-			{
-				"<leader>h2",
-				function()
-					require("harpoon"):list():select(2)
-				end,
-				desc = "harpoon to file 2",
-			},
-			{
-				"<leader>h3",
-				function()
-					require("harpoon"):list():select(3)
-				end,
-				desc = "harpoon to file 3",
-			},
-			{
-				"<leader>h4",
-				function()
-					require("harpoon"):list():select(4)
-				end,
-				desc = "harpoon to file 3",
-			},
-			{
-				"<leader>hn",
-				function()
-					require("harpoon"):list():next()
-				end,
-				desc = "next buffer",
-			},
-			{
-				"<leader>hp",
-				function()
-					require("harpoon"):list():prev()
-				end,
-				desc = "prev buffer",
-			},
-		},
 	},
 
 	-- General Syntax
@@ -1225,10 +1162,12 @@ return {
 						},
 						line.tabs().foreach(function(tab)
 							local hl = tab.is_current() and theme.current_tab or theme.tab
+							local win = tab.current_win()
 							return {
 								line.sep("", hl, theme.fill),
 								tab.is_current() and "" or "",
-								--tab.number(),
+								win.file_icon(),
+								tab.number(),
 								tab.name(),
 								tab.close_btn(""),
 								--line.sep("", hl, theme.fill),
@@ -1303,6 +1242,22 @@ return {
 			vim.api.nvim_set_keymap("n", "<Tab>w", ":Tabby pick_window<cr>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>n", ":tabnew<cr>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>c", ":tabclose<cr>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>n", ":tabn<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>p", ":tabp<CR>", { noremap = true })
+
+			-- move current tab to previous position
+			vim.api.nvim_set_keymap("n", "<Tab>mp", ":-tabmove<CR>", { noremap = true })
+			-- move current tab to next position
+			vim.api.nvim_set_keymap("n", "<Tab>mn", ":+tabmove<CR>", { noremap = true })
+
+			vim.api.nvim_set_keymap("n", "<Tab>1", ":1tabnext<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>2", ":2tabnext<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>3", ":3tabnext<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>5", ":5tabnext<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>6", ":6tabnext<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>7", ":7tabnext<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>8", ":8tabnext<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>9", ":9tabnext<CR>", { noremap = true })
 		end,
 	},
 	{
@@ -1363,14 +1318,17 @@ return {
 		opts = {
 			--close_on_select = true, -- close when symbol selected
 			layout = {
+				resize_to_content = true,
 				--default_direction = "right", -- always keep on right side
 				default_direction = "float", -- floating window
 				placement = "edge",
+				min_width = 30,
 				-- max_width = {40, 0.2} means "the lesser of 40 columns or 20% of total"
-				--max_width = { 40, 0.2 },
+				--max_width = { 100, 0.5 },
 				--width = 40,
 			},
 			float = {
+				max_height = 0.7,
 				relative = "win",
 				override = function(conf)
 					local padding = 1
@@ -1381,7 +1339,7 @@ return {
 				end,
 			},
 			--open_automatic_events = { "BufEnter", "InsertEnter", "FocusLost" },
-			close_automatic_events = { "switch_buffer" }, -- close when you switch buffers
+			close_automatic_events = { "switch_buffer", "unfocus" }, -- close when you switch buffers
 		},
 		config = function(_, opts)
 			local aerial = require("aerial")
@@ -1390,6 +1348,7 @@ return {
 				local auto_open_filetypes = {
 					"markdown",
 					"go",
+					"lua",
 				}
 
 				-- Get the filetype of the buffer
