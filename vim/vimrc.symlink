@@ -355,6 +355,12 @@ inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype
 " Windows
 " ------------------------------------------------------------------------------
 
+" split layouts
+nnoremap <C-w>3 :SplitThree<CR>
+nnoremap <C-w>4 :SplitFour<CR>
+nnoremap <C-w>6 :SplitSix<CR>
+nnoremap <C-w>8 :SplitEight<CR>
+
 " widen split to favorite width (I like 80 char width plus some gutter)
 nnoremap <C-W>\ :vertical resize 82<CR>
 
@@ -1266,7 +1272,7 @@ let g:disabled_ale_fixers = {
 \   'python': ['black'],
 \   'ruby': ['rufo'],
 \   'sql': ['sqlint', 'sqlfluff'],
-\   'go': ['gofumpt'],
+\   'go': [ 'goimports', 'gofumpt'],
 \}
 
 " fixers
@@ -1283,9 +1289,23 @@ let g:ale_fixers = {
 " lint the package, not file
 let g:ale_go_golangci_lint_package = 1
 
+" disable go 1.11 module support, to speed up goimports
+"let g:ale_go_go111module='off'
+
 " Set this setting in vimrc if you want to fix files automatically on save.
 " This is off by default.
 let g:ale_fix_on_save = 1
+
+let g:ale_lint_on_insert_leave = 0
+
+" don't lint when you enter a file
+let g:ale_lint_on_enter = 0
+
+" don't lint when filetype changes
+let g:ale_lint_on_filetype_changed = 0
+
+" only lint above
+let g:ale_linters_explicit = 1
 
 " ale convenience commands
 command! ALEDisableFixers       let g:ale_fix_on_save=0
@@ -1471,7 +1491,9 @@ command! Qa qa
 " Splits
 " ------------------------------------------------------------------------------
 " TODO: make this parameter-based
-function! SplitSix()
+
+" two y three y
+function! SplitTwoByThree()
   sp
   sp
   vsp
@@ -1479,47 +1501,91 @@ function! SplitSix()
   vsp
   winc k
   vsp
+
+  " move to top left window
+  winc t
 endfunction
-command! SplitSix call SplitSix()
+command! SplitTwoByThree call SplitTwoByThree()
+
+" three x two y
+function! SplitThreeByTwo()
+  vsp
+  vsp
+  3 winc h
+  sp
+  1 winc l
+  sp
+  1 winc l
+  sp
+
+  " move to top left window
+  winc t
+endfunction
+command! SplitThreeByTwo call SplitThreeByTwo()
+command! SplitSix call SplitThreeByTwo()
 
 function! SplitTwoByTwo()
   sp
   vsp
   winc k
   vsp
+
+  " move to top left window
+  winc t
 endfunction
 command! SplitTwoByTwo call SplitTwoByTwo()
 
-function! VSplitFour()
+" three x one y
+function! SplitThreeByOne()
+  vsp
+  vsp
+
+  " move to top left window
+  winc t
+endfunction
+command! SplitThreeByOne call SplitThreeByOne()
+command! SplitThree call SplitThreeByOne()
+
+" four x one y
+function! SplitFourByOne()
+  vsp
+  vsp
+  vsp
+
+  " move to top left window
+  winc t
+endfunction
+command! SplitFourByOne call SplitFourByOne()
+command! SplitFour call SplitFourByOne()
+
+" four x two y
+function! SplitFourByTwo()
   vsp
   vsp
   vsp
   3 winc h
-endfunction
-command! VSplitFour call VSplitFour()
-command! SplitFour call VSplitFour()
+  sp
+  1 winc l
+  sp
+  1 winc l
+  sp
+  1 winc l
+  sp
 
-function! VSplitEight()
-  vsp
-  vsp
-  vsp
-  3 winc h
-  sp
-  1 winc l
-  sp
-  1 winc l
-  sp
-  1 winc l
-  sp
+  " move to top left window
+  winc t
 endfunction
-command! VSplitEight call VSplitEight()
-command! SplitEight call VSplitEight()
+command! SplitFourByTwo call SplitFourByTwo()
+command! SplitEight call SplitFourByTwo()
 
-function! SplitThree()
+function! SplitThreeBig()
   vsp
   sp
+
+  " move to top left window
+  winc t
 endfunction
-command! SplitThree call SplitThree()
+command! SplitThreeBig call SplitThreeBig()
 
 " ------------------------------------------------------------------------------
 " MarkdownExternalLink - add link to external URL
@@ -1946,6 +2012,12 @@ colors doom-one
 " ) Color Schemes
 
 " Cross-scheme colors (dark background)
+
+" thin line between vsplits
+highlight link WinSeparator VertSplit
+
+"hi VertSplit ctermbg=green guibg=green
+"hi StatusLineNC ctermbg=red guibg=red
 "hi clear ColorColumn
 "highlight Cursor ctermbg=red guibg=#00FF00
 "highlight CursorColumn guibg=#303000

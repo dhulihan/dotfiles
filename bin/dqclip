@@ -22,7 +22,6 @@ gsed -i 's/;//g' $TMP_FILE
 # make single line
 #gsed -i ':b;N;$!bb;s/\n/ /g' $TMP_FILE
 
-# ADD copy as first line
 printf '%s\n%s\n' "COPY (" "$(cat $TMP_FILE)" > $TMP_FILE
 #gsed -i 's/^/COPY \(/' $TMP_FILE
 

@@ -87,5 +87,5 @@ vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 -- resize windows equally when resizing vim/terminal itself
 vim.api.nvim_create_autocmd("VimResized", {
 	pattern = "*", -- apply yo all buffers
-	command = "wincmd =",
+	command = "tabdo wincmd =",
 })

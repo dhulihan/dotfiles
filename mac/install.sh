@@ -8,4 +8,6 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
 # show hidden files in finder
 defaults write com.apple.finder AppleShowAllFiles true; killall Finder
 
+# hide screenshot preview thumbnail
+defaults write com.apple.screencapture show-thumbnail -bool false
 

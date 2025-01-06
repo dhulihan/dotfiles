@@ -1125,18 +1125,7 @@ return {
 		"nanozuki/tabby.nvim",
 		-- event = 'VimEnter', -- if you want lazy load, see below
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		--keys = {
-		--{ "<S-Backspace>", "<cmd>Tabby rename tab<cr>", mode = { "n" } },
-		--},
 		config = function()
-			-- call shell command to generate string
-			function SetTabName()
-				local name = vim.fn.system("emoji-hash $(date +%s)")
-
-				-- call vim command
-				vim.cmd("tabby rename_tab " .. name)
-			end
-
 			local api = require("tabby.module.api")
 			local win_name = require("tabby.feature.win_name")
 
@@ -1148,6 +1137,21 @@ return {
 				tab = "TabLine",
 				win = "TabLine",
 				tail = "TabLine",
+			}
+
+			local window_count_icons = {
+				[1] = "⠁",
+				[2] = "⠃",
+				[3] = "⠋",
+				[4] = "⠛",
+				[5] = "⠟",
+				[6] = "⠿",
+				[7] = "⠿⠁",
+				[8] = "⠿⠃",
+				[9] = "⠿⠋",
+				[10] = "⠿⠛",
+				[11] = "⠿⠟",
+				[12] = "⠿⠿",
 			}
 
 			require("tabby").setup({
@@ -1216,8 +1220,11 @@ return {
 							else
 								name = win_name.get(cur_win)
 							end
+
+							--if #wins > 1 then
+							--name = string.format("%s [%d]", name, #wins - 1)
 							if #wins > 1 then
-								name = string.format("%s [%d]", name, #wins - 1)
+								name = string.format("%s %s", name, window_count_icons[#wins] or "?")
 							end
 							return name
 						end,
@@ -1229,18 +1236,13 @@ return {
 				},
 			})
 
-			-- set keymap to update tab name
-			--vim.api.nvim_set_keymap("n", "<Tab>x", ':lua SetTabName("")<left><left>', { noremap = true })
-			--vim.api.nvim_set_keymap("n", "<Tab>x", ":Tabby rename_tab " .. EmojiEpoch() .. " ", { noremap = true })
-			--local name = vim.fn.system("emoji-hash $(date +%s)")
-
 			---- call vim command
 			--vim.cmd("tabby rename_tab " .. name)
 			--end, { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>r", ":Tabby rename_tab ", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>g", ":Tabby jump_to_tab<cr>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>w", ":Tabby pick_window<cr>", { noremap = true })
-			vim.api.nvim_set_keymap("n", "<Tab>n", ":tabnew<cr>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>t", ":tabnew<cr>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>c", ":tabclose<cr>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>n", ":tabn<CR>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>p", ":tabp<CR>", { noremap = true })
