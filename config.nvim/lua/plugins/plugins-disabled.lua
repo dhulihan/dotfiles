@@ -109,4 +109,5 @@ return {
 			},
 		},
 	},
+	{ "tiagovla/scope.nvim" }, -- scoped buffers. didn't end up using.
 }

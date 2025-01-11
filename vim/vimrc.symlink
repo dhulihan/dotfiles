@@ -307,6 +307,11 @@ set noerrorbells visualbell t_vb=
 " make help vertical
 cnoremap help vert help
 
+"" Abbreviations
+"
+" wrap in dbl quotes and add a comma at the end. good for string collections
+cnoreabbrev " :g/^/norm yss"$a,
+
 " Persist cursor
 augroup persist_cursor
   autocmd!
@@ -333,8 +338,8 @@ inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 
 " save file
-inoremap <C-s> <Esc>:w<cr>
-noremap <C-s> :w<cr>
+inoremap <C-s> <Esc>:w<CR>
+noremap <C-s> :w<CR>
 
 " command mode word operations, shell style
 cnoremap <Esc>b <S-Left>
@@ -368,13 +373,13 @@ nnoremap <C-W>\ :vertical resize 82<CR>
 nnoremap <C-w><C-]> :vert winc ]<CR>
 
 " | to vertical split
-nnoremap <Bar> :vsp<cr>
+nnoremap <Bar> :vsp<CR>
 
 " Classic backspace
 "nnoremap <BS> X
 
 " keywordprg doesn't allow to use vim commands, override it
-"nnoremap <buffer> <silent> K :GoDoc<cr>
+"nnoremap <buffer> <silent> K :GoDoc<CR>
 
 " Tabs
 nnoremap { :cprev<CR>
@@ -430,11 +435,11 @@ tnoremap <PageDown> <C-W>N<PageDown>
 "    \  / /______\/ /
 "     \/___________/
 "
-nnoremap <Leader>s :BufSurfForward<CR>
-nnoremap <Leader>a :BufSurfBack<CR>
+"nnoremap <Leader>s :BufSurfForward<CR>
+"nnoremap <Leader>a :BufSurfBack<CR>
 "nnoremap <silent> <leader>e :ToggleNetrw<CR> " never used
-"nnoremap <Leader>t :TagbarToggle<cr>
-nnoremap <Leader>t :AerialToggle!<cr>
+"nnoremap <Leader>t :TagbarToggle<CR>
+"nnoremap <Leader>t :AerialToggle!<CR>
 nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
 nnoremap <Leader><tab> :Cdp<Space>
@@ -452,15 +457,26 @@ vnoremap <Leader>; :s///gc<Left><Left><Left>
 
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
-" open new buffer with name from inner parens
-nnoremap <Leader>1 :DlvToggleBreakpoint<CR>
-nnoremap <Leader>2 :DlvTest<CR>
-nnoremap <Leader>4 :normal si(<CR>
+
+""" 1 thru 9 Numbered Leader Favorites <3
+
+" show invisibles
+nnoremap <Leader>1 :set list!<CR>
+
+" show tagbar
+nnoremap <Leader>2 :AerialToggle!<CR>
+
+" show minimap
+nnoremap <Leader>3 :MinimapToggle<CR>
+
+" color columns (indentation, etc)
+nnoremap <Leader>4 :ColorColumnToggle<CR>
+
 " copy current file path to clipboard
-nnoremap <Leader>5 :RelPathToClipboard<CR>
-nnoremap <Leader>6 :RelDirToClipboard<CR>
+"nnoremap <Leader>5 :RelPathToClipboard<CR>
+"nnoremap <Leader>6 :RelDirToClipboard<CR>
 " Shortcut to rapidly toggle `set list`. Moved to F2.
-nnoremap <Leader>l :set list!<CR>
+"nnoremap <Leader>l :set list!<CR>
 "nnoremap <Leader>; :ColorColumnToggle<CR>
 "nnoremap <Leader>] :ALENext -wrap -error<CR>
 "nnoremap <Leader>[ :ALEPrevious -wrap -error<CR>
@@ -471,9 +487,11 @@ nnoremap <Leader>l :set list!<CR>
 nnoremap <Leader><Leader> :ToggleQuickFix<CR>
 "nnoremap <Leader><Backspace> :ToggleQuickFix<CR>
 "nnoremap <Leader>' :ToggleQuickFix<CR>
+
 " folding
 nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
+
 " git
 nnoremap <Leader>gg :.GBrowse!<CR>
 "nnoremap <Leader>gg :GitPrimaryURL<CR>
@@ -483,6 +501,7 @@ nnoremap <Leader>gx :.GBrowse<CR>
 nnoremap <Leader>gm :GBrowse @origin<CR>
 nnoremap <Leader>ge :GEdit master:%<CR>
 nnoremap <Leader>vv :Rg<CR>
+
 " yanks
 nnoremap <Leader>yb :CopyBufferToClipboard<CR>
 "nnoremap <Leader>yyy "*y<CR>
@@ -501,7 +520,7 @@ nnoremap <Leader>yb :CopyBufferToClipboard<CR>
 " ╚═╝░░░░░
 "
 " open a terminal to pwd
-"nnoremap <F1> :terminal<cr>
+"nnoremap <F1> :terminal<CR>
 
 " Paste mode toggle
 "nnoremap <F2> :set invpaste paste?<CR>
@@ -514,9 +533,8 @@ imap <F2> <C-O>:ALEFix<CR>
 "noremap <F3> :set invnumber<CR>
 "inoremap <F3> <C-O>:set invnumber<CR>
 
-" Save search matches in separate file
-noremap <silent> <F4> :ColorColumnToggle<CR>
-inoremap <silent> <F4> <C-O>:ColorColumnToggle<CR>
+"noremap <silent> <F4> :ColorColumnToggle<CR>
+"inoremap <silent> <F4> <C-O>:ColorColumnToggle<CR>
 
 " reload buffer
 noremap <F5> :e!<CR>
@@ -761,6 +779,7 @@ let g:ackprg='rg --vimgrep'
 
 " aliases
 cnoreabbrev TR TabooRename
+
 " taboo END --------------------------------------------------------------------
 "
 " tagbar -----------------------------------------------------------------------
@@ -964,7 +983,7 @@ let g:ctrlp_switch_buffer = '' " don't switch to already displayed buffers
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
 " list buffers nicely
-"nnoremap <C-\> :CtrlPBuffer<cr>
+"nnoremap <C-\> :CtrlPBuffer<CR>
 
 " ------------------------------------------------------------------------------
 " vim-emoji

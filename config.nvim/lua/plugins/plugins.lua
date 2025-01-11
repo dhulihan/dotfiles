@@ -86,9 +86,15 @@ return {
 		keys = {
 			{
 				"<M-c>",
-				"<cmd>:CopilotChat<cr>",
+				"<cmd>:CopilotChat<CR>",
 				desc = "open copilot chat",
 				mode = { "n", "v" },
+			},
+			{
+				"<M-e>",
+				"<cmd>:Copilot enable<CR>",
+				desc = "enable copilot",
+				mode = { "i", "n", "v" },
 			},
 		},
 	},
@@ -120,24 +126,24 @@ return {
 		keys = {
 			{
 				"<leader>,",
-				"<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
+				"<cmd>Telescope buffers sort_mru=true sort_lastused=true<CR>",
 				desc = "Switch Buffer",
 			},
 			--{ "<leader>/", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
-			--{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-			--{ "q:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+			--{ "<leader>:", "<cmd>Telescope command_history<CR>", desc = "Command History" },
+			--{ "q:", "<cmd>Telescope command_history<CR>", desc = "Command History" },
 			--{ "<leader><space>", LazyVim.pick("auto"), desc = "Find Files (Root Dir)" },
 
 			-- list
-			--{ "<C-\\>", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" }, -- override
-			--{ "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find Files" }, -- override
+			--{ "<C-\\>", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<CR>", desc = "Buffers" }, -- override
+			--{ "<C-p>", "<cmd>Telescope find_files<CR>", desc = "Find Files" }, -- override
 			--{ "<leader>fc", LazyVim.pick.config_files(), desc = "Find Config File" },
 			--{ "<leader>ff", LazyVim.pick("auto"), desc = "Find Files (Root Dir)" },
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-			{ "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
+			{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find Files" },
+			{ "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<CR>", desc = "Buffers" },
 			--{ "<leader>fF", LazyVim.pick("auto", { root = false }), desc = "Find Files (cwd)" },
-			{ "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
-			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recently Opened Files" },
+			{ "<leader>fg", "<cmd>Telescope git_files<CR>", desc = "Find Files (git-files)" },
+			{ "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recently Opened Files" },
 			--{ "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
 
 			-- git
@@ -145,26 +151,26 @@ return {
 			{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
 
 			-- search
-			{ '<leader>s"', "<cmd>Telescope registers<cr>", desc = "Registers" },
-			{ "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
-			{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-			{ "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-			{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-			{ "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
-			{ "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+			{ '<leader>s"', "<cmd>Telescope registers<CR>", desc = "Registers" },
+			{ "<leader>sa", "<cmd>Telescope autocommands<CR>", desc = "Auto Commands" },
+			{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Buffer" },
+			{ "<leader>sc", "<cmd>Telescope command_history<CR>", desc = "Command History" },
+			{ "<leader>sC", "<cmd>Telescope commands<CR>", desc = "Commands" },
+			{ "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Document Diagnostics" },
+			{ "<leader>sD", "<cmd>Telescope diagnostics<CR>", desc = "Workspace Diagnostics" },
+			{ "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "Live Grep" },
 			--{ "<leader>sg", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
 			--{ "<leader>sG", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
-			{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-			{ "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-			{ "<leader>sj", "<cmd>Telescope jumplist<cr>", desc = "Jumplist" },
-			{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-			{ "<leader>sl", "<cmd>Telescope loclist<cr>", desc = "Location List" },
-			{ "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-			{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
-			{ "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-			{ "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-			{ "<leader>sq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix List" },
+			{ "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "Help Pages" },
+			{ "<leader>sH", "<cmd>Telescope highlights<CR>", desc = "Search Highlight Groups" },
+			{ "<leader>sj", "<cmd>Telescope jumplist<CR>", desc = "Jumplist" },
+			{ "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "Key Maps" },
+			{ "<leader>sl", "<cmd>Telescope loclist<CR>", desc = "Location List" },
+			{ "<leader>sM", "<cmd>Telescope man_pages<CR>", desc = "Man Pages" },
+			{ "<leader>sm", "<cmd>Telescope marks<CR>", desc = "Jump to Mark" },
+			{ "<leader>so", "<cmd>Telescope vim_options<CR>", desc = "Options" },
+			{ "<leader>sR", "<cmd>Telescope resume<CR>", desc = "Resume" },
+			{ "<leader>sq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix List" },
 			--{ "<leader>sw", LazyVim.pick("grep_string", { word_match = "-w" }), desc = "Word (Root Dir)" },
 			--{ "<leader>sW", LazyVim.pick("grep_string", { root = false, word_match = "-w" }), desc = "Word (cwd)" },
 			--{ "<leader>sw", LazyVim.pick("grep_string"), mode = "v", desc = "Selection (Root Dir)" },
@@ -220,32 +226,32 @@ return {
 		keys = {
 			{
 				"<leader>ep",
-				"<cmd>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<cr>",
+				"<cmd>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<CR>",
 				desc = "Project Errors - Diagnostics (Trouble)",
 			},
 			{
 				"<leader>eb",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
 				desc = "Buffer Errors/Warnings - Diagnostics (Trouble)",
 			},
 			{
 				"<leader>es",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
+				"<cmd>Trouble symbols toggle focus=false<CR>",
 				desc = "Symbols (Trouble)",
 			},
 			{
 				"<leader>ex",
-				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<CR>",
 				desc = "LSP Definitions / references / ... (Trouble)",
 			},
 			{
 				"<leader>el",
-				"<cmd>Trouble loclist toggle<cr>",
+				"<cmd>Trouble loclist toggle<CR>",
 				desc = "Location List (Trouble)",
 			},
 			{
 				"<leader>eq",
-				"<cmd>Trouble qflist toggle<cr>",
+				"<cmd>Trouble qflist toggle<CR>",
 				desc = "Quickfix List (Trouble)",
 			},
 		},
@@ -260,26 +266,34 @@ return {
 		version = false, -- last release is way too old
 		event = "InsertEnter",
 		dependencies = {
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
 			"neovim/nvim-lspconfig",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-emoji",
 			"uga-rosa/cmp-dictionary",
-			"quangnguyen30192/cmp-nvim-ultisnips",
+			--"quangnguyen30192/cmp-nvim-ultisnips",
 		},
 
 		opts = function()
 			local cmp = require("cmp")
 			local types = require("cmp.types")
+			local luasnip = require("luasnip")
 
 			return {
+				preselect = "item",
 				completion = {
+					-- do not insert automatically,
+					--completeopt = "menu,menuone,noinsert",
+
 					--autocomplete = false, -- disable autocomplete, wait for user to request completion. you must remove/comment this line completely instead of setting to `true`.
 				},
 				snippet = {
 					expand = function(args)
-						vim.fn["UltiSnips#Anon"](args.body)
+						--vim.fn["UltiSnips#Anon"](args.body)
+						require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 					end,
 				},
 				--mapping = cmp.mapping.preset.insert({
@@ -295,25 +309,85 @@ return {
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = false }), -- If true, accept first item in list on enter. Set `select` to `false` to only confirm explicitly selected items.
+
+					-- luasnip
+					--["<CR>"] = cmp.mapping(function(fallback)
+					--if cmp.visible() then
+					--if luasnip.expandable() then
+					--luasnip.expand()
+					--else
+					--cmp.confirm({
+					--select = true,
+					--})
+					--end
+					--else
+					--fallback()
+					--end
+					--end),
+
+					-- dave custom <Tab>, expand snippet, jump inside snippet, or select first completion suggestion
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if luasnip.expandable() then
+							luasnip.expand()
+							return
+						end
+
+						if luasnip.locally_jumpable(1) then
+							luasnip.jump(1)
+							return
+						end
+
+						if cmp.visible() then
+							cmp.confirm({
+								select = true,
+							})
+							return
+						end
+
+						fallback()
+					end, { "i", "s" }),
+					--["<Tab>"] = cmp.mapping(function(fallback)
+					--if cmp.visible() then
+					--cmp.select_next_item()
+					--elseif luasnip.locally_jumpable(1) then
+					--luasnip.jump(1)
+					--else
+					--fallback()
+					--end
+					--end, { "i", "s" }),
+
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.locally_jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 				},
 				-- })
 				sources = {
-					-- 2024-10-31 disable
-					--{
-					--name = "buffer",
-					--option = {
-					--get_bufnrs = function()
-					--return vim.api.nvim_list_bufs().insert(vim.api.nvim_get_current_buf()) -- get content from all open buffers, plus current buffer
-					--end,
-					--},
-					--},
+					{ name = "luasnip" },
+					{
+						name = "buffer",
+						-- just visible buffers
+						option = {
+							get_bufnrs = function()
+								local bufs = {}
+								for _, win in ipairs(vim.api.nvim_list_wins()) do
+									bufs[vim.api.nvim_win_get_buf(win)] = true
+								end
+								return vim.tbl_keys(bufs)
+							end,
+						},
+					},
 					{
 						name = "dictionary",
 						paths = { "/usr/share/dict/words" },
 						keyword_length = 2,
 					},
 					{ name = "emoji" },
-					{ name = "ultisnips" }, -- For ultisnips users.
 					{ name = "path" },
 				},
 			}
@@ -328,7 +402,17 @@ return {
 	--{ 'chrisbra/Recover.vim' },
 	--{ 'unblevable/quick-scope' " cool but I don't use much
 	--{ "dstein64/vim-startuptime" }, -- enable as needed
-	{ "tiagovla/scope.nvim" }, -- scoped buffers
+	{
+		"stevearc/oil.nvim",
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			{ "echasnovski/mini.icons", opts = {} },
+			{ "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+		},
+	},
 
 	-- External Tools
 	{
@@ -432,16 +516,16 @@ return {
 		keys = {
 			{
 				"<leader>ps",
-				"<cmd>Octo review start<cr>",
+				"<cmd>Octo review start<CR>",
 			},
 			{
 				"<leader>pc<enter>",
-				"<cmd>Octo review comments<cr>",
+				"<cmd>Octo review comments<CR>",
 				desc = "view pending review comments",
 			},
 			{
 				"<leader>p<enter>",
-				"<cmd>Octo review submit<cr>",
+				"<cmd>Octo review submit<CR>",
 			},
 			{
 				"<leader>po",
@@ -452,7 +536,6 @@ return {
 	},
 	{
 		"rmagatti/auto-session",
-		--enabled = false,
 		config = function()
 			require("auto-session").setup({
 				log_level = "error",
@@ -464,7 +547,16 @@ return {
 	-- General Syntax
 	--{ 'jiangmiao/auto-pairs' },
 	{ "tpope/vim-endwise" },
-	{ "tpope/vim-surround" },
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	},
 	--{ 'tpope/vim-repeat' },
 	--{ 'Valloric/YouCompleteMe' " no ruby support, gocode is better for go, slow
 	{ "preservim/nerdcommenter" },
@@ -476,23 +568,92 @@ return {
 	{ "bogado/file-line", enabled = false, desc = "open file:line. disabling for now since I never use. cool though." },
 	-- { 'vim-test/vim-test' }, -- not needed atm
 	-- { 'wellle/context.vim' },-- cool but slow
-	{ "SirVer/ultisnips", event = { "InsertEnter" } }, -- slow
-	{ "honza/vim-snippets" },
+	--{ "SirVer/ultisnips", event = { "InsertEnter" } }, -- slow
+	--{ "honza/vim-snippets" },
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		-- follow latest release.
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp",
+		config = function()
+			--require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/luasnippets" })
+			--require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.ultisnips" })
+
+			local ls = require("luasnip")
+
+			vim.keymap.set({ "i" }, "<C-K>", function()
+				ls.expand()
+			end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<C-L>", function()
+				ls.jump(1)
+			end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<C-J>", function()
+				ls.jump(-1)
+			end, { silent = true })
+
+			vim.keymap.set({ "i", "s" }, "<C-E>", function()
+				if ls.choice_active() then
+					ls.change_choice(1)
+				end
+			end, { silent = true })
+		end,
+	},
 	{ "yssl/QFEnter" }, -- quickfix helpers
 	{ "godlygeek/tabular" },
 	{
 		"folke/which-key.nvim",
-		enabled = false, -- this is fine but noisy and I don't use often
+		enabled = true, -- this is fine but noisy and I don't use often
 		event = "VeryLazy",
 		init = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 		end,
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
+		config = function()
+			local wk = require("which-key")
+
+			wk.add({
+				{ "<leader>q", group = "quickfix" }, -- group
+				{ "<leader>qq", "<cmd>ToggleQuickFix<cr>", desc = "toggle quickfix", mode = { "n", "i" } },
+				{ "<leader>g", group = "git" },
+
+				{ "<leader>y", group = "yank" },
+				{
+					"<leader>yf",
+					"<cmd>RelPathToClipboard<cr>",
+					desc = "copy relative current file path to clipboard",
+					mode = { "n", "i" },
+				},
+				{
+					"<leader>yF",
+					"<cmd>AbsPathToClipboard<cr>",
+					desc = "copy absolute current file path to clipboard",
+					mode = { "n", "i" },
+				},
+				{
+					"<leader>yd",
+					"<cmd>RelDirToClipboard<cr>",
+					desc = "copy relative current dir path to clipboard",
+					mode = { "n", "i" },
+				},
+				{
+					"<leader>yD",
+					"<cmd>AbsDirToClipboard<cr>",
+					desc = "copy absolute current dir path to clipboard",
+					mode = { "n", "i" },
+				},
+			})
+
+			local opts = {
+				win = {
+					border = "single",
+				},
+			}
+
+			wk.setup(opts)
+		end,
 	},
 
 	-- Language-specific
@@ -523,7 +684,7 @@ return {
 	{ "dhulihan/vim-rfc" },
 	{ "kamailio/vim-kamailio-syntax", enabled = false },
 	{ "bufbuild/vim-buf" },
-	{ "trayo/vim-ginkgo-snippets" },
+	--{ "trayo/vim-ginkgo-snippets" },
 	{ "buoto/gotests-vim" },
 	{ "mracos/mermaid.vim", enabled = false },
 	{ "direnv/direnv.vim" },
@@ -991,6 +1152,13 @@ return {
 				end,
 				desc = "run replacer.nvim",
 			},
+			{
+				"<leader>qr",
+				function()
+					require("replacer").run()
+				end,
+				desc = "replace text in quickfix",
+			},
 		},
 	},
 	{ "mileszs/ack.vim" },
@@ -1240,10 +1408,10 @@ return {
 			--vim.cmd("tabby rename_tab " .. name)
 			--end, { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>r", ":Tabby rename_tab ", { noremap = true })
-			vim.api.nvim_set_keymap("n", "<Tab>g", ":Tabby jump_to_tab<cr>", { noremap = true })
-			vim.api.nvim_set_keymap("n", "<Tab>w", ":Tabby pick_window<cr>", { noremap = true })
-			vim.api.nvim_set_keymap("n", "<Tab>t", ":tabnew<cr>", { noremap = true })
-			vim.api.nvim_set_keymap("n", "<Tab>c", ":tabclose<cr>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>g", ":Tabby jump_to_tab<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>w", ":Tabby pick_window<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>t", ":tabnew<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<Tab>c", ":tabclose<CR>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>n", ":tabn<CR>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<Tab>p", ":tabp<CR>", { noremap = true })
 
@@ -1382,9 +1550,9 @@ return {
 			--vim.g.minimap_auto_start_win_enter = 1
 			vim.g.minimap_highlight_search = 1 -- highlight search patterns
 		end,
-		keys = {
-			{ "<F3>", "<cmd>MinimapToggle<cr>", mode = { "n", "i" } },
-		},
+		--keys = {
+		--{ "<F3>", "<cmd>MinimapToggle<CR>", mode = { "n", "i" } },
+		--},
 	}, -- requires code-minimap to be installed separately
 	{ "ryanoasis/vim-devicons" },
 

@@ -251,5 +251,7 @@ brew install agrinman/tap/tunnelto
 
 brew install mike-engel/jwt-cli/jwt-cli
 
+brew install --cask keycastr
+
 set +e
 say "brew is done"
