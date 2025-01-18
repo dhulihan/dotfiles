@@ -84,8 +84,20 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 -- session options (global for tabby.nvim names)
 vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 
+function vim_resized()
+	-- get current tab number
+	local tabnr = vim.api.nvim_get_current_tabpage()
+
+	-- resize windows equally
+	vim.api.nvim_command("tabdo wincmd =")
+
+	-- go back to the original tab
+	vim.api.nvim_command("tabnext " .. tabnr)
+end
+
 -- resize windows equally when resizing vim/terminal itself
 vim.api.nvim_create_autocmd("VimResized", {
+	callback = vim_resized,
 	pattern = "*", -- apply yo all buffers
-	command = "tabdo wincmd =",
+	--command = "tabdo wincmd =",
 })

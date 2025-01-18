@@ -8,7 +8,7 @@ DB=mydb
 
 # check if local db file exists
 if [ ! -f $DB ]; then
-  echo "db file $DB does not exist, using in-memory db"
+  #echo "db file $DB does not exist, using in-memory db"
   DB=""
 fi
 

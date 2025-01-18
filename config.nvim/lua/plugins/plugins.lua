@@ -204,6 +204,7 @@ return {
 				"go", -- you may need to `:TSInstall go`
 				"markdown",
 				"xml",
+				"proto",
 				"lua",
 			},
 			conf = function()
