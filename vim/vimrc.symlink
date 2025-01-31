@@ -440,7 +440,7 @@ tnoremap <PageDown> <C-W>N<PageDown>
 "nnoremap <silent> <leader>e :ToggleNetrw<CR> " never used
 "nnoremap <Leader>t :TagbarToggle<CR>
 "nnoremap <Leader>t :AerialToggle!<CR>
-nnoremap <Leader>d :BD<CR>
+"nnoremap <Leader>d :BD<CR>
 nnoremap <Leader>x :Dispatch<CR>
 nnoremap <Leader><tab> :Cdp<Space>
 
@@ -452,8 +452,8 @@ nnoremap <Leader><Enter> :Rg -F -i -- ""<Left>
 
 " replace. drops you in to second argument so you can use search term by
 " default.
-nnoremap <Leader>; :%s///gc<Left><Left><Left>
-vnoremap <Leader>; :s///gc<Left><Left><Left>
+nnoremap <Leader>; :%S///gc<Left><Left><Left>
+vnoremap <Leader>; :S///gc<Left><Left><Left>
 
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
@@ -471,6 +471,9 @@ nnoremap <Leader>3 :MinimapToggle<CR>
 
 " color columns (indentation, etc)
 nnoremap <Leader>4 :ColorColumnToggle<CR>
+
+" fs tree
+nnoremap <Leader>5 :Oil<CR>
 
 " copy current file path to clipboard
 "nnoremap <Leader>5 :RelPathToClipboard<CR>
@@ -759,7 +762,7 @@ let g:netrw_winsize = 25
 " fix gx bug, see https://github.com/vim/vim/issues/4738
 let g:netrw_nogx=1
 if has('macunix')
-  function! OpenURLUnderCursor()
+  function! OpenThisURLUnderCursor()
     let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;()]*')
     let s:uri = shellescape(s:uri, 1)
     if s:uri != ''
@@ -767,7 +770,9 @@ if has('macunix')
       :redraw!
     endif
   endfunction
-  nnoremap gx :call OpenURLUnderCursor()<CR>
+
+  unmap gx
+  nnoremap gx :call OpenThisURLUnderCursor()<CR>
 endif
 
 " Grep and friends -------------------------------------------------------------

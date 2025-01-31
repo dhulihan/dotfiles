@@ -110,4 +110,18 @@ return {
 		},
 	},
 	{ "tiagovla/scope.nvim" }, -- scoped buffers. didn't end up using.
+
+	{
+		"chrishrb/gx.nvim", -- replacement for netrw gx
+    enabled = false -- not needed, doing it myself
+		cmd = { "Browse" },
+		init = function()
+			vim.g.netrw_nogx = 1 -- disable netrw gx
+		end,
+		dependencies = { "nvim-lua/plenary.nvim" }, -- Required for Neovim < 0.10.0
+		keys = {
+			{ "gx", "<cmd>Browse<cr>", mode = { "n", "x" } },
+			{ "<leader>xo", "<cmd>Browse<cr>", mode = { "n", "x" } },
+		},
+	},
 }

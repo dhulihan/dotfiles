@@ -407,7 +407,12 @@ return {
 		"stevearc/oil.nvim",
 		---@module 'oil'
 		---@type oil.SetupOpts
-		opts = {},
+		opts = {
+			keymaps = {
+				["<Leader>5"] = { "actions.close", mode = "n" },
+				["<C-c>"] = { "", mode = "n" },
+			},
+		},
 		-- Optional dependencies
 		dependencies = {
 			{ "echasnovski/mini.icons", opts = {} },
@@ -429,7 +434,7 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"gopls",
-				"ts_ls",
+				--"ts_ls",
 				"json-lsp",
 			},
 		},
@@ -458,8 +463,9 @@ return {
 			lspconfig.jsonls.setup({})
 
 			-- typescript
-			-- note: tsserver has been renamed to ts_ls
-			lspconfig.ts_ls.setup({})
+			-- note: tsserver has been renamed to ts_ls, because it is a wrapper around tsserver
+			--lspconfig.ts_ls.setup({})
+			-- 2025-01-30 disabling to try typescript-tools.nvim
 
 			-- golang
 			--lspconfig.templ.setup({})
@@ -468,6 +474,11 @@ return {
 			-- lua
 			lspconfig["lua_ls"].setup({})
 		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 	{
 		"SmiteshP/nvim-navic",
@@ -616,10 +627,25 @@ return {
 			local wk = require("which-key")
 
 			wk.add({
-				{ "<leader>q", group = "quickfix" }, -- group
-				{ "<leader>qq", "<cmd>ToggleQuickFix<cr>", desc = "toggle quickfix", mode = { "n", "i" } },
+				-- Buffers
+				{ "<leader>b", group = "buffer" },
+				{
+					"<leader>bd",
+					"<cmd>BD<cr>",
+					desc = "delete buffer",
+					mode = { "n", "i" },
+				},
+
+				{ "<leader>d", group = "debug" },
+
 				{ "<leader>g", group = "git" },
 
+				{ "<leader>q", group = "quickfix" }, -- group
+				{ "<leader>qq", "<cmd>ToggleQuickFix<cr>", desc = "toggle quickfix", mode = { "n", "i" } },
+
+				{ "<leader>t", group = "test" },
+
+				-- Yanks
 				{ "<leader>y", group = "yank" },
 				{
 					"<leader>yf",
@@ -666,6 +692,7 @@ return {
 	{
 		"preservim/vim-markdown",
 		config = function()
+			vim.g.vim_markdown_no_default_key_mappings = 1
 			vim.g.vim_markdown_folding_disabled = 1
 			vim.g.vim_markdown_override_foldtext = 0
 			vim.g.vim_markdown_conceal = 0 -- disable syntax concealing
@@ -1259,7 +1286,7 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				--lualine_b = { "branch", "diff", { "diagnostics", sources = { "ale" } } },
-				lualine_b = { "diff", { "diagnostics", sources = { "ale" } } },
+				lualine_b = { "diff", { "diagnostics", sources = { "ale", "nvim_diagnostic" } } },
 				lualine_c = { "filename" },
 				lualine_x = {
 					function()
