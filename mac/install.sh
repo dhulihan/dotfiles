@@ -11,3 +11,6 @@ defaults write com.apple.finder AppleShowAllFiles true; killall Finder
 # hide screenshot preview thumbnail
 defaults write com.apple.screencapture show-thumbnail -bool false
 
+# make menu bar items tighter
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6

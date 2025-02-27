@@ -113,7 +113,7 @@ return {
 
 	{
 		"chrishrb/gx.nvim", -- replacement for netrw gx
-    enabled = false -- not needed, doing it myself
+		enabled = false, -- not needed, doing it myself
 		cmd = { "Browse" },
 		init = function()
 			vim.g.netrw_nogx = 1 -- disable netrw gx

@@ -103,8 +103,22 @@ return {
 		"nvim-telescope/telescope.nvim",
 		config = function()
 			require("telescope").setup({
+				extensions = {
+					file_browser = { layout_strategy = "horizontal", sorting_strategy = "ascending" },
+					heading = { treesitter = true },
+					["ui-select"] = { require("telescope.themes").get_dropdown({}) },
+				},
 				defaults = {
-					preview = false,
+					--preview = false,
+					cache_picker = { num_pickers = 10 },
+					dynamic_preview_title = true,
+					layout_strategy = "vertical",
+					layout_config = {
+						vertical = { width = 0.9, height = 0.9, preview_height = 0.6, preview_cutoff = 0 },
+					},
+					--path_display = { "smart", shorten = { len = 5 } },
+					path_display = { "absolute" },
+					wrap_results = true,
 				},
 				pickers = {
 					buffers = {
@@ -145,6 +159,7 @@ return {
 			{ "<leader>fg", "<cmd>Telescope git_files<CR>", desc = "Find Files (git-files)" },
 			{ "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recently Opened Files" },
 			--{ "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
+			{ "<leader>ft", "<cmd>Telescope live_grep<CR>", desc = "Find Text (Live Grep)" },
 
 			-- git
 			{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
@@ -274,6 +289,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-emoji",
+			"hrsh7th/cmp-cmdline",
 			"uga-rosa/cmp-dictionary",
 			--"quangnguyen30192/cmp-nvim-ultisnips",
 		},
@@ -390,6 +406,12 @@ return {
 					},
 					{ name = "emoji" },
 					{ name = "path" },
+					{
+						name = "cmdline",
+						option = {
+							ignore_cmds = { "Man", "!" },
+						},
+					},
 				},
 			}
 		end,
@@ -472,7 +494,14 @@ return {
 			--lspconfig.gopls.setup({}) -- crazy slow on startup
 
 			-- lua
-			lspconfig["lua_ls"].setup({})
+			lspconfig["lua_ls"].setup({
+				Lua = {
+					diagnostics = {
+						-- Get the language server to recognize the `vim` global
+						globals = { "vim" },
+					},
+				},
+			})
 		end,
 	},
 	{
@@ -626,53 +655,6 @@ return {
 		config = function()
 			local wk = require("which-key")
 
-			wk.add({
-				-- Buffers
-				{ "<leader>b", group = "buffer" },
-				{
-					"<leader>bd",
-					"<cmd>BD<cr>",
-					desc = "delete buffer",
-					mode = { "n", "i" },
-				},
-
-				{ "<leader>d", group = "debug" },
-
-				{ "<leader>g", group = "git" },
-
-				{ "<leader>q", group = "quickfix" }, -- group
-				{ "<leader>qq", "<cmd>ToggleQuickFix<cr>", desc = "toggle quickfix", mode = { "n", "i" } },
-
-				{ "<leader>t", group = "test" },
-
-				-- Yanks
-				{ "<leader>y", group = "yank" },
-				{
-					"<leader>yf",
-					"<cmd>RelPathToClipboard<cr>",
-					desc = "copy relative current file path to clipboard",
-					mode = { "n", "i" },
-				},
-				{
-					"<leader>yF",
-					"<cmd>AbsPathToClipboard<cr>",
-					desc = "copy absolute current file path to clipboard",
-					mode = { "n", "i" },
-				},
-				{
-					"<leader>yd",
-					"<cmd>RelDirToClipboard<cr>",
-					desc = "copy relative current dir path to clipboard",
-					mode = { "n", "i" },
-				},
-				{
-					"<leader>yD",
-					"<cmd>AbsDirToClipboard<cr>",
-					desc = "copy absolute current dir path to clipboard",
-					mode = { "n", "i" },
-				},
-			})
-
 			local opts = {
 				win = {
 					border = "single",
@@ -758,74 +740,6 @@ return {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 		},
-		keys = {
-			{
-				"<leader>tl",
-				function()
-					local qt = require("quicktest")
-					-- current_win_mode return currently opened panel, split or popup
-					--qt.run_line()
-					-- You can force open split or popup like this:
-					--qt.run_line("split")
-					qt.run_line("popup")
-				end,
-				desc = "[T]est Run [L]line",
-			},
-			{
-				"<leader>tf",
-				function()
-					local qt = require("quicktest")
-
-					qt.run_file()
-				end,
-				desc = "[T]est Run [F]ile",
-			},
-			{
-				"<leader>td",
-				function()
-					local qt = require("quicktest")
-
-					qt.run_dir()
-				end,
-				desc = "[T]est Run [D]ir",
-			},
-			{
-				"<leader>ta",
-				function()
-					local qt = require("quicktest")
-
-					qt.run_all()
-				end,
-				desc = "[T]est Run [A]ll",
-			},
-			{
-				"<leader>tp",
-				function()
-					local qt = require("quicktest")
-
-					qt.run_previous()
-				end,
-				desc = "[T]est Run [P]revious",
-			},
-			{
-				"<leader>tt",
-				function()
-					local qt = require("quicktest")
-
-					qt.toggle_win("split")
-				end,
-				desc = "[T]est [T]oggle Window",
-			},
-			{
-				"<leader>tc",
-				function()
-					local qt = require("quicktest")
-
-					qt.cancel_current_run()
-				end,
-				desc = "[T]est [C]ancel Current Run",
-			},
-		},
 	},
 	{
 		"nvim-neotest/neotest",
@@ -833,7 +747,13 @@ return {
 			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
-			{ "fredrikaverpil/neotest-golang", version = "*" }, -- Installation
+			{
+				"fredrikaverpil/neotest-golang",
+				version = "*",
+				dependencies = {
+					"andythigpen/nvim-coverage",
+				},
+			}, -- Installation
 			"olimorris/neotest-rspec",
 
 			"nvim-neotest/nvim-nio",
@@ -852,11 +772,34 @@ return {
 				},
 			}, neotest_ns)
 
+			local neotest_golang_opts = {
+				-- To improve reliability, you can choose to set gotestsum as the test runner. This tool allows the adapter to write test command output directly to a JSON file without having to go through stdout.
+				--runner = "gotestsum",
+
+				runner = "go",
+				go_test_args = {
+					"-v",
+					"-race",
+					"-count=1",
+					"-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
+				},
+			}
+
 			opts = {
-				--output = { open_on_run = true },
-				--diagnostic = { enabled = true, severity = 1 },
-				--output_panel = { open_on_run = true },
-				status = {
+				output = { -- Displays output of tests
+					--open_on_run = true,
+					auto_close = false,
+
+					enter = false,
+					win_options = {
+						split = "botright",
+						winheight = 15,
+						wrap = false,
+					},
+				},
+				diagnostic = { enabled = true, severity = 1 },
+				--output_panel = { open_on_run = true }, -- Records all output of tests over time in a single window
+				status = { -- Displays the status of a test/namespace beside the beginning of the definition
 					enabled = true,
 					--virtual_text = true,
 				},
@@ -881,20 +824,29 @@ return {
 				--stop = "u",
 				--},
 				--},
+				floating = {
+					border = "rounded",
+					--max_height = 0.6,
+					max_height = 0.9,
+					max_width = 0.6,
+
+					options = {
+						wrap = false,
+					},
+				},
 
 				adapters = {
-					require("neotest-rspec")({
-						rspec_cmd = function()
-							return vim.tbl_flatten({
-								"bundle",
-								"exec",
-								"rspec",
-							})
-						end,
-					}),
-					require("neotest-golang")({
-						runner = "gotestsum",
-					}),
+					-- disabling since I don't use ruby much lately
+					--require("neotest-rspec")({
+					--rspec_cmd = function()
+					--return vim.tbl_flatten({
+					--"bundle",
+					--"exec",
+					--"rspec",
+					--})
+					--end,
+					--}),
+					require("neotest-golang")(neotest_golang_opts),
 				},
 			}
 
@@ -928,67 +880,7 @@ return {
 
 			require("neotest").setup(opts)
 		end,
-		keys = {
-			{
-				"<leader>ts",
-				function()
-					require("neotest").summary.toggle()
-				end,
-				desc = "Toggle Summary",
-			},
-			{
-				"<leader>to",
-				function()
-					require("neotest").output.open({ enter = true, auto_close = true })
-				end,
-				desc = "Show Output",
-			},
-			{
-				"<leader>tp",
-				function()
-					require("neotest").output_panel.toggle()
-				end,
-				desc = "Toggle Output Panel",
-			},
-			{
-				"<leader>tt",
-				function()
-					require("neotest").run.run(vim.fn.expand("%"))
-					require("neotest").summary.open()
-				end,
-				desc = "Run File",
-			},
-			{
-				"<leader>ta",
-				function()
-					require("neotest").run.run(vim.loop.cwd())
-					require("neotest").summary.open()
-				end,
-				desc = "Run All Test Files",
-			},
-			{
-				"<leader>tr",
-				function()
-					require("neotest").run.run()
-					require("neotest").summary.open()
-				end,
-				desc = "Run Nearest",
-			},
-			{
-				"<leader>td",
-				function()
-					require("neotest").run.run({ suite = false, strategy = "dap" })
-				end,
-				desc = "Debug nearest test",
-			},
-			{
-				"<leader>tx",
-				function()
-					require("neotest").run.stop()
-				end,
-				desc = "Stop",
-			},
-		},
+		keys = {},
 	},
 	{
 		"mfussenegger/nvim-dap",
@@ -1166,6 +1058,15 @@ return {
 	},
 	{ "theHamsta/nvim-dap-virtual-text" },
 	--{ "nvim-telescope/telescope-dap.nvim" },
+	{
+		"andythigpen/nvim-coverage",
+		version = "*",
+		config = function()
+			require("coverage").setup({
+				auto_reload = true,
+			})
+		end,
+	},
 
 	-- Utility
 	{ "tpope/tpope-vim-abolish" },
@@ -1524,6 +1425,9 @@ return {
 				-- max_width = {40, 0.2} means "the lesser of 40 columns or 20% of total"
 				--max_width = { 100, 0.5 },
 				--width = 40,
+				win_opts = {
+					wrap = true,
+				},
 			},
 			float = {
 				max_height = 0.7,

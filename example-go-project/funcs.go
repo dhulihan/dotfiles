@@ -1,11 +1,9 @@
 package main
 
-import "fmt"
-
-func Foo(s string) string {
-
-	return s
-}
+import (
+	"fmt"
+	"strings"
+)
 
 func Add(a, b int) int {
 	return a + b
@@ -144,13 +142,9 @@ func Println(a ...interface{}) {
 	fmt.Println(a...)
 }
 
-func Printf(format string, a ...interface{}) {
-	fmt.Printf(format, a...)
-}
+type Person struct{}
 
-type Foo struct{}
-
-func (f Foo) ExtremelyLongMethodNameThatMayBeUseful() string {
+func (p Person) ExtremelyLongMethodNameThatMayBeUseful() string {
 	return "Hello, World!"
 }
 func Printf(format string, a ...interface{}) {

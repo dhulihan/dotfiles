@@ -12,7 +12,7 @@ require("plugin-manager")
 
 print(vim.fn.expand("%"))
 require("config/options")
-require("config/keymaps")
+require("config/keymaps").setup()
 
 -- load old vimrc
 vim.cmd("source ~/.vimrc")

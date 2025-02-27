@@ -307,6 +307,8 @@ set noerrorbells visualbell t_vb=
 " make help vertical
 cnoremap help vert help
 
+cnoremap map verbose map
+
 "" Abbreviations
 "
 " wrap in dbl quotes and add a comma at the end. good for string collections
@@ -373,7 +375,7 @@ nnoremap <C-W>\ :vertical resize 82<CR>
 nnoremap <C-w><C-]> :vert winc ]<CR>
 
 " | to vertical split
-nnoremap <Bar> :vsp<CR>
+"nnoremap <Bar> :vsp<CR> " interferes with <leader><shift><...>
 
 " Classic backspace
 "nnoremap <BS> X
@@ -474,6 +476,8 @@ nnoremap <Leader>4 :ColorColumnToggle<CR>
 
 " fs tree
 nnoremap <Leader>5 :Oil<CR>
+
+nnoremap <Leader>6 :Telescope<CR>
 
 " copy current file path to clipboard
 "nnoremap <Leader>5 :RelPathToClipboard<CR>
@@ -1308,13 +1312,15 @@ let g:ale_fixers = {
 \   'sql': ['pgformatter'],
 \   'javascript': ['prettier'],
 \   'typescriptreact': ['prettier'],
+\   'typescript': ['prettier'],
 \}
 
 " lint the package, not file
 let g:ale_go_golangci_lint_package = 1
 
 " disable go 1.11 module support, to speed up goimports
-"let g:ale_go_go111module='off'
+"let g:ale_go_go111module='off' " 2025-02-27 this is causing some imports to
+"fail
 
 " Set this setting in vimrc if you want to fix files automatically on save.
 " This is off by default.
@@ -1674,8 +1680,8 @@ function! MarkdownInternalLink()
 
   " open file using plasticboy/vim-markdown (which supports autosave via g:vim_markdown_autowrite
   " NOTE: ge does not support parens in filename, while si (toop) does.
-  "normal si(
-  normal ge
+  normal si(
+  "normal ge
 
   " open file classic mode
   "execute 'edit' l:filename
