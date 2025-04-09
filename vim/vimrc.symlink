@@ -312,7 +312,7 @@ cnoremap map verbose map
 "" Abbreviations
 "
 " wrap in dbl quotes and add a comma at the end. good for string collections
-cnoreabbrev " :g/^/norm yss"$a,
+"cnoreabbrev " :g/^/norm yss"$a,
 
 " Persist cursor
 augroup persist_cursor
@@ -454,8 +454,8 @@ nnoremap <Leader><Enter> :Rg -F -i -- ""<Left>
 
 " replace. drops you in to second argument so you can use search term by
 " default.
-nnoremap <Leader>; :%S///gc<Left><Left><Left>
-vnoremap <Leader>; :S///gc<Left><Left><Left>
+nnoremap <Leader>; :%s///gc<Left><Left><Left>
+vnoremap <Leader>; :s///gc<Left><Left><Left>
 
 "nnoremap <Tab> :bnext<CR>
 "nnoremap <S-Tab> :bprevious<CR>
@@ -473,9 +473,6 @@ nnoremap <Leader>3 :MinimapToggle<CR>
 
 " color columns (indentation, etc)
 nnoremap <Leader>4 :ColorColumnToggle<CR>
-
-" fs tree
-nnoremap <Leader>5 :Oil<CR>
 
 nnoremap <Leader>6 :Telescope<CR>
 
@@ -946,9 +943,9 @@ let g:go_fmt_autosave = 0
 
 " fatih/vim-go END ------------------------------------------
 
-" tpope/vim-markdown ----------------------------------------
+" preservim/vim-markdown START (see
 
-" vim-markdown: no folding
+" preservim/vim-markdown: no folding
 let g:vim_markdown_folding_disabled=1
 
 " vim-markdown: don't indent new lines
@@ -957,7 +954,7 @@ let g:vim_markdown_new_list_item_indent = 0
 " fenced highlight aliases alias=orig
 let g:markdown_fenced_languages = g:vim_markdown_fenced_languages
 
-" tpope/vim-markdown END --------------------------------------
+" preservim/vim-markdown END
 
 " gabrielelana/vim-markdown
 "let g:markdown_enable_spell_checking = 0 " disable spellcheck

@@ -22,6 +22,7 @@ alias gcb='git copy-branch-name'
 alias gcln='git clean -df'
 alias gb='git branch -avv'
 alias gf='git fetch'
+alias gfc='git diff --name-only main...' # files changed between current branch and main
 alias grh='git reset --hard'
 alias grbi='git rebase --interactive'
 alias gr='git rebase --interactive origin/main'
