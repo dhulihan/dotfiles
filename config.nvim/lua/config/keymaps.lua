@@ -590,6 +590,13 @@ M.setup = function()
 	}
 
 	local meta_keys = {
+		-- HACK: vim-markdown isn't mapping `ge`, so we'll do it ourselves, since `ge` is used to trigger g:vim_markdown_autowrite
+		{
+			"ge",
+			"<Plug>Markdown_EditUrlUnderCursor",
+			mode = { "n" },
+		},
+
 		-- AI/Copilot
 		{
 			"<M-c>",

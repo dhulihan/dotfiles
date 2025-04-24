@@ -1675,10 +1675,11 @@ function! MarkdownInternalLink()
   " move cursor under filename
   normal h
 
-  " open file using plasticboy/vim-markdown (which supports autosave via g:vim_markdown_autowrite
+  " open file using plasticboy/vim-markdown (which supports autosave via g:vim_markdown_autowrite via ge)
+  normal ge
+
   " NOTE: ge does not support parens in filename, while si (toop) does.
-  normal si(
-  "normal ge
+  "normal si(
 
   " open file classic mode
   "execute 'edit' l:filename
@@ -2009,110 +2010,6 @@ command! GoSandbox execute ':e $GOPATH/src/github.com/dhulihan/go-sandbox/main.g
 " get commit info of current line
 command! -range GB call setbufvar(winbufnr(popup_atcursor(systemlist("git -C ".. shellescape(expand('%:p:h')) .." log --no-merges -n 1 -L <line1>,<line2>:" .. shellescape(resolve(expand("%:t")))), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")
 
-
-" ------------------------------------------------------------------------------
-" Colors & Highlighting
-" ------------------------------------------------------------------------------
-set background=dark
-"colors apprentice
-"colors lucius
-"colors codedark
-"colors vim-material " done 2024-10-15
-colors doom-one
-"colors tokyonight
-"colors iceberg "misspell is gnarly
-"colors dracula
-"colors falcon
-"colors jellybeans
-"colors hybrid
-"colors molokai
-"colors blackboard
-"colors hemisu
-"colorscheme bubblegum
-"colors noctu
-"colorscheme nefertiti
-"colorscheme pencil
-"colorscheme badwolf
-"" enable transparent term support
-"let g:solarized_termtrans=1
-"colorscheme solarized
-" ) Color Schemes
-
-" Cross-scheme colors (dark background)
-
-" thin line between vsplits
-highlight link WinSeparator VertSplit
-
-"hi VertSplit ctermbg=green guibg=green
-"hi StatusLineNC ctermbg=red guibg=red
-"hi clear ColorColumn
-"highlight Cursor ctermbg=red guibg=#00FF00
-"highlight CursorColumn guibg=#303000
-"highlight CursorLine guibg=#303000
-"hi ColorColumn ctermbg=237
-"hi clear SignColumn
-"hi clear SpellCap
-"hi SpellBad ctermfg=197
-"hi clear SpellBad
-"hi SpellBad ctermfg=197
-"hi clear LineNr
-"hi LineNr ctermfg=240
-"hi clear Error
-"hi Error ctermfg=167
-"hi clear GitGutterAdd
-"hi GitGutterAdd ctermfg=118
-"hi clear GitGutterChange
-"hi GitGutterChange ctermfg=186
-"hi clear GitGutterDelete
-"hi GitGutterDelete ctermfg=1
-"hi clear GitGutterChangeDelete
-"hi GitGutterChangeDelete ctermfg=166
-
-" lucius color overrides -----
-"
-" change default background
-"hi Normal ctermbg=234 guibg=#202020
-"hi Visual   term=underline ctermbg=18
-"hi! VertSplit ctermfg=237 ctermbg=237
-"hi! Todo term=standout ctermfg=186 cterm=bold gui=underline guifg=#e0e090
-"hi! Error term=standout ctermfg=167 cterm=bold gui=underline guifg=#e37170 ctermbg=NONE
-" -----
-
-" doom-one overrides
-hi StatusLine ctermbg=black guibg=#111111
-"hi StatusLine ctermbg=black guibg=#282c34
-"hi clear StatusLine
-"hi! link StatusLine Normal
-"hi TabLine     term=bold cterm=bold ctermfg=red ctermbg=053
-"hi TabLineFill term=bold cterm=bold ctermfg=green ctermbg=053
-"hi TabLineSel  term=bold cterm=bold ctermfg=blue ctermbg=225
-
-" material overrides
-"hi! link DiagnosticWarn BufferLineHintDiagnosticSelected
-"hi! link ALEWarningSign BufferLineHintDiagnosticSelected
-"hi! link SpellBad ErrorMsg
-"hi! Search ctermfg=236 ctermbg=172 guifg=bg guibg=#d78700
-
-" apprentice color overrides
-"hi! link SignColumn Normal
-"hi! link LineNr Comment
-"hi TabLine     term=bold cterm=bold ctermfg=225 ctermbg=053
-"hi TabLineFill term=bold cterm=bold ctermfg=225 ctermbg=053
-"hi TabLineSel  term=bold cterm=bold ctermfg=053 ctermbg=225
-
-" old
-"hi! link GitGutterAddDefault String
-"hi! link GitGutterChangeDefault Function
-"hi! link GitGutterDelete GitGutterDeleteDefault
-"hi! link GitGutterChangeDelete GitGutterChangeDeleteDefault
-"hi default GitGutterAddDefault ctermbg=234
-
-"hi Visual   term=underline ctermbg=238
-"hi NonText guifg=#4a4a59
-"hi SpecialKey guifg=#4a4a59
-
-" Colors END -----------------------------------------------
-"
 if filereadable(expand("~/.private-after.vim"))
   source ~/.private-after.vim
 endif
