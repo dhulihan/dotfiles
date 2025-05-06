@@ -42,6 +42,8 @@ go install -v mvdan.cc/gofumpt@latest
 go install github.com/a-h/templ/cmd/templ@latest
 
 go install github.com/rakyll/gotest@latest
+go install github.com/cweill/gotests/gotests@latest
+
 go install github.com/dhulihan/emoji-hash@latest
 
 # spanner
