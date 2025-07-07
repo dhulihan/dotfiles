@@ -13,6 +13,7 @@ brew install cowsay
 brew install curl
 brew install dep
 brew install direnv
+brew install displayplacer
 brew install editorconfig
 brew install elixir
 brew install eqnxio/equinox/release-tool
@@ -27,6 +28,7 @@ brew install gifsicle
 brew install gh
 brew install git
 brew install git-secrets
+brew install git-lfs
 brew install gnu-sed
 brew install homebrew/core/go
 brew install goose
@@ -81,7 +83,9 @@ brew install prettier
 brew install proctools
 brew install protobuf
 brew install pssh
+brew install pstree
 brew install pv
+brew install uv
 brew install python
 brew install python3
 brew install rbenv ruby-build rbenv-vars

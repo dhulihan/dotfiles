@@ -100,5 +100,5 @@ vim.api.nvim_create_autocmd("VimResized", {
 	--callback = equalize_all_tabs, -- 2025-01-17 this is super slow
 	pattern = "*", -- apply yo all buffers
 	--command = "tabdo wincmd =",
-	command = "wincmd =",
+	command = "wincmd = | set cmdheight=1",
 })

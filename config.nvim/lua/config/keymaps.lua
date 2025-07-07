@@ -8,6 +8,33 @@ local function transformToInline(input)
 	return converted
 end
 
+-- shell command output in floating window
+local function shell_in_float(cmd)
+	-- Create a new buffer (not listed, scratch)
+	local buf = vim.api.nvim_create_buf(false, true)
+
+	-- Get the editor size
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
+	local row = math.floor((vim.o.lines - height) / 2)
+	local col = math.floor((vim.o.columns - width) / 2)
+
+	-- Create the floating window
+	local win = vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		row = row,
+		col = col,
+		style = "minimal",
+		border = "rounded",
+	})
+
+	-- Start a terminal job in the buffer
+	vim.fn.termopen(cmd)
+	vim.cmd("startinsert")
+end
+
 M.setup = function()
 	leader_keys = {
 		{ "<leader>c", group = "code" },
@@ -258,6 +285,26 @@ M.setup = function()
 		{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
 		{ "<leader>gl", "<cmd>Git log -p %<CR>", desc = "Log Patch (Current File)" },
 
+		-- inspect internals
+		{ "<leader>i", group = "inspect" },
+		{
+			"<leader>id",
+			function()
+				print(vim.inspect(vim.diagnostic.get()))
+			end,
+			desc = "Inspect current diagnostics",
+		},
+		{
+			"<leader>ip",
+			desc = "inspect processes with pstree",
+			function()
+				-- get current pid
+				local pid = vim.fn.getpid()
+				--vim.cmd(string.format("pstree -p %d", pid))
+				shell_in_float(string.format("pstree -p %d", pid))
+			end,
+		},
+
 		-- Pull Requests
 		{
 			"<leader>ps",
@@ -301,7 +348,7 @@ M.setup = function()
 		{
 			"<leader>rl",
 			function()
-				require("vim-dotfiles").replace_bulleted_inline_snippet()
+				require("config.nvim.funky-plugins.vim-dotfiles.lua.vim-dotfiles.init").replace_bulleted_inline_snippet()
 			end,
 			desc = "Rewrite line in inline code example format",
 		},
@@ -556,6 +603,7 @@ M.setup = function()
 			mode = { "i", "n", "v" },
 		},
 
+		-- AI/ML
 		{ "<leader>a", group = "ai/ml/copilot" },
 		{
 			"<leader>ac",
@@ -579,6 +627,12 @@ M.setup = function()
 			"<leader>ae",
 			"<cmd>:Copilot enable<CR>",
 			desc = "enable copilot",
+			mode = { "i", "n", "v" },
+		},
+		{
+			"<leader>ah",
+			"<cmd>:MCPHub<CR>",
+			desc = "MCPHub",
 			mode = { "i", "n", "v" },
 		},
 		{

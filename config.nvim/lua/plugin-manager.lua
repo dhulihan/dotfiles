@@ -22,6 +22,6 @@ require("lazy").setup("plugins", {
 		missing = true,
 	},
 	dev = {
-		path = "~/.config/nvim/plugins",
+		path = "~/.config/nvim/funky-plugins",
 	},
 })

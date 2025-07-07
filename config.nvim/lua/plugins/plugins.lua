@@ -354,6 +354,13 @@ return {
 			{ "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 		},
 	},
+	{
+		"folke/flash.nvim",
+		enabled = false, -- not sure if I want to use this yet
+		event = "VeryLazy",
+		---@type Flash.Config
+		opts = {},
+	},
 
 	-- External Tools
 	{
@@ -370,6 +377,7 @@ return {
 				"lua_ls",
 				"gopls",
 				--"ts_ls",
+				-- "eslint_d", -- not working, using `npm i -g vscode-langservers-extracted`
 				"json-lsp",
 			},
 		},
@@ -377,10 +385,59 @@ return {
 			require("mason-tool-installer").setup(opts)
 		end,
 	},
+	{
+		"Tyler-Barham/floating-help.nvim",
+		config = function(_, opts)
+			local fh = require("floating-help")
+
+			fh.setup({
+				-- Defaults
+				width = 80, -- Whole numbers are columns/rows
+				height = 0.9, -- Decimals are a percentage of the editor
+				position = "E", -- NW,N,NW,W,C,E,SW,S,SE (C==center)
+				border = "rounded", -- rounded,double,single
+				onload = function(query_type) end, -- optional callback to be executed after help contents has been loaded
+			})
+
+			---- Create a keymap for toggling the help window
+			--vim.keymap.set("n", "<F1>", fh.toggle)
+			---- Create a keymap to search cppman for the word under the cursor
+			--vim.keymap.set("n", "<F2>", function()
+			--fh.open("t=cppman", vim.fn.expand("<cword>"))
+			--end)
+			---- Create a keymap to search man for the word under the cursor
+			--vim.keymap.set("n", "<F3>", function()
+			--fh.open("t=man", vim.fn.expand("<cword>"))
+			--end)
+
+			-- Only replace cmds, not search; only replace the first instance
+			local function cmd_abbrev(abbrev, expansion)
+				local cmd = "cabbr "
+					.. abbrev
+					.. ' <c-r>=(getcmdpos() == 1 && getcmdtype() == ":" ? "'
+					.. expansion
+					.. '" : "'
+					.. abbrev
+					.. '")<CR>'
+				vim.cmd(cmd)
+			end
+
+			-- Redirect `:h` to `:FloatingHelp`
+			cmd_abbrev("h", "FloatingHelp")
+			cmd_abbrev("help", "FloatingHelp")
+			cmd_abbrev("helpc", "FloatingHelpClose")
+			cmd_abbrev("helpclose", "FloatingHelpClose")
+		end,
+	},
 
 	-- LSP
 	{
 		"williamboman/mason-lspconfig.nvim",
+		opts = {
+			automatic_enable = {
+				exclude = { "gopls" }, -- do not run gopls by default
+			},
+		},
 		config = function(_, opts)
 			require("mason-lspconfig").setup(opts)
 		end,
@@ -402,6 +459,12 @@ return {
 			--lspconfig.ts_ls.setup({})
 			-- 2025-01-30 disabling to try typescript-tools.nvim
 
+			-- eslint for js/ts linting
+			-- 2025-02-03 not working, need to fix
+			--lspconfig.eslint.setup({
+			--cmd = { "vscode-eslint-language-server", "--stdio" },
+			--})
+
 			-- golang
 			--lspconfig.templ.setup({})
 			--lspconfig.gopls.setup({}) -- crazy slow on startup
@@ -420,7 +483,12 @@ return {
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
+		config = function()
+			require("typescript-tools").setup({
+				-- Only attach in directories with a package.json or tsconfig.json
+				root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json"),
+			})
+		end,
 	},
 	{
 		"SmiteshP/nvim-navic",
@@ -441,7 +509,8 @@ return {
 		end,
 	},
 	{
-		"j-hui/fidget.nvim",
+		"j-hui/fidget.nvim", -- show lsp progress
+		enabled = false, -- annoying in ts_ls
 		opts = {
 			-- options
 		},
@@ -602,7 +671,43 @@ return {
 	{
 		"w0rp/ale",
 		config = function()
+			vim.g.disabled_ale_linters = {
+				go = {
+					"gobuild", -- currently getting this from `compiler`
+					"govet",
+					"golint",
+					"golangci-lint",
+				},
+			}
+
+			vim.g.ale_linters = {
+				go = { "golangci-lint" },
+				proto = { "buf-check-lint" },
+				ruby = { "rails_best_practices", "ruby", "rubocop" },
+				terraform = { "tflint" },
+				sql = { "sqlfluff" },
+			}
+
+			vim.g.disabled_ale_fixers = {
+				python = { "black" },
+				ruby = { "rufo" },
+				sql = { "sqlint", "sqlfluff" },
+				go = { "goimports", "gofumpt" },
+			}
+
+			-- fixers
+			vim.g.ale_fixers = {
+				go = { "goimports", "gofmt" },
+				lua = { "stylua" },
+				json = { "prettier" },
+				terraform = { "terraform" },
+				sql = { "pgformatter" },
+				javascript = { "prettier" },
+				typescriptreact = { "prettier" },
+				typescript = { "prettier" },
+			}
 			vim.g.ale_virtualtext_cursor = "current" -- only show virtualtext on current line
+
 			--vim.g.ale_use_neovim_diagnostics_api = 0 -- disable diagnostic mode, affects other settings.
 		end,
 	},

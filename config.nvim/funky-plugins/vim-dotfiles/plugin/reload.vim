@@ -1,8 +1,3 @@
-if exists('g:dotfiles_loaded')
-  finish
-endif
-let g:dotfiles_loaded = 1
-
 " ------------------------------------------------------------------------------
 " Reload - allow for reloading of dotfiles vimscript
 " ------------------------------------------------------------------------------

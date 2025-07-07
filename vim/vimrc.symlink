@@ -305,7 +305,7 @@ set noerrorbells visualbell t_vb=
 "
 
 " make help vertical
-cnoremap help vert help
+"cnoremap help vert help
 
 cnoremap map verbose map
 
@@ -1038,6 +1038,10 @@ let g:fzf_action = {
 let g:fzf_layout = { 'window': '-tabnew' }
 "let g:fzf_layout = { 'window': '10new' }
 
+" place list output in quickfix
+let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
+
+
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -1279,38 +1283,6 @@ let g:lightline.component_type = {
 " this isn't an actual ale var, this is just a placeholder for stuff i use
 " sometimes
     " pgformatter doesn't support \COPY
-
-
-let g:disabled_ale_linters = {
-\   'go': ['gobuild', 'govet', 'golint', 'golangci-lint'],
-\}
-
-let g:ale_linters = {
-\   'go': ['gobuild', 'golangci-lint'],
-\   'proto': ['buf-check-lint',],
-\   'ruby': ['rails_best_practices', 'ruby', 'rubocop'],
-\   'terraform': ['tflint'],
-\   'sql': ['sqlfluff'],
-\}
-
-let g:disabled_ale_fixers = {
-\   'python': ['black'],
-\   'ruby': ['rufo'],
-\   'sql': ['sqlint', 'sqlfluff'],
-\   'go': [ 'goimports', 'gofumpt'],
-\}
-
-" fixers
-let g:ale_fixers = {
-\   'go': ['goimports', 'gofmt'],
-\   'lua': ['stylua'],
-\   'json': ['prettier'],
-\   'terraform': ['terraform'],
-\   'sql': ['pgformatter'],
-\   'javascript': ['prettier'],
-\   'typescriptreact': ['prettier'],
-\   'typescript': ['prettier'],
-\}
 
 " lint the package, not file
 let g:ale_go_golangci_lint_package = 1
