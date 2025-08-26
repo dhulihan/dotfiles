@@ -185,7 +185,7 @@ brew install ericm/stonks/stonks
 brew install reattach-to-user-namespace
 
 # java stuff
-brew install java
+brew install java # afterwards you must `sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk`
 brew install logstash
 brew install kafka
 
@@ -256,6 +256,8 @@ brew install agrinman/tap/tunnelto
 brew install mike-engel/jwt-cli/jwt-cli
 
 brew install --cask keycastr
+
+brew install pngpaste
 
 set +e
 say "brew is done"

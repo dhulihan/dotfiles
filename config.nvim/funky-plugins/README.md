@@ -1,3 +1,3 @@
-for local plugin development
+# funky-plugins
 
-TODO: move these plugins out
+Custom plugins that aren't ready for extraction to standalone plugins.

@@ -12,6 +12,7 @@ npm install -g \
     terminalizer \
     youtube-metadata-cli \
     hash-emoji \
+    mcp-remote \
     grunt
 
 npm install -g pnpm@8.4

@@ -14,6 +14,7 @@ fi
 export FZF_DEFAULT_COMMAND="fd --no-ignore --type f --hidden --follow --exclude .git --exclude node_modules --exclude tmp --exclude '*.sw*'"
 
 # with preview
+export FZF_DEFAULT_OPTS="--multi"
 #export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 # Key bindings

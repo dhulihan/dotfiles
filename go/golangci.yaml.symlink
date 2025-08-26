@@ -1,28 +1,93 @@
-run:
-  max-same-issues: 0
-tests:
-  true
+version: "2"
 linters:
-  enable-all: true
-  fast: true
+  default: all
   disable:
-  - depguard
-  - exhaustivestruct
-  - exhaustruct
-  - exhaustive
-  - lll
-  - wrapcheck
-  - varnamelen
-  - funlen
-  - interfacer
-  - scopelint
-  - maligned
-  - gofumpt
-  - dupl # buggy, showing false positives
-  - paralleltest
-  - nosnakecase
-  - testpackage
-  - gochecknoglobals
-
+    - asasalint
+    - bodyclose
+    - canonicalheader
+    - containedctx
+    - contextcheck
+    - depguard
+    - dupl
+    - durationcheck
+    - err113
+    - errcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - exhaustive
+    - exhaustruct
+    - exptostd
+    - fatcontext
+    - forbidigo
+    - forcetypeassert
+    - funlen
+    - ginkgolinter
+    - gochecknoglobals
+    - gochecksumtype
+    - gocritic
+    - gosec
+    - gosmopolitan
+    - govet
+    - iface
+    - importas
+    - intrange
+    - ireturn
+    - lll
+    - loggercheck
+    - makezero
+    - mirror
+    - musttag
+    - nilerr
+    - nilnesserr
+    - nilnil
+    - noctx
+    - nonamedreturns
+    - paralleltest
+    - perfsprint
+    - protogetter
+    - reassign
+    - recvcheck
+    - revive
+    - rowserrcheck
+    - sloglint
+    - spancheck
+    - sqlclosecheck
+    - staticcheck
+    - tagliatelle
+    - testifylint
+    - testpackage
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+    - unused
+    - usetesting
+    - varnamelen
+    - wastedassign
+    - wrapcheck
+    - zerologlint
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
 severity:
-  default-severity: info
+  default: info
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

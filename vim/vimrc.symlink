@@ -243,7 +243,8 @@ augroup filetypes
 
   " filetype-specific config
   autocmd Filetype noft setlocal number
-  autocmd Filetype markdown setlocal spell noexpandtab
+  "autocmd Filetype markdown setlocal spell noexpandtab " tabs
+  autocmd Filetype markdown setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4 " spaces for md indentation, to help with indented code blocks
   autocmd Filetype terraform,proto setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
   autocmd Filetype ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 autoindent smartindent
   autocmd Filetype docker-compose setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -496,18 +497,9 @@ nnoremap <Leader><Leader> :ToggleQuickFix<CR>
 nnoremap <Leader>, zr<CR>
 nnoremap <Leader>. zm<CR>
 
-" git
-nnoremap <Leader>gg :.GBrowse!<CR>
-"nnoremap <Leader>gg :GitPrimaryURL<CR>
-nnoremap <Leader>gb :GBranches<CR>
-"nnoremap <Leader>gc :.GBrowse!<CR>
-nnoremap <Leader>gx :.GBrowse<CR>
-nnoremap <Leader>gm :GBrowse @origin<CR>
-nnoremap <Leader>ge :GEdit master:%<CR>
 nnoremap <Leader>vv :Rg<CR>
 
 " yanks
-nnoremap <Leader>yb :CopyBufferToClipboard<CR>
 "nnoremap <Leader>yyy "*y<CR>
 "vnoremap <Leader>yyy "*y<CR>
 "nnoremap <Leader>ppp "*p<CR>
@@ -899,6 +891,7 @@ let g:vim_markdown_fenced_languages = [
 \'prom=prometheus',
 \'kam=kamailio',
 \'ts=typescriptreact',
+\'ssml=html',
 \]
 
 let g:vim_markdown_auto_insert_bullets = 1

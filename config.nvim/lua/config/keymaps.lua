@@ -8,6 +8,14 @@ local function transformToInline(input)
 	return converted
 end
 
+-- Initialize a global toggle flag
+
+-- Map a key to toggle autocompletion
+vim.keymap.set("n", "<Leader>ua", function()
+	vim.g.cmp_toggle = not vim.g.cmp_toggle
+	print("nvim-cmp", vim.g.cmp_toggle and "ENABLED" or "DISABLED")
+end, { desc = "toggle nvim-cmp" })
+
 -- shell command output in floating window
 local function shell_in_float(cmd)
 	-- Create a new buffer (not listed, scratch)
@@ -33,6 +41,35 @@ local function shell_in_float(cmd)
 	-- Start a terminal job in the buffer
 	vim.fn.termopen(cmd)
 	vim.cmd("startinsert")
+end
+
+-- display output of a command in a floating window
+local function cmd_in_float(cmd)
+	local output = vim.fn.execute(cmd)
+
+	local buf = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(output, "\n"))
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
+	local opts = {
+		relative = "editor",
+		width = width,
+		height = height,
+		col = math.floor((vim.o.columns - width) / 2),
+		row = math.floor((vim.o.lines - height) / 2),
+		style = "minimal",
+		border = "single",
+	}
+	local win = vim.api.nvim_open_win(buf, true, opts)
+
+	-- close close on focus loast
+	vim.cmd(string.format(
+		[[
+    autocmd BufLeave,FocusLost <buffer=%d> ++once lua vim.api.nvim_win_close(%d, false)
+  ]],
+		buf,
+		win
+	))
 end
 
 M.setup = function()
@@ -284,6 +321,13 @@ M.setup = function()
 		{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
 		{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
 		{ "<leader>gl", "<cmd>Git log -p %<CR>", desc = "Log Patch (Current File)" },
+		{ "<Leader>gg", "<cmd>.GBrowse!<CR>" },
+		{ "<Leader>gG", "<cmd>GitPrimaryURL<CR>" },
+		{ "<Leader>gb", "<cmd>GBranches<CR>" },
+		{ "<Leader>gc", "<cmd>.GBrowse!<CR>" },
+		{ "<Leader>gx", "<cmd>.GBrowse<CR>" },
+		{ "<Leader>gm", "<cmd>GBrowse @origin<CR>" },
+		{ "<Leader>ge", "<cmd>GEdit master:%<CR>" },
 
 		-- inspect internals
 		{ "<leader>i", group = "inspect" },
@@ -304,23 +348,57 @@ M.setup = function()
 				shell_in_float(string.format("pstree -p %d", pid))
 			end,
 		},
-
-		-- Pull Requests
 		{
-			"<leader>ps",
-			"<cmd>Octo review start<CR>",
+			"<leader>im",
+			desc = "inspect memory of current session",
+			function()
+				-- get current pid
+				local pid = vim.fn.getpid()
+				--vim.cmd(string.format("pstree -p %d", pid))
+				shell_in_float(string.format("vmmap %d", pid))
+			end,
 		},
 		{
-			"<leader>pc<enter>",
+			"<leader>il",
+			desc = "inspect linter",
+			function()
+				cmd_in_float(":ALEInfo -echo")
+			end,
+		},
+		{
+			"<leader>ii",
+			desc = "inspect indentations",
+			function()
+				cmd_in_float(":IndentInfo")
+			end,
+		},
+
+		{ "<leader>l", group = "list" },
+		{ "<leader>lb", "<cmd>Telescope buffers<CR>", desc = "List buffers" },
+
+		{ "<leader>o", group = "open", desc = "open external references, pull requests, etc" },
+		{ "<leader>op", group = "pull requests" },
+		{
+			"<leader>opn",
+			"<cmd>Octo review start<CR>",
+			desc = "Open new pull request",
+		},
+		{
+			"<leader>ops",
+			"<cmd>Octo review start<CR>",
+			desc = "start review",
+		},
+		{
+			"<leader>opc<enter>",
 			"<cmd>Octo review comments<CR>",
 			desc = "view pending review comments",
 		},
 		{
-			"<leader>p<enter>",
+			"<leader>opx<enter>",
 			"<cmd>Octo review submit<CR>",
 		},
 		{
-			"<leader>po",
+			"<leader>opo",
 			":Octo ",
 			desc = "open pr prompt",
 		},
@@ -344,7 +422,7 @@ M.setup = function()
 		},
 
 		-- Rewrite/Replace text
-		{ "<leader>r", group = "rewrite" },
+		{ "<leader>r", group = "rewrite/replace" },
 		{
 			"<leader>rl",
 			function()
@@ -570,6 +648,11 @@ M.setup = function()
 		-- Yanks
 		{ "<leader>y", group = "yank" },
 		{
+			"<leader>yb",
+			"<cmd>CopyBufferToClipboard<cr>",
+			desc = "copy buffer to clipboard",
+		},
+		{
 			"<leader>yf",
 			"<cmd>RelPathToClipboard<cr>",
 			desc = "copy relative current file path to clipboard",
@@ -594,7 +677,7 @@ M.setup = function()
 			mode = { "n", "i" },
 		},
 
-		-- Puts
+		-- Puts & Pastes
 		{ "<leader>p", group = "put/paste" },
 		{
 			"<leader>pp",
@@ -602,13 +685,32 @@ M.setup = function()
 			desc = "paste from yank register 0",
 			mode = { "i", "n", "v" },
 		},
+		{
+			"<leader>pi",
+			"<cmd>PasteImage<cr>",
+			desc = "Paste image from system clipboard",
+			mode = { "i", "n", "v" },
+		},
 
 		-- AI/ML
 		{ "<leader>a", group = "ai/ml/copilot" },
 		{
+			"<leader>aa",
+			"<cmd>:CodeCompanionActions<CR>",
+			desc = "agent actions",
+			mode = { "i", "n", "v" },
+		},
+		{
 			"<leader>ac",
+			--"<cmd>:CopilotChatToggle<CR>",
+			"<cmd>:CodeCompanionChat<CR>",
+			desc = "toggle chat",
+			mode = { "i", "n", "v" },
+		},
+		{
+			"<leader>aC",
 			"<cmd>:CopilotChatToggle<CR>",
-			desc = "toggle copilot chat",
+			desc = "toggle chat",
 			mode = { "i", "n", "v" },
 		},
 		{
