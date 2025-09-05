@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# this script checks if the current branch is behind main
+
+# Fetch latest from remote
+git fetch origin
+
+# Get current branch name
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Only proceed if not on detached HEAD and branch is not main itself
+if [ "$branch" != "HEAD" ] && [ "$branch" != "main" ]; then
+  behind=$(git rev-list --count HEAD..origin/main)
+  if [ "$behind" -ne 0 ]; then
+    echo "Warning: Your branch '$branch' is behind origin/main by $behind commit(s). Consider merging or rebasing."
+  fi
+fi
