@@ -1,0 +1,4 @@
+# which but shows symlinks too
+function lwhich() {
+	ls -pliah $(which ${1})
+}
