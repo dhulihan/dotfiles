@@ -391,6 +391,7 @@ return {
 	},
 	{
 		"pmizio/typescript-tools.nvim",
+		enabled = false, -- disable when not performing active development, resource hog
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		config = function()
 			require("typescript-tools").setup({
