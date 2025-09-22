@@ -338,92 +338,13 @@ return {
 			require("mason-tool-installer").setup(opts)
 		end,
 	},
-
-	-- LSP
 	{
-		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			automatic_enable = {
-				exclude = { "gopls" }, -- do not run gopls by default
-			},
-		},
-		config = function(_, opts)
-			require("mason-lspconfig").setup(opts)
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
-		},
+		"sontungexpt/url-open",
+		event = "VeryLazy",
+		cmd = "URLOpenUnderCursor",
 		config = function()
-			local lspconfig = require("lspconfig")
-
-			-- json
-			--lspconfig.jsonls.setup({})
-
-			-- typescript
-			-- note: tsserver has been renamed to ts_ls, because it is a wrapper around tsserver
-			--lspconfig.ts_ls.setup({})
-			-- 2025-01-30 disabling to try typescript-tools.nvim
-
-			-- eslint for js/ts linting
-			-- 2025-02-03 not working, need to fix
-			--lspconfig.eslint.setup({
-			--cmd = { "vscode-eslint-language-server", "--stdio" },
-			--})
-
-			-- golang
-			--lspconfig.templ.setup({})
-			--lspconfig.gopls.setup({}) -- crazy slow on startup
-
-			-- lua
-			lspconfig["lua_ls"].setup({
-				Lua = {
-					diagnostics = {
-						-- Get the language server to recognize the `vim` global
-						globals = { "vim" },
-					},
-				},
-			})
+			require("url-open").setup({})
 		end,
-	},
-	{
-		"pmizio/typescript-tools.nvim",
-		enabled = false, -- disable when not performing active development, resource hog
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		config = function()
-			require("typescript-tools").setup({
-				-- Only attach in directories with a package.json or tsconfig.json
-				root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json"),
-			})
-		end,
-	},
-	{
-		"SmiteshP/nvim-navic",
-		desc = "code context from lsp, used for json navigration toolbar",
-		opts = {
-			click = true,
-		},
-		config = function(_, opts)
-			local navic = require("nvim-navic")
-
-			require("lspconfig").jsonls.setup({
-				on_attach = function(client, bufnr)
-					navic.attach(client, bufnr)
-				end,
-			})
-
-			navic.setup(opts)
-		end,
-	},
-	{
-		"j-hui/fidget.nvim", -- show lsp progress
-		enabled = false, -- annoying in ts_ls
-		opts = {
-			-- options
-		},
 	},
 
 	-- Version Control
@@ -529,53 +450,6 @@ return {
 			wk.setup(opts)
 		end,
 	},
-
-	-- Lint
-	{
-		"w0rp/ale",
-		config = function()
-			vim.g.ale_linters = {
-				go = {
-					"golangci-lint",
-					"gobuild",
-					--"govet",
-					--"golint",
-				},
-				proto = { "buf-check-lint" },
-				ruby = { "rails_best_practices", "ruby", "rubocop" },
-				terraform = { "tflint" },
-				sql = { "sqlfluff" },
-			}
-
-			vim.g.disabled_ale_fixers = {
-				python = { "black" },
-				ruby = { "rufo" },
-				sql = { "sqlint", "sqlfluff" },
-			}
-
-			-- fixers
-			vim.g.ale_fixers = {
-				go = {
-					"goimports",
-					"gofmt",
-				},
-				lua = { "stylua" },
-				json = { "prettier" },
-				terraform = { "terraform" },
-				sql = { "pgformatter" },
-				javascript = { "prettier" },
-				typescriptreact = { "prettier" },
-				typescript = { "prettier" },
-			}
-			vim.g.ale_virtualtext_cursor = "current" -- only show virtualtext on current line
-
-			vim.g.ale_hover_to_floating_preview = 1
-			vim.g.ale_floating_preview = 1
-
-			--vim.g.ale_use_neovim_diagnostics_api = 0 -- disable diagnostic mode, affects other settings.
-		end,
-	},
-	--{ "maximbaz/lightline-ale" },
 
 	-- Utility
 	{ "tpope/tpope-vim-abolish" },

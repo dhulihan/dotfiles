@@ -23,6 +23,7 @@ pip install \
   pynvim \
   sqlfluff \
   sqlfmt \
+  ty \
   yapf
 
 set +x

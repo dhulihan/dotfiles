@@ -133,21 +133,15 @@ brew link --force node@10
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 # Hack fonts
-brew tap homebrew/cask-fonts
-brew install font-hack-nerd-font
-brew install font-source-code-pro
-brew install font-cascadia-code
-brew install font-cascadia-code-pl
-brew install font-cascadia-mono
-brew install font-cascadia-mono-pl
-
 brew install --cask font-iosevka-term-nerd-font
 brew install --cask font-bitstream-vera-sans-mono-nerd-font
 brew install --cask font-ubuntu-nerd-font
 brew install --cask font-aurulent-sans-mono-nerd-font
+brew install --cask font-code-new-roman-nerd-font
 
 
-brew install --cask ngrok
+
+#brew install --cask ngrok
 
 # grump
 brew tap dhulihan/grump

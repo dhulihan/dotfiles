@@ -1,12 +1,11 @@
-# Setup fzf
-# ---------
 if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
   export PATH="$PATH:$HOME/.fzf/bin"
 fi
 
+# auto-completion and key binding
+source <(fzf --zsh)
+
 # Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
 
 # Configuration
 # -------------
@@ -17,6 +16,3 @@ export FZF_DEFAULT_COMMAND="fd --no-ignore --type f --hidden --follow --exclude 
 export FZF_DEFAULT_OPTS="--multi"
 #export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
-# Key bindings
-# ------------
-source "$HOME/.fzf/shell/key-bindings.zsh"

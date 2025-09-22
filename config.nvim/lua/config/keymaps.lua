@@ -366,6 +366,13 @@ M.setup = function()
 			end,
 		},
 		{
+			"<leader>iL",
+			desc = "inspect lsp",
+			function()
+				cmd_in_float(":LspInfo")
+			end,
+		},
+		{
 			"<leader>ii",
 			desc = "inspect indentations",
 			function()
@@ -773,10 +780,18 @@ M.setup = function()
 			mode = { "i", "n", "v" },
 		},
 	}
+	local misc_keys = {
+		{
+			"gx",
+			"<cmd>:URLOpenUnderCursor<CR>",
+			desc = "open URL under cursor",
+		},
+	}
 
 	local wk = require("which-key")
 	wk.add(leader_keys)
 	wk.add(meta_keys)
+	wk.add(misc_keys)
 
 	-- non-plugin keymaps
 

@@ -178,6 +178,7 @@ endif
 
 " Line Numbers
 set number
+set relativenumber
 
 " show as much of a line as possible
 set display+=lastline
@@ -263,6 +264,7 @@ augroup filetypes
   autocmd FileType typescript setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType typescriptreact setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType applescript setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
 
   " Open md files with system tool
   autocmd FileType html let b:dispatch = "open '%'"
@@ -289,7 +291,7 @@ cnoremap <Right> <Space><BS><Right>
 " File Types & Indentation END -----------------------------------------------
 
 " Pretty invisibles
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set listchars=nbsp:.,eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 " Use the same symbols as TextMate for tabstops and EOLs
 "set listchars=tab:▸\ ,eol:¬
@@ -753,20 +755,20 @@ let g:netrw_altv = 1 "change from left splitting to right splitting
 let g:netrw_winsize = 25
 
 " fix gx bug, see https://github.com/vim/vim/issues/4738
-let g:netrw_nogx=1
-if has('macunix')
-  function! OpenThisURLUnderCursor()
-    let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;()]*')
-    let s:uri = shellescape(s:uri, 1)
-    if s:uri != ''
-      exec "!open '".s:uri."'"
-      :redraw!
-    endif
-  endfunction
+"let g:netrw_nogx=1
+"if has('macunix')
+  "function! OpenThisURLUnderCursor()
+    "let s:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;()]*')
+    "let s:uri = shellescape(s:uri, 1)
+    "if s:uri != ''
+      "exec "open ".s:uri.""
+      ":redraw!
+    "endif
+  "endfunction
 
-  unmap gx
-  nnoremap gx :call OpenThisURLUnderCursor()<CR>
-endif
+  "unmap gx
+  "nnoremap gx :call OpenThisURLUnderCursor()<CR>
+"endif
 
 " Grep and friends -------------------------------------------------------------
 set grepprg=rg\ --vimgrep
