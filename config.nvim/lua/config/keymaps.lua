@@ -328,6 +328,13 @@ M.setup = function()
 		{ "<Leader>gx", "<cmd>.GBrowse<CR>" },
 		{ "<Leader>gm", "<cmd>GBrowse @origin<CR>" },
 		{ "<Leader>ge", "<cmd>GEdit master:%<CR>" },
+		{
+			"<Leader>gP",
+			function()
+				require("vim-dotfiles.git").open_pr_for_commit()
+			end,
+			desc = "open PR for commit under cursor",
+		},
 
 		-- inspect internals
 		{ "<leader>i", group = "inspect" },

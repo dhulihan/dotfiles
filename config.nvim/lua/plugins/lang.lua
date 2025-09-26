@@ -22,7 +22,9 @@ return {
 			--local lspconfig = require("lspconfig")
 
 			-- json
-			--lspconfig.jsonls.setup({})
+			-- install with `npm i -g vscode-langservers-extracted`
+			vim.lsp.config("jsonls", {})
+			vim.lsp.enable("jsonls") -- enable ty lsp
 
 			-- typescript
 			-- note: tsserver has been renamed to ts_ls, because it is a wrapper around tsserver
@@ -163,6 +165,7 @@ return {
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
 		build = function()
+			-- also can do :call mkdp#util#install()
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
@@ -194,6 +197,11 @@ return {
 	{ "joerdav/templ.vim" },
 	{
 		"phelipetls/jsonpath.nvim",
-		enabled = false, -- can't get to work
+		config = function()
+			require("jsonpath").setup({
+				show_on_winbar = true,
+			})
+		end,
+		enabled = false, -- can't get to work, using nvim-navic instead
 	},
 }

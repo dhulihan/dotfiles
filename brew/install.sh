@@ -253,5 +253,8 @@ brew install --cask keycastr
 
 brew install pngpaste
 
+brew install krzko/tap/otelgen
+
+
 set +e
 say "brew is done"

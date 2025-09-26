@@ -264,7 +264,7 @@ augroup filetypes
   autocmd FileType typescript setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType typescriptreact setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType applescript setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
+  autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 
   " Open md files with system tool
   autocmd FileType html let b:dispatch = "open '%'"
@@ -1667,7 +1667,8 @@ function! MarkdownHeader()
 endfunction
 command! MarkdownHeader call MarkdownHeader()
 
-imap *^ <Esc>:call mdip#MarkdownClipboardImage()<CR>
+"imap *^ <Esc>:call mdip#MarkdownClipboardImage()<CR>
+" use <leader>pi to paste image from clipboard
 imap *& <Esc>:MarkdownInternalLink<CR>
 imap *( <Esc>:MarkdownExternalLinkFetchTitle<CR>
 imap *) <Esc>:MarkdownExternalLink<CR>

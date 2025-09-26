@@ -86,7 +86,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-emoji",
-			"hrsh7th/cmp-cmdline",
+			--"hrsh7th/cmp-cmdline",
 			--"uga-rosa/cmp-dictionary",
 			--"quangnguyen30192/cmp-nvim-ultisnips",
 		},
@@ -243,12 +243,12 @@ return {
 					--},
 					{ name = "emoji" },
 					{ name = "path" },
-					{
-						name = "cmdline",
-						option = {
-							ignore_cmds = { "Man", "!" },
-						},
-					},
+					--{
+					--name = "cmdline",
+					--option = {
+					--ignore_cmds = { "Man", "!" },
+					--},
+					--},
 				},
 			}
 
@@ -271,7 +271,8 @@ return {
 		opts = {
 			keymaps = {
 				["<Leader>5"] = { "actions.close", mode = "n" },
-				["<C-c>"] = { "actions.close", mode = "n" },
+				--["<C-c>"] = { "actions.close", mode = "n" },
+				["<C-c>"] = false,
 			},
 			view_options = {
 				-- Show files and directories that start with "."

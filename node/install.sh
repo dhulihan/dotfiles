@@ -5,7 +5,7 @@
 # install latest node
 #nvm install node
 
-npm install -g \
+npm i -g \
     fixjson \
     htmlhint \
     json2csv \
@@ -15,5 +15,10 @@ npm install -g \
     mcp-remote \
     grunt
 
-npm install -g pnpm@8.4
-npm install -g @mermaid-js/mermaid-cli
+npm i -g pnpm@8.4
+npm i -g @mermaid-js/mermaid-cli
+
+
+# install json lsp jsonls, used in nvim-navic
+npm i -g vscode-langservers-extracted
+
