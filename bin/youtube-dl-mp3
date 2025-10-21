@@ -31,7 +31,16 @@ TRACK=$(cat $METADATA_FILE | jq -r ".track // empty")
 TITLE=$(cat $METADATA_FILE | jq -r ".title // empty")
 ALBUM=$(cat $METADATA_FILE | jq -r ".album // empty")
 ARTIST=$(cat $METADATA_FILE | jq -r ".artist // empty")
-FILENAME=$(dasherize "$TITLE").mp3
+DESCRIPTION=$(cat $METADATA_FILE | jq -r ".description // empty")
+
+if [[ "$1" == *"instagram"* ]]; then
+  ARTIST="${TITLE/Video by /}" # strip off prefix
+  ALBUM=instagram
+  TRACK=$DESCRIPTION
+  FILENAME=$(dasherize "$ARTIST $DESCRIPTION").mp3
+else
+  FILENAME=$(dasherize "$TITLE").mp3
+fi
 
 echo "Title: [$TITLE] Track: [$TRACK] Album: [$ALBUM] Artist: [$ARTIST] Filename: [${FILENAME:?}]"
 
