@@ -36,8 +36,9 @@ DESCRIPTION=$(cat $METADATA_FILE | jq -r ".description // empty")
 if [[ "$1" == *"instagram"* ]]; then
   ARTIST="${TITLE/Video by /}" # strip off prefix
   ALBUM=instagram
-  TRACK=$DESCRIPTION
-  FILENAME=$(dasherize "$ARTIST $DESCRIPTION").mp3
+  TRACK=$(echo -n "$DESCRIPTION" | head -c 20) # truncate
+
+  FILENAME=$(dasherize "$ARTIST $TRACK").mp3
 else
   FILENAME=$(dasherize "$TITLE").mp3
 fi
