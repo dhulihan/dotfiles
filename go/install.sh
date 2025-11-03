@@ -18,6 +18,7 @@ go get -u github.com/rogpeppe/gohack
 go get -u github.com/salrashid123/gce_metadata_server
 go get -u golang.org/x/tools/cmd/goimports
 go get -u golang.org/x/tools/gopls
+go install golang.org/x/tools/cmd/present@latest
 go get -u google.golang.org/grpc
 go get -u github.com/kyleconroy/sqlc/cmd/sqlc
 go get -u github.com/buraksezer/olric/cmd/olricd

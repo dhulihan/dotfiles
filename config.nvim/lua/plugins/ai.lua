@@ -153,7 +153,7 @@ return {
 		opts = {
 			--debug = true, -- Enable debugging
 			-- See Configuration section for rest
-			model = "claude-3.5-sonnet",
+			model = "claude-sonnet-4.5",
 			window = {
 				layout = "float",
 				border = "rounded",

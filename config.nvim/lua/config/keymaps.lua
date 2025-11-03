@@ -8,13 +8,26 @@ local function transformToInline(input)
 	return converted
 end
 
--- Initialize a global toggle flag
+local cmp = require("cmp")
+vim.g.cmp_toggle_flag = true -- start with completion enabled
 
--- Map a key to toggle autocompletion
-vim.keymap.set("n", "<Leader>ua", function()
-	vim.g.cmp_toggle = not vim.g.cmp_toggle
-	print("nvim-cmp", vim.g.cmp_toggle and "ENABLED" or "DISABLED")
-end, { desc = "toggle nvim-cmp" })
+local function normal_buftype()
+	return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+end
+
+local function toggle_completion()
+	vim.g.cmp_toggle_flag = not vim.g.cmp_toggle_flag
+	print("nvim-cmp completion " .. (vim.g.cmp_toggle_flag and "enabled" or "disabled"))
+	cmp.setup({
+		enabled = function()
+			if vim.g.cmp_toggle_flag then
+				return normal_buftype()
+			else
+				return false
+			end
+		end,
+	})
+end
 
 -- shell command output in floating window
 local function shell_in_float(cmd)
@@ -492,18 +505,31 @@ M.setup = function()
 		--desc = "Goto Symbol (Workspace)",
 		--},
 		--
+		-- Toggle
+		{ "<leader>t", group = "toggle" },
+
+		{ "<leader>tc", desc = "toggle completion", toggle_completion, mode = { "n", "i" } },
+
+		{ "<leader>ta", group = "toggle ai" },
+		{
+			"<leader>tac",
+			--"<cmd>:CopilotChatToggle<CR>",
+			"<cmd>:CodeCompanionChat<CR>",
+			desc = "toggle chat",
+			mode = { "i", "n", "v" },
+		},
 
 		-- Tests
-		{ "<leader>t", group = "test" },
+		{ "<leader>T", group = "test" },
 		{
-			"<leader>ts",
+			"<leader>Ts",
 			function()
 				require("neotest").summary.toggle()
 			end,
 			desc = "Toggle Summary Sidebar",
 		},
 		{
-			"<leader>to",
+			"<leader>To",
 			function()
 				require("neotest").output.open({
 					enter = true,
@@ -514,14 +540,14 @@ M.setup = function()
 			desc = "Show Output (last run)",
 		},
 		{
-			"<leader>tp",
+			"<leader>Tp",
 			function()
 				require("neotest").output_panel.toggle()
 			end,
 			desc = "Toggle Output Panel",
 		},
 		{
-			"<leader>tT",
+			"<leader>TT",
 			function()
 				local qt = require("quicktest")
 				qt.run_line()
@@ -529,7 +555,7 @@ M.setup = function()
 			desc = "Test Nearest (quicktest)",
 		},
 		{
-			"<leader>tf",
+			"<leader>Tf",
 			function()
 				require("neotest").run.run(vim.fn.expand("%"))
 				require("neotest").summary.open()
@@ -537,7 +563,7 @@ M.setup = function()
 			desc = "Run File",
 		},
 		{
-			"<leader>ta",
+			"<leader>Ta",
 			function()
 				require("neotest").run.run(vim.loop.cwd())
 				--require("neotest").summary.open()
@@ -545,7 +571,7 @@ M.setup = function()
 			desc = "Run All Test Files (neotest)",
 		},
 		{
-			"<leader>tt",
+			"<leader>Tt",
 			function()
 				require("neotest").run.run()
 				--require("neotest").summary.open()
@@ -554,7 +580,7 @@ M.setup = function()
 			desc = "Run Nearest (neotest)",
 		},
 		{
-			"<leader>tN",
+			"<leader>TN",
 			function()
 				require("neotest").run.run({ strategy = "dap" })
 				require("neotest").summary.open()
@@ -562,21 +588,21 @@ M.setup = function()
 			desc = "Run Nearest (neotest dap)",
 		},
 		{
-			"<leader>td",
+			"<leader>Td",
 			function()
 				require("neotest").run.run({ suite = false, strategy = "dap" })
 			end,
 			desc = "Debug nearest test",
 		},
 		{
-			"<leader>tx",
+			"<leader>Tx",
 			function()
 				require("neotest").run.stop()
 			end,
 			desc = "Stop",
 		},
 		{
-			"<leader>tL",
+			"<leader>TL",
 			function()
 				local qt = require("quicktest")
 				qt.run_line("popup")
@@ -584,7 +610,7 @@ M.setup = function()
 			desc = "[T]est Nearest [L]line (quicktest popup)",
 		},
 		{
-			"<leader>tF",
+			"<leader>TF",
 			function()
 				local qt = require("quicktest")
 
@@ -593,7 +619,7 @@ M.setup = function()
 			desc = "[T]est Run [F]ile",
 		},
 		{
-			"<leader>tD",
+			"<leader>TD",
 			function()
 				local qt = require("quicktest")
 
@@ -602,7 +628,7 @@ M.setup = function()
 			desc = "[T]est Run [D]ir",
 		},
 		{
-			"<leader>tA",
+			"<leader>TA",
 			function()
 				local qt = require("quicktest")
 
@@ -611,7 +637,7 @@ M.setup = function()
 			desc = "[T]est Run [A]ll (quicktest)",
 		},
 		{
-			"<leader>tP",
+			"<leader>TP",
 			function()
 				local qt = require("quicktest")
 
@@ -620,7 +646,7 @@ M.setup = function()
 			desc = "[T]est Run [P]revious",
 		},
 		{
-			"<leader>tW",
+			"<leader>TW",
 			function()
 				local qt = require("quicktest")
 
@@ -629,7 +655,7 @@ M.setup = function()
 			desc = "Toggle Test Window",
 		},
 		{
-			"<leader>tX",
+			"<leader>TX",
 			function()
 				local qt = require("quicktest")
 
@@ -639,7 +665,7 @@ M.setup = function()
 		},
 		-- coverage
 		{
-			"<leader>tc",
+			"<leader>Tc",
 			function()
 				local cov = require("coverage")
 				cov.load()
@@ -649,7 +675,7 @@ M.setup = function()
 			desc = "Coverage Toggle",
 		},
 		{
-			"<leader>tC",
+			"<leader>TC",
 			function()
 				local cov = require("coverage")
 				cov.load()

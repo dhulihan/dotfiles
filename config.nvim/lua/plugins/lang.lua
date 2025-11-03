@@ -55,7 +55,7 @@ return {
 			vim.lsp.config("ty", {
 				cmd = { "uvx", "ty", "server" },
 				filetypes = { "python" },
-				root_markers = { "ty.toml", "pyproject.toml", ".git" },
+				root_markers = { "ty.toml", "pyproject.toml" },
 			})
 			vim.lsp.enable("ty") -- enable ty lsp
 			--vim.lsp.enable("ty")
@@ -74,7 +74,7 @@ return {
 	},
 	{
 		"SmiteshP/nvim-navic",
-		desc = "code context from lsp, used for json navigration toolbar",
+		desc = "code context from lsp, used for json path navigation toolbar",
 		opts = {
 			click = true,
 		},

@@ -16,6 +16,7 @@ yt-dlp \
   --write-thumbnail \
   --extract-audio \
   --audio-format mp3 \
+  --audio-quality 0 `#0 is the best, 10 is the worst` \
   --no-mtime \
   --write-info-json \
   --output="$OUTPUT_NAME.%(ext)s" \
