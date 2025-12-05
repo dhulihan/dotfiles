@@ -34,7 +34,7 @@ ARTIST=$(cat $METADATA_FILE | jq -r ".artist // empty")
 DESCRIPTION=$(cat $METADATA_FILE | jq -r ".description // empty")
 
 # general sanitization/simplification
-TITLE=$(simplify-video-title "$TITLE")
+TITLE=$(simplify-audio-title "$TITLE")
 
 if [[ "$1" == *"instagram"* ]]; then
   ARTIST="${TITLE/Video by /}" # strip off prefix
