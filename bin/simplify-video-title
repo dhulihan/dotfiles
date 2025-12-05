@@ -1,0 +1,2 @@
+# simplify-video-title: Simplifies video titles by removing common extraneous phrases like "(Officical Video)", "[Lyrics]", etc.
+echo $1 | sed -E 's/\s*\(.*Official Video.*\)//I; s/\s*\(.*Official Audio.*\)//I; s/\s*\[.*Lyrics.*\]//I; s/\s*\(.*HD.*\)//I; s/\s*\[.*HD.*\]//I; s/\s*\(.*Music Video.*\)//I; s/\s*\(.*Official Visualizer.*\)//I; s/\s*\[.*Music Video.*\]//I; s/\s*-\s*Official Video\s*//I; s/\s*-\s*Lyrics\s*//I; s/\s*-\s*HD\s*//I; s/\s*-\s*Music Video\s*//I; s/\s+$//'

@@ -27,12 +27,14 @@ yt-dlp \
 METADATA_FILE="${OUTPUT_NAME}.info.json"
 RELEASE_YEAR=$(cat $METADATA_FILE | jq -r ".release_year // empty")
 
-# track may be better than title
 TRACK=$(cat $METADATA_FILE | jq -r ".track // empty")
 TITLE=$(cat $METADATA_FILE | jq -r ".title // empty")
 ALBUM=$(cat $METADATA_FILE | jq -r ".album // empty")
 ARTIST=$(cat $METADATA_FILE | jq -r ".artist // empty")
 DESCRIPTION=$(cat $METADATA_FILE | jq -r ".description // empty")
+
+# general sanitization/simplification
+TITLE=$(simplify-video-title "$TITLE")
 
 if [[ "$1" == *"instagram"* ]]; then
   ARTIST="${TITLE/Video by /}" # strip off prefix
