@@ -255,6 +255,9 @@ brew install pngpaste
 
 brew install krzko/tap/otelgen
 
+brew install copilot-cli
+
+brew install --cask keepassxc
 
 set +e
 say "brew is done"

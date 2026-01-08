@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#
+# Author: Dave Hulihan
+#
+# This tool adds a note to a KeePass database using keepassxc-cli. The first argument is the folder/group of the note. The second argument is the note. An entry will be created with the current date and time as the title.
+#
+# $ secure-note "My Journal" "This is a secure note."
+DB=$SECURE_NOTE_DB
+
+# check if db exists
+if [[ ! -f "$DB" ]]; then
+    echo "Database file not found: $DB"
+    exit 1
+fi
+
+read -s -p "Password: " PASS
+
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <folder-name> <note>"
+    exit 1
+fi
+
+FOLDER="$1"
+NOTE="$2"
+
+# Entry name is current timestamp
+TITLE="$(date +%F_%H:%M:%S)"
+
+# Full entry path, folder and title
+ENTRY_PATH="${FOLDER}/${TITLE}"
+
+# use HERESTRING since echo creates a process
+keepassxc-cli mkdir $DB "${FOLDER}" <<< "${PASS}"
+
+# Add entry, prompting for database password and entry password
+keepassxc-cli add --notes "$NOTE" $DB "$ENTRY_PATH" <<< "${PASS}"
