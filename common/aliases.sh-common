@@ -38,3 +38,4 @@ alias play-right-audio='ffplay -af "pan=stereo|c0=c1|c1=c1"'
 #alias pd-="popd"
 #
 alias d="depoch"
+alias sn="secure-note"

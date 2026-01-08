@@ -5,22 +5,25 @@ Contains helpful and highly opinionated tools, aliases, and configuration.
 ## Features
 
 * Supports `~/.config/<name>` directories
-	* Create a `config.<name>` directory in project root
+    * Create a `config.<name>` directory in project root
 * Supports bash, zsh, etc. Use the following extensions:
-	* `.sh` - Helper scripts
-	* `.sh-common` - Config files that work on bash AND zsh
-	* `.bash` - Loaded from .bashrc
-	* `.zsh` - Loaded from .zshrc
+    * `.sh` - Helper scripts
+    * `.sh-common` - Config files that work on bash AND zsh
+    * `.bash` - Loaded from .bashrc
+    * `.zsh` - Loaded from .zshrc
 * Fun helper functions & scripts
-	* directory language detector (`lang`)
-	* postgres query tab completion (`pq`) and CSV dumper (`pqdump`)
-	* `dev-session` - pulls latest changes and starts up a console/vim session in tmux
+    * directory language detector (`lang`)
+    * postgres query tab completion (`pq`) and CSV dumper (`pqdump`)
+    * `dev-session` - pulls latest changes and starts up a console/vim session in tmux
+    * `secure-note` - Create a sensitive note entry in a keepass database.
+    * `backup/restore` - Backup or restore a list of your files using restic.
+    * `lkill` - Kill all processing using a TCP port.
 * Colored iterm tabs based on directory/project
 * Private aliases, functions, and environment variables that aren't included in git (for work-specific goodies)
 * Backup and restore helpers
 * Vim Stuff
-	* Password/secret concealer
-	* Custom snippets
+    * Password/secret concealer
+    * Custom snippets
 
 ## Install
 
@@ -47,7 +50,7 @@ this script in `bin/`.
 
 Make sure this is present in .bash_profile:
 
-	source ~/.bashrc
+    source ~/.bashrc
 
 ## Topical
 
