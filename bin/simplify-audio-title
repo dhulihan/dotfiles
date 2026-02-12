@@ -1,4 +1,12 @@
 # simplify-audio-title: Simplifies audio titles by removing common extraneous phrases like "(Officical Music)", "[Lyrics]", etc.
 #
 # Note: this does not strip out "Video" from titles, because we want to know if the media came from a video vs audio-only source.
-echo $1 | sed -E 's/\s*\(.*Official Audio.*\)//I; s/\s*\[.*Lyrics.*\]//I; s/\s*\(.*HD.*\)//I; s/\s*\[.*HD.*\]//I; s/\s*\(.*Official Visualizer.*\)//I; s/\s*\(.*Visualizer.*\)//I; s/\s*\[.*Music Video.*\]//I; s/\s*-\s*Official Audio\s*//I; s/\s*-\s*Lyrics\s*//I; s/\s*-\s*HD\s*//I; s/\s+$//'
+set -o pipefail
+set -o errexit
+
+TITLE=$(echo $1 | sed -E 's/\s*\(.*Official Audio.*\)//I; s/\s*\[.*Lyrics.*\]//I; s/\s*\(.*HD.*\)//I; s/\s*\[.*HD.*\]//I; s/\s*\(.*Official Visualizer.*\)//I; s/\s*\(.*Visualizer.*\)//I; s/\s*\[.*Music Video.*\]//I; s/\s*-\s*Official Audio\s*//I; s/\s*-\s*Lyrics\s*//I; s/\s*-\s*HD\s*//I; s/\s+$//')
+
+# Strip newlines, allow whitespace and parens
+TITLE=$(echo $TITLE |  tr -d '\n' | sed 's/[^A-Z a-z()]//g')
+
+echo $TITLE

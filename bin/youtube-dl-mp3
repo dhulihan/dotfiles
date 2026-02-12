@@ -20,6 +20,7 @@ yt-dlp \
   --no-mtime \
   --write-info-json \
   --output="$OUTPUT_NAME.%(ext)s" \
+  --remote-components ejs:github `#used for solving js challenge, fetches from gh remotely. we have more options here.` \
   --no-playlist \
   $1
 
@@ -37,9 +38,14 @@ DESCRIPTION=$(cat $METADATA_FILE | jq -r ".description // empty")
 TITLE=$(simplify-audio-title "$TITLE")
 
 if [[ "$1" == *"instagram"* ]]; then
+  # for insta, title is "Video by <account>"
   ARTIST="${TITLE/Video by /}" # strip off prefix
   ALBUM=instagram
-  TRACK=$(echo -n "$DESCRIPTION" | head -c 20) # truncate
+  TRACK=$(simplify-audio-title "$DESCRIPTION" 2> /dev/null || date "+%s")
+
+  TRACK=$(echo -n $TRACK | head -c 20) # truncate
+
+  TRACK=${TRACK:-$(date +%s)} # if track is STILL empty, use epoch
 
   FILENAME=$(dasherize "$ARTIST $TRACK").mp3
 else
