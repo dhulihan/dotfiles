@@ -6,3 +6,5 @@ tags
 matches.tmp
 tmp/cache
 .git/
+
+**/.claude/settings.local.json

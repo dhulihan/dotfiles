@@ -1,0 +1,3 @@
+now=$(date +%s)          # Current time in seconds since epoch
+midnight=$(gdate -d 'today 00:00:00' +%s)  # Midnight today in seconds since epoch
+echo $((now - midnight))       # Difference is seconds since midnight

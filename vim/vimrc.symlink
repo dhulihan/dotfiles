@@ -178,7 +178,7 @@ endif
 
 " Line Numbers
 set number
-set relativenumber
+"set relativenumber
 
 " show as much of a line as possible
 set display+=lastline

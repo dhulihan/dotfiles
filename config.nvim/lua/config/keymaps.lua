@@ -518,6 +518,38 @@ M.setup = function()
 			desc = "toggle chat",
 			mode = { "i", "n", "v" },
 		},
+		{
+			"<leader>ti",
+			"<cmd>:set list!<CR>",
+			desc = "toggle invisibles",
+			mode = { "i", "n", "v" },
+		},
+
+		{ "<leader>tw", group = "toggle window", desc = "toggles for window-level visual UI elements" },
+		{
+			"<leader>twa",
+			"<cmd>:AerialToggle<CR>",
+			desc = "aerial/tagbar/table of contents",
+			mode = { "i", "n", "v" },
+		},
+		{
+			"<leader>twi",
+			"<cmd>:set list!<CR>",
+			desc = "invisibles",
+			mode = { "i", "n", "v" },
+		},
+		{
+			"<leader>twc",
+			"<cmd>:ColorColumnToggle<CR>",
+			desc = "color column",
+			mode = { "i", "n", "v" },
+		},
+		{
+			"<leader>twm",
+			"<cmd>:MinimapToggle<CR>",
+			desc = "minimap",
+			mode = { "i", "n", "v" },
+		},
 
 		-- Tests
 		{ "<leader>T", group = "test" },

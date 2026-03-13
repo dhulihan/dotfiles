@@ -13,4 +13,5 @@ if vim.g.neovide then
 	vim.keymap.set("v", "<D-v>", '"+P') -- Cmd + V to paste in visual mode
 	vim.keymap.set("c", "<D-v>", "<C-R>+") -- Cmd + V to paste in command mode
 	vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Cmd + V to paste in insert mode
+	vim.cmd("colors kanagawa")
 end

@@ -9,7 +9,25 @@
 # This it what we should open the go project with
 INIT_PROJECT_CMD="tmux-session"
 
+# sanitize input, https://github.com/bvwells/go-present -> bvwells/go-present and git@github.com:bvwells/go-present.git -> bvwells/go-present
+if [[ -z $1 ]] ; then
+  echo "usage: gp some-user/some-project"
+  return
+fi
+
+if [[ $1 == *".git" ]] ; then
+  # strip off trailing .git
+  set -- "${1%.git}"
+fi
+
+if [[ $1 == *"github.com"* ]] ; then
+  set -- "${1#*github.com[:\/]}"
+fi
+
 GIT_REPO="https://github.com/${1}.git"
+
+echo "cloning repo ($1): ${GIT_REPO}"
+return
 
 cd $PROJECTS
 git clone $GIT_REPO

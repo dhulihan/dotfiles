@@ -245,7 +245,7 @@ brew install --cask gimp
 brew tap incu6us/homebrew-tap
 brew install incu6us/homebrew-tap/goimports-reviser
 
-brew install agrinman/tap/tunnelto
+brew install tunneltodev/tap/tunnelto
 
 brew install mike-engel/jwt-cli/jwt-cli
 
@@ -258,6 +258,10 @@ brew install krzko/tap/otelgen
 brew install copilot-cli
 
 brew install --cask keepassxc
+
+brew install anomalyco/tap/opencode
+
+brew install witr
 
 set +e
 say "brew is done"
