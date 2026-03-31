@@ -508,8 +508,6 @@ M.setup = function()
 		-- Toggle
 		{ "<leader>t", group = "toggle" },
 
-		{ "<leader>tc", desc = "toggle completion", toggle_completion, mode = { "n", "i" } },
-
 		{ "<leader>ta", group = "toggle ai" },
 		{
 			"<leader>tac",
@@ -518,12 +516,9 @@ M.setup = function()
 			desc = "toggle chat",
 			mode = { "i", "n", "v" },
 		},
-		{
-			"<leader>ti",
-			"<cmd>:set list!<CR>",
-			desc = "toggle invisibles",
-			mode = { "i", "n", "v" },
-		},
+
+		{ "<leader>ti", group = "toggle insertion/editing tools and functionality" },
+		{ "<leader>tic", desc = "toggle completion", toggle_completion, mode = { "n", "i" } },
 
 		{ "<leader>tw", group = "toggle window", desc = "toggles for window-level visual UI elements" },
 		{

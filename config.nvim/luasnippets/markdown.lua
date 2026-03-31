@@ -89,6 +89,25 @@ return {
 			i(2, ""),
 		}, "$PARENT_INDENT"),
 	}),
+
+	s({
+		trig = "* qx",
+		name = "markdown_link",
+		dscr = "daily log entry, multiple categories",
+	}, {
+		t("* "),
+		f(function()
+			return os.date("%Y-%m-%d")
+		end, {}),
+		t({ "", "" }), -- newline
+		t({ "    * 10%", "" }),
+		t("        * "),
+		i(1),
+		t({ "", "" }), -- newline
+		t({ "    * 20%", "" }),
+		t("        * "),
+		i(2),
+	}),
 }, {
 	--s("autotrig", t("autotriggered, if enabled")),
 }

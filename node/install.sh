@@ -22,3 +22,6 @@ npm i -g @mermaid-js/mermaid-cli
 # install json lsp jsonls, used in nvim-navic
 npm i -g vscode-langservers-extracted
 
+
+npm i -g @fission-ai/openspec@latest
+

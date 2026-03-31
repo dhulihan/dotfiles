@@ -263,5 +263,7 @@ brew install anomalyco/tap/opencode
 
 brew install witr
 
+brew install bento
+
 set +e
 say "brew is done"
