@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# find-linear-ticket.sh
+# Usage: ./find-linear-ticket.sh <commit-sha>
+
+set -ex
+
+COMMIT_SHA="$1"
+
+if [ -z "$COMMIT_SHA" ]; then
+  echo "Usage: $0 <commit-sha>"
+  exit 1
+fi
+
+# Find the PR associated with the commit
+PR_URL=$(gh pr list --search "$COMMIT_SHA" --state all --json url --jq '.[0].url')
+
+if [ -z "$PR_URL" ]; then
+  echo "No PR found for commit $COMMIT_SHA"
+  exit 1
+fi
+
+echo "Found PR: $PR_URL"
+
+# Get the PR number
+PR_NUMBER=$(basename "$PR_URL")
+
+REPO=$(gh repo view --json nameWithOwner --jq '.nameWithOwner')
+OWNER=$(echo "$REPO" | cut -d'/' -f1)
+
+# Fetch PR body, comments, and review comments
+PR_BODY=$(gh pr view "$PR_URL" --json body --jq '.body')
+PR_COMMENTS=$(gh api "/repos/${OWNER}/${REPO}/issues/$PR_NUMBER/comments" | jq -r '.[].body')
+PR_REVIEW_COMMENTS=$(gh api "/repos/${OWNER}/${REPO}/pulls/$PR_NUMBER/comments" | jq -r '.[].body')
+
+echo $PR_REVIEW_COMMENTS
+
+# Combine all text sources
+ALL_TEXT=$(printf "%s\n%s\n%s" "$PR_BODY" "$PR_COMMENTS" "$PR_REVIEW_COMMENTS")
+
+# Extract the first Linear link
+LINEAR_URL=$(echo "$ALL_TEXT" | grep -Eo 'https://linear\.app/[a-zA-Z0-9\-/]+' | head -n 1)
+
+if [ -z "$LINEAR_URL" ]; then
+  echo "No Linear ticket link found in PR body or comments."
+  exit 1
+fi
+
+# Open in browser
+echo "Opening Linear ticket: $LINEAR_URL"
+open "$LINEAR_URL" 2>/dev/null || xdg-open "$LINEAR_URL"
