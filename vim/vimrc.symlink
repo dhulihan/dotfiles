@@ -1642,11 +1642,16 @@ function! MarkdownInternalLink()
   " move cursor under filename
   normal h
 
-  " open file using plasticboy/vim-markdown (which supports autosave via g:vim_markdown_autowrite via ge)
-  normal ge
+  " save file
+  w
 
-  " NOTE: ge does not support parens in filename, while si (toop) does.
-  "normal si(
+  " open file using plasticboy/vim-markdown (which supports autosave via g:vim_markdown_autowrite via ge)
+  " 2026-04-21 there's a bug in ge that is ignoring whitespace in filenames
+  "normal ge
+
+  " NOTE: ge does not support parens in filename, while si (toop) does. However,
+  " si does not autosave previous file
+  normal si(
 
   " open file classic mode
   "execute 'edit' l:filename
