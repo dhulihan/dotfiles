@@ -29,6 +29,25 @@ local function toggle_completion()
 	})
 end
 
+-- Reload all config function
+local function reload_config()
+	-- Clear all loaded modules under your config namespace
+	-- Replace "config" with your actual config module name (often your username or "user")
+	for name, _ in pairs(package.loaded) do
+		if name:match("^config") or name:match("^plugins") or name:match("^core") then
+			package.loaded[name] = nil
+		end
+	end
+
+	-- Re-source init.lua
+	dofile(vim.env.MYVIMRC)
+
+	vim.notify("Config reloaded!", vim.log.levels.INFO)
+end
+
+-- Expose as a command
+vim.api.nvim_create_user_command("ReloadConfig", reload_config, {})
+
 -- shell command output in floating window
 local function shell_in_float(cmd)
 	-- Create a new buffer (not listed, scratch)

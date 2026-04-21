@@ -88,7 +88,7 @@ return {
 	},
 	{
 		"zbirenbaum/copilot.lua",
-		--enabled = false, -- cannot turn off with :Copilot disable
+		enabled = false, -- not using nowadays
 		event = "InsertEnter",
 		cmd = "Copilot", -- lazy load on command
 		config = {
@@ -143,7 +143,7 @@ return {
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		--enabled = false,
+		enabled = false, -- not using much nowadays
 		branch = "main",
 		event = "BufEnter",
 		dependencies = {

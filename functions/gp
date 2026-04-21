@@ -24,10 +24,10 @@ if [[ $1 == *"github.com"* ]] ; then
   set -- "${1#*github.com[:\/]}"
 fi
 
-GIT_REPO="https://github.com/${1}.git"
+#GIT_REPO="https://github.com/${1}.git"
+GIT_REPO="git@github.com:/${1}.git"
 
 echo "cloning repo ($1): ${GIT_REPO}"
-return
 
 cd $PROJECTS
 git clone $GIT_REPO

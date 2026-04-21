@@ -477,6 +477,8 @@ return {
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
+		desc = "displays colors for hex values, etc",
+		enabled = false, -- deprecated
 		config = function()
 			require("colorizer").setup()
 		end,
@@ -831,6 +833,7 @@ return {
 	},
 	{
 		"wfxr/minimap.vim", -- sublime-style minimap
+		enabled = false,
 		config = function()
 			--vim.g.minimap_width = 10
 			--vim.g.minimap_auto_start = 1
@@ -847,5 +850,5 @@ return {
 	{ "vim-dotfiles", dev = true },
 	{ "vim-conceal-secrets", dev = true },
 	{ "vim-notes", dev = true },
-	{ dir = "~/.private-vim-plugin" }, -- private plugin(s), `ln -s <plugin-dir> ~/.private-plugin.vim
+	--{ dir = "~/.private-vim-plugin" }, -- private plugin(s), `ln -s <plugin-dir> ~/.private-plugin.vim
 }

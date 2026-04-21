@@ -1,4 +1,4 @@
-set -e
+#set -e
 brew install ack
 brew install baresip
 brew install bat
