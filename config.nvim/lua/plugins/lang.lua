@@ -152,6 +152,7 @@ return {
 	{ "cespare/vim-toml" },
 	{
 		"preservim/vim-markdown",
+		enabled = false,
 		config = function()
 			vim.g.vim_markdown_no_default_key_mappings = 1
 			vim.g.vim_markdown_folding_disabled = 1
@@ -193,7 +194,7 @@ return {
 	},
 	{ "chrisbra/csv.vim" },
 	{ "dhulihan/vim-rfc" },
-	{ "kamailio/vim-kamailio-syntax", enabled = false },
+	{ "kamailio/vim-kamailio-syntax" },
 	{ "bufbuild/vim-buf" },
 	--{ "trayo/vim-ginkgo-snippets" },
 	{ "buoto/gotests-vim" },
