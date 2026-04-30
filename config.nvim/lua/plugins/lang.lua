@@ -158,6 +158,12 @@ return {
 			vim.g.vim_markdown_override_foldtext = 0
 			vim.g.vim_markdown_conceal = 0 -- disable syntax concealing
 			vim.g.vim_markdown_conceal_code_blocks = 0 -- disable conceal for fences
+
+			-- Do not require .md extensions for Markdown links
+			vim.g.vim_markdown_no_extensions_in_markdown = 1
+
+			-- write on follow with ge
+			vim.g.vim_markdown_autowrite = 1
 		end,
 	},
 	{

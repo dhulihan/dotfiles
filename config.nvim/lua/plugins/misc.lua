@@ -850,5 +850,5 @@ return {
 	{ "vim-dotfiles", dev = true },
 	{ "vim-conceal-secrets", dev = true },
 	{ "vim-notes", dev = true },
-	--{ dir = "~/.private-vim-plugin" }, -- private plugin(s), `ln -s <plugin-dir> ~/.private-plugin.vim
+	{ dir = "~/.private-vim-plugin" }, -- private plugin(s), `ln -s <plugin-dir> ~/.private-plugin.vim
 }

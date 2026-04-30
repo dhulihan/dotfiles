@@ -30,8 +30,8 @@ return {
 	}),
 
 	s({
-		trig = "`",
-		name = "fenced code block",
+		trig = "`o",
+		name = "fenced code block (old)",
 	}, {
 		isn(0, {
 			t({ "", "" }),
@@ -43,21 +43,47 @@ return {
 		}, "$PARENT_INDENT"),
 	}),
 
-	-- create fenced code block from clipboard
-	-- WARNING: this breaks when clipboard contains lua code. Something is getting evaluated.
-	-- https://github.com/L3MON4D3/LuaSnip/discussions/1272
-	s("`p", {
+	s({
+		trig = "`",
+		name = "fenced code block from clipboard (indented)",
+	}, {
 		isn(0, {
 			t({ "", "" }),
 			t({ "\t```" }),
 			i(1, "language"),
 			t({ "", "\t" }),
 			f(function()
-				--local clipboard = vim.fn.getreg("*")
-				return get_reg("*")
-			end, {}),
+				local clip = vim.fn.getreg("+")
+				-- Strip trailing newline so the closing fence sits on its own line cleanly
+				clip = clip:gsub("\n$", "")
+				return vim.split(clip, "\n", { plain = true })
+			end),
 			t({ "", "\t```" }),
 		}, "$PARENT_INDENT"),
+	}),
+
+	-- luasnip isn't auto indenting, so we're going to create a separate snipped for root level (start of line) code blocks
+	s({
+		trig = "`p",
+		name = "Paste clipboard into fenced code block",
+		dscr = "GitHub-style fenced code block with clipboard contents",
+		--snippetType = "autosnippet",
+		--condition = function(line_to_cursor)
+		--return line_to_cursor:match("^%s*$")
+		--end,
+	}, {
+		t({ "", "" }),
+		t("```"),
+		i(1, "language"),
+		t({ "", "" }),
+		f(function()
+			local clip = vim.fn.getreg("+")
+			-- Strip trailing newline so the closing fence sits on its own line cleanly
+			clip = clip:gsub("\n$", "")
+			return vim.split(clip, "\n", { plain = true })
+		end),
+		t({ "", "```" }),
+		i(0),
 	}),
 
 	s({
