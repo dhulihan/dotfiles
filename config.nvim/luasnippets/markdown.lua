@@ -56,7 +56,14 @@ return {
 				local clip = vim.fn.getreg("+")
 				-- Strip trailing newline so the closing fence sits on its own line cleanly
 				clip = clip:gsub("\n$", "")
-				return vim.split(clip, "\n", { plain = true })
+				local lines = vim.split(clip, "\n", { plain = true })
+				-- Indent subsequent lines to match the first line's indentation
+				for idx, line in ipairs(lines) do
+					if idx > 1 then
+						lines[idx] = "\t" .. line
+					end
+				end
+				return lines
 			end),
 			t({ "", "\t```" }),
 		}, "$PARENT_INDENT"),
