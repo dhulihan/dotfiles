@@ -1,3 +1,6 @@
+# capture shell start time to measure total load time
+ZSH_START_TIME=$(gdate +%s.%N)
+
 # if we already loaded, perform verbose logging
 if [[ $ZSH_LOADED == true ]] ; then
 	export LOG_LEVEL=${LOG_LEVEL:-info}
@@ -75,15 +78,22 @@ do
   source $file
 done
 
+# enable bash completion for tools that only have bash completion support (aws, etc)
+debug "bashcompinit"
+autoload -U +X bashcompinit && bashcompinit
+
 # initialize autocomplete here, otherwise functions won't be loaded
 # only reload compinit every 24h
 debug "compinit check"
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  warn "perfoming compinit, this can be slow"
-  compinit
-done
-compinit -C
+# Rebuild the dump at most once every 24h; otherwise load the cached one fast.
+_zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+if [[ -n "$_zcompdump"(#qN.mh+24) ]]; then
+  compinit -d "$_zcompdump"          # full scan + security check + rewrite dump
+else
+  compinit -C -d "$_zcompdump"       # skip checks, just load the dump — fast
+fi
+unset _zcompdump
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
@@ -111,6 +121,11 @@ debug "$HOME/.fzf.zsh"
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 export ZSH_LOADED=true
+
+# print total shell load time
+ZSH_END_TIME=$(gdate +%s.%N)
+ZSH_LOAD_TIME=$(echo "$ZSH_END_TIME - $ZSH_START_TIME" | bc)
+info "shell loaded in ${ZSH_LOAD_TIME}s"
 
 if [[ $LOG_LEVEL == "trace" ]]; then
 	# finish profiling

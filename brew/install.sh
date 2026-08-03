@@ -14,6 +14,7 @@ brew install curl
 brew install dep
 brew install direnv
 brew install displayplacer
+brew install duckdb
 brew install editorconfig
 brew install elixir
 brew install eqnxio/equinox/release-tool
@@ -148,7 +149,9 @@ brew tap dhulihan/grump
 brew install grump
 
 # wireshark
-brew install --cask wireshark
+brew install wireshark wireshark-app
+
+brew install tree-sitter tree-sitter-cli
 
 # gcloud
 brew tap caskroom/cask
@@ -264,6 +267,17 @@ brew install anomalyco/tap/opencode
 brew install witr
 
 brew install bento
+
+brew install ariga/tap/atlas
+
+# mysql cli alternative
+brew install mycli
+
+brew install xo/xo/usql
+
+brew install awscurl
+
+brew install --cask macdown
 
 set +e
 say "brew is done"
