@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Record audio from the macOS default input device, then play it back.
+
+set -euo pipefail
+
+# Optional first arg: recording length in seconds. Omit to record until Ctrl-C.
+duration="${1:-}"
+
+out="${TMPDIR:-/tmp}/record-audio-$(date +%s).aac"
+
+# ffmpeg's avfoundation ":default" input taps the system default audio device.
+args=(-hide_banner -loglevel warning -f avfoundation -i ":default")
+if [ -n "$duration" ]; then
+  args+=(-t "$duration")
+  echo "Recording for ${duration}s..."
+else
+  echo "Recording... press Ctrl-C to stop."
+fi
+
+# ffmpeg exits non-zero when stopped via Ctrl-C; that's expected here.
+ffmpeg "${args[@]}" "$out" || true
+
+echo "Recorded to: $out"
+echo "Playing back..."
+# add -autoexit if desired
+exec ffplay -hide_banner -loglevel warning -autoexit -showmode 2 "$out"
