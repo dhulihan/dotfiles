@@ -9,11 +9,13 @@ if [[ $RESPONSE_CODE == 200 ]] ; then
 
   # filter out annoying patterns
   FILTERED_TITLE=${DECODED_TITLE//"GitHub -"/}
+  FILTERED_TITLE=${FILTERED_TITLE//" · GitHub"/}
 
   # discard any text after a pipe or hyphen or em/en dash
   FILTERED_TITLE=$(echo "$FILTERED_TITLE" | sed 's/ [|—–-] .*$//')
 
   echo $FILTERED_TITLE
 else
-  echo $RESPONSE_CODE
+  #echo $RESPONSE_CODE
+  echo "" # don't show anything
 fi

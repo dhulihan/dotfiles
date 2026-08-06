@@ -241,6 +241,7 @@ augroup filetypes
   autocmd BufNewFile,BufRead *.yaml.dockercompose,*.yaml.tmpl set filetype=yaml
   autocmd BufNewFile,BufRead *.lua.j2 set filetype=lua
   autocmd BufNewFile,BufRead .envrc set filetype=sh
+  autocmd BufNewFile,BufRead *.cnf set filetype=sh
 
   " filetype-specific config
   autocmd Filetype noft setlocal number
@@ -258,7 +259,7 @@ augroup filetypes
   autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab textwidth=80
   autocmd FileType xml setlocal ts=4 sts=4 sw=4 expandtab
-  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType yaml,justfile setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType typescript setlocal ts=2 sts=2 sw=2 expandtab
@@ -449,8 +450,12 @@ tnoremap <PageDown> <C-W>N<PageDown>
 nnoremap <Leader>x :Dispatch<CR>
 nnoremap <Leader><tab> :Cdp<Space>
 
-" super literal, case insentive grep search. supports `--foo`
+" case insentive grep search. supports `--foo`
 nnoremap <Leader><Enter> :Rg -F -i -- ""<Left>
+
+" super literal, case sentive grep search. supports `--foo`. Good for searching
+" abbreveviations
+nnoremap <Leader>' :Rg -F -- ""<Left>
 
 " fast splitting, vertical split, then fuzzy file search
 "nnoremap <Leader>; :vsp<CR>:Files<CR>
@@ -1300,16 +1305,16 @@ let g:ale_lint_on_filetype_changed = 0
 let g:ale_linters_explicit = 1
 
 " ale convenience commands
-command! ALEDisableFixers       let g:ale_fix_on_save=0
-command! ALEEnableFixers        let g:ale_fix_on_save=1
-command! ALEDisableFixersBuffer let b:ale_fix_on_save=0
-command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
+"command! ALEDisableFixers       let g:ale_fix_on_save=0
+"command! ALEEnableFixers        let g:ale_fix_on_save=1
+"command! ALEDisableFixersBuffer let b:ale_fix_on_save=0
+"command! ALEEnableFixersBuffer  let b:ale_fix_on_save=0
 
 " don't autofix these filetypes
-augroup ale_fixers_disabled
-  autocmd!
-  autocmd FileType sql,json ALEDisableFixersBuffer
-augroup END
+"augroup ale_fixers_disabled
+  "autocmd!
+  "autocmd FileType sql,json ALEDisableFixersBuffer
+"augroup END
 " ale END ---------------------------------------------------
 "
 

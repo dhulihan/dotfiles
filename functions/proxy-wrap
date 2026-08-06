@@ -1,0 +1,21 @@
+# start up a pg proxy run a command, and then kill proxy when command finishes
+# $ proxy-wrap psql -d mydatabase
+
+# start up proxy cmd in background
+eval "${PROXY_CMD:?} &"
+
+PROXYPID=$!
+
+# wait for port to become available
+while ! nc -z localhost $PROXY_PORT; do
+  sleep 0.1 # wait for 1/10 of the second before check again
+  echo "`date +%s` waiting for $PROXY_PORT"
+done
+
+# run wrapped command here
+"$@"
+
+# kill the proxy
+kill $PROXYPID
+
+return

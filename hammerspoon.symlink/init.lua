@@ -35,6 +35,7 @@ end
 local function arrangeBrave(laptopFrame, laptopScreen, externalFrame, externalScreen)
 	local brave = hs.application.get("Brave Browser")
 	if not brave then
+		hs.alert.show("Brave Browser is not running")
 		return
 	end
 
@@ -53,6 +54,8 @@ local function arrangeBrave(laptopFrame, laptopScreen, externalFrame, externalSc
 	if calendarWin then
 		calendarWin:moveToScreen(laptopScreen)
 		calendarWin:setFrame(laptopFrame)
+	else
+		hs.alert.show("Calendar window not found")
 	end
 
 	if mailWin then
@@ -63,6 +66,8 @@ local function arrangeBrave(laptopFrame, laptopScreen, externalFrame, externalSc
 			w = externalFrame.w / 2,
 			h = externalFrame.h,
 		})
+	else
+		hs.alert.show("Mail/Chat window not found")
 	end
 end
 
@@ -83,6 +88,33 @@ local function arrangeSlack(externalFrame, externalScreen)
 			h = externalFrame.h,
 		})
 	end
+end
+
+local function arrangeClaude(externalFrame, externalScreen)
+	local claudeWin = nil
+	for _, win in ipairs(hs.window.allWindows()) do
+		local title = win:title() or ""
+		if title:find("Claude") then
+			claudeWin = win
+			break
+		end
+	end
+
+	if not claudeWin then
+		hs.alert.show("Claude window not found")
+		return
+	end
+
+	local w = externalFrame.w * 0.5
+	local h = externalFrame.h * 0.7
+
+	claudeWin:moveToScreen(externalScreen)
+	claudeWin:setFrame({
+		x = externalFrame.x + (externalFrame.w - w) / 2,
+		y = externalFrame.y + (externalFrame.h - h) / 2,
+		w = w,
+		h = h,
+	})
 end
 
 hs.hotkey.bind({ "cmd", "ctrl", "shift" }, "r", function()
@@ -115,6 +147,7 @@ hs.hotkey.bind({ "cmd", "ctrl", "shift" }, "w", function()
 	arrangeIterm(externalFrame, externalScreen)
 	arrangeBrave(laptopFrame, laptopScreen, externalFrame, externalScreen)
 	arrangeSlack(externalFrame, externalScreen)
+	arrangeClaude(externalFrame, externalScreen)
 
 	hs.alert.show("Windows arranged")
 end)

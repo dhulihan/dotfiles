@@ -273,10 +273,14 @@ return {
 				["<Leader>5"] = { "actions.close", mode = "n" },
 				--["<C-c>"] = { "actions.close", mode = "n" },
 				["<C-c>"] = false,
+				["<C-s>"] = false,
 			},
 			view_options = {
 				-- Show files and directories that start with "."
 				show_hidden = true,
+			},
+			float = {
+				border = "rounded",
 			},
 		},
 		-- Optional dependencies

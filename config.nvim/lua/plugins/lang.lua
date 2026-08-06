@@ -130,6 +130,12 @@ return {
 				python = { "autopep8", "isort" },
 			}
 
+			-- don't auto fix these, they can still be fixed with :ALEFix manually
+			vim.g.ale_fix_on_save_ignore = {
+				"sql",
+				"json",
+			}
+
 			vim.g.disabled_ale_fixers = {
 				python = { "black" },
 				ruby = { "rufo" },
@@ -144,6 +150,7 @@ return {
 			--vim.g.ale_use_neovim_diagnostics_api = 0 -- disable diagnostic mode, affects other settings.
 		end,
 	},
+	{ "MTDL9/vim-log-highlighting" }, -- log highlighting
 	--{ "maximbaz/lightline-ale" },
 	{ "vim-scripts/dbext.vim" },
 	{ "sebdah/vim-delve" },
@@ -152,7 +159,6 @@ return {
 	{ "cespare/vim-toml" },
 	{
 		"preservim/vim-markdown",
-		enabled = false,
 		config = function()
 			vim.g.vim_markdown_no_default_key_mappings = 1
 			vim.g.vim_markdown_folding_disabled = 1
@@ -163,9 +169,19 @@ return {
 			-- Do not require .md extensions for Markdown links
 			vim.g.vim_markdown_no_extensions_in_markdown = 1
 
+			vim.g.vim_markdown_auto_insert_bullets = 1
+
 			-- write on follow with ge
 			vim.g.vim_markdown_autowrite = 1
 		end,
+	},
+	{
+		"tadmccorkle/markdown.nvim",
+		enabled = false, -- 2026-05-11 no auto insertion of list items
+		ft = "markdown", -- or 'event = "VeryLazy"'
+		opts = {
+			-- configuration here or empty for defaults
+		},
 	},
 	{
 		"iamcco/markdown-preview.nvim",

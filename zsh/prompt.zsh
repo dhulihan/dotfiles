@@ -96,6 +96,15 @@ rb_prompt() {
   fi
 }
 
+aws_prompt() {
+  if ! [[ -z "$AWS_PROFILE" ]]
+  then
+    echo "%{$fg_bold[yellow]%}☁ $AWS_PROFILE%{$reset_color%} "
+  else
+    echo ""
+  fi
+}
+
 directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
@@ -111,7 +120,7 @@ random_emoji() {
 
 
 set_prompt() {
-	export PROMPT=$'\n$(random_emoji) $(datestamp) %(?.%F{green}.%F{red}%?)%f\n$(directory_name) $(git_dirty) $(git_commit) $(git_commit_timestamp)$(need_push)\n%F{242}$ %f'
+	export PROMPT=$'\n$(random_emoji) $(datestamp) %(?.%F{green}.%F{red}%?)%f$(aws_prompt)\n$(directory_name) $(git_dirty) $(git_commit) $(git_commit_timestamp)$(need_push)\n%F{242}$ %f'
 }
 
 precmd() {
