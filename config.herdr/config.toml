@@ -1,0 +1,19 @@
+[keys]
+# note: these conflict with tmux
+new_tab = "prefix+c"
+next_tab = "shift+right"
+previous_tab = "shift+left"
+next_workspace = "shift+down"
+previous_workspace = "shift+up"
+
+
+
+[ui.toast]
+delivery = "system"
+#delivery = "herdr"
+delay_seconds = 1
+
+[ui.sound]
+#path = "sounds/notification.mp3"
+done_path = "sounds/done.mp3"
+request_path = "sounds/request.mp3"
