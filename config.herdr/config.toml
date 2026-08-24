@@ -27,10 +27,10 @@ split_horizontal = "prefix+\""
 
 # new workspace: pick a directory via fzf, then create the workspace there
 [[keys.command]]
-key = "prefix+t"
+key = "prefix+n"
 type = "popup"
 command = "new-herdr-workspace"
-description = "new workspace in dir"
+description = "new workspace for a selected directory"
 width = "60%"
 height = "60%"
 

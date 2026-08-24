@@ -14,4 +14,7 @@ list_dirs() {
 
 dir=$(list_dirs | awk '!seen[$0]++' | fzf --prompt="new workspace in > ") || exit 0
 [ -n "${dir:-}" ] || exit 0
-"$h" workspace create --cwd "$dir" --label "$(basename "$dir")" --focus
+emoji=$(emoji-hash "$dir" 2>/dev/null || true)
+label="$(basename "$dir")"
+[ -n "$emoji" ] && label="$emoji $label"
+"$h" workspace create --cwd "$dir" --label "$label" --focus
