@@ -1,19 +1,59 @@
 [keys]
 # note: these conflict with tmux
-new_tab = "prefix+c"
-next_tab = "shift+right"
-previous_tab = "shift+left"
+
+# workspaces
 next_workspace = "shift+down"
 previous_workspace = "shift+up"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+switch_workspace = "prefix+1..9"   # optional indexed binding, e.g. "prefix+shift+1..9"
 
+# tabs
+new_tab = "prefix+c"
+previous_tab = "shift+left"
+next_tab = "shift+right"
+move_tab_previous = "ctrl+shift+left"   # optional, e.g. "alt+shift+left" moves the tab toward the front
+move_tab_next = "ctrl+shift+right"       # optional, e.g. "alt+shift+right" moves the tab toward the back
+# switch_tab = "prefix+1..9"
 
+# panes
+focus_pane_up = "prefix+up"
+focus_pane_down = "prefix+down"
+focus_pane_left = "prefix+left"
+focus_pane_right = "prefix+right"
+close_pane = "prefix+k"
+
+split_horizontal = "prefix+\""
+
+# new workspace: pick a directory via fzf, then create the workspace there
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "new-herdr-workspace"
+description = "new workspace in dir"
+width = "60%"
+height = "60%"
+
+# reload herdr config
+[[keys.command]]
+key = "prefix+R"
+type = "shell"
+command = 'herdr server reload-config; rc=$?; if [ "$rc" -eq 0 ]; then herdr notification show "config reloaded" --body "exit $rc" --sound done; else herdr notification show "config reload failed" --body "exit $rc" --sound request; fi'
+description = "reload herdr config"
+
+[ui]
+tab_bar_position = "bottom"
+prompt_new_tab_name = false
+agent_panel_sort = "priority"
+show_agent_labels_on_pane_borders = false
 
 [ui.toast]
-delivery = "system"
-#delivery = "herdr"
+#delivery = "system"
+delivery = "herdr"
 delay_seconds = 1
 
 [ui.sound]
 #path = "sounds/notification.mp3"
 done_path = "sounds/done.mp3"
-request_path = "sounds/request.mp3"
+#request_path = "sounds/request.mp3"
+request_path = "sounds/tick.mp3"

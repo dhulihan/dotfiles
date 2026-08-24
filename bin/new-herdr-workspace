@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+h="${HERDR_BIN_PATH:-herdr}"
+
+# list immediate subdirectories of every CDPATH entry (the dirs `cd <name>` resolves)
+list_dirs() {
+  IFS=:
+  for d in ${CDPATH:-}; do
+    case "$d" in ""|.) continue ;; esac
+    [ -d "$d" ] || continue
+    fd --type d --max-depth 1 . "$d" 2>/dev/null
+  done
+}
+
+dir=$(list_dirs | awk '!seen[$0]++' | fzf --prompt="new workspace in > ") || exit 0
+[ -n "${dir:-}" ] || exit 0
+"$h" workspace create --cwd "$dir" --label "$(basename "$dir")" --focus
