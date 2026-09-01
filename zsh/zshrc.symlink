@@ -132,5 +132,12 @@ if [[ $LOG_LEVEL == "trace" ]]; then
 	zprof
 fi
 
+# show selection box on completion items
+zstyle ':completion:*' menu select
+
+# reverse select
+bindkey '^[[Z' reverse-menu-complete              # main keymap: step back through matches
+bindkey -M menuselect '^[[Z' reverse-menu-complete # inside the menu
+
 # set up dev session on cd
 chpwd_functions=(${chpwd_functions[@]} "dev-session")
