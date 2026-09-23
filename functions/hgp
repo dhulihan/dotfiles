@@ -1,0 +1,46 @@
+#!/bin/bash -ex
+#
+# download a github project into default project dir and open it
+# in a new herdr workspace.
+# Author: Dave Hulihan
+#
+# $ hgp some-user/some-project.git
+
+# sanitize input, https://github.com/bvwells/go-present -> bvwells/go-present and git@github.com:bvwells/go-present.git -> bvwells/go-present
+if [[ -z $1 ]] ; then
+  echo "usage: hgp some-user/some-project"
+  return
+fi
+
+if [[ $1 == *".git" ]] ; then
+  # strip off trailing .git
+  set -- "${1%.git}"
+fi
+
+if [[ $1 == *"github.com"* ]] ; then
+  set -- "${1#*github.com[:\/]}"
+fi
+
+#GIT_REPO="https://github.com/${1}.git"
+GIT_REPO="git@github.com:/${1}.git"
+
+echo "cloning repo ($1): ${GIT_REPO}"
+
+cd $PROJECTS
+git clone $GIT_REPO
+
+if [[ $? -ne 0 ]] ; then
+  warn "failed to clone repo ${GIT_REPO}"
+  return
+fi
+
+PROJECT_NAME=$(basename $1)
+cd $PROJECT_NAME
+
+DST="${PROJECTS}/${PROJECT_NAME}"
+
+# open a new herdr workspace for the project (shell + nvim tabs),
+# but don't nest a workspace if we're already inside herdr.
+if [[ "${HERDR_ENV:-}" != "1" ]] ; then
+  herdr-open-workspace "$DST"
+fi

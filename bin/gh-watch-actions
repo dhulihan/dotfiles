@@ -1,0 +1,177 @@
+#!/usr/bin/env bash
+
+# Watch GitHub Actions for the current branch
+# Usage: ./watch-actions.sh [interval_seconds] [--sound]
+#
+#   --sound   Announce a spoken (TTS) message when a run succeeds or fails.
+
+set -euo pipefail
+
+INTERVAL=10
+SOUND=0
+
+for arg in "$@"; do
+  case "$arg" in
+    --sound)
+      SOUND=1
+      ;;
+    *)
+      INTERVAL="$arg"
+      ;;
+  esac
+done
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Convert an ISO 8601 timestamp into a relative duration like "10s ago"
+relative_time() {
+  local ts="$1"
+  local then now diff
+  then=$(date -u -j -f "%Y-%m-%dT%H:%M:%SZ" "$ts" +%s 2>/dev/null) || { echo "$ts"; return; }
+  now=$(date -u +%s)
+  diff=$(( now - then ))
+  if [ "$diff" -lt 0 ]; then diff=0; fi
+  if [ "$diff" -lt 60 ]; then
+    echo "${diff}s ago"
+  elif [ "$diff" -lt 3600 ]; then
+    echo "$(( diff / 60 ))m ago"
+  elif [ "$diff" -lt 86400 ]; then
+    echo "$(( diff / 3600 ))h ago"
+  else
+    echo "$(( diff / 86400 ))d ago"
+  fi
+}
+
+# Lock dir so TTS messages play sequentially instead of overlapping
+SPEAK_LOCK="/tmp/watch-actions-speak.lock"
+rmdir "$SPEAK_LOCK" 2>/dev/null || true
+
+# Speak a message via TTS (best-effort, never fails the script)
+# Backgrounded so it doesn't block polling, but serialized on a lock so
+# multiple announcements don't talk over each other.
+speak() {
+  [ "$SOUND" -eq 1 ] || return 0
+  local msg="$1"
+  (
+    while ! mkdir "$SPEAK_LOCK" 2>/dev/null; do sleep 0.2; done
+    trap 'rmdir "$SPEAK_LOCK" 2>/dev/null' EXIT
+    if command -v say >/dev/null 2>&1; then
+      say "$msg" >/dev/null 2>&1
+    elif command -v spd-say >/dev/null 2>&1; then
+      spd-say "$msg" >/dev/null 2>&1
+    fi
+  ) &
+}
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+GRAY='\033[0;90m'
+NC='\033[0m' # No Color
+
+# Track previous failures to detect new ones
+BRANCH_SLUG=$(echo "$BRANCH" | sed 's/\//-/g')
+PREV_FAILURES_FILE="/tmp/watch-actions-failures-$BRANCH_SLUG.txt"
+touch "$PREV_FAILURES_FILE"
+
+# Track runs we've already announced completion for (used with --sound)
+PREV_COMPLETED_FILE="/tmp/watch-actions-completed-$BRANCH_SLUG.txt"
+touch "$PREV_COMPLETED_FILE"
+
+echo "Watching GitHub Actions for branch: $BRANCH"
+echo "Polling every $INTERVAL seconds (Ctrl+C to stop)"
+echo ""
+
+while true; do
+  clear
+  echo -e "${BLUE}=== GitHub Actions Status for $BRANCH ===${NC}"
+  echo "Last updated: $(date)"
+  echo ""
+
+  # Get runs as JSON
+  RUNS=$(gh run list --branch "$BRANCH" --limit 5 --json status,conclusion,workflowName,displayTitle,createdAt,updatedAt,url)
+
+  # Only keep runs active within the last 15 minutes
+  CUTOFF=$(( $(date -u +%s) - 900 ))
+  RUNS=$(echo "$RUNS" | jq --argjson cutoff "$CUTOFF" '[.[] | select((.updatedAt | fromdateiso8601) >= $cutoff)]')
+
+  # Collect current failures
+  CURRENT_FAILURES_FILE="/tmp/watch-actions-current-failures-$BRANCH_SLUG.txt"
+  : > "$CURRENT_FAILURES_FILE"
+
+  # Collect current completed runs (for --sound announcements)
+  CURRENT_COMPLETED_FILE="/tmp/watch-actions-current-completed-$BRANCH_SLUG.txt"
+  : > "$CURRENT_COMPLETED_FILE"
+
+  # Process each run (reverse order to show newest first)
+  echo "$RUNS" | jq -r 'reverse | .[] | @json' | while IFS= read -r run; do
+    STATUS=$(echo "$run" | jq -r '.status')
+    CONCLUSION=$(echo "$run" | jq -r '.conclusion')
+    WORKFLOW=$(echo "$run" | jq -r '.workflowName')
+    TITLE=$(echo "$run" | jq -r '.displayTitle')
+    CREATED=$(echo "$run" | jq -r '.createdAt')
+    UPDATED=$(echo "$run" | jq -r '.updatedAt')
+    URL=$(echo "$run" | jq -r '.url')
+
+    # Determine icon and color
+    if [ "$STATUS" = "completed" ]; then
+      # Track completed runs so we only announce each once
+      echo "$URL" >> "$CURRENT_COMPLETED_FILE"
+      IS_NEW_COMPLETION=0
+      if ! grep -q "$URL" "$PREV_COMPLETED_FILE" 2>/dev/null; then
+        IS_NEW_COMPLETION=1
+      fi
+
+      case "$CONCLUSION" in
+        success)
+          ICON="${GREEN}✓${NC}"
+          COLOR="$GREEN"
+          if [ "$IS_NEW_COMPLETION" -eq 1 ]; then
+            speak "GitHub Action succeeded: $WORKFLOW"
+          fi
+          ;;
+        failure)
+          ICON="${RED}✗${NC}"
+          COLOR="$RED"
+          # Track current failure
+          echo "$URL" >> "$CURRENT_FAILURES_FILE"
+          # Open URL if it's a new failure
+          if ! grep -q "$URL" "$PREV_FAILURES_FILE" 2>/dev/null; then
+            open "$URL" 2>/dev/null || echo "Failed to open URL: $URL"
+          fi
+          if [ "$IS_NEW_COMPLETION" -eq 1 ]; then
+            speak "GitHub Action failed: $WORKFLOW"
+          fi
+          ;;
+        cancelled)
+          ICON="${YELLOW}⊘${NC}"
+          COLOR="$YELLOW"
+          ;;
+        *)
+          ICON="${GRAY}?${NC}"
+          COLOR="$GRAY"
+          ;;
+      esac
+    else
+      ICON="${BLUE}⏳${NC}"
+      COLOR="$BLUE"
+    fi
+
+    # Print formatted output
+    echo -e "$ICON ${COLOR}${WORKFLOW}${NC} - ${TITLE}"
+    echo -e "   Status: ${COLOR}${STATUS}${NC}$([ "$CONCLUSION" != "null" ] && echo " (${COLOR}${CONCLUSION}${NC})")"
+    echo -e "   ${GRAY}Created: ${CREATED} ($(relative_time "$CREATED"))${NC}"
+    echo -e "   ${GRAY}Updated: ${UPDATED} ($(relative_time "$UPDATED"))${NC}"
+    echo -e "   ${GRAY}URL: ${URL}${NC}"
+    echo ""
+  done
+
+  # Update previous failures for next iteration
+  mv "$CURRENT_FAILURES_FILE" "$PREV_FAILURES_FILE" 2>/dev/null || true
+  mv "$CURRENT_COMPLETED_FILE" "$PREV_COMPLETED_FILE" 2>/dev/null || true
+
+  echo -e "${GRAY}Refreshing in $INTERVAL seconds...${NC}"
+  sleep "$INTERVAL"
+done

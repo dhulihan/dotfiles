@@ -1,6 +1,8 @@
 #!/bin/sh
 set -eu
-h="${HERDR_BIN_PATH:-herdr}"
+
+# resolve sibling scripts relative to this file (popup PATH may be minimal)
+bindir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
 # list immediate subdirectories of every CDPATH entry (the dirs `cd <name>` resolves)
 list_dirs() {
@@ -14,7 +16,4 @@ list_dirs() {
 
 dir=$(list_dirs | awk '!seen[$0]++' | fzf --prompt="new workspace in > ") || exit 0
 [ -n "${dir:-}" ] || exit 0
-emoji=$(emoji-hash "$dir" 2>/dev/null || true)
-label="$(basename "$dir")"
-[ -n "$emoji" ] && label="$emoji $label"
-"$h" workspace create --cwd "$dir" --label "$label" --focus
+"$bindir/herdr-open-workspace" "$dir"

@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# Prompt for a github repo, clone it into $PROJECTS, then open a herdr
+# workspace for it (shell + nvim tabs). This is the herdr-popup counterpart
+# to the `hgp` shell function.
+#
+# Usage: clone-herdr-project [user/project | git url]
+#   with no arg it prompts for the repo (intended for a herdr popup).
+set -eu
+
+# resolve sibling scripts relative to this file (popup PATH may be minimal)
+bindir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+PATH="$bindir:$PATH"
+
+h="${HERDR_BIN_PATH:-herdr}"
+PROJECTS="${PROJECTS:-$HOME/Projects}"
+
+repo="${1:-}"
+if [ -z "$repo" ]; then
+  printf 'clone repo (user/project or git url): '
+  read -r repo || exit 0
+fi
+[ -n "${repo:-}" ] || exit 0
+
+# sanitize input (mirrors hgp):
+#   https://github.com/user/project -> user/project
+#   git@github.com:user/project.git -> user/project
+case "$repo" in *.git) repo="${repo%.git}" ;; esac
+case "$repo" in *github.com*) repo="${repo#*github.com[:/]}" ;; esac
+
+name=$(basename "$repo")
+dst="$PROJECTS/$name"
+
+if [ ! -d "$dst" ]; then
+  if ! git clone "git@github.com:/${repo}.git" "$dst"; then
+    "$h" notification show "clone failed" --body "$repo" --sound request 2>/dev/null || true
+    exit 1
+  fi
+fi
+
+herdr-open-workspace "$dst"

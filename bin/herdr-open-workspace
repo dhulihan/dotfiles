@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# Create a herdr workspace for a directory and lay out its tabs
+# (shell + nvim). Replaces the old my-plugin workspace.created hook so the
+# layout only runs for workspaces we open on purpose.
+#
+# Usage: herdr-open-workspace <cwd> [label]
+set -eu
+
+# ensure sibling tools (emoji-hash, git-pull-if-stale) resolve even from a
+# minimal popup/plugin PATH
+bindir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+PATH="$bindir:$PATH"
+
+dir="$1"
+h="${HERDR_BIN_PATH:-herdr}"
+
+# label: use provided one, else emoji-hash + basename (mirrors herdr-new-workspace)
+if [ "${2:-}" != "" ]; then
+  label="$2"
+else
+  emoji=$(emoji-hash "$dir" 2>/dev/null || true)
+  label="$(basename "$dir")"
+  [ -n "$emoji" ] && label="$emoji $label"
+fi
+
+created=$("$h" workspace create --cwd "$dir" --label "$label" --focus)
+ws=$(printf '%s' "$created" | jq -r '.result.workspace.workspace_id')
+
+# lay out the standard shell + nvim tabs
+"$bindir/init-herder-workspace" "$ws"

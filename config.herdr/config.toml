@@ -1,3 +1,4 @@
+onboarding = false
 [keys]
 # note: these conflict with tmux
 
@@ -5,8 +6,9 @@
 next_workspace = "shift+down"
 previous_workspace = "shift+up"
 rename_workspace = "prefix+shift+w"
-close_workspace = "prefix+shift+d"
+close_workspace = "prefix+K"
 switch_workspace = "prefix+1..9"   # optional indexed binding, e.g. "prefix+shift+1..9"
+#switch_workspace = "ctrl+1..9" # conflicts with vim <C-6>
 
 # tabs
 new_tab = "prefix+c"
@@ -23,16 +25,46 @@ focus_pane_left = "prefix+left"
 focus_pane_right = "prefix+right"
 close_pane = "prefix+k"
 
+# agents
+ previous_agent = "ctrl+shift+up"     # optional, unset by default
+ next_agent = "ctrl+shift+down"         # optional, unset by default
+
 split_horizontal = "prefix+\""
 
 # new workspace: pick a directory via fzf, then create the workspace there
 [[keys.command]]
-key = "prefix+n"
+#key = "prefix+n"
+key = "prefix+tab"
 type = "popup"
 command = "new-herdr-workspace"
 description = "new workspace for a selected directory"
 width = "60%"
 height = "60%"
+
+# new blank workspace in the home directory
+[[keys.command]]
+key = "prefix+n"
+type = "shell"
+command = 'herdr workspace create --cwd "$HOME" --focus'
+description = "new blank workspace in home"
+
+# clone a github repo, then open a workspace for it (shell + nvim tabs)
+[[keys.command]]
+key = "prefix+shift+o"
+type = "popup"
+command = "clone-herdr-project"
+description = "clone a github repo into a new workspace"
+width = "60%"
+height = "60%"
+
+# close the current workspace with no confirmation prompt
+[[keys.command]]
+#key = "prefix+V"
+key = "prefix+ctrl+v"
+#key = "prefix+delete"
+type = "shell"
+command = "close-herdr-workspace"
+description = "close workspace (no prompt)"
 
 # reload herdr config
 [[keys.command]]
@@ -40,6 +72,18 @@ key = "prefix+R"
 type = "shell"
 command = 'herdr server reload-config; rc=$?; if [ "$rc" -eq 0 ]; then herdr notification show "config reloaded" --body "exit $rc" --sound done; else herdr notification show "config reload failed" --body "exit $rc" --sound request; fi'
 description = "reload herdr config"
+
+[[keys.command]]
+key = "prefix+e"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.toggle"
+description = "nvim sidebar"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.pick-file"
+description = "open file from agent output"
 
 [ui]
 tab_bar_position = "bottom"
@@ -50,7 +94,7 @@ show_agent_labels_on_pane_borders = false
 [ui.toast]
 #delivery = "system"
 delivery = "herdr"
-delay_seconds = 1
+#delay_seconds = 1
 
 [ui.sound]
 #path = "sounds/notification.mp3"

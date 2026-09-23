@@ -1,0 +1,24 @@
+# downloads a go package to go src dir (not module) and then opens it
+# in a new herdr workspace.
+#
+#   $ hgg github.com/google/gnostic
+#
+# Author: Dave Hulihan
+# Note: Currently only supports github packages.
+
+DST=${GOPATH}/src/$1
+
+# assume github
+gh repo clone $1 $DST
+if [ $? -ne 0 ]; then
+	echo "could not fetch project"
+	return
+fi
+
+cd $DST
+
+# open a new herdr workspace for the project (shell + nvim tabs),
+# but don't nest a workspace if we're already inside herdr.
+if [[ "${HERDR_ENV:-}" != "1" ]] ; then
+	herdr-open-workspace "$DST"
+fi

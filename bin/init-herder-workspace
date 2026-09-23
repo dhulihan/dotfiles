@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# Set up the standard tab layout (shell + nvim) for a herdr workspace:
+#   * tab 1 "shell" — pulls master if the repo has no recent commits
+#   * tab 2 "nvim"  — runs nvim
+#
+# Usage: init-herder-workspace [workspace_id]
+#   defaults to the current workspace ($HERDR_WORKSPACE_ID) when run inside herdr.
+set -eu
+
+# ensure sibling tools (emoji-hash, git-pull-if-stale) resolve even from a minimal PATH
+bindir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+PATH="$bindir:$PATH"
+
+h="${HERDR_BIN_PATH:-herdr}"
+ws="${1:-${HERDR_WORKSPACE_ID:-}}"
+
+if [ -z "$ws" ]; then
+  echo "usage: init-herder-workspace [workspace_id] (or run inside a herdr workspace)" >&2
+  exit 1
+fi
+
+# a fresh workspace already has one tab + root pane — reuse it, don't add a third
+[ "$("$h" tab list --workspace "$ws" | jq '.result.tabs | length')" -gt 1 ] && exit 0
+
+tab=$("$h" tab list --workspace "$ws" | jq -r '.result.tabs[0].tab_id')
+panes=$("$h" pane list --workspace "$ws")
+pane=$(printf '%s' "$panes" | jq -r '.result.panes[0].pane_id')
+cwd=$(printf '%s' "$panes" | jq -r '.result.panes[0].cwd')
+
+# title the workspace with an emoji-hash of its directory (mirrors herdr-open-workspace)
+if [ -n "$cwd" ] && [ "$cwd" != "null" ]; then
+  emoji=$(emoji-hash "$cwd" 2>/dev/null || true)
+  label="$(basename "$cwd")"
+  [ -n "$emoji" ] && label="$emoji $label"
+  "$h" workspace rename "$ws" "$label"
+fi
+
+# first tab is the shell; pull master if the repo has no recent commits
+"$h" tab rename "$tab" shell
+"$h" pane run "$pane" git-pull-if-stale
+
+# second tab runs nvim
+nvim_pane=$("$h" tab create --workspace "$ws" --label nvim \
+  | jq -r '.result.root_pane.pane_id')
+"$h" pane run "$nvim_pane" nvim

@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Close a herdr workspace with no confirmation prompt.
+# Intended for a keybinding: a `type = "shell"` binding does not run inside a
+# pane, so $HERDR_WORKSPACE_ID is unset there — fall back to the focused
+# workspace reported by the API.
+#
+# Usage: close-herdr-workspace [workspace_id]
+set -eu
+
+h="${HERDR_BIN_PATH:-herdr}"
+ws="${1:-${HERDR_WORKSPACE_ID:-}}"
+
+if [ -z "$ws" ]; then
+  ws=$("$h" workspace list | jq -r '.result.workspaces[] | select(.focused==true) | .workspace_id' | head -1)
+fi
+
+[ -n "$ws" ] || exit 0
+"$h" workspace close "$ws"
