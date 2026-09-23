@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# Pick an active herdr workspace via fzf and focus it. Intended for a herdr
+# popup keybinding.
+set -eu
+
+h="${HERDR_BIN_PATH:-herdr}"
+
+# label<TAB>workspace_id per line; fzf searches on the visible label
+choice=$("$h" workspace list \
+  | jq -r '.result.workspaces[] | "\(.label)\t\(.workspace_id)"' \
+  | fzf --prompt="switch to workspace > " --with-nth=1 --delimiter='\t') || exit 0
+[ -n "${choice:-}" ] || exit 0
+
+ws=$(printf '%s' "$choice" | awk -F '\t' '{print $NF}')
+[ -n "$ws" ] || exit 0
+"$h" workspace focus "$ws"

@@ -48,6 +48,15 @@ type = "shell"
 command = 'herdr workspace create --cwd "$HOME" --focus'
 description = "new blank workspace in home"
 
+# switch workspace: search active workspaces via fzf and focus the selection
+[[keys.command]]
+key = "prefix+A"
+type = "popup"
+command = "switch-herdr-workspace"
+description = "search and switch to an active workspace"
+width = "60%"
+height = "60%"
+
 # clone a github repo, then open a workspace for it (shell + nvim tabs)
 [[keys.command]]
 key = "prefix+shift+o"
