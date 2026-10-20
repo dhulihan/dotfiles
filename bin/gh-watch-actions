@@ -93,8 +93,8 @@ while true; do
   # Get runs as JSON
   RUNS=$(gh run list --branch "$BRANCH" --limit 5 --json status,conclusion,workflowName,displayTitle,createdAt,updatedAt,url)
 
-  # Only keep runs active within the last 15 minutes
-  CUTOFF=$(( $(date -u +%s) - 900 ))
+  # Only keep runs active within the last 2 minutes
+  CUTOFF=$(( $(date -u +%s) - 120 ))
   RUNS=$(echo "$RUNS" | jq --argjson cutoff "$CUTOFF" '[.[] | select((.updatedAt | fromdateiso8601) >= $cutoff)]')
 
   # Collect current failures

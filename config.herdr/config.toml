@@ -50,7 +50,9 @@ description = "new blank workspace in home"
 
 # switch workspace: search active workspaces via fzf and focus the selection
 [[keys.command]]
-key = "prefix+A"
+#key = "prefix+A"
+key = "prefix+/" # 2026-09-28 convenient but might stomp on future built-in shortcut
+#key = "cmd+A"
 type = "popup"
 command = "switch-herdr-workspace"
 description = "search and switch to an active workspace"
@@ -99,6 +101,11 @@ tab_bar_position = "bottom"
 prompt_new_tab_name = false
 agent_panel_sort = "priority"
 show_agent_labels_on_pane_borders = false
+
+[ui.sidebar.spaces]
+#row_gap = 1
+# drop the git branch name (default has "branch" alongside git_status)
+rows = [["state_icon", "workspace"], ["git_status"]]
 
 [ui.toast]
 #delivery = "system"
